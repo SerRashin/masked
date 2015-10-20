@@ -425,7 +425,7 @@ var inpClass = function (el, args) {
         country:        args.country ||    'ru',
         mask:           '',
         value:          '',
-        old:            null
+        old:            {}
     };
 
     this.setTemplate();
@@ -568,8 +568,8 @@ inpClass.prototype = {
 
     setCheckedMask: function (e) {
         var value       = this.getVal(e.value);
-
         var finded      = this.maskFinder(phoneCodes.all, value);
+        var old         = this.opt.old;
 
         if(
             typeof finded !== false &&
@@ -580,13 +580,35 @@ inpClass.prototype = {
         }
 
         //console.log(this.maskFinder(phoneCodes[this.opt.country], value));
-        console.log(finded);
+
+        if(
+            typeof this.opt.country !== 'undefined' &&
+            typeof old !== 'null'
+        ) {
+            var newSearch      = this.maskFinder(phoneCodes[this.opt.country], value);
+            if (newSearch) {
+                finded = newSearch;
+            }
+        }
+
+
         if (typeof finded.obj.name === 'undefined') {
             var iso = finded.obj.iso_code;
             //  ищем по коду и ставим аргументы
+
         }
 
-        if (!finded || this.opt.obj != finded.obj) {
+        //if (!o || o.obj != this.old.obj || o.determined != this.old.determined) {
+        console.log(finded)
+
+        if (
+            !finded ||
+            old.obj != finded.obj ||
+            old.determined != finded.determined
+        ) {
+
+            //console.log(finded);
+            //console.log(this.opt.old);
 
             if (finded) {
                 this.opt.old  = finded;
