@@ -314,28 +314,28 @@ var actions = {
 
     /*  При отпускании клавиши проверим фокусировку */
     keyup: function (e) {
-        var instance = plugin.selectInstance(this);
-
+        var self        = this;
+        var instance    = plugin.selectInstance(self);
         $code = e.keyCode;
         if ($code === 8) {     // BACKSPACE
-            var index = instance.getLastNum(this);
-            if (plugin.regex.test(this.value[index]) === true) {
+            var index = instance.getLastNum(self);
+            if (plugin.regex.test(self.value[index]) === true) {
                 index += 1;
-                instance.setCaret(this, index ,index);
+                instance.setCaret(self, index ,index);
                 //instance.checkMask(this); // ищем новую маску
                 return false;
             } else {
                 return false;
             }
-            if (/[\(\)\- ]/.test(this.value[index])) {
-                instance.setCaret(this, index, index);
+            if (/[\(\)\- ]/.test(self.value[index])) {
+                instance.setCaret(self, index, index);
                 //instance.keyboardApply(this,instance.matchMask(this)); // ищем новую маску
             }
         } else {
-            var num   = this.value.indexOf('_');
-            var index = (num !== -1) ? num : this.value.length;
-            instance.setCaret(this, index, index);
-            instance.setCheckedMask(this); // ищем новую маску
+            var num   = self.value.indexOf('_');
+            var index = (num !== -1) ? num : self.value.length;
+            instance.setCaret(self, index, index);
+            instance.setCheckedMask(self); // ищем новую маску
             //instance.keyboardApply(this, instance.matchMask(this)); // ищем новую маску
         }
     }
@@ -418,15 +418,27 @@ var inputView = {
  */
 var inpClass = function (el, args) {
 
+    if (args.phone !== false) {
+        var finded      = this.maskFinder(phoneCodes.all, args.phone);
+        if (finded) {
+            args.mask = this.setNewMaskValue(args.phone, finded.mask);
+            args.country = finded.obj.iso_code;
+        }
+    }
+
+
     this.opt = {
         instId:         plugin.prefix + makeid(),          //  Селектор выбранного елемента
         element:        el,
         lang:           args.lang    ||    'ru',
         country:        args.country ||    'ru',
-        mask:           '',
+        phone:          args.phone   ||    false,
+        mask:           args.mask    ||     '',
         value:          '',
         old:            {}
     };
+
+    console.log(this.opt);
 
     this.setTemplate();
     this.opt.element.value       = this.opt.mask;
@@ -468,9 +480,12 @@ inpClass.prototype = {
             var one             = sortedCodes[i];
             one.iso_code    = one.iso_code.toString().toLowerCase();
             if (typeof one.name === 'undefined')continue;
-            if (opt.country === one.iso_code) {
-                opt.mask = one.mask;
+            if (opt.phone === false) {
+                if (opt.country === one.iso_code) {
+                    this.opt.mask = one.mask;
+                }
             }
+
             var li                      = document.createElement('li');
             li.className            = 'country';
             li.dataset['isoCode']   = one.iso_code.toString().toLowerCase();
@@ -571,48 +586,25 @@ inpClass.prototype = {
         var finded      = this.maskFinder(phoneCodes.all, value);
         var old         = this.opt.old;
 
-        if(
-            typeof finded !== false &&
-            typeof phoneCodes[this.opt.country] !== 'undefined' &&
-            phoneCodes[this.opt.country].length === 0
-        ) {
-            plugin.loadMasks(this.opt.country, this.opt.lang);
-        }
-
-        //console.log(this.maskFinder(phoneCodes[this.opt.country], value));
-
-        if(
-            typeof this.opt.country !== 'undefined' &&
-            typeof old !== 'null'
-        ) {
-            var newSearch      = this.maskFinder(phoneCodes[this.opt.country], value);
-            if (newSearch) {
-                finded = newSearch;
+        if(finded !== false) {
+            if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && phoneCodes[finded.obj.iso_code].length === 0) {
+                plugin.loadMasks(this.opt.country, this.opt.lang);
             }
-        }
-
-
-        if (typeof finded.obj.name === 'undefined') {
-            var iso = finded.obj.iso_code;
-            //  ищем по коду и ставим аргументы
-
-        }
-
-        //if (!o || o.obj != this.old.obj || o.determined != this.old.determined) {
-        console.log(finded)
-
-        if (
-            !finded ||
-            old.obj != finded.obj ||
-            old.determined != finded.determined
-        ) {
-
-            //console.log(finded);
-            //console.log(this.opt.old);
-
-            if (finded) {
+            if (typeof this.opt.country !== 'undefined' && typeof old !== 'null') {
+                var newSearch = this.maskFinder(phoneCodes[finded.obj.iso_code], value);
+                if (newSearch) {
+                    finded = newSearch;
+                }
+            }
+            if (typeof finded.obj.name === 'undefined' && old.obj != finded.obj) {
+                var iso = finded.obj.iso_code; //  ищем по коду и ставим аргументы
+                var new_value = this.findMaskByCode(iso);
+                if (new_value) {
+                    finded.obj.name = new_value.name;
+                }
+            }
+            if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
                 this.opt.old  = finded;
-
                 e.value      = this.setNewMaskValue(value, finded.mask);
                 this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name);
                 this.focused(e);
@@ -681,7 +673,16 @@ inpClass.prototype = {
         return find || maths[0] || false;
     },
 
-
+    findMaskByCode: function(code){
+        var sortedCodes = phoneCodes.sortPhones(phoneCodes.all); // phoneCodes
+        for (i in sortedCodes) {
+            var one = sortedCodes[i];
+            if (sortedCodes[i].iso_code === code) {
+                return one;
+            }
+        }
+        return false;
+    },
     setNewMaskValue: function(value, mask) {
         var value       = this.getVal(value),
             mask       = mask.split(''),
@@ -727,14 +728,11 @@ var plugin = {
     prefix:'instId_',
     regex: new RegExp(/[0-9]/),
     instances:[],
-    init:function (selector,args) {
+    init: function (selector, args) {
         var elements = [];
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
-            if (
-                (f_e === '.') ||
-                (f_e === '#')
-            ) {
+            if ( (f_e === '.') || (f_e === '#') ) {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
@@ -754,12 +752,19 @@ var plugin = {
             }
         }
     },
-    preload:function (el,args) {
-        if (phoneCodes.all.length==0) { // or froom  storage
-            this.loadMasks('all',args.lang);
+    preload:function (el, args) {
+        var u = 'undefined';
+        var opt = {
+            lang: el.dataset.lang ? el.dataset.lang : (typeof args !== u && args.lang ? args.lang : false),
+            country: el.dataset.country ? el.dataset.country : (typeof args !== u && args.country ? args.country : false),
+            phone: el.dataset.phone ? el.dataset.phone : (typeof args !== u && args.phone ? args.phone : false)
+        };
+
+        if (phoneCodes.all.length===0) { // or froom  storage
+            this.loadMasks('all', opt.lang);
         }
 
-        var obj = new inpClass(el, args);
+        var obj = new inpClass(el, opt);
         this.instances[obj.opt.instId] = obj;
     },
     loadMasks: function (type, lang) {

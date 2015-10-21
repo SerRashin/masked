@@ -40,28 +40,28 @@ var actions = {
 
     /*  При отпускании клавиши проверим фокусировку */
     keyup: function (e) {
-        var instance = plugin.selectInstance(this);
-
+        var self        = this;
+        var instance    = plugin.selectInstance(self);
         $code = e.keyCode;
         if ($code === 8) {     // BACKSPACE
-            var index = instance.getLastNum(this);
-            if (plugin.regex.test(this.value[index]) === true) {
+            var index = instance.getLastNum(self);
+            if (plugin.regex.test(self.value[index]) === true) {
                 index += 1;
-                instance.setCaret(this, index ,index);
+                instance.setCaret(self, index ,index);
                 //instance.checkMask(this); // ищем новую маску
                 return false;
             } else {
                 return false;
             }
-            if (/[\(\)\- ]/.test(this.value[index])) {
-                instance.setCaret(this, index, index);
+            if (/[\(\)\- ]/.test(self.value[index])) {
+                instance.setCaret(self, index, index);
                 //instance.keyboardApply(this,instance.matchMask(this)); // ищем новую маску
             }
         } else {
-            var num   = this.value.indexOf('_');
-            var index = (num !== -1) ? num : this.value.length;
-            instance.setCaret(this, index, index);
-            instance.setCheckedMask(this); // ищем новую маску
+            var num   = self.value.indexOf('_');
+            var index = (num !== -1) ? num : self.value.length;
+            instance.setCaret(self, index, index);
+            instance.setCheckedMask(self); // ищем новую маску
             //instance.keyboardApply(this, instance.matchMask(this)); // ищем новую маску
         }
     }

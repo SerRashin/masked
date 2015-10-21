@@ -3,14 +3,11 @@ var plugin = {
     prefix:'instId_',
     regex: new RegExp(/[0-9]/),
     instances:[],
-    init:function (selector,args) {
+    init: function (selector, args) {
         var elements = [];
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
-            if (
-                (f_e === '.') ||
-                (f_e === '#')
-            ) {
+            if ( (f_e === '.') || (f_e === '#') ) {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
@@ -30,12 +27,19 @@ var plugin = {
             }
         }
     },
-    preload:function (el,args) {
-        if (phoneCodes.all.length==0) { // or froom  storage
-            this.loadMasks('all',args.lang);
+    preload:function (el, args) {
+        var u = 'undefined';
+        var opt = {
+            lang: el.dataset.lang ? el.dataset.lang : (typeof args !== u && args.lang ? args.lang : false),
+            country: el.dataset.country ? el.dataset.country : (typeof args !== u && args.country ? args.country : false),
+            phone: el.dataset.phone ? el.dataset.phone : (typeof args !== u && args.phone ? args.phone : false)
+        };
+
+        if (phoneCodes.all.length===0) { // or froom  storage
+            this.loadMasks('all', opt.lang);
         }
 
-        var obj = new inpClass(el, args);
+        var obj = new inpClass(el, opt);
         this.instances[obj.opt.instId] = obj;
     },
     loadMasks: function (type, lang) {

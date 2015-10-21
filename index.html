@@ -16,10 +16,8 @@
     <script type="text/javascript" src="js/inputmask.js"></script>
     <script  type="text/javascript">
       $(document).ready(function() {
-          CBHMasks.init('.mask', {
-            lang:     'ru',
-            country:  'ru'
-          });
+        CBHMasks.init('.mask');
+
       });
     </script>
   </head>
@@ -31,16 +29,16 @@
     <form>
       <div class="form-group">
         <label for="dfdfdf">----</label>
-        <input type="text" id="example1" class="mask">
+        <input type="text" id="example1" class="mask" data-phone="71223432123" data-lang="ru" data-country="us">
       </div>
       <div class="form-group">
         <label for="dfdfdf">Введите номер телефона</label>
-        <input type="text" id="example2" class="mask">
+        <input type="text" id="example2" class="mask" data-phone="380957131373" data-lang="ru" data-country="us">
 
       </div>
       <div class="form-group">
         <label for="gdfgdfg">Введите номер телефона</label>
-        <input type="text" class="form-control newMask" id="gdfgdfg" placeholder="+_(___)___-__-__">
+        <input type="text" class="form-control newMask" id="gdfgdfg">
       </div>
     </form>
   </div>
