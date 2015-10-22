@@ -491,7 +491,7 @@ inpClass.prototype = {
             li.dataset['isoCode']   = one.iso_code.toString().toLowerCase();
             li.dataset['mask']      = one.mask;
 
-            //Event.add(li,'click', inputMask.maskReplace);
+            Event.add(li,'click', this.maskReplace);
 
             var i                       = document.createElement('i');
             i.className             = 'flag ' + one.iso_code;
@@ -520,6 +520,32 @@ inpClass.prototype = {
         };
 
         this.opt.element = wrapper.childNodes[1];
+    },
+    maskReplace: function () {
+        var input       = this.parentNode.parentNode.parentNode.childNodes[1];
+        var self        = this;
+        var instance    = plugin.selectInstance(input);
+
+
+        var n = {
+            code:       self.dataset['isoCode'],
+            mask:       self.dataset['mask'],
+            phone_code: instance.getVal(self.dataset['mask']),
+        };
+        var o = {
+            mask:         input.placeholder,
+            phone_code:   instance.getVal(input.placeholder),
+            val:          instance.getVal(input.value)
+        };
+        var newval          = o.val.replace(o.phone_code, n.phone_code);
+        var nval            = o.mask.replace(new RegExp([plugin.regex.source].concat('_').join('|'), 'g'), '_');
+        input.value         = instance.setNewMaskValue(newval, nval);
+        input.placeholder   = n.mask;
+        var  flag_el        = this.parentNode.parentNode.childNodes[0].childNodes[0];
+        flag_el.className   = 'flag '+ n.code;
+
+        var list_el = this.parentNode.parentNode.childNodes[1];
+        removeClass(list_el,'active');
     },
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
