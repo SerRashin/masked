@@ -256,7 +256,7 @@ inpClass.prototype = {
                 if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && phoneCodes[finded.obj.iso_code].length === 0) {
                     plugin.loadMasks(this.opt.country, this.opt.lang);
                 }
-                if (typeof this.opt.country !== 'undefined' && typeof old !== 'null') {
+                if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && typeof old !== 'null') {
                     var newSearch = this.maskFinder(phoneCodes[finded.obj.iso_code], value);
                     if (newSearch) {
                         finded = newSearch;
@@ -271,8 +271,7 @@ inpClass.prototype = {
                 }
                 if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
                     this.opt.old  = finded;
-                    e.value      = this.setNewMaskValue(value, finded.mask);
-                    this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name);
+                    this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name, this.setNewMaskValue(value, finded.mask));
                     this.focused(e);
                 }
             }
@@ -368,7 +367,8 @@ inpClass.prototype = {
         return mask.join('');
     },
 
-    setInputAttrs:function (e, flag, title) {
+    setInputAttrs:function (e, flag, title, value) {
+        e.value          = value;
         var i = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
         i.className = 'flag '+ flag;
         i.parentNode.setAttribute('title', title);

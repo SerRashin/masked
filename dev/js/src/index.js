@@ -94,7 +94,13 @@ var plugin = {
             top: curtop
         };
     },
-    phoneCodes:phoneCodes
+    getById: function (id) {
+        var el = document.getElementById(id);
+        if(el !==null){
+            return this.selectInstance(el);
+        }
+        return false;
+    }
 };
 
 

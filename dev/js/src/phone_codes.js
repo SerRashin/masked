@@ -2,6 +2,7 @@ var phoneCodes = {
     all:    [],
     ru:     [],
     us:     [],
+    ca:     [],
 
 
     /**
