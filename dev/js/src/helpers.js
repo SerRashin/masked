@@ -1,3 +1,5 @@
+var und = 'undefined';
+
 var Event = (function() {
     var guid = 0
     function fixEvent(event) {
@@ -116,7 +118,8 @@ function makeid()
      Safari 4+
      Internet Explorer 8+
  */
-$.AJAX = function (obj) {
+
+$AJAX = function (obj) {
     var availableType       = ['GET', 'POST', 'PUT'];
     var availableDataType   = ['json', 'text'];
     var headers             = {};
@@ -132,11 +135,11 @@ $.AJAX = function (obj) {
         dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
     };
 
-    if (typeof args.url === 'undefined' || args.url === false) {
+    if (typeof args.url === und || args.url === false) {
         return;
     }
 
-    if (typeof XMLHttpRequest == 'undefined'){
+    if (typeof XMLHttpRequest == und){
         XMLHttpRequest = function () {
             try {
                 return new ActiveXObject( 'Msxml2.XMLHTTP.6.0' );

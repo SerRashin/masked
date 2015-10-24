@@ -20,7 +20,6 @@ module.exports = function(grunt) {
                     'dev/js/src/actions.js',
                     //
                     //
-                    'dev/js/src/inputView.js',
                     'dev/js/src/main.js',
                     //
                     //
@@ -55,8 +54,8 @@ module.exports = function(grunt) {
                 options: {
                     sassDir:       'dev/sass',
                     cssDir:        'css',
-                    //outputStyle:    'expanded',
-                    outputStyle:   'compressed',
+                    outputStyle:    'expanded',
+                    //outputStyle:   'compressed',
                     noLineComments: true,
                 }
             }
@@ -94,6 +93,6 @@ module.exports = function(grunt) {
         'concat:main',
         'uglify:main',
 
-        //'compass'
+        'compass'
     ]);
 };

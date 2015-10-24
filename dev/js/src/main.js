@@ -4,15 +4,13 @@
  */
 var inpClass = function (el, args) {
 
-    if (args.phone !== false) {
-        var finded      = this.maskFinder(phoneCodes.all, args.phone);
+    if (args.phone) {
+        var finded       = this.maskFinder(phoneCodes.all, args.phone);
         if (finded) {
-            args.mask = this.setNewMaskValue(args.phone, finded.mask);
+            args.mask    = this.setNewMaskValue(args.phone, finded.mask);
             args.country = finded.obj.iso_code;
         }
     }
-
-
     this.opt = {
         instId:         plugin.prefix + makeid(),          //  Селектор выбранного елемента
         element:        el,
@@ -20,117 +18,166 @@ var inpClass = function (el, args) {
         country:        args.country ||    'ru',
         phone:          args.phone   ||    false,
         mask:           args.mask    ||     '',
+        onsend:         args.onsend || null,
         value:          '',
         old:            {}
     };
 
-    console.log(this.opt);
-
     this.setTemplate();
-    this.opt.element.value       = this.opt.mask;
-    this.opt.element.placeholder = this.opt.mask;
+    var options = this.opt,
+        mask    = options.mask;
+    element = this.opt.element;
 
-    addClass(this.opt.element, this.opt.instId);
+    element.value       = mask;
+    element.placeholder = mask;
 
-    this.addActions(this.opt.element);
+    addClass(element, options.instId);
+
+    this.addActions(options.element);
 };
 
 inpClass.prototype = {
     setTemplate: function() {
         var opt = this.opt,
-            el  = this.opt.element;
+            el  = this.opt.element,
+            p  = plugin,
+            document_create  = function (e) {
+                return document.createElement(e);
+            },
+            inner_HTML  = function (i, o) {
+                i.innerHTML = o.outerHTML;
+            },
+            className  = function (e, c) {
+                return e.className = c;
+            },
+            phone_codes = phoneCodes,
+            append_child = function (e,i) {
+                e.appendChild(i);
+            };
 
-        var wrapper = document.createElement('div');
-        wrapper.innerHTML = el.outerHTML;
-        wrapper.className = 'CBH-masks';
+        var wrapper = document_create('div');
+        inner_HTML(wrapper,el);
+        className(wrapper,'CBH-masks');
 
         el.parentNode.replaceChild(wrapper, el);
 
-        var caret                   = document.createElement('i');
-        caret.className         = 'caret';
-        var flag                    = document.createElement('div');
-        flag.innerHTML          = caret.outerHTML;
-        flag.className          = 'flag ' + opt.country;
-        var selected                = document.createElement('div');
-        selected.innerHTML      = flag.outerHTML;
-        selected.className      = 'selected';
-        var flags_block             = document.createElement('div');
-        flags_block.innerHTML   = selected.outerHTML;
-        flags_block.className   = 'flags';
-        var ul                      = document.createElement('ul');
-        ul.className            = 'lists';
+        var caret                   = document_create('i');
+        className(caret,'caret');
+        var flag                    = document_create('div');
+        inner_HTML(flag,caret);
+        className(flag,'flag ' + opt.country);
+        var selected                = document_create('div');
+        inner_HTML(selected,flag);
+        className(selected,'selected');
+        var flags_block             = document_create('div');
+        inner_HTML(flags_block,selected);
+        className(flags_block,'flags');
+        var ul                      = document_create('ul');
+        className(ul,'lists');
 
-        var sortedCodes = phoneCodes.sortPhones(phoneCodes.all); // phoneCodes
+        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
 
         for (i in sortedCodes) {
-            var one             = sortedCodes[i];
-            one.iso_code    = one.iso_code.toString().toLowerCase();
-            if (typeof one.name === 'undefined')continue;
+            var one             = sortedCodes[i],
+                iso             = one.iso_code.toString().toLowerCase(),
+                name            = one.name,
+                mask            = one.mask;
+
+            if (typeof name === und)continue;
             if (opt.phone === false) {
-                if (opt.country === one.iso_code) {
-                    this.opt.mask = one.mask;
+                if (opt.country === iso) {
+                    this.opt.mask = mask;
                 }
             }
-
-            var li                      = document.createElement('li');
+            var li                      = document_create('li');
             li.className            = 'country';
-            li.dataset['isoCode']   = one.iso_code.toString().toLowerCase();
-            li.dataset['mask']      = one.mask;
+            li.dataset['isoCode']   = iso;
+            li.dataset['mask']      = mask;
 
             Event.add(li,'click', this.maskReplace);
 
-            var i                       = document.createElement('i');
-            i.className             = 'flag ' + one.iso_code;
-            li.appendChild(i);
-            var span                    = document.createElement('span');
-            span.className          = 'name';
-            span.innerHTML          = one.name;
-            li.appendChild(span);
-
-            var span                    = document.createElement('span');
-            span.className          = 'code';
-            span.innerHTML          = "+" + one.phone_code;
-            li.appendChild(span);
-            ul.appendChild(li);
+            var i                       = document_create('i');
+            className(i, 'flag ' + iso);
+            append_child(li, i);
+            var span                    = document_create('span');
+            className(span, 'name');
+            span.innerHTML = name;
+            append_child(li, span);
+            var span                    = document_create('span');
+            className(span, 'code');
+            span.innerHTML = '+'+one.phone_code;
+            append_child(li, span);
+            append_child(ul, li)
         }
 
-        flags_block.appendChild(ul);
+        append_child(flags_block, ul);
+
+        Event.add(ul,'mousedown', function(e){
+            e.stopPropagation();
+        });
         wrapper.insertBefore( flags_block, wrapper.firstChild );
         wrapper.getElementsByClassName('selected')[0].onclick = function () {
-            var el = wrapper.getElementsByClassName('lists')[0];
-            if (/active/.test(el.className) === true) {
-                removeClass(el,'active');
+            var opened_elements = document.getElementsByClassName('lists active');
+            var cur_el          = wrapper.getElementsByClassName('lists')[0];
+            if(!!opened_elements.length) {
+                for(var i in opened_elements) {
+                    if (cur_el !== opened_elements[i] && opened_elements.hasOwnProperty(i)) {
+                        removeClass(opened_elements[i], 'active');
+                    }
+                }
+            }
+            if (/active/.test(cur_el.className) !== true) {
+                addClass(cur_el,'active');
+                var w       = window,
+                    d       = document,
+                    winHeight       = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
+                    offset          = p.findPos(cur_el),
+                    fromTop         = (offset.top - cur_el.scrollTop),
+                    maskBlockHeight = cur_el.clientHeight;
+
+                if ( (winHeight-(fromTop+wrapper.childNodes[1].clientHeight)) <= maskBlockHeight ) {
+                    addClass(cur_el,'top');
+                }
             } else {
-                addClass(el,'active');
+                removeClass(cur_el, 'active');
+                removeClass(cur_el, 'top');
             }
         };
 
         this.opt.element = wrapper.childNodes[1];
     },
     maskReplace: function () {
-        var input       = this.parentNode.parentNode.parentNode.childNodes[1];
-        var self        = this;
-        var instance    = plugin.selectInstance(input);
+        var self        = this,
+            parent      = self.parentNode.parentNode,
+            input       = parent.parentNode.childNodes[1],
+            p           = plugin,
+            instance    = plugin.selectInstance(input),
+            dataset     = self.dataset,
+
+            placeholder = input.placeholder;
+
 
 
         var n = {
-            code:       self.dataset['isoCode'],
-            mask:       self.dataset['mask'],
-            phone_code: instance.getVal(self.dataset['mask']),
+            code:       dataset['isoCode'],
+            mask:       dataset['mask'],
+            phone_code: instance.getVal(dataset['mask']),
         };
         var o = {
-            mask:         input.placeholder,
-            phone_code:   instance.getVal(input.placeholder),
+            mask:         placeholder,
+            phone_code:   instance.getVal(placeholder),
             val:          instance.getVal(input.value)
         };
-        var newval          = o.val.replace(o.phone_code, n.phone_code);
-        var nval            = o.mask.replace(new RegExp([plugin.regex.source].concat('_').join('|'), 'g'), '_');
-        input.value         = instance.setNewMaskValue(newval, nval);
-        input.placeholder   = n.mask;
-        var  flag_el        = this.parentNode.parentNode.childNodes[0].childNodes[0];
-        flag_el.className   = 'flag '+ n.code;
 
-        var list_el = this.parentNode.parentNode.childNodes[1];
+        var newval              = o.val.replace(o.phone_code, n.phone_code);
+        var nval                = o.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_');
+        input.value             = instance.setNewMaskValue(newval, nval);
+        input.placeholder       = n.mask;
+
+        flag_el                 = parent.childNodes[0].childNodes[0];
+        flag_el.className       = 'flag '+ n.code,
+            list_el = parent.childNodes[1];
+
         removeClass(list_el,'active');
     },
     addActions: function(e) {
@@ -144,9 +191,9 @@ inpClass.prototype = {
      * Сфокусировать маску на доступном для ввода элементе
      */
     focused: function() {
-        var e = this.opt.element;
-        var num = e.value.indexOf('_');
-        var i = (num === -1) ? e.value.length : num;
+        var e = this.opt.element, v = e.value;
+        var num = v.indexOf('_');
+        var i = (num === -1) ? v.length : num;
         this.setCaret(e, i, i);
     },
 
@@ -174,8 +221,9 @@ inpClass.prototype = {
      * @returns {Number}
      */
     getLastNum:function(e) {
-        for (var i = e.value.length; i >= 0; i--) {
-            if (plugin.regex.test(e.value[i])) {
+        var v = e.value;
+        for (var i = v.length; i >= 0; i--) {
+            if (plugin.regex.test(v[i])) {
                 break;
             }
         }
@@ -189,37 +237,44 @@ inpClass.prototype = {
      */
     removeChar:function(e, i) {
         var temp = e.value.split('');
-            temp[i]='_';
+        temp[i]='_';
         e.value = temp.join('');
     },
 
     setCheckedMask: function (e) {
-        var value       = this.getVal(e.value);
-        var finded      = this.maskFinder(phoneCodes.all, value);
+        var value       = this.getVal(e.value),
+            phone_codes = phoneCodes;
+        var finded      = this.maskFinder(phone_codes.all, value);
         var old         = this.opt.old;
 
         if(finded !== false) {
-            if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && phoneCodes[finded.obj.iso_code].length === 0) {
-                plugin.loadMasks(this.opt.country, this.opt.lang);
-            }
-            if (typeof this.opt.country !== 'undefined' && typeof old !== 'null') {
-                var newSearch = this.maskFinder(phoneCodes[finded.obj.iso_code], value);
-                if (newSearch) {
-                    finded = newSearch;
+            var value       = this.getVal(e.value);
+            var finded      = this.maskFinder(phoneCodes.all, value);
+            var old         = this.opt.old;
+
+            if(finded !== false) {
+                if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && phoneCodes[finded.obj.iso_code].length === 0) {
+                    plugin.loadMasks(this.opt.country, this.opt.lang);
                 }
-            }
-            if (typeof finded.obj.name === 'undefined' && old.obj != finded.obj) {
-                var iso = finded.obj.iso_code; //  ищем по коду и ставим аргументы
-                var new_value = this.findMaskByCode(iso);
-                if (new_value) {
-                    finded.obj.name = new_value.name;
+                if (typeof this.opt.country !== 'undefined' && typeof old !== 'null') {
+                    var newSearch = this.maskFinder(phoneCodes[finded.obj.iso_code], value);
+                    if (newSearch) {
+                        finded = newSearch;
+                    }
                 }
-            }
-            if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
-                this.opt.old  = finded;
-                e.value      = this.setNewMaskValue(value, finded.mask);
-                this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name);
-                this.focused(e);
+                if (typeof finded.obj.name === 'undefined' && old.obj != finded.obj) {
+                    var iso = finded.obj.iso_code; //  ищем по коду и ставим аргументы
+                    var new_value = this.findMaskByCode(iso);
+                    if (new_value) {
+                        finded.obj.name = new_value.name;
+                    }
+                }
+                if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
+                    this.opt.old  = finded;
+                    e.value      = this.setNewMaskValue(value, finded.mask);
+                    this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name);
+                    this.focused(e);
+                }
             }
         }
     },
@@ -241,7 +296,8 @@ inpClass.prototype = {
      * @returns {boolean|*}
      */
     maskFinder: function(masklist, value) {
-        var maths = [];
+        var maths = [],
+            regex = plugin.regex;
         for (var mid in masklist) {
             var mask = masklist[mid]['mask'];
             var pass = true;
@@ -249,12 +305,12 @@ inpClass.prototype = {
                 var chm = mask.charAt(im);
                 var cht = value.charAt(it);
 
-                if (!plugin.regex.test(chm) && chm !== '_') {
+                if (!regex.test(chm) && chm !== '_') {
                     im++;
                     continue;
                 }
 
-                if ((chm === '_' && plugin.regex.test(cht)) || (cht == chm)) {
+                if ((chm === '_' && regex.test(cht)) || (cht == chm)) {
                     it++;
                     im++;
                 } else {
@@ -264,12 +320,12 @@ inpClass.prototype = {
             }
 
             if (pass && it==value.length) {
-                var determined = mask.substr(im).search(plugin.regex) == -1;
-                mask = mask.replace(new RegExp([plugin.regex.source].concat('_').join('|'), 'g'), '_');
+                var determined = mask.substr(im).search(regex) == -1;
+                mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
                 maths.push({
-                    mask:       mask,           // новая маска для ввода
-                    obj:        masklist[mid],  //
-                    determined: determined,     //
+                    mask:       mask,
+                    obj:        masklist[mid],
+                    determined: determined
                 });
             }
         }
@@ -286,8 +342,9 @@ inpClass.prototype = {
     },
 
     findMaskByCode: function(code){
-        var sortedCodes = phoneCodes.sortPhones(phoneCodes.all); // phoneCodes
-        for (i in sortedCodes) {
+        var phone_codes = phoneCodes;
+        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
+        for (i in phone_codes.all) {
             var one = sortedCodes[i];
             if (sortedCodes[i].iso_code === code) {
                 return one;
@@ -297,7 +354,7 @@ inpClass.prototype = {
     },
     setNewMaskValue: function(value, mask) {
         var value       = this.getVal(value),
-            mask       = mask.split(''),
+            mask        = mask.split(''),
             len         = 0;
         for (i in mask) {
             var digit = mask[i];
@@ -316,21 +373,5 @@ inpClass.prototype = {
         i.className = 'flag '+ flag;
         i.parentNode.setAttribute('title', title);
         this.opt.country = flag;
-    },
+    }
 };
-
-/**
- * Получить все цифры в строке
- *
- * parseInt(value.replace(/\D+/g,""))
- *
- */
-
-/**
- *  Последняя циферка
- *
- * parseInt(value.match(/([\d+])(?:[\D]+)?$/)[0])
- *
- */
-
-

@@ -2,34 +2,43 @@
 <html>
   <head>
     <title>test proj page</title>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
 
-    
+
+
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-      
-        
-        
+
+
+
 
     </style>
+    <script type="text/javascript" src="//cbh.local/cbh-debug.js"></script>
     <script type="text/javascript" src="js/inputmask.js"></script>
     <script  type="text/javascript">
-      $(document).ready(function() {
-        CBHMasks.init('.mask');
 
-      });
+      var tId = setInterval(function() {
+        if (document.readyState === "complete") {
+          CBHMasks.init('.mask',{
+            onsend:function() {
+              console.log(123);
+            }
+          });
+          clearInterval(tId);
+        }
+      }, 11);
     </script>
+
   </head>
   <body>
     <div id="parserel">
-    
+
     </div>
   <div class="container" style="max-width:300px;margin-top:150px">
     <form>
       <div class="form-group">
         <label for="dfdfdf">----</label>
-        <input type="text" id="example1" class="mask" data-phone="71223432123" data-lang="ru" data-country="us">
+        <input type="tel"  class="mask"  data-lang="ru" data-country="ru">
       </div>
       <div class="form-group">
         <label for="dfdfdf">Введите номер телефона</label>

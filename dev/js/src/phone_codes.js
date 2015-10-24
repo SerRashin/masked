@@ -1,7 +1,7 @@
 var phoneCodes = {
     all:    [],
     ru:     [],
-    en:     [],
+    us:     [],
 
 
     /**
@@ -9,24 +9,24 @@ var phoneCodes = {
      * @param maskList
      * @returns {*}
      */
-    sortPhones:function (maskList) {
-        var key = "name";
+    sortPhones:function (maskList, key, sort) {
+        var key = (key == 'mask')? 'mask' : 'name';
+        var sort = (sort == 'desc')? 'desc' : 'asc';
         maskList.sort(function (a, b) {
-            if (typeof a[key] === 'undefined' || typeof b[key] === 'undefined')return;
-            var ia = 0,
-                ib = 0;
-            for (; (ia<a[key].length && ib<b[key].length); ) {
-                var cha = a[key].charAt(ia);
-                var chb = b[key].charAt(ib);
-                if (cha > chb) {
-                    return 1;
-                } else if (cha < chb) {
-                    return -1;
-                } else {
-                    return 0;
-                }
-                ia++;
-                ib++;
+            if (typeof a[key] === und || typeof b[key] === und)return;
+            if (key ==='mask'){
+                var a = a[key].replace(/\D+/g,"");
+                var b = b[key].replace(/\D+/g,"");
+            } else {
+                var a = a[key];
+                var b = b[key];
+            }
+            if (a > b) {
+                return sort=='asc' ? 1:-1;
+            } else if (a < b) {
+                return sort=='asc' ? -1:1;
+            } else {
+                return 0;
             }
         });
         return maskList;

@@ -4,21 +4,30 @@ var plugin = {
     regex: new RegExp(/[0-9]/),
     instances:[],
     init: function (selector, args) {
-        var elements = [];
+        var elements = [],
+            doc      = document;
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
             if ( (f_e === '.') || (f_e === '#') ) {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
-                var elements = document.getElementsByClassName( selector );
+                var elem = doc.getElementsByClassName( selector );
+                if (elem !== null) {
+                    var elements = elem;
+                }
             } else if (f_e === '#') {
-                elements.push(document.getElementById( selector ));
+                var elem = doc.getElementById( selector );
+                if (elem !== null) {
+                    elements.push(elem);
+                }
             } else {
                 return ;
             }
         } else if(selector.nodeType) {
-            elements.push(selector);
+            if (selector !== null) {
+                elements.push(selector);
+            }
         }
 
         for(i in elements) {
@@ -28,35 +37,64 @@ var plugin = {
         }
     },
     preload:function (el, args) {
-        var u = 'undefined';
-        var opt = {
-            lang: el.dataset.lang ? el.dataset.lang : (typeof args !== u && args.lang ? args.lang : false),
-            country: el.dataset.country ? el.dataset.country : (typeof args !== u && args.country ? args.country : false),
-            phone: el.dataset.phone ? el.dataset.phone : (typeof args !== u && args.phone ? args.phone : false)
-        };
-
+        var self = this,
+            opt  = self.extend(self.extend({}, args), el.dataset);
         if (phoneCodes.all.length===0) { // or froom  storage
-            this.loadMasks('all', opt.lang);
+            self.loadMasks('all', opt.lang);
         }
-
         var obj = new inpClass(el, opt);
-        this.instances[obj.opt.instId] = obj;
+        self.instances[obj.opt.instId] = obj;
     },
     loadMasks: function (type, lang) {
-        $.AJAX({
-            url:         this.path + type + '/' + lang + '.json',
+        $AJAX({
+            url:         this.path + type + '/' + (lang||'ru') + '.json',
             type:        "GET",
             async:       false,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
             dataType:    'json',
             result: function (responce) {
-                phoneCodes[type] = responce;
+                if(type === 'all') {
+                    phoneCodes[type] =  phoneCodes.sortPhones(responce ,"mask",'desc');
+                } else {
+                    phoneCodes[type] =  phoneCodes.sortPhones(responce, "mask",'desc');
+
+                }
             }
         });
     },
     selectInstance: function (e) {
         return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
-    }
+    },
+    extend: function ( defaults, options ) {
+        var extended = {};
+        var prop;
+        var prototype = Object.prototype.hasOwnProperty;
+        for (prop in defaults) {
+            if (prototype.call(defaults, prop)) {
+                extended[prop] = defaults[prop];
+            }
+        }
+        for (prop in options) {
+            if (prototype.call(options, prop)) {
+                extended[prop] = options[prop];
+            }
+        }
+        return extended;
+    },
+    findPos: function (obj) {
+        var curleft = curtop = 0;
+        if (obj && obj.offsetParent) {
+            do {
+                curleft += obj.offsetLeft;
+                curtop += obj.offsetTop;
+            } while (obj = obj.offsetParent);
+        }
+        return {
+            left: curleft,
+            top: curtop
+        };
+    },
+    phoneCodes:phoneCodes
 };
 
 
