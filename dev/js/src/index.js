@@ -5,6 +5,7 @@ var plugin = {
     instances:[],
     init: function (selector, args) {
         var elements = [],
+            elem     = und,
             doc      = document;
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
@@ -12,12 +13,16 @@ var plugin = {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
-                var elem = doc.getElementsByClassName( selector );
-                if (elem !== null) {
-                    var elements = elem;
+                elem = doc.getElementsByClassName( selector );
+                for(i in elem) {
+                    if (elem.hasOwnProperty(i)) {
+                        if (elem[i] !== null) {
+                            elements[elem[i].id||i] = elem[i];
+                        }
+                    }
                 }
             } else if (f_e === '#') {
-                var elem = doc.getElementById( selector );
+                elem = doc.getElementById( selector );
                 if (elem !== null) {
                     elements.push(elem);
                 }
@@ -29,7 +34,6 @@ var plugin = {
                 elements.push(selector);
             }
         }
-
         for(i in elements) {
             if(elements.hasOwnProperty(i)) {
                 this.preload(elements[i], args);
@@ -47,7 +51,7 @@ var plugin = {
     },
     loadMasks: function (type, lang) {
         $AJAX({
-            url:         this.path + type + '/' + (lang||'ru') + '.json',
+            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.json',
             type:        "GET",
             async:       false,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -57,7 +61,6 @@ var plugin = {
                     phoneCodes[type] =  phoneCodes.sortPhones(responce ,"mask",'desc');
                 } else {
                     phoneCodes[type] =  phoneCodes.sortPhones(responce, "mask",'desc');
-
                 }
             }
         });
@@ -96,11 +99,12 @@ var plugin = {
     },
     getById: function (id) {
         var el = document.getElementById(id);
-        if(el !==null){
+        if(el !== null){
             return this.selectInstance(el);
         }
         return false;
-    }
+    },
+    cbh_phones:phoneCodes
 };
 
 

@@ -288,33 +288,36 @@ var actions = {
     },
 
     /* При нажатии клавиши */
-    keypress: function (e) {
+    keydown: function (e) {
         var self     = this,
             p        = plugin,
             regex    = p.regex,
             instance = p.selectInstance(self),
-            code     = e.keyCode,
-            key      = parseInt(e.key);
+            code     = e.keyCode || e.which,
+            key      = String.fromCharCode(code),
+            value    = self.value,
+            _false   = false,
+            _true    = true;
 
         if (code === 8) {  // BACKSPACE
             var index = instance.getLastNum(self);
-            if (regex.test(self.value[index]) === true) {
+            if (regex.test(value[index]) === _true) {
                 instance.removeChar(self, index);
                 instance.setCaret(self, index ,index);
-                return false;
+                return _false;
             } else {
-                return false;
+                return _false;
             }
         } else {
-            var num = self.value.indexOf('_');
+            var num = value.indexOf('_');
             if (num !== -1) { // если есть еще пустые символы
-                if (regex.test(key) === true) {
+                if (regex.test(key) === _true) {
                     instance.setCaret(self, num, (num+1) );
                 } else {
-                    return false;
+                    return _false;
                 }
             } else {
-                return false;
+                return _false;
             }
         }
     },
@@ -322,30 +325,33 @@ var actions = {
     /*  При отпускании клавиши проверим фокусировку */
     keyup: function (e) {
         var self        = this,
+            index       = und,
             p           = plugin,
             regex       = p.regex,
             instance    = p.selectInstance(self),
-            code        = e.keyCode;
+            code        = e.keyCode || e.which,
+            value       = self.value,
+            _false      = false;
 
         if (code === 8) {     // BACKSPACE
-            var index = instance.getLastNum(self);
-            if (regex.test(self.value[index]) === true) {
+            index = instance.getLastNum(self);
+            if (regex.test(value[index]) === true) {
                 index += 1;
                 instance.setCaret(self, index ,index);
-                return false;
+                return _false;
             } else {
-                return false;
+                return _false;
             }
-            if (/[\(\)\- ]/.test(self.value[index])) {
+            if (/[\(\)\- ]/.test(value[index])) {
                 instance.setCaret(self, index, index);
             }
-        }  else if(e.which === 13 || e.keyCode === 13) {
+        }  else if(code === 13) {
             if (instance.opt.onsend) {
                 instance.opt.onsend(instance.opt);
             }
         } else {
-            var num   = self.value.indexOf('_'),
-                index = (num !== -1) ? num : self.value.length;
+            var num   = value.indexOf('_');
+            index = (num !== -1) ? num : value.length;
             instance.setCaret(self, index, index);
             instance.setCheckedMask(self); // ищем новую маску
         }
@@ -353,10 +359,8 @@ var actions = {
 };
 /**
  * Объект маски
- * @type {{opt: {}, setMask: Function}}
  */
 var inpClass = function (el, args) {
-
     if (args.phone) {
         var finded       = this.maskFinder(phoneCodes.all, args.phone);
         if (finded) {
@@ -406,7 +410,9 @@ inpClass.prototype = {
             phone_codes = phoneCodes,
             append_child = function (e,i) {
                 e.appendChild(i);
-            };
+            },
+            text_div = 'div',
+            text_flag = 'flag';
 
         var wrapper = document_create('div');
         inner_HTML(wrapper,el);
@@ -416,13 +422,13 @@ inpClass.prototype = {
 
         var caret                   = document_create('i');
         className(caret,'caret');
-        var flag                    = document_create('div');
+        var flag                    = document_create(text_div);
         inner_HTML(flag,caret);
-        className(flag,'flag ' + opt.country);
-        var selected                = document_create('div');
+        className(flag, text_flag+' ' + opt.country);
+        var selected                = document_create(text_div);
         inner_HTML(selected,flag);
         className(selected,'selected');
-        var flags_block             = document_create('div');
+        var flags_block             = document_create(text_div);
         inner_HTML(flags_block,selected);
         className(flags_block,'flags');
         var ul                      = document_create('ul');
@@ -443,14 +449,14 @@ inpClass.prototype = {
                 }
             }
             var li                      = document_create('li');
-            li.className            = 'country';
-            li.dataset['isoCode']   = iso;
-            li.dataset['mask']      = mask;
+                li.className            = 'country';
+                li.dataset['isoCode']   = iso;
+                li.dataset['mask']      = mask;
 
             Event.add(li,'click', this.maskReplace);
 
             var i                       = document_create('i');
-            className(i, 'flag ' + iso);
+            className(i, text_flag+' ' + iso);
             append_child(li, i);
             var span                    = document_create('span');
             className(span, 'name');
@@ -468,35 +474,38 @@ inpClass.prototype = {
         Event.add(ul,'mousedown', function(e){
             e.stopPropagation();
         });
+
         wrapper.insertBefore( flags_block, wrapper.firstChild );
         wrapper.getElementsByClassName('selected')[0].onclick = function () {
-            var opened_elements = document.getElementsByClassName('lists active');
-            var cur_el          = wrapper.getElementsByClassName('lists')[0];
+            var w       = window,
+                d       = document,
+                lists   = 'lists',
+                active  = 'active',
+                top     = 'top',
+                opened_elements = d.getElementsByClassName(lists+' '+active),
+                cur_el          = wrapper.getElementsByClassName(lists)[0];
             if(!!opened_elements.length) {
                 for(var i in opened_elements) {
                     if (cur_el !== opened_elements[i] && opened_elements.hasOwnProperty(i)) {
-                        removeClass(opened_elements[i], 'active');
+                        removeClass(opened_elements[i], active);
                     }
                 }
             }
             if (/active/.test(cur_el.className) !== true) {
-                addClass(cur_el,'active');
-                var w       = window,
-                    d       = document,
-                    winHeight       = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
+                addClass(cur_el, active);
+                var winHeight       = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
                     offset          = p.findPos(cur_el),
                     fromTop         = (offset.top - cur_el.scrollTop),
                     maskBlockHeight = cur_el.clientHeight;
 
                 if ( (winHeight-(fromTop+wrapper.childNodes[1].clientHeight)) <= maskBlockHeight ) {
-                    addClass(cur_el,'top');
+                    addClass(cur_el, top);
                 }
             } else {
-                removeClass(cur_el, 'active');
-                removeClass(cur_el, 'top');
+                removeClass(cur_el, active);
+                removeClass(cur_el, top);
             }
         };
-
         this.opt.element = wrapper.childNodes[1];
     },
     maskReplace: function () {
@@ -504,12 +513,10 @@ inpClass.prototype = {
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
-            instance    = plugin.selectInstance(input),
+            instance    = p.selectInstance(input),
             dataset     = self.dataset,
 
             placeholder = input.placeholder;
-
-
 
         var n = {
             code:       dataset['isoCode'],
@@ -529,14 +536,19 @@ inpClass.prototype = {
 
         flag_el                 = parent.childNodes[0].childNodes[0];
         flag_el.className       = 'flag '+ n.code,
-            list_el = parent.childNodes[1];
+        list_el                 = parent.childNodes[1];
 
         removeClass(list_el,'active');
     },
+
+    /**
+     * Добавление событий на елемент
+     * @param e Элемент
+     */
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'click',       actions.click);
-        Event.add(e,'keypress',    actions.keypress);
+        Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
     },
 
@@ -544,7 +556,8 @@ inpClass.prototype = {
      * Сфокусировать маску на доступном для ввода элементе
      */
     focused: function() {
-        var e = this.opt.element, v = e.value;
+        var e = this.opt.element,
+            v = e.value;
         var num = v.indexOf('_');
         var i = (num === -1) ? v.length : num;
         this.setCaret(e, i, i);
@@ -556,14 +569,15 @@ inpClass.prototype = {
      *   если не равны, выделяет символы от start до end
      */
     setCaret: function (input, start, end) {
+        var character = 'character';
         input.focus();
         if (input.setSelectionRange) {
             input.setSelectionRange(start, end);
         } else if (input.createTextRange) {
             var range = input.createTextRange();
             range.collapse(true);
-            range.moveEnd('character', start);
-            range.moveStart('character', end);
+            range.moveEnd(character, start);
+            range.moveStart(character, end);
             range.select();
         }
     },
@@ -590,43 +604,40 @@ inpClass.prototype = {
      */
     removeChar:function(e, i) {
         var temp = e.value.split('');
-        temp[i]='_';
+            temp[i]='_';
         e.value = temp.join('');
     },
 
     setCheckedMask: function (e) {
-        var value       = this.getVal(e.value),
-            phone_codes = phoneCodes;
-        var finded      = this.maskFinder(phone_codes.all, value);
-        var old         = this.opt.old;
+        var self        = this,
+            value       = self.getVal(e.value),
+            phone_codes = phoneCodes,
+            finded      = self.maskFinder(phone_codes.all, value),
+            old         = self.opt.old;
 
         if(finded !== false) {
-            var value       = this.getVal(e.value);
-            var finded      = this.maskFinder(phoneCodes.all, value);
-            var old         = this.opt.old;
-
-            if(finded !== false) {
-                if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && phoneCodes[finded.obj.iso_code].length === 0) {
-                    plugin.loadMasks(this.opt.country, this.opt.lang);
+            if (value.length && typeof phone_codes[finded.obj.iso_code] !== und) {
+                if (phone_codes[finded.obj.iso_code].length === 0) {
+                    plugin.loadMasks(finded.obj.iso_code, self.opt.lang);
                 }
-                if (typeof phoneCodes[finded.obj.iso_code] !== 'undefined' && typeof old !== 'null') {
-                    var newSearch = this.maskFinder(phoneCodes[finded.obj.iso_code], value);
-                    if (newSearch) {
-                        finded = newSearch;
-                    }
+            }
+            if (typeof phone_codes[finded.obj.iso_code] !== und && typeof old !== 'null') {
+                var newSearch = self.maskFinder(phone_codes[finded.obj.iso_code], value);
+                if (newSearch) {
+                    finded = newSearch;
                 }
-                if (typeof finded.obj.name === 'undefined' && old.obj != finded.obj) {
-                    var iso = finded.obj.iso_code; //  ищем по коду и ставим аргументы
-                    var new_value = this.findMaskByCode(iso);
-                    if (new_value) {
-                        finded.obj.name = new_value.name;
-                    }
+            }
+            if (typeof finded.obj.name === und && old.obj != finded.obj) {
+                var iso       = finded.obj.iso_code;        //  ищем по коду и ставим аргументы
+                var new_value = self.findMaskByCode(iso);
+                if (new_value) {
+                    finded.obj.name = new_value.name;
                 }
-                if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
-                    this.opt.old  = finded;
-                    this.setInputAttrs(e, finded.obj.iso_code, finded.obj.name, this.setNewMaskValue(value, finded.mask));
-                    this.focused(e);
-                }
+            }
+            if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
+                self.opt.old  = finded;
+                self.setInputAttrs(e, finded.obj.iso_code, finded.obj.name, self.setNewMaskValue(value, finded.mask));
+                self.focused(e);
             }
         }
     },
@@ -723,8 +734,8 @@ inpClass.prototype = {
     setInputAttrs:function (e, flag, title, value) {
         e.value          = value;
         var i = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
-        i.className = 'flag '+ flag;
-        i.parentNode.setAttribute('title', title);
+            i.className = 'flag '+ flag;
+            i.parentNode.setAttribute('title', title);
         this.opt.country = flag;
     }
 };
@@ -735,6 +746,7 @@ var plugin = {
     instances:[],
     init: function (selector, args) {
         var elements = [],
+            elem     = und,
             doc      = document;
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
@@ -742,12 +754,16 @@ var plugin = {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
-                var elem = doc.getElementsByClassName( selector );
-                if (elem !== null) {
-                    var elements = elem;
+                elem = doc.getElementsByClassName( selector );
+                for(i in elem) {
+                    if (elem.hasOwnProperty(i)) {
+                        if (elem[i] !== null) {
+                            elements[elem[i].id||i] = elem[i];
+                        }
+                    }
                 }
             } else if (f_e === '#') {
-                var elem = doc.getElementById( selector );
+                elem = doc.getElementById( selector );
                 if (elem !== null) {
                     elements.push(elem);
                 }
@@ -759,7 +775,6 @@ var plugin = {
                 elements.push(selector);
             }
         }
-
         for(i in elements) {
             if(elements.hasOwnProperty(i)) {
                 this.preload(elements[i], args);
@@ -777,7 +792,7 @@ var plugin = {
     },
     loadMasks: function (type, lang) {
         $AJAX({
-            url:         this.path + type + '/' + (lang||'ru') + '.json',
+            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.json',
             type:        "GET",
             async:       false,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -787,7 +802,6 @@ var plugin = {
                     phoneCodes[type] =  phoneCodes.sortPhones(responce ,"mask",'desc');
                 } else {
                     phoneCodes[type] =  phoneCodes.sortPhones(responce, "mask",'desc');
-
                 }
             }
         });
@@ -826,11 +840,12 @@ var plugin = {
     },
     getById: function (id) {
         var el = document.getElementById(id);
-        if(el !==null){
+        if(el !== null){
             return this.selectInstance(el);
         }
         return false;
-    }
+    },
+    cbh_phones:phoneCodes
 };
 
 

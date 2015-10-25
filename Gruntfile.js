@@ -93,6 +93,6 @@ module.exports = function(grunt) {
         'concat:main',
         'uglify:main',
 
-        'compass'
+        //'compass'
     ]);
 };
