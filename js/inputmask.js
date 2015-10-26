@@ -288,13 +288,13 @@ var actions = {
     },
 
     /* При нажатии клавиши */
-    keydown: function (e) {
+    keypress: function (e) {
         var self     = this,
             p        = plugin,
             regex    = p.regex,
             instance = p.selectInstance(self),
-            code     = e.keyCode || e.which,
-            key      = String.fromCharCode(code),
+            code     = e.which || e.keyCode,
+            key      = e.key   || String.fromCharCode(code),
             value    = self.value,
             _false   = false,
             _true    = true;
@@ -435,7 +435,9 @@ inpClass.prototype = {
         className(ul,'lists');
 
         var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
-
+        if(sortedCodes.length===0) {
+            return;
+        }
         for (i in sortedCodes) {
             var one             = sortedCodes[i],
                 iso             = one.iso_code.toString().toLowerCase(),
@@ -548,7 +550,7 @@ inpClass.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'click',       actions.click);
-        Event.add(e,'keydown',     actions.keydown);
+        Event.add(e,'keypress',    actions.keypress);
         Event.add(e,'keyup',       actions.keyup);
     },
 
@@ -744,6 +746,7 @@ var plugin = {
     prefix:'instId_',
     regex: new RegExp(/[0-9]/),
     instances:[],
+    process:false,
     init: function (selector, args) {
         var elements = [],
             elem     = und,
@@ -775,37 +778,57 @@ var plugin = {
                 elements.push(selector);
             }
         }
+        this.loop(elements, args);
+    },
+    loop: function (elements, args) {
         for(i in elements) {
-            if(elements.hasOwnProperty(i)) {
-                this.preload(elements[i], args);
+            if (elements.hasOwnProperty(i)) {
+                var self = this,
+                    el   = elements[i],
+                    opt  = self.extend(self.extend({}, args), el.dataset);
+
+                if (phoneCodes.all.length === 0) {
+                    self.loadMasks('all', opt.lang, function () {
+                        self.loop(elements, opt);
+                    });
+                    break;
+                } else {
+                    self.preload(el, opt);
+                }
+
             }
         }
     },
-    preload:function (el, args) {
-        var self = this,
-            opt  = self.extend(self.extend({}, args), el.dataset);
-        if (phoneCodes.all.length===0) { // or froom  storage
-            self.loadMasks('all', opt.lang);
-        }
+    preload:function (el, opt) {
         var obj = new inpClass(el, opt);
-        self.instances[obj.opt.instId] = obj;
+        this.instances[obj.opt.instId] = obj;
     },
-    loadMasks: function (type, lang) {
+    loadMasks: function (type, lang, callback) {
         $AJAX({
             url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.json',
             type:        "GET",
-            async:       false,
+            async:       true,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
             dataType:    'json',
             result: function (responce) {
-                if(type === 'all') {
-                    phoneCodes[type] =  phoneCodes.sortPhones(responce ,"mask",'desc');
-                } else {
-                    phoneCodes[type] =  phoneCodes.sortPhones(responce, "mask",'desc');
+                phoneCodes[type] = phoneCodes.sortPhones(responce, "mask", 'desc');
+
+                if (typeof callback == 'function') {
+                    callback();
                 }
             }
         });
     },
+    //preload:function (el, args) {
+    //    var self = this,
+    //        opt  = self.extend(self.extend({}, args), el.dataset);
+    //    if (phoneCodes.all.length===0) { // or froom  storage
+    //        self.loadMasks('all', opt.lang);
+    //    }
+    //    var obj = new inpClass(el, opt);
+    //    self.instances[obj.opt.instId] = obj;
+    //},
+
     selectInstance: function (e) {
         return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
     },

@@ -8,11 +8,15 @@
     <script  type="text/javascript">
       var tId = setInterval(function() {
         if (document.readyState === "complete") {
-          CBHMasks.init('.mask',{
-            onsend:function() {
-              console.log(123);
-            }
+          CBHMasks.loadMasks('all', 'ru', function(){
+
+            CBHMasks.init('.mask');
+
+            CBHMasks.init('.mask2');
+
           });
+
+
           clearInterval(tId);
         }
       }, 11);
@@ -32,7 +36,7 @@
       </div>
       <div class="form-group">
         <label for="gdfgdfg">Введите номер телефона</label>
-
+        <input type="text" id="example2" class="mask2"  data-lang="ru" data-country="ru">
       </div>
     </form>
   </div>

@@ -10,13 +10,13 @@ var actions = {
     },
 
     /* При нажатии клавиши */
-    keydown: function (e) {
+    keypress: function (e) {
         var self     = this,
             p        = plugin,
             regex    = p.regex,
             instance = p.selectInstance(self),
-            code     = e.keyCode || e.which,
-            key      = String.fromCharCode(code),
+            code     = e.which || e.keyCode,
+            key      = e.key   || String.fromCharCode(code),
             value    = self.value,
             _false   = false,
             _true    = true;

@@ -76,7 +76,9 @@ inpClass.prototype = {
         className(ul,'lists');
 
         var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
-
+        if(sortedCodes.length===0) {
+            return;
+        }
         for (i in sortedCodes) {
             var one             = sortedCodes[i],
                 iso             = one.iso_code.toString().toLowerCase(),
@@ -189,7 +191,7 @@ inpClass.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'click',       actions.click);
-        Event.add(e,'keydown',     actions.keydown);
+        Event.add(e,'keypress',    actions.keypress);
         Event.add(e,'keyup',       actions.keyup);
     },
 
