@@ -1,9 +1,11 @@
 var und = 'undefined';
 
 var Event = (function() {
-    var guid = 0
+    var guid = 0;
+    var win = window;
+    var doc = document;
     function fixEvent(event) {
-        event = event || window.event
+        event = event || win.event
         if ( event.isFixed ) {
             return event
         }
@@ -17,7 +19,8 @@ var Event = (function() {
             event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
         }
         if ( event.pageX == null && event.clientX != null ) {
-            var html = document.documentElement, body = document.body;
+            var html = doc.documentElement,
+                body = doc.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
             event.pageY = event.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0);
         }
@@ -40,8 +43,8 @@ var Event = (function() {
     }
     return {
         add: function(elem, type, handler) {
-            if (elem.setInterval && ( elem != window && !elem.frameElement ) ) {
-                elem = window;
+            if (elem.setInterval && ( elem != win && !elem.frameElement ) ) {
+                elem = win;
             }
             if (!handler.guid) {
                 handler.guid = ++guid
@@ -85,25 +88,20 @@ var Event = (function() {
     }
 }());
 
-
-function addClass(o, c){
-    var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-    if (re.test(o.className)) return
-    o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+function addClass(o, c) {
+    var object_class = o.className;
+    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return
+    o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+}
+function removeClass(o, c) {
+    o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
 
-function removeClass(o, c){
-    var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-    o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-}
-function makeid()
-{
+function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     for( var i=0; i < 8; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-
     return text;
 }
 
@@ -123,6 +121,8 @@ $AJAX = function (obj) {
     var availableType       = ['GET', 'POST', 'PUT'];
     var availableDataType   = ['json', 'text'];
     var headers             = {};
+    var xmlhttpobj          = XMLHttpRequest;
+    var Msxml2              = 'Msxml2.XMLHTTP';
 
     var args = {
         url:            obj.url             || false,
@@ -139,21 +139,24 @@ $AJAX = function (obj) {
         return;
     }
 
-    if (typeof XMLHttpRequest == und){
-        XMLHttpRequest = function () {
+    if (typeof xmlhttpobj == und){
+        xmlhttpobj = function () {
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP.6.0' );
+                var activex_obj = ActiveXObject;
             } catch ( e ) {}
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP.3.0' );
+                return new activex_obj( Msxml2+'.6.0' );
             } catch ( e ) {}
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP' );
+                return new activex_obj( Msxml2+'.3.0' );
+            } catch ( e ) {}
+            try {
+                return new activex_obj( Msxml2 );
             } catch ( e ) {}
             throw new Error( 'This browser does not support XMLHttpRequest.' );
         };
     }
-    var xhr = new (("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest)();
+    var xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
 
     var url = args.url;
     if (args.type === 'GET' && args.data && args.data.length>0) {
@@ -187,7 +190,8 @@ $AJAX = function (obj) {
     }
 
     callback = function() {
-        var status, statusText,
+        var status,
+            statusText,
             responses = {};
         if ( xhr.readyState === 4  ) {
             if  (args.async) {
@@ -220,6 +224,12 @@ $AJAX = function (obj) {
                 } else if (args.dataType === 'json') {
                     var res = JSON.parse(responses.text) || '';
                 }
+                /**
+                 * @param a responce result
+                 * @param b responce code
+                 * @param c response text
+                 * @param d header for responce
+                 */
                 args.complete(res, status, statusText, xhr.getAllResponseHeaders());
             }
         }
@@ -233,9 +243,3 @@ $AJAX = function (obj) {
         xhr.onreadystatechange = callback;
     }
 };
-/**
- * @param a responce result
- * @param b responce code
- * @param c response text
- * @param d header for responce
- */

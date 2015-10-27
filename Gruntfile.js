@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
 
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
@@ -8,24 +7,16 @@ module.exports = function(grunt) {
             options: {
                 banner: '/* Кто скопирует код тот какашка! */\n'
             },
-            main: {
+            masked: {
                 src: [
                     'dev/js/src/header.js',
-
                     'dev/js/src/helpers.js',
-                   // 'dev/js/src/storage.js',
-
                     'dev/js/src/phone_codes.js',
-                    //
                     'dev/js/src/actions.js',
-                    //
-                    //
                     'dev/js/src/main.js',
-                    //
-                    //
-
+                    'dev/js/src/settings.js',
                     'dev/js/src/index.js',
-                    'dev/js/src/footer.js',
+                    'dev/js/src/footer.js'
                 ],
                 dest:'js/inputmask.js'
             }
@@ -33,9 +24,9 @@ module.exports = function(grunt) {
 
         uglify: {
             options: {},
-            main: {
+            masked: {
                 files: {
-                    'js/inputmask.min.js' : '<%= concat.main.dest %>'
+                    'js/inputmask.min.js' : '<%= concat.masked.dest %>'
                 }
             }
         },
@@ -49,17 +40,57 @@ module.exports = function(grunt) {
                 tasks: ['prod']
             }
         },
-        compass: {
-            dist: {
+        sass: {
+            masked: {
                 options: {
-                    sassDir:       'dev/sass',
-                    cssDir:        'css',
-                    outputStyle:    'expanded',
-                    //outputStyle:   'compressed',
-                    noLineComments: true,
-                }
+                    compass: true,
+                    noCache: true,
+                    style: 'expanded',
+                    sourcemap: 'none'
+                },
+                files: [{
+                    sourceMap: false,
+                    expand: true,
+                    cwd:    'dev/sass',
+                    src:   ['*.scss'],
+                    dest:  'css',
+                    ext: '.css'
+                }]
             }
         },
+
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            masked: {
+                files:[{
+                    sourceMap: false,
+                    expand: true,
+                    cwd:    'css',
+                    src:   ['*.css'],
+                    dest:  'css',
+                    ext: '.min.css'
+                }]
+            }
+        },
+        jsonmin: {
+            masked_codes: {
+                options: {
+                    stripWhitespace: true || false,
+                    stripComments: true || false
+                },
+                files: [{
+                    expand: true,
+                    cwd: 'dev/js/codes/',
+                    src: ['*/*.json'],
+                    dest: 'js/masks',
+                    ext: '.min.json'
+                }]
+            }
+        },
+
         browserSync: {
             bsFiles: {
                 src : [
@@ -79,20 +110,24 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-compass');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-jsonmin');
 
     grunt.registerTask('debug', [
-        'concat:main',
-        'uglify:main',
+        'concat:masked',
+        'uglify:masked',
 
-        //'browserSync',
+        'sass:masked',
+        'cssmin:masked',
+        'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
+        'browserSync',
         'watch'
     ]);
 
     grunt.registerTask('prod', [
-        'concat:main',
-        'uglify:main',
+        'concat:masked',
+        'uglify:masked',
 
-        //'compass'
+        'sass'
     ]);
 };

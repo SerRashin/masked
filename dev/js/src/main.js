@@ -18,6 +18,7 @@ var inpClass = function (el, args) {
         mask:           args.mask    ||     '',
         onsend:         args.onsend || null,
         value:          '',
+        name:           '',
         old:            {}
     };
 
@@ -88,6 +89,7 @@ inpClass.prototype = {
             if (typeof name === und)continue;
             if (opt.phone === false) {
                 if (opt.country === iso) {
+                    this.opt.name = name;
                     this.opt.mask = mask;
                 }
             }
@@ -157,28 +159,23 @@ inpClass.prototype = {
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
             instance    = p.selectInstance(input),
-            dataset     = self.dataset,
+            dataset     = self.dataset;
 
-            placeholder = input.placeholder;
+        var finded_old          = instance.findMaskByCode(instance.opt.country);
+        var finded_new          = instance.findMaskByCode(dataset['isoCode']);
+        input.value             = instance.setNewMaskValue(
+            instance.getVal(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+            instance.opt.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
+        );
 
-        var n = {
-            code:       dataset['isoCode'],
-            mask:       dataset['mask'],
-            phone_code: instance.getVal(dataset['mask']),
-        };
-        var o = {
-            mask:         placeholder,
-            phone_code:   instance.getVal(placeholder),
-            val:          instance.getVal(input.value)
-        };
-
-        var newval              = o.val.replace(o.phone_code, n.phone_code);
-        var nval                = o.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_');
-        input.value             = instance.setNewMaskValue(newval, nval);
-        input.placeholder       = n.mask;
+        input.placeholder       = finded_new.mask;
+        instance.opt.value      = input.value;
+        instance.opt.name       = finded_new.name;
+        instance.opt.mask       = finded_new.mask;
+        instance.opt.country    = finded_new.iso_code;
 
         flag_el                 = parent.childNodes[0].childNodes[0];
-        flag_el.className       = 'flag '+ n.code,
+        flag_el.className       = 'flag '+ finded_new.iso_code,
         list_el                 = parent.childNodes[1];
 
         removeClass(list_el,'active');
@@ -191,7 +188,7 @@ inpClass.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'click',       actions.click);
-        Event.add(e,'keypress',    actions.keypress);
+        Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
     },
 
@@ -380,5 +377,7 @@ inpClass.prototype = {
             i.className = 'flag '+ flag;
             i.parentNode.setAttribute('title', title);
         this.opt.country = flag;
+        this.opt.name    = title;
+        this.opt.value   = value;
     }
 };

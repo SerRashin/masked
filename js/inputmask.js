@@ -3,9 +3,11 @@ var CBHMasks = (function(){
 var und = 'undefined';
 
 var Event = (function() {
-    var guid = 0
+    var guid = 0;
+    var win = window;
+    var doc = document;
     function fixEvent(event) {
-        event = event || window.event
+        event = event || win.event
         if ( event.isFixed ) {
             return event
         }
@@ -19,7 +21,8 @@ var Event = (function() {
             event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
         }
         if ( event.pageX == null && event.clientX != null ) {
-            var html = document.documentElement, body = document.body;
+            var html = doc.documentElement,
+                body = doc.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
             event.pageY = event.clientY + (html && html.scrollTop || body && body.scrollTop || 0) - (html.clientTop || 0);
         }
@@ -42,8 +45,8 @@ var Event = (function() {
     }
     return {
         add: function(elem, type, handler) {
-            if (elem.setInterval && ( elem != window && !elem.frameElement ) ) {
-                elem = window;
+            if (elem.setInterval && ( elem != win && !elem.frameElement ) ) {
+                elem = win;
             }
             if (!handler.guid) {
                 handler.guid = ++guid
@@ -87,25 +90,20 @@ var Event = (function() {
     }
 }());
 
-
-function addClass(o, c){
-    var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-    if (re.test(o.className)) return
-    o.className = (o.className + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+function addClass(o, c) {
+    var object_class = o.className;
+    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return
+    o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+}
+function removeClass(o, c) {
+    o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
 
-function removeClass(o, c){
-    var re = new RegExp("(^|\\s)" + c + "(\\s|$)", "g")
-    o.className = o.className.replace(re, "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-}
-function makeid()
-{
+function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
     for( var i=0; i < 8; i++ )
         text += possible.charAt(Math.floor(Math.random() * possible.length));
-
     return text;
 }
 
@@ -125,6 +123,8 @@ $AJAX = function (obj) {
     var availableType       = ['GET', 'POST', 'PUT'];
     var availableDataType   = ['json', 'text'];
     var headers             = {};
+    var xmlhttpobj          = XMLHttpRequest;
+    var Msxml2              = 'Msxml2.XMLHTTP';
 
     var args = {
         url:            obj.url             || false,
@@ -141,21 +141,24 @@ $AJAX = function (obj) {
         return;
     }
 
-    if (typeof XMLHttpRequest == und){
-        XMLHttpRequest = function () {
+    if (typeof xmlhttpobj == und){
+        xmlhttpobj = function () {
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP.6.0' );
+                var activex_obj = ActiveXObject;
             } catch ( e ) {}
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP.3.0' );
+                return new activex_obj( Msxml2+'.6.0' );
             } catch ( e ) {}
             try {
-                return new ActiveXObject( 'Msxml2.XMLHTTP' );
+                return new activex_obj( Msxml2+'.3.0' );
+            } catch ( e ) {}
+            try {
+                return new activex_obj( Msxml2 );
             } catch ( e ) {}
             throw new Error( 'This browser does not support XMLHttpRequest.' );
         };
     }
-    var xhr = new (("onload" in new XMLHttpRequest()) ? XMLHttpRequest : XDomainRequest)();
+    var xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
 
     var url = args.url;
     if (args.type === 'GET' && args.data && args.data.length>0) {
@@ -189,7 +192,8 @@ $AJAX = function (obj) {
     }
 
     callback = function() {
-        var status, statusText,
+        var status,
+            statusText,
             responses = {};
         if ( xhr.readyState === 4  ) {
             if  (args.async) {
@@ -222,6 +226,12 @@ $AJAX = function (obj) {
                 } else if (args.dataType === 'json') {
                     var res = JSON.parse(responses.text) || '';
                 }
+                /**
+                 * @param a responce result
+                 * @param b responce code
+                 * @param c response text
+                 * @param d header for responce
+                 */
                 args.complete(res, status, statusText, xhr.getAllResponseHeaders());
             }
         }
@@ -235,12 +245,6 @@ $AJAX = function (obj) {
         xhr.onreadystatechange = callback;
     }
 };
-/**
- * @param a responce result
- * @param b responce code
- * @param c response text
- * @param d header for responce
- */
 var phoneCodes = {
     all:    [],
     ru:     [],
@@ -251,14 +255,19 @@ var phoneCodes = {
     /**
      * Сортировать номера телефонов по ключу
      * @param maskList
+     * @param key
+     * @param sort
      * @returns {*}
      */
     sortPhones:function (maskList, key, sort) {
-        var key = (key == 'mask')? 'mask' : 'name';
-        var sort = (sort == 'desc')? 'desc' : 'asc';
+        var txt_mask = 'mask',
+            txt_desc = 'desc',
+            txt_asc  = 'asc';
+            key      = (key  == txt_mask) ? txt_mask : 'name',
+            sort     = (sort == txt_desc) ? txt_desc : txt_asc;
         maskList.sort(function (a, b) {
             if (typeof a[key] === und || typeof b[key] === und)return;
-            if (key ==='mask'){
+            if (key === txt_mask){
                 var a = a[key].replace(/\D+/g,"");
                 var b = b[key].replace(/\D+/g,"");
             } else {
@@ -266,9 +275,9 @@ var phoneCodes = {
                 var b = b[key];
             }
             if (a > b) {
-                return sort=='asc' ? 1:-1;
+                return sort==txt_asc ? 1:-1;
             } else if (a < b) {
-                return sort=='asc' ? -1:1;
+                return sort==txt_asc ? -1:1;
             } else {
                 return 0;
             }
@@ -288,31 +297,36 @@ var actions = {
     },
 
     /* При нажатии клавиши */
-    keypress: function (e) {
-        var self     = this,
-            p        = plugin,
-            regex    = p.regex,
-            instance = p.selectInstance(self),
-            code     = e.which || e.keyCode,
-            key      = e.key   || String.fromCharCode(code),
-            value    = self.value,
-            _false   = false,
-            _true    = true;
+    keydown: function (e) {
+
+        var index,
+            num,
+            self        = this,
+            p           = plugin,
+            regex       = p.regex,
+            instance    = p.selectInstance(self),
+            code        = e.which || e.keyCode,
+            codeo       = e.which || e.keyCode,
+            key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
+            value       = self.value,
+            set_caret   = instance.setCaret,
+            _false      = false,
+            _true       = true;
 
         if (code === 8) {  // BACKSPACE
-            var index = instance.getLastNum(self);
+            index = instance.getLastNum(self);
             if (regex.test(value[index]) === _true) {
                 instance.removeChar(self, index);
-                instance.setCaret(self, index ,index);
+                set_caret(self, index ,index);
                 return _false;
             } else {
                 return _false;
             }
         } else {
-            var num = value.indexOf('_');
+            num = value.indexOf('_');
             if (num !== -1) { // если есть еще пустые символы
                 if (regex.test(key) === _true) {
-                    instance.setCaret(self, num, (num+1) );
+                    set_caret(self, num, (num+1) );
                 } else {
                     return _false;
                 }
@@ -324,35 +338,38 @@ var actions = {
 
     /*  При отпускании клавиши проверим фокусировку */
     keyup: function (e) {
-        var self        = this,
-            index       = und,
+        var index,
+            num,
+            self        = this,
             p           = plugin,
             regex       = p.regex,
             instance    = p.selectInstance(self),
             code        = e.keyCode || e.which,
             value       = self.value,
+            opt         = instance.opt,
+            set_caret   = instance.setCaret,
             _false      = false;
 
         if (code === 8) {     // BACKSPACE
             index = instance.getLastNum(self);
             if (regex.test(value[index]) === true) {
                 index += 1;
-                instance.setCaret(self, index ,index);
+                set_caret(self, index ,index);
                 return _false;
             } else {
                 return _false;
             }
             if (/[\(\)\- ]/.test(value[index])) {
-                instance.setCaret(self, index, index);
+                set_caret(self, index, index);
             }
         }  else if(code === 13) {
-            if (instance.opt.onsend) {
-                instance.opt.onsend(instance.opt);
+            if (opt.onsend) {
+                opt.onsend(opt);
             }
         } else {
-            var num   = value.indexOf('_');
+            num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
-            instance.setCaret(self, index, index);
+            set_caret(self, index, index);
             instance.setCheckedMask(self); // ищем новую маску
         }
     }
@@ -377,6 +394,7 @@ var inpClass = function (el, args) {
         mask:           args.mask    ||     '',
         onsend:         args.onsend || null,
         value:          '',
+        name:           '',
         old:            {}
     };
 
@@ -447,6 +465,7 @@ inpClass.prototype = {
             if (typeof name === und)continue;
             if (opt.phone === false) {
                 if (opt.country === iso) {
+                    this.opt.name = name;
                     this.opt.mask = mask;
                 }
             }
@@ -516,28 +535,23 @@ inpClass.prototype = {
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
             instance    = p.selectInstance(input),
-            dataset     = self.dataset,
+            dataset     = self.dataset;
 
-            placeholder = input.placeholder;
+        var finded_old          = instance.findMaskByCode(instance.opt.country);
+        var finded_new          = instance.findMaskByCode(dataset['isoCode']);
+        input.value             = instance.setNewMaskValue(
+            instance.getVal(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+            instance.opt.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
+        );
 
-        var n = {
-            code:       dataset['isoCode'],
-            mask:       dataset['mask'],
-            phone_code: instance.getVal(dataset['mask']),
-        };
-        var o = {
-            mask:         placeholder,
-            phone_code:   instance.getVal(placeholder),
-            val:          instance.getVal(input.value)
-        };
-
-        var newval              = o.val.replace(o.phone_code, n.phone_code);
-        var nval                = o.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_');
-        input.value             = instance.setNewMaskValue(newval, nval);
-        input.placeholder       = n.mask;
+        input.placeholder       = finded_new.mask;
+        instance.opt.value      = input.value;
+        instance.opt.name       = finded_new.name;
+        instance.opt.mask       = finded_new.mask;
+        instance.opt.country    = finded_new.iso_code;
 
         flag_el                 = parent.childNodes[0].childNodes[0];
-        flag_el.className       = 'flag '+ n.code,
+        flag_el.className       = 'flag '+ finded_new.iso_code,
         list_el                 = parent.childNodes[1];
 
         removeClass(list_el,'active');
@@ -550,7 +564,7 @@ inpClass.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'click',       actions.click);
-        Event.add(e,'keypress',    actions.keypress);
+        Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
     },
 
@@ -739,14 +753,19 @@ inpClass.prototype = {
             i.className = 'flag '+ flag;
             i.parentNode.setAttribute('title', title);
         this.opt.country = flag;
+        this.opt.name    = title;
+        this.opt.value   = value;
     }
 };
+var opt = {
+    path:'//test.proj/js/masks/',
+    prefix:'instId_'
+};
 var plugin = {
-    path:'//test.proj/codes/',
-    prefix:'instId_',
-    regex: new RegExp(/[0-9]/),
+    path:   opt.path,
+    prefix: opt.prefix,
+    regex:  new RegExp(/[0-9]/),
     instances:[],
-    process:false,
     init: function (selector, args) {
         var elements = [],
             elem     = und,
@@ -795,7 +814,6 @@ var plugin = {
                 } else {
                     self.preload(el, opt);
                 }
-
             }
         }
     },
@@ -805,7 +823,7 @@ var plugin = {
     },
     loadMasks: function (type, lang, callback) {
         $AJAX({
-            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.json',
+            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.min.json',
             type:        "GET",
             async:       true,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -819,16 +837,6 @@ var plugin = {
             }
         });
     },
-    //preload:function (el, args) {
-    //    var self = this,
-    //        opt  = self.extend(self.extend({}, args), el.dataset);
-    //    if (phoneCodes.all.length===0) { // or froom  storage
-    //        self.loadMasks('all', opt.lang);
-    //    }
-    //    var obj = new inpClass(el, opt);
-    //    self.instances[obj.opt.instId] = obj;
-    //},
-
     selectInstance: function (e) {
         return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
     },

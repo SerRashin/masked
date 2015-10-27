@@ -1,9 +1,8 @@
 var plugin = {
-    path:'//test.proj/codes/',
-    prefix:'instId_',
-    regex: new RegExp(/[0-9]/),
+    path:   opt.path,
+    prefix: opt.prefix,
+    regex:  new RegExp(/[0-9]/),
     instances:[],
-    process:false,
     init: function (selector, args) {
         var elements = [],
             elem     = und,
@@ -52,7 +51,6 @@ var plugin = {
                 } else {
                     self.preload(el, opt);
                 }
-
             }
         }
     },
@@ -62,7 +60,7 @@ var plugin = {
     },
     loadMasks: function (type, lang, callback) {
         $AJAX({
-            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.json',
+            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.min.json',
             type:        "GET",
             async:       true,
             crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -76,16 +74,6 @@ var plugin = {
             }
         });
     },
-    //preload:function (el, args) {
-    //    var self = this,
-    //        opt  = self.extend(self.extend({}, args), el.dataset);
-    //    if (phoneCodes.all.length===0) { // or froom  storage
-    //        self.loadMasks('all', opt.lang);
-    //    }
-    //    var obj = new inpClass(el, opt);
-    //    self.instances[obj.opt.instId] = obj;
-    //},
-
     selectInstance: function (e) {
         return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
     },
