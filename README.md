@@ -17,6 +17,7 @@ sudo npm install -g grunt-cli jshint uglify-js grunt-browser-sync grunt-jsonmin
 >* uglify-js          - Компрессор (минификатор) JS.
 >* grunt-browser-sync - Live Reload перегрузка файлов.
 >* grunt-jsonmin      - минимизация json.
+
 3. В директории, где лежит Gruntfile.js выполните команду.
 ```shell
 npm install
