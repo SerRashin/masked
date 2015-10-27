@@ -9,13 +9,14 @@
     <script  type="text/javascript">
       var tId = setInterval(function() {
         if (document.readyState === "complete") {
-          CBHMasks.loadMasks('all', 'ru', function(){
 
-            CBHMasks.init('.mask');
+          CBHMasks.init('.mask');
 
-            CBHMasks.init('.mask2');
+          CBHMasks.init('.mask2');
 
-          });
+          CBHMasks.init('.masks');
+
+
 
 
           clearInterval(tId);
@@ -32,13 +33,21 @@
       </div>
       <div class="form-group">
         <label for="dfdfdf">Введите номер телефона</label>
-        <input type="text" id="example2" class="mask"  data-lang="ru" data-country="ru">
-
-      </div>
-      <div class="form-group">
-        <label for="gdfgdfg">Введите номер телефона</label>
         <input type="text" id="example2" class="mask2"  data-lang="ru" data-country="ru">
       </div>
+      <div class="form-group">
+        <label for="dfdfdf">Введите номер телефона</label>
+        <input type="text"  class="masks"  data-lang="ru" data-country="ru">
+      </div>
+      <div class="form-group">
+        <label for="dfdfdf">Введите номер телефона</label>
+        <input type="text"  class="masks"  data-lang="ru" data-country="ru">
+      </div>
+      <div class="form-group">
+        <label for="dfdfdf">Введите номер телефона</label>
+        <input type="text"  class="masks"  data-lang="ru" data-country="ru">
+      </div>
+
     </form>
   </div>
 

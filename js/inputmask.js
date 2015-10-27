@@ -246,10 +246,10 @@ $AJAX = function (obj) {
     }
 };
 var phoneCodes = {
-    all:    [],
-    ru:     [],
-    us:     [],
-    ca:     [],
+    all:    [],     // список масок для всех стран
+    ru:     [],     // список кодов для россии
+    us:     [],     // список кодов для США
+    ca:     [],     // список кодов для канады
 
 
     /**
@@ -766,9 +766,11 @@ var plugin = {
     prefix: opt.prefix,
     regex:  new RegExp(/[0-9]/),
     instances:[],
+    loaded:true,
     init: function (selector, args) {
         var elements = [],
-            elem     = und,
+            self     = this,
+            elem,
             doc      = document;
         if ( typeof selector === "string" ) {
             var f_e = selector[0];
@@ -797,7 +799,17 @@ var plugin = {
                 elements.push(selector);
             }
         }
-        this.loop(elements, args);
+        if (self.loaded === false) {
+            var tId = setInterval(function() {
+                if (self.loaded === true) {
+                    self.loop(elements, args);
+                    clearInterval(tId);
+                }
+            }, 10);
+        } else {
+            self.loaded = false;
+            self.loop(elements, args);
+        }
     },
     loop: function (elements, args) {
         for(i in elements) {
@@ -818,8 +830,10 @@ var plugin = {
         }
     },
     preload:function (el, opt) {
-        var obj = new inpClass(el, opt);
-        this.instances[obj.opt.instId] = obj;
+        var self = this,
+            obj  = new inpClass(el, opt);
+        self.instances[obj.opt.instId] = obj;
+        self.loaded = true;
     },
     loadMasks: function (type, lang, callback) {
         $AJAX({
@@ -875,8 +889,7 @@ var plugin = {
             return this.selectInstance(el);
         }
         return false;
-    },
-    cbh_phones:phoneCodes
+    }
 };
 
 
