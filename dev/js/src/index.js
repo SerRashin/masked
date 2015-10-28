@@ -44,7 +44,6 @@ var plugin = {
                 }
             }, 10);
         } else {
-            self.loaded = false;
             self.loop(elements, args);
         }
     },
@@ -56,6 +55,7 @@ var plugin = {
                     opt  = self.extend(self.extend({}, args), el.dataset);
 
                 if (phoneCodes.all.length === 0) {
+                    self.loaded = false;
                     self.loadMasks('all', opt.lang, function () {
                         self.loop(elements, opt);
                     });

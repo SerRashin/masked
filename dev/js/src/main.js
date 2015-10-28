@@ -2,13 +2,6 @@
  * Объект маски
  */
 var inpClass = function (el, args) {
-    if (args.phone) {
-        var finded       = this.maskFinder(phoneCodes.all, args.phone);
-        if (finded) {
-            args.mask    = this.setNewMaskValue(args.phone, finded.mask);
-            args.country = finded.obj.iso_code;
-        }
-    }
     this.opt = {
         instId:         plugin.prefix + makeid(),          //  Селектор выбранного елемента
         element:        el,
@@ -16,26 +9,62 @@ var inpClass = function (el, args) {
         country:        args.country ||    'ru',
         phone:          args.phone   ||    false,
         mask:           args.mask    ||     '',
-        onsend:         args.onsend || null,
+        onsend:         args.onsend  || null,
         value:          '',
         name:           '',
         old:            {}
     };
-
-    this.setTemplate();
-    var options = this.opt,
-        mask    = options.mask;
-    element = this.opt.element;
-
-    element.value       = mask;
-    element.placeholder = mask;
-
-    addClass(element, options.instId);
-
-    this.addActions(options.element);
+    var o = this.opt;
+    this.init(el, args);
 };
 
 inpClass.prototype = {
+    init: function(el, args) {
+        if (args.phone) {
+            var phone     = args.phone + '',
+                self      = this,
+                pc        = phoneCodes,
+                for_code  = self.maskFinder(pc.all, phone.length > 6 ? phone.substring(0, 6) : phone);
+            if (for_code) {
+                iso = for_code.obj.iso_code;
+
+                if(typeof pc[iso] !== 'undefined' && pc[iso].length === 0) {
+                    plugin.loadMasks(iso, args.lang, function() {
+                        for (var p in phone) {
+                            var finded       = self.maskFinder(pc[iso], phone);
+                            if (finded) {
+                                args.mask    = self.setNewMaskValue(phone, finded.mask);
+                                args.country = finded.obj.iso_code;
+                                args.phone   = phone;
+                                break;
+                            } else phone = phone.substring(0, phone.length - 1);
+                        }
+                        self.init(el, args);
+                        return true;
+                    });
+                    return true;
+                }
+                args.mask    = self.setNewMaskValue(phone, for_code.mask);
+                args.country = for_code.obj.iso_code;
+            }
+        }
+
+        this.opt       = plugin.extend(this.opt, args)
+
+        this.setTemplate();
+
+        var options = this.opt,
+            mask    = options.mask;
+
+        element = this.opt.element;
+
+        element.value       = mask;
+        element.placeholder = mask;
+
+        addClass(element, options.instId);
+
+        this.addActions(options.element);
+    },
     setTemplate: function() {
         var opt = this.opt,
             el  = this.opt.element,
@@ -321,7 +350,6 @@ inpClass.prototype = {
                     break;
                 }
             }
-
             if (pass && it==value.length) {
                 var determined = mask.substr(im).search(regex) == -1;
                 mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
