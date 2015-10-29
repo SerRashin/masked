@@ -811,11 +811,11 @@ inpClass.prototype = {
         return find || maths[0] || false;
     },
 
-    findMaskByCode: function(code){
+    findMaskByCode: function(code) {
         var i,
             one,
             phone_codes = phoneCodes,
-            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
+            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 1);
         for (i in phone_codes.all) {
             if (phone_codes.all.hasOwnProperty(i)) {
                 one = sortedCodes[i];
@@ -923,8 +923,8 @@ var plugin = {
 
                 if (phoneCodes.all.length === 0) {
                     self.loaded = false;
-                    self.loadMasks('all', opt.lang, function () {
-                        self.loop(elements, opt);
+                    self.loadMasks('all', opt, function (o) {
+                        self.loop(elements, o);
                     });
                     break;
                 } else {
@@ -938,12 +938,12 @@ var plugin = {
             obj  = new inpClass(el, opt);
         self.instances[obj.opt.instId] = obj;
     },
-    loadMasks: function (type, lang, callback) {
+    loadMasks: function (type, opt, callback) {
         var self  = this,
             pc    = phoneCodes,
             _true = true;
         $AJAX({
-            url:         self.path + type + '/' + (lang == 'ru' ? 'ru' : 'en') + '.min.json',
+            url:         self.path + type + '/' + (opt.lang == 'ru' ? 'ru' : 'en') + '.min.json',
             type:        "GET",
             async:       _true,
             crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -951,7 +951,7 @@ var plugin = {
             result: function (responce) {
                 pc[type] = pc.sortPhones(responce, "mask", 'desc');
                 if (typeof callback == 'function') {
-                    callback();
+                    callback(opt);
                 }
             }
         });

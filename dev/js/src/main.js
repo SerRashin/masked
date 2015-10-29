@@ -418,11 +418,11 @@ inpClass.prototype = {
         return find || maths[0] || false;
     },
 
-    findMaskByCode: function(code){
+    findMaskByCode: function(code) {
         var i,
             one,
             phone_codes = phoneCodes,
-            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
+            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 1);
         for (i in phone_codes.all) {
             if (phone_codes.all.hasOwnProperty(i)) {
                 one = sortedCodes[i];
