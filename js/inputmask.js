@@ -923,9 +923,10 @@ var plugin = {
 
                 if (phoneCodes.all.length === 0) {
                     self.loaded = false;
-                    self.loadMasks('all', opt, function (o) {
-                        self.loop(elements, o);
-                    });
+                    self.loadMasks('all', opt.lang, (function(o) {
+                        return function () {
+                            self.loop(elements, o);
+                        }})(opt));
                     break;
                 } else {
                     self.preload(el, opt);
@@ -938,12 +939,12 @@ var plugin = {
             obj  = new inpClass(el, opt);
         self.instances[obj.opt.instId] = obj;
     },
-    loadMasks: function (type, opt, callback) {
+    loadMasks: function (type, lang, callback) {
         var self  = this,
             pc    = phoneCodes,
             _true = true;
         $AJAX({
-            url:         self.path + type + '/' + (opt.lang == 'ru' ? 'ru' : 'en') + '.min.json',
+            url:         self.path + type + '/' + (lang == 'ru' ? 'ru' : 'en') + '.min.json',
             type:        "GET",
             async:       _true,
             crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
