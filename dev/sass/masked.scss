@@ -1,49 +1,61 @@
 .CBH-masks {
   z-index:9999;
-  .flags {
-    cursor: pointer;
-    position: absolute;
+  position: relative!important;
 
+  @include clearfix();
+
+  .flag{
+    background-image:url("/img/flags.png");
+    display:block;
+  }
+
+  .flags {
     .selected {
-      margin: 1px;
-      padding: 6px 16px 6px 6px;
-      position: relative;
-      height:30px;
-      z-index:10000;
+      cursor: pointer;
+      position: absolute!important;
+      bottom: 0 !important;
+      left:   0 !important;
+      top:    0 !important;
+      width: 40px;
+      z-index: 1000;
 
       &:hover {
         background-color: rgba(0, 0, 0, 0.05);
       }
       .flag {
+        left: 8px;
+        position: absolute;
+        top: 32%;
+        width: 20px;
+
         .caret {
           border-left: 4px solid transparent;
           border-right: 4px solid transparent;
           border-top: 4px solid black;
-          height: 0;
           position: absolute;
-          right: 4px;
-          top: 13px;
-          width: 0;
+          right: -13px;
+          top: 32%;
         }
       }
     }
 
     .lists {
       display:            none!important;
-      background-color:   white;
+      background-color:   #fff!important;
       border:             1px solid #cccccc;
       box-shadow:         1px 1px 4px rgba(0, 0, 0, 0.2);
       list-style:         none;
       margin:             0;
       max-height:         200px;
-      overflow-y:         scroll;
+      overflow-y:         scroll !important;
+      overflow-x:         hidden !important;
       padding:            0;
       position:           absolute;
       top:                29px;
       width:              330px;
-      z-index:            1101011;
+      z-index:            22000!important;
       &.active {
-        display:block!important;
+        display: block !important;
         &.top {
           box-shadow: 1px -1px 4px rgba(0, 0, 0, 0.2);
           top:auto;
@@ -51,46 +63,37 @@
         }
       }
       li {
-        line-height: 16px;
+        display: block !important;
+        font-size: 14px!important;
+        line-height: 1pc;
         padding: 4px 10px;
         &:hover{
           background-color: rgba(0, 0, 0, 0.05);
         }
         i.flag {
+          display: inline-block !important;
           margin-right: 6px;
-          vertical-align:bottom;
+          vertical-align: bottom;
         }
         span.name {
+          color: #333 !important;
+          display: inline-block !important;
+          line-height: 1pc;
           margin-right: 6px;
-          line-height:16px;
         }
         span.code {
-          color: #999999;
-          margin-left:8px;
+          color: #999999 !important;
+          margin-left: 8px;
+          display: inline-block !important;
         }
       }
     }
   }
-
-  input{
-    border: 1px solid #ccc;
-    border-radius: 0;
-    box-sizing: border-box;
-    height: 30px;
-    padding-left: 40px;
-    position: relative;
-    z-index: 0;
-  }
 }
-
 
 
 .CBH-masks {
   .flag {
-    background-image:url("/img/flags.png");
-    height: 16px;
-    display:inline-block;
-
     $item-width-maps: (ac: 20px, ad: 20px, ae: 20px, af: 20px, ag: 20px, ai: 20px, al: 20px, am: 20px, ao: 20px, aq: 20px, ar: 20px, as: 20px, at: 20px, au: 20px, aw: 20px, ax: 20px, az: 20px, ba: 20px, bb: 20px, bd: 20px, be: 18px, bf: 20px, bg: 20px, bh: 20px, bi: 20px, bj: 20px, bl: 20px, bm: 20px, bn: 20px, bo: 20px, bq: 20px, br: 20px, bs: 20px, bt: 20px, bv: 20px, bw: 20px, by: 20px, bz: 20px, ca: 20px, cc: 20px, cd: 20px, cf: 20px, cg: 20px, ch: 15px, ci: 20px, ck: 20px, cl: 20px, cm: 20px, cn: 20px, co: 20px, cp: 20px, cr: 20px, cu: 20px, cv: 20px, cw: 20px, cx: 20px, cy: 20px, cz: 20px, de: 20px, dg: 20px, dj: 20px, dk: 20px, dm: 20px, do: 20px, dz: 20px, ea: 20px, ec: 20px, ee: 20px, eg: 20px, eh: 20px, er: 20px, es: 20px, et: 20px, eu: 20px, fi: 20px, fj: 20px, fk: 20px, fm: 20px, fo: 20px, fr: 20px, ga: 20px, gb: 20px, gd: 20px, ge: 20px, gf: 20px, gg: 20px, gh: 20px, gi: 20px, gl: 20px, gm: 20px, gn: 20px, gp: 20px, gq: 20px, gr: 20px, gs: 20px, gt: 20px, gu: 20px, gw: 20px, gy: 20px, hk: 20px, hm: 20px, hn: 20px, hr: 20px, ht: 20px, hu: 20px, ic: 20px, id: 20px, ie: 20px, il: 20px, im: 20px, in: 20px, io: 20px, iq: 20px, ir: 20px, is: 20px, it: 20px, je: 20px, jm: 20px, jo: 20px, jp: 20px, ke: 20px, kg: 20px, kh: 20px, ki: 20px, km: 20px, kn: 20px, kp: 20px, kr: 20px, kw: 20px, ky: 20px, kz: 20px, la: 20px, lb: 20px, lc: 20px, li: 20px, lk: 20px, lr: 20px, ls: 20px, lt: 20px, lu: 20px, lv: 20px, ly: 20px, ma: 20px, mc: 19px, md: 20px, me: 20px, mf: 20px, mg: 20px, mh: 20px, mk: 20px, ml: 20px, mm: 20px, mn: 20px, mo: 20px, mp: 20px, mq: 20px, mr: 20px, ms: 20px, mt: 20px, mu: 20px, mv: 20px, mw: 20px, mx: 20px, my: 20px, mz: 20px, na: 20px, nc: 20px, ne: 18px, nf: 20px, ng: 20px, ni: 20px, nl: 20px, no: 20px, np: 13px, nr: 20px, nu: 20px, nz: 20px, om: 20px, pa: 20px, pe: 20px, pf: 20px, pg: 20px, ph: 20px, pk: 20px, pl: 20px, pm: 20px, pn: 20px, pr: 20px, ps: 20px, pt: 20px, pw: 20px, py: 20px, qa: 20px, re: 20px, ro: 20px, rs: 20px, ru: 20px, rw: 20px, sa: 20px, sb: 20px, sc: 20px, sd: 20px, se: 20px, sg: 20px, sh: 20px, si: 20px, sj: 20px, sk: 20px, sl: 20px, sm: 20px, sn: 20px, so: 20px, sr: 20px, ss: 20px, st: 20px, sv: 20px, sx: 20px, sy: 20px, sz: 20px, ta: 20px, tc: 20px, td: 20px, tf: 20px, tg: 20px, th: 20px, tj: 20px, tk: 20px, tl: 20px, tm: 20px, tn: 20px, to: 20px, tr: 20px, tt: 20px, tv: 20px, tw: 20px, tz: 20px, ua: 20px, ug: 20px, um: 20px, us: 20px, uy: 20px, uz: 20px, va: 15px, vc: 20px, ve: 20px, vg: 20px, vi: 20px, vn: 20px, vu: 20px, wf: 20px, ws: 20px, xk: 20px, ye: 20px, yt: 20px, za: 20px, zm: 20px, zw: 20px, );
     $standard-country: 'ac';
     width: map-get($item-width-maps, $standard-country);
@@ -1144,5 +1147,16 @@
       background-position: -5610px 0px;
     }
 
+  }
+}
+
+@mixin clearfix() {
+  &:before,
+  &:after {
+    content: " "; // 1
+    display: table; // 2
+  }
+  &:after {
+    clear: both;
   }
 }

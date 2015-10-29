@@ -70,7 +70,6 @@ var plugin = {
         var self = this,
             obj  = new inpClass(el, opt);
         self.instances[obj.opt.instId] = obj;
-        self.loaded = true;
     },
     loadMasks: function (type, lang, callback) {
         $AJAX({

@@ -11,11 +11,11 @@
         if (document.readyState === "complete") {
 
           CBHMasks.init('.mask',{
-            phone:'55'
+            phone:''
           });
 
           CBHMasks.init('.mask2',{
-            phone:'79854700985'
+            phone:false
           });
 
           CBHMasks.init('.masks',{
@@ -23,7 +23,9 @@
           });
 
 
-
+          CBHMasks.init('.masks3',{
+            phone:''
+          });
 
           clearInterval(tId);
         }
@@ -34,26 +36,29 @@
   <div class="container" style="max-width:300px;margin-top:150px">
     <form>
       <div class="form-group">
-        <label for="dfdfdf">----</label>
+        <label>----</label>
         <input type="text" class="mask"  data-lang="ru" data-country="us">
       </div>
       <div class="form-group">
-        <label for="dfdfdf">Введите номер телефона</label>
+        <label>Введите номер телефона</label>
         <input type="text" id="example2" class="mask2"  data-lang="ru" data-country="ru">
       </div>
       <div class="form-group">
-        <label for="dfdfdf">Введите номер телефона</label>
+        <label>Введите номер телефона</label>
         <input type="text"  class="masks"  data-lang="ru" data-country="ru">
       </div>
       <div class="form-group">
-        <label for="dfdfdf">Введите номер телефона</label>
+        <label>Введите номер телефона</label>
         <input type="text"  class="masks"  data-lang="ru" data-country="ru" data-phone="380957131373">
       </div>
       <div class="form-group">
-        <label for="dfdfdf">Введите номер телефона</label>
+        <label>Введите номер телефона</label>
         <input type="text"  class="masks"  data-lang="ru" data-phone="77985472145" data-country="ru">
       </div>
-
+      <div class="form-group">
+        <label>Введите номер телефона</label>
+        <input type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
+      </div>
     </form>
   </div>
 

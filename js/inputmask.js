@@ -384,37 +384,37 @@ var inpClass = function (el, args) {
         lang:           args.lang    ||    'ru',
         country:        args.country ||    'ru',
         phone:          args.phone   ||    false,
-        mask:           args.mask    ||     '',
-        onsend:         args.onsend  || null,
+        mask:           args.mask    ||    '',
+        onsend:         args.onsend  ||    null,
         value:          '',
         name:           '',
         old:            {}
     };
-    var o = this.opt;
-    this.init(el, args);
+    this.init(el, this.opt);
 };
 
 inpClass.prototype = {
     init: function(el, args) {
         if (args.phone) {
-            var phone     = args.phone + '',
-                self      = this,
+            var self      = this,
+                phone     = self.getVal(args.phone+''),
                 pc        = phoneCodes,
                 for_code  = self.maskFinder(pc.all, phone.length > 6 ? phone.substring(0, 6) : phone);
             if (for_code) {
                 iso = for_code.obj.iso_code;
-
                 if(typeof pc[iso] !== 'undefined' && pc[iso].length === 0) {
+
                     plugin.loadMasks(iso, args.lang, function() {
                         for (var p in phone) {
                             var finded       = self.maskFinder(pc[iso], phone);
-                            if (finded) {
+                            if (finded && phone !== for_code.obj.phone_code) {
                                 args.mask    = self.setNewMaskValue(phone, finded.mask);
                                 args.country = finded.obj.iso_code;
                                 args.phone   = phone;
                                 break;
                             } else phone = phone.substring(0, phone.length - 1);
                         }
+
                         self.init(el, args);
                         return true;
                     });
@@ -424,8 +424,8 @@ inpClass.prototype = {
                 args.country = for_code.obj.iso_code;
             }
         }
-
-        this.opt       = plugin.extend(this.opt, args)
+        plugin.loaded = true;
+        this.opt       = plugin.extend(this.opt, args);
 
         this.setTemplate();
 
@@ -861,7 +861,6 @@ var plugin = {
         var self = this,
             obj  = new inpClass(el, opt);
         self.instances[obj.opt.instId] = obj;
-        self.loaded = true;
     },
     loadMasks: function (type, lang, callback) {
         $AJAX({
