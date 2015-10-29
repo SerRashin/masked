@@ -1,8 +1,15 @@
 .CBH-masks {
-  z-index:9999;
-  position: relative!important;
 
-  @include clearfix();
+  position: relative;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
 
   .flag{
     background-image:url("/img/flags.png");
@@ -88,6 +95,18 @@
         }
       }
     }
+  }
+
+  input {
+    border: 1px solid #ccc;
+    border-radius: 0;
+    box-sizing: border-box;
+    height: 30px;
+    padding-left: 45px;
+    position: relative;
+    z-index: 0;
+    user-select:  none!important;
+    margin:       0;
   }
 }
 
@@ -1147,16 +1166,5 @@
       background-position: -5610px 0px;
     }
 
-  }
-}
-
-@mixin clearfix() {
-  &:before,
-  &:after {
-    content: " "; // 1
-    display: table; // 2
-  }
-  &:after {
-    clear: both;
   }
 }

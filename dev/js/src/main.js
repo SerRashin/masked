@@ -19,56 +19,85 @@ var inpClass = function (el, args) {
 
 inpClass.prototype = {
     init: function(el, args) {
+        var mask,
+            element,
+            options,
+            self = this,
+            p = plugin;
         if (args.phone) {
-            var self      = this,
-                phone     = self.getVal(args.phone),
+            var i,
+                iso,
+                finded,
+                phone     = self.getVal(args.phone+''),
+                pl        = phone.length,
                 pc        = phoneCodes,
-                for_code  = self.maskFinder(pc.all, phone.length > 6 ? phone.substring(0, 6) : phone);
+                for_code  = self.maskFinder(pc.all, pl > 6 ? phone.substring(0, 6) : phone);
             if (for_code) {
-                iso = for_code.obj.iso_code;
+                iso = for_code.obj['iso_code'];
                 if(typeof pc[iso] !== 'undefined' && pc[iso].length === 0) {
-
-                    plugin.loadMasks(iso, args.lang, function() {
-                        for (var p in phone) {
-                            var finded       = self.maskFinder(pc[iso], phone);
-                            if (finded && phone !== for_code.obj.phone_code) {
-                                args.mask    = self.setNewMaskValue(phone, finded.mask);
-                                args.country = finded.obj.iso_code;
-                                args.phone   = phone;
-                                break;
-                            } else phone = phone.substring(0, phone.length - 1);
+                    p.loadMasks(iso, args.lang, function() {
+                        for (i in phone) {
+                            if (phone.hasOwnProperty(i)) {
+                                finded = self.maskFinder(pc[iso], phone);
+                                if (finded && phone !== for_code.obj['phone_code']) {
+                                    args.mask    = self.setNewMaskValue(phone, finded.mask);
+                                    args.country = finded.obj['iso_code'];
+                                    args.phone   = phone;
+                                    break;
+                                } else phone = phone.substring(0, pl - 1);
+                            }
                         }
-
                         self.init(el, args);
                         return true;
                     });
                     return true;
                 }
                 args.mask    = self.setNewMaskValue(phone, for_code.mask);
-                args.country = for_code.obj.iso_code;
+                args.country = for_code.obj['iso_code'];
             }
         }
-        plugin.loaded = true;
-        this.opt       = plugin.extend(this.opt, args);
+        p.loaded = true;
+        self.opt       = p.extend(self.opt, args);
 
-        this.setTemplate();
+        self.setTemplate();
 
-        var options = this.opt,
-            mask    = options.mask;
-
-        element = this.opt.element;
+        options = self.opt;
+        mask    = options.mask;
+        element = self.opt.element;
 
         element.value       = mask;
         element.placeholder = mask;
 
         addClass(element, options.instId);
 
-        this.addActions(options.element);
+        self.addActions(options.element);
     },
     setTemplate: function() {
-        var opt = this.opt,
-            el  = this.opt.element,
-            p  = plugin,
+        var i,
+            li,
+            ul,
+            ico,
+            span,
+            flag,
+            caret,
+            cur_el,
+            wrapper,
+            selected,
+            flags_block,
+            sortedCodes,
+            self             = this,
+            w                = window,
+            d                = document,
+            opt              = self.opt,
+            el               = opt.element,
+            p                = plugin,
+            lists            = 'lists',
+            active           = 'active',
+            top              = 'top',
+            opened_elements  = d.getElementsByClassName(lists+' '+active),
+
+
+
             document_create  = function (e) {
                 return document.createElement(e);
             },
@@ -85,62 +114,65 @@ inpClass.prototype = {
             text_div = 'div',
             text_flag = 'flag';
 
-        var wrapper = document_create('div');
-        inner_HTML(wrapper,el);
-        className(wrapper,'CBH-masks');
+
+        wrapper = document_create('div');
+            inner_HTML(wrapper, el);
+            className(wrapper,'CBH-masks');
 
         el.parentNode.replaceChild(wrapper, el);
 
-        var caret                   = document_create('i');
-        className(caret,'caret');
-        var flag                    = document_create(text_div);
-        inner_HTML(flag,caret);
-        className(flag, text_flag+' ' + opt.country);
-        var selected                = document_create(text_div);
-        inner_HTML(selected,flag);
-        className(selected,'selected');
-        var flags_block             = document_create(text_div);
-        inner_HTML(flags_block,selected);
-        className(flags_block,'flags');
-        var ul                      = document_create('ul');
-        className(ul,'lists');
+        caret                   = document_create('i');
+            className(caret,'caret');
+        flag                    = document_create(text_div);
+            inner_HTML(flag, caret);
+            className(flag, text_flag+' ' + opt.country);
+        selected                = document_create(text_div);
+            inner_HTML(selected, flag);
+            className(selected,'selected');
+        flags_block             = document_create(text_div);
+            inner_HTML(flags_block, selected);
+            className(flags_block,'flags');
+        ul                      = document_create('ul');
+            className(ul, 'lists');
 
-        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
+        sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
         if(sortedCodes.length===0) {
             return;
         }
         for (i in sortedCodes) {
-            var one             = sortedCodes[i],
-                iso             = one.iso_code.toString().toLowerCase(),
-                name            = one.name,
-                mask            = one.mask;
+            if (sortedCodes.hasOwnProperty(i)) {
+                var one             = sortedCodes[i],
+                    iso             = one['iso_code'].toString().toLowerCase(),
+                    name            = one.name,
+                    mask            = one.mask;
 
-            if (typeof name === und)continue;
-            if (opt.phone === false) {
-                if (opt.country === iso) {
-                    this.opt.name = name;
-                    this.opt.mask = mask;
+                if (typeof name === und)continue;
+                if (opt.phone === false) {
+                    if (opt.country === iso) {
+                        self.opt.name = name;
+                        self.opt.mask = mask;
+                    }
                 }
-            }
-            var li                      = document_create('li');
+                li                      = document_create('li');
                 li.className            = 'country';
                 li.dataset['isoCode']   = iso;
                 li.dataset['mask']      = mask;
 
-            Event.add(li,'click', this.maskReplace);
+                Event.add(li,'click', self.maskReplace);
 
-            var i                       = document_create('i');
-            className(i, text_flag+' ' + iso);
-            append_child(li, i);
-            var span                    = document_create('span');
-            className(span, 'name');
-            span.innerHTML = name;
-            append_child(li, span);
-            var span                    = document_create('span');
-            className(span, 'code');
-            span.innerHTML = '+'+one.phone_code;
-            append_child(li, span);
-            append_child(ul, li)
+                ico                       = document_create('i');
+                className(ico, text_flag+' ' + iso);
+                append_child(li, ico);
+                span                    = document_create('span');
+                className(span, 'name');
+                span.innerHTML = name;
+                append_child(li, span);
+                span                    = document_create('span');
+                className(span, 'code');
+                span.innerHTML = '+'+one['phone_code'];
+                append_child(li, span);
+                append_child(ul, li)
+            }
         }
 
         append_child(flags_block, ul);
@@ -151,16 +183,10 @@ inpClass.prototype = {
 
         wrapper.insertBefore( flags_block, wrapper.firstChild );
         wrapper.getElementsByClassName('selected')[0].onclick = function () {
-            var w       = window,
-                d       = document,
-                lists   = 'lists',
-                active  = 'active',
-                top     = 'top',
-                opened_elements = d.getElementsByClassName(lists+' '+active),
-                cur_el          = wrapper.getElementsByClassName(lists)[0];
+            cur_el           = wrapper.getElementsByClassName(lists)[0];
             if(!!opened_elements.length) {
-                for(var i in opened_elements) {
-                    if (cur_el !== opened_elements[i] && opened_elements.hasOwnProperty(i)) {
+                for(i in opened_elements) {
+                    if (opened_elements.hasOwnProperty(i) && cur_el !== opened_elements[i]) {
                         removeClass(opened_elements[i], active);
                     }
                 }
@@ -180,10 +206,12 @@ inpClass.prototype = {
                 removeClass(cur_el, top);
             }
         };
-        this.opt.element = wrapper.childNodes[1];
+        self.opt.element = wrapper.childNodes[1];
     },
     maskReplace: function () {
-        var self        = this,
+        var flag_el,
+            list_el,
+            self        = this,
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
@@ -193,7 +221,7 @@ inpClass.prototype = {
         var finded_old          = instance.findMaskByCode(instance.opt.country);
         var finded_new          = instance.findMaskByCode(dataset['isoCode']);
         input.value             = instance.setNewMaskValue(
-            instance.getVal(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+            instance.getVal(input.value).replace(finded_old['phone_code'], finded_new['phone_code']),
             instance.opt.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
         );
 
@@ -201,10 +229,10 @@ inpClass.prototype = {
         instance.opt.value      = input.value;
         instance.opt.name       = finded_new.name;
         instance.opt.mask       = finded_new.mask;
-        instance.opt.country    = finded_new.iso_code;
+        instance.opt.country    = finded_new['iso_code'];
 
         flag_el                 = parent.childNodes[0].childNodes[0];
-        flag_el.className       = 'flag '+ finded_new.iso_code,
+        flag_el.className       = 'flag '+ finded_new['iso_code'];
         list_el                 = parent.childNodes[1];
 
         removeClass(list_el,'active');
@@ -225,11 +253,12 @@ inpClass.prototype = {
      * Сфокусировать маску на доступном для ввода элементе
      */
     focused: function() {
-        var e = this.opt.element,
-            v = e.value;
-        var num = v.indexOf('_');
-        var i = (num === -1) ? v.length : num;
-        this.setCaret(e, i, i);
+        var self  = this,
+            e     = self.opt.element,
+            v     = e.value,
+            num   = v.indexOf('_'),
+            i     = (num === -1) ? v.length : num;
+        self.setCaret(e, i, i);
     },
 
     /**
@@ -253,12 +282,13 @@ inpClass.prototype = {
 
     /**
      * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
-     * @param inp
+     * @param e
      * @returns {Number}
      */
     getLastNum:function(e) {
-        var v = e.value;
-        for (var i = v.length; i >= 0; i--) {
+        var i,
+            v  = e.value;
+        for (i = v.length; i >= 0; i--) {
             if (plugin.regex.test(v[i])) {
                 break;
             }
@@ -268,8 +298,8 @@ inpClass.prototype = {
 
     /**
      * Удалить последний элемент
-     * @param inp
-     * @param index
+     * @param e
+     * @param i
      */
     removeChar:function(e, i) {
         var temp = e.value.split('');
@@ -278,34 +308,37 @@ inpClass.prototype = {
     },
 
     setCheckedMask: function (e) {
-        var self        = this,
+        var iso,
+            new_value,
+            newSearch,
+            self        = this,
             value       = self.getVal(e.value),
             phone_codes = phoneCodes,
             finded      = self.maskFinder(phone_codes.all, value),
             old         = self.opt.old;
 
         if(finded !== false) {
-            if (value.length && typeof phone_codes[finded.obj.iso_code] !== und) {
-                if (phone_codes[finded.obj.iso_code].length === 0) {
-                    plugin.loadMasks(finded.obj.iso_code, self.opt.lang);
+            if (value.length && typeof phone_codes[finded.obj['iso_code']] !== und) {
+                if (phone_codes[finded.obj['iso_code']].length === 0) {
+                    plugin.loadMasks(finded.obj['iso_code'], self.opt.lang);
                 }
             }
-            if (typeof phone_codes[finded.obj.iso_code] !== und && typeof old !== 'null') {
-                var newSearch = self.maskFinder(phone_codes[finded.obj.iso_code], value);
+            if (typeof phone_codes[finded.obj['iso_code']] !== und && typeof old !== 'null') {
+                newSearch = self.maskFinder(phone_codes[finded.obj['iso_code']], value);
                 if (newSearch) {
                     finded = newSearch;
                 }
             }
             if (typeof finded.obj.name === und && old.obj != finded.obj) {
-                var iso       = finded.obj.iso_code;        //  ищем по коду и ставим аргументы
-                var new_value = self.findMaskByCode(iso);
+                iso       = finded.obj['iso_code'];        //  ищем по коду и ставим аргументы
+                new_value = self.findMaskByCode(iso);
                 if (new_value) {
                     finded.obj.name = new_value.name;
                 }
             }
             if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
                 self.opt.old  = finded;
-                self.setInputAttrs(e, finded.obj.iso_code, finded.obj.name, self.setNewMaskValue(value, finded.mask));
+                self.setInputAttrs(e, finded.obj['iso_code'], finded.obj.name, self.setNewMaskValue(value, finded.mask));
                 self.focused(e);
             }
         }
@@ -328,44 +361,57 @@ inpClass.prototype = {
      * @returns {boolean|*}
      */
     maskFinder: function(masklist, value) {
-        var maths = [],
+        var i,
+            it,
+            im,
+            val,
+            find,
+            mask,
+            pass,
+            determined,
+            maths = [],
+            self  = this,
             regex = plugin.regex;
-        for (var mid in masklist) {
-            var mask = masklist[mid]['mask'];
-            var pass = true;
-            for (var it=0, im=0; (it < value.length && im < mask.length);) {
-                var chm = mask.charAt(im);
-                var cht = value.charAt(it);
+        for (i in masklist) {
+            if (masklist.hasOwnProperty(i)) {
+                mask = masklist[i]['mask'];
+                pass = true;
+                for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
+                    var chm = mask.charAt(im);
+                    var cht = value.charAt(it);
 
-                if (!regex.test(chm) && chm !== '_') {
-                    im++;
-                    continue;
-                }
+                    if (!regex.test(chm) && chm !== '_') {
+                        im++;
+                        continue;
+                    }
 
-                if ((chm === '_' && regex.test(cht)) || (cht == chm)) {
-                    it++;
-                    im++;
-                } else {
-                    pass = false;
-                    break;
+                    if ((chm === '_' && regex.test(cht)) || (cht == chm)) {
+                        it++;
+                        im++;
+                    } else {
+                        pass = false;
+                        break;
+                    }
                 }
-            }
-            if (pass && it==value.length) {
-                var determined = mask.substr(im).search(regex) == -1;
-                mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
-                maths.push({
-                    mask:       mask,
-                    obj:        masklist[mid],
-                    determined: determined
-                });
+                if (pass && it == value.length) {
+                    determined = mask.substr(im).search(regex) == -1;
+                    mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
+                    maths.push({
+                        mask: mask,
+                        obj: masklist[i],
+                        determined: determined
+                    });
+                }
             }
         }
 
-        var find = false;
-        for (var i in maths) {
-            var val = this.getVal(maths[i].obj.mask);
-            if (parseInt(val) === parseInt(value)) {
-                find = maths[i];
+        find = false;
+        for (i in maths) {
+            if (maths.hasOwnProperty(i)) {
+                val = self.getVal(maths[i].obj.mask);
+                if (parseInt(val) === parseInt(value)) {
+                    find = maths[i];
+                }
             }
         }
 
@@ -373,26 +419,34 @@ inpClass.prototype = {
     },
 
     findMaskByCode: function(code){
-        var phone_codes = phoneCodes;
-        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
+        var i,
+            one,
+            phone_codes = phoneCodes,
+            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
         for (i in phone_codes.all) {
-            var one = sortedCodes[i];
-            if (sortedCodes[i].iso_code === code) {
-                return one;
+            if (phone_codes.all.hasOwnProperty(i)) {
+                one = sortedCodes[i];
+                if (one['iso_code'] === code) {
+                    return one;
+                }
             }
         }
         return false;
     },
-    setNewMaskValue: function(value, mask) {
-        var value       = this.getVal(value),
-            mask        = mask.split(''),
+    setNewMaskValue: function(v, m) {
+        var i,
+            digit,
+            value       = this.getVal(v),
+            mask        = m.split(''),
             len         = 0;
         for (i in mask) {
-            var digit = mask[i];
-            if (digit == '_') {
-                if (len < value.length) {
-                    mask[i] = value[len];
-                    len++;
+            if (mask.hasOwnProperty(i)) {
+                digit = mask[i];
+                if (digit == '_') {
+                    if (len < value.length) {
+                        mask[i] = value[len];
+                        len++;
+                    }
                 }
             }
         }
@@ -401,11 +455,12 @@ inpClass.prototype = {
 
     setInputAttrs:function (e, flag, title, value) {
         e.value          = value;
-        var i = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
-            i.className = 'flag '+ flag;
+        var opt          = this.opt,
+            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
+            i.className  = 'flag '+ flag;
             i.parentNode.setAttribute('title', title);
-        this.opt.country = flag;
-        this.opt.name    = title;
-        this.opt.value   = value;
+        opt.country = flag;
+        opt.name    = title;
+        opt.value   = value;
     }
 };

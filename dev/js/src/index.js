@@ -1,26 +1,27 @@
 var plugin = {
     path:   opt.path,
     prefix: opt.prefix,
-    regex:  new RegExp(/[0-9]/),
+    regex:  new RegExp('[0-9]'),
     instances:[],
     loaded:true,
     init: function (selector, args) {
-        var elements = [],
+        var i,
+            f_e,
+            tId,
+            elements = [],
             self     = this,
             elem,
             doc      = document;
         if ( typeof selector === "string" ) {
-            var f_e = selector[0];
+            f_e = selector[0];
             if ( (f_e === '.') || (f_e === '#') ) {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
                 elem = doc.getElementsByClassName( selector );
                 for(i in elem) {
-                    if (elem.hasOwnProperty(i)) {
-                        if (elem[i] !== null) {
-                            elements[elem[i].id||i] = elem[i];
-                        }
+                    if (elem.hasOwnProperty(i) && elem[i] !== null) {
+                        elements[elem[i].id||i] = elem[i];
                     }
                 }
             } else if (f_e === '#') {
@@ -37,7 +38,7 @@ var plugin = {
             }
         }
         if (self.loaded === false) {
-            var tId = setInterval(function() {
+            tId = setInterval(function() {
                 if (self.loaded === true) {
                     self.loop(elements, args);
                     clearInterval(tId);
@@ -48,11 +49,14 @@ var plugin = {
         }
     },
     loop: function (elements, args) {
+        var i,
+            el,
+            opt,
+            self = this;
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
-                var self = this,
-                    el   = elements[i],
-                    opt  = self.extend(self.extend({}, args), el.dataset);
+                el   = elements[i];
+                opt  = self.extend(self.extend({}, args), el.dataset);
 
                 if (phoneCodes.all.length === 0) {
                     self.loaded = false;
@@ -72,15 +76,17 @@ var plugin = {
         self.instances[obj.opt.instId] = obj;
     },
     loadMasks: function (type, lang, callback) {
+        var self  = this,
+            pc    = phoneCodes,
+            _true = true;
         $AJAX({
-            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.min.json',
+            url:         self.path + type + '/' + (lang == 'ru' ? 'ru' : 'en') + '.min.json',
             type:        "GET",
-            async:       true,
-            crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
+            async:       _true,
+            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
             dataType:    'json',
             result: function (responce) {
-                phoneCodes[type] = phoneCodes.sortPhones(responce, "mask", 'desc');
-
+                pc[type] = pc.sortPhones(responce, "mask", 'desc');
                 if (typeof callback == 'function') {
                     callback();
                 }
@@ -88,26 +94,29 @@ var plugin = {
         });
     },
     selectInstance: function (e) {
-        return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
+        var p = plugin;
+        return p.instances[e.className.match(new RegExp(p.prefix+'[0-9a-zA-Z]+'))];
     },
     extend: function ( defaults, options ) {
-        var extended = {};
-        var prop;
-        var prototype = Object.prototype.hasOwnProperty;
-        for (prop in defaults) {
-            if (prototype.call(defaults, prop)) {
-                extended[prop] = defaults[prop];
+        var i,
+            extended = {},
+            prototype = Object.prototype.hasOwnProperty;
+
+        for (i in defaults) {
+            if (defaults.hasOwnProperty(i) && prototype.call(defaults, i)) {
+                extended[i] = defaults[i];
             }
         }
-        for (prop in options) {
-            if (prototype.call(options, prop)) {
-                extended[prop] = options[prop];
+        for (i in options) {
+            if (options.hasOwnProperty(i) && prototype.call(options, i)) {
+                extended[i] = options[i];
             }
         }
         return extended;
     },
     findPos: function (obj) {
-        var curleft = curtop = 0;
+        var curleft = 0,
+            curtop  = 0;
         if (obj && obj.offsetParent) {
             do {
                 curleft += obj.offsetLeft;
@@ -127,5 +136,3 @@ var plugin = {
         return false;
     }
 };
-
-

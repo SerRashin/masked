@@ -1,44 +1,58 @@
 .CBH-masks {
-  z-index: 9999;
+  position: relative;
 }
-.CBH-masks .flags {
-  cursor: pointer;
-  position: absolute;
+.CBH-masks:before, .CBH-masks:after {
+  content: " ";
+  display: table;
+}
+.CBH-masks:after {
+  clear: both;
+}
+.CBH-masks .flag {
+  background-image: url("/img/flags.png");
+  display: block;
 }
 .CBH-masks .flags .selected {
-  margin: 1px;
-  padding: 6px 16px 6px 6px;
-  position: relative;
-  height: 30px;
-  z-index: 10000;
+  cursor: pointer;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 40px;
+  z-index: 1000;
 }
 .CBH-masks .flags .selected:hover {
   background-color: rgba(0, 0, 0, 0.05);
+}
+.CBH-masks .flags .selected .flag {
+  left: 8px;
+  position: absolute;
+  top: 32%;
+  width: 20px;
 }
 .CBH-masks .flags .selected .flag .caret {
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid black;
-  height: 0;
   position: absolute;
-  right: 4px;
-  top: 13px;
-  width: 0;
+  right: -13px;
+  top: 32%;
 }
 .CBH-masks .flags .lists {
   display: none !important;
-  background-color: white;
+  background-color: #fff !important;
   border: 1px solid #cccccc;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
   list-style: none;
   margin: 0;
   max-height: 200px;
-  overflow-y: scroll;
+  overflow-y: scroll !important;
+  overflow-x: hidden !important;
   padding: 0;
   position: absolute;
   top: 29px;
   width: 330px;
-  z-index: 1101011;
+  z-index: 22000 !important;
 }
 .CBH-masks .flags .lists.active {
   display: block !important;
@@ -49,38 +63,43 @@
   bottom: 31px;
 }
 .CBH-masks .flags .lists li {
-  line-height: 16px;
+  display: block !important;
+  font-size: 14px !important;
+  line-height: 1pc;
   padding: 4px 10px;
 }
 .CBH-masks .flags .lists li:hover {
   background-color: rgba(0, 0, 0, 0.05);
 }
 .CBH-masks .flags .lists li i.flag {
+  display: inline-block !important;
   margin-right: 6px;
   vertical-align: bottom;
 }
 .CBH-masks .flags .lists li span.name {
+  color: #333 !important;
+  display: inline-block !important;
+  line-height: 1pc;
   margin-right: 6px;
-  line-height: 16px;
 }
 .CBH-masks .flags .lists li span.code {
-  color: #999999;
+  color: #999999 !important;
   margin-left: 8px;
+  display: inline-block !important;
 }
 .CBH-masks input {
   border: 1px solid #ccc;
   border-radius: 0;
   box-sizing: border-box;
   height: 30px;
-  padding-left: 40px;
+  padding-left: 45px;
   position: relative;
   z-index: 0;
+  user-select: none !important;
+  margin: 0;
 }
 
 .CBH-masks .flag {
-  background-image: url("/img/flags.png");
-  height: 16px;
-  display: inline-block;
   width: 20px;
 }
 .CBH-masks .flag.be {

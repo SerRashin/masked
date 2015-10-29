@@ -19,7 +19,6 @@ var actions = {
             regex       = p.regex,
             instance    = p.selectInstance(self),
             code        = e.which || e.keyCode,
-            codeo       = e.which || e.keyCode,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
             set_caret   = instance.setCaret,
@@ -71,9 +70,6 @@ var actions = {
                 return _false;
             } else {
                 return _false;
-            }
-            if (/[\(\)\- ]/.test(value[index])) {
-                set_caret(self, index, index);
             }
         }  else if(code === 13) {
             if (opt.onsend) {

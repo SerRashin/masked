@@ -4,16 +4,16 @@ var Event = (function() {
     var guid = 0;
     var win = window;
     var doc = document;
-    function fixEvent(event) {
-        event = event || win.event
+    function fixEvent(_event) {
+        var event = _event || win.event;
         if ( event.isFixed ) {
-            return event
+            return event;
         }
-        event.isFixed = true
-        event.preventDefault = event.preventDefault || function(){this.returnValue = false}
-        event.stopPropagation = event.stopPropagaton || function(){this.cancelBubble = true}
+        event.isFixed = true;
+        event.preventDefault = event.preventDefault || function(){this.returnValue = false};
+        event.stopPropagation = event.stopPropagation || function(){this.cancelBubble = true};
         if (!event.target) {
-            event.target = event.srcElement
+            event.target = event.srcElement;
         }
         if (!event.relatedTarget && event.fromElement) {
             event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
@@ -29,15 +29,19 @@ var Event = (function() {
         }
         return event
     }
-    function commonHandle(event) {
-        event = fixEvent(event)
-        var handlers = this.events[event.type]
-        for ( var g in handlers ) {
-            var handler = handlers[g]
-            var ret = handler.call(this, event)
+    function commonHandle(_event) {
+        var i,
+            event = fixEvent(_event),
+            handlers = this.events[event.type];
+        for ( i in handlers ) {
+            if (!handlers.hasOwnProperty(i)) {
+                continue;
+            }
+            var handler = handlers[i];
+            var ret = handler.call(this, event);
             if ( ret === false ) {
-                event.preventDefault()
-                event.stopPropagation()
+                event.preventDefault();
+                event.stopPropagation();
             }
         }
     }
@@ -47,42 +51,55 @@ var Event = (function() {
                 elem = win;
             }
             if (!handler.guid) {
-                handler.guid = ++guid
+                handler.guid = ++guid;
             }
             if (!elem.events) {
-                elem.events = {}
+                elem.events = {};
                 elem.handle = function(event) {
                     if (typeof Event !== "undefined") {
-                        return commonHandle.call(elem, event)
+                        return commonHandle.call(elem, event);
                     }
                 }
             }
             if (!elem.events[type]) {
-                elem.events[type] = {}
+                elem.events[type] = {};
                 if (elem.addEventListener)
-                    elem.addEventListener(type, elem.handle, false)
+                    elem.addEventListener(type, elem.handle, false);
                 else if (elem.attachEvent)
-                    elem.attachEvent("on" + type, elem.handle)
+                    elem.attachEvent("on" + type, elem.handle);
             }
-            elem.events[type][handler.guid] = handler
+            elem.events[type][handler.guid] = handler;
         },
         remove: function(elem, type, handler) {
-            var handlers = elem.events && elem.events[type]
-            if (!handlers) return
-            delete handlers[handler.guid]
-            for(var any in handlers) return
+            var i,
+                handlers = elem.events && elem.events[type];
+            if (!handlers) return;
+            delete handlers[handler.guid];
+            for(i in handlers) {
+                if (!handlers.hasOwnProperty(i)) {
+                    continue;
+                }
+
+                return;
+            }
             if (elem.removeEventListener)
-                elem.removeEventListener(type, elem.handle, false)
+                elem.removeEventListener(type, elem.handle, false);
             else if (elem.detachEvent)
-                elem.detachEvent("on" + type, elem.handle)
-            delete elem.events[type]
-            for (var any in elem.events) return
+                elem.detachEvent("on" + type, elem.handle);
+            delete elem.events[type];
+            for (i in elem.events) {
+                if (!elem.events.hasOwnProperty(i)) {
+                    continue;
+                }
+
+                return;
+            }
             try {
-                delete elem.handle
-                delete elem.events
+                delete elem.handle;
+                delete elem.events;
             } catch(e) { // IE
-                elem.removeAttribute("handle")
-                elem.removeAttribute("events")
+                elem.removeAttribute("handle");
+                elem.removeAttribute("events");
             }
         }
     }
@@ -90,7 +107,7 @@ var Event = (function() {
 
 function addClass(o, c) {
     var object_class = o.className;
-    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return
+    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return;
     o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
 function removeClass(o, c) {
@@ -118,22 +135,29 @@ function makeid() {
  */
 
 $AJAX = function (obj) {
-    var availableType       = ['GET', 'POST', 'PUT'];
-    var availableDataType   = ['json', 'text'];
-    var headers             = {};
-    var xmlhttpobj          = XMLHttpRequest;
-    var Msxml2              = 'Msxml2.XMLHTTP';
-
-    var args = {
-        url:            obj.url             || false,
-        async:          obj.async           || false,
-        data:           obj.data            || null,
-        crossDomain:    obj.crossDomain     || false,
-        complete:       obj.result          || function(){},
-        timeout:        obj.timeout         || 10000,
-        type:           ( availableType.indexOf(obj.type) !== -1 ? obj.type : null )                || "GET",
-        dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
-    };
+    var i,
+        res,
+        url,
+        xhr,
+        status,
+        statusText,
+        callback,
+        responses = {},
+        availableType       = ['GET', 'POST', 'PUT'],
+        availableDataType   = ['json', 'text'],
+        headers             = {},
+        xmlhttpobj          = XMLHttpRequest,
+        Msxml2              = 'Msxml2.XMLHTTP',
+        args = {
+            url:            obj.url             || false,
+            async:          obj.async           || false,
+            data:           obj.data            || null,
+            crossDomain:    obj.crossDomain     || false,
+            complete:       obj.result          || function(){},
+            timeout:        obj.timeout         || 10000,
+            type:           ( availableType.indexOf(obj.type) !== -1 ? obj.type : null )                || "GET",
+            dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
+        };
 
     if (typeof args.url === und || args.url === false) {
         return;
@@ -156,9 +180,9 @@ $AJAX = function (obj) {
             throw new Error( 'This browser does not support XMLHttpRequest.' );
         };
     }
-    var xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
+    xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
 
-    var url = args.url;
+    url = args.url;
     if (args.type === 'GET' && args.data && args.data.length>0) {
         url = args.url + '?' +args.data.toString();
     }
@@ -169,7 +193,7 @@ $AJAX = function (obj) {
     }
 
     for ( i in headers ) { // Support: IE<9
-        if ( headers[ i ] !== undefined ) {
+        if ( headers.hasOwnProperty(i) && typeof headers[ i ] !== 'undefined' ) {
             xhr.setRequestHeader( i, headers[ i ] + "" );
         }
     }
@@ -190,14 +214,11 @@ $AJAX = function (obj) {
     }
 
     callback = function() {
-        var status,
-            statusText,
-            responses = {};
         if ( xhr.readyState === 4  ) {
             if  (args.async) {
                 clearTimeout(timeout);
             }
-            callback = undefined;
+            callback = 'undefined';
             if ( xhr.readyState !== 4 ) {
                 xhr.abort();
             } else {
@@ -220,9 +241,9 @@ $AJAX = function (obj) {
             }
             if (status === 200) {
                 if(args.dataType === 'text') {
-                    var res = responses.text || '';
+                    res = responses.text || '';
                 } else if (args.dataType === 'json') {
-                    var res = JSON.parse(responses.text) || '';
+                    res = JSON.parse(responses.text) || '';
                 }
                 /**
                  * @param a responce result

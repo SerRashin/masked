@@ -6,16 +6,16 @@ var Event = (function() {
     var guid = 0;
     var win = window;
     var doc = document;
-    function fixEvent(event) {
-        event = event || win.event
+    function fixEvent(_event) {
+        var event = _event || win.event;
         if ( event.isFixed ) {
-            return event
+            return event;
         }
-        event.isFixed = true
-        event.preventDefault = event.preventDefault || function(){this.returnValue = false}
-        event.stopPropagation = event.stopPropagaton || function(){this.cancelBubble = true}
+        event.isFixed = true;
+        event.preventDefault = event.preventDefault || function(){this.returnValue = false};
+        event.stopPropagation = event.stopPropagation || function(){this.cancelBubble = true};
         if (!event.target) {
-            event.target = event.srcElement
+            event.target = event.srcElement;
         }
         if (!event.relatedTarget && event.fromElement) {
             event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
@@ -31,15 +31,19 @@ var Event = (function() {
         }
         return event
     }
-    function commonHandle(event) {
-        event = fixEvent(event)
-        var handlers = this.events[event.type]
-        for ( var g in handlers ) {
-            var handler = handlers[g]
-            var ret = handler.call(this, event)
+    function commonHandle(_event) {
+        var i,
+            event = fixEvent(_event),
+            handlers = this.events[event.type];
+        for ( i in handlers ) {
+            if (!handlers.hasOwnProperty(i)) {
+                continue;
+            }
+            var handler = handlers[i];
+            var ret = handler.call(this, event);
             if ( ret === false ) {
-                event.preventDefault()
-                event.stopPropagation()
+                event.preventDefault();
+                event.stopPropagation();
             }
         }
     }
@@ -49,42 +53,55 @@ var Event = (function() {
                 elem = win;
             }
             if (!handler.guid) {
-                handler.guid = ++guid
+                handler.guid = ++guid;
             }
             if (!elem.events) {
-                elem.events = {}
+                elem.events = {};
                 elem.handle = function(event) {
                     if (typeof Event !== "undefined") {
-                        return commonHandle.call(elem, event)
+                        return commonHandle.call(elem, event);
                     }
                 }
             }
             if (!elem.events[type]) {
-                elem.events[type] = {}
+                elem.events[type] = {};
                 if (elem.addEventListener)
-                    elem.addEventListener(type, elem.handle, false)
+                    elem.addEventListener(type, elem.handle, false);
                 else if (elem.attachEvent)
-                    elem.attachEvent("on" + type, elem.handle)
+                    elem.attachEvent("on" + type, elem.handle);
             }
-            elem.events[type][handler.guid] = handler
+            elem.events[type][handler.guid] = handler;
         },
         remove: function(elem, type, handler) {
-            var handlers = elem.events && elem.events[type]
-            if (!handlers) return
-            delete handlers[handler.guid]
-            for(var any in handlers) return
+            var i,
+                handlers = elem.events && elem.events[type];
+            if (!handlers) return;
+            delete handlers[handler.guid];
+            for(i in handlers) {
+                if (!handlers.hasOwnProperty(i)) {
+                    continue;
+                }
+
+                return;
+            }
             if (elem.removeEventListener)
-                elem.removeEventListener(type, elem.handle, false)
+                elem.removeEventListener(type, elem.handle, false);
             else if (elem.detachEvent)
-                elem.detachEvent("on" + type, elem.handle)
-            delete elem.events[type]
-            for (var any in elem.events) return
+                elem.detachEvent("on" + type, elem.handle);
+            delete elem.events[type];
+            for (i in elem.events) {
+                if (!elem.events.hasOwnProperty(i)) {
+                    continue;
+                }
+
+                return;
+            }
             try {
-                delete elem.handle
-                delete elem.events
+                delete elem.handle;
+                delete elem.events;
             } catch(e) { // IE
-                elem.removeAttribute("handle")
-                elem.removeAttribute("events")
+                elem.removeAttribute("handle");
+                elem.removeAttribute("events");
             }
         }
     }
@@ -92,7 +109,7 @@ var Event = (function() {
 
 function addClass(o, c) {
     var object_class = o.className;
-    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return
+    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return;
     o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
 function removeClass(o, c) {
@@ -120,22 +137,29 @@ function makeid() {
  */
 
 $AJAX = function (obj) {
-    var availableType       = ['GET', 'POST', 'PUT'];
-    var availableDataType   = ['json', 'text'];
-    var headers             = {};
-    var xmlhttpobj          = XMLHttpRequest;
-    var Msxml2              = 'Msxml2.XMLHTTP';
-
-    var args = {
-        url:            obj.url             || false,
-        async:          obj.async           || false,
-        data:           obj.data            || null,
-        crossDomain:    obj.crossDomain     || false,
-        complete:       obj.result          || function(){},
-        timeout:        obj.timeout         || 10000,
-        type:           ( availableType.indexOf(obj.type) !== -1 ? obj.type : null )                || "GET",
-        dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
-    };
+    var i,
+        res,
+        url,
+        xhr,
+        status,
+        statusText,
+        callback,
+        responses = {},
+        availableType       = ['GET', 'POST', 'PUT'],
+        availableDataType   = ['json', 'text'],
+        headers             = {},
+        xmlhttpobj          = XMLHttpRequest,
+        Msxml2              = 'Msxml2.XMLHTTP',
+        args = {
+            url:            obj.url             || false,
+            async:          obj.async           || false,
+            data:           obj.data            || null,
+            crossDomain:    obj.crossDomain     || false,
+            complete:       obj.result          || function(){},
+            timeout:        obj.timeout         || 10000,
+            type:           ( availableType.indexOf(obj.type) !== -1 ? obj.type : null )                || "GET",
+            dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
+        };
 
     if (typeof args.url === und || args.url === false) {
         return;
@@ -158,9 +182,9 @@ $AJAX = function (obj) {
             throw new Error( 'This browser does not support XMLHttpRequest.' );
         };
     }
-    var xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
+    xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
 
-    var url = args.url;
+    url = args.url;
     if (args.type === 'GET' && args.data && args.data.length>0) {
         url = args.url + '?' +args.data.toString();
     }
@@ -171,7 +195,7 @@ $AJAX = function (obj) {
     }
 
     for ( i in headers ) { // Support: IE<9
-        if ( headers[ i ] !== undefined ) {
+        if ( headers.hasOwnProperty(i) && typeof headers[ i ] !== 'undefined' ) {
             xhr.setRequestHeader( i, headers[ i ] + "" );
         }
     }
@@ -192,14 +216,11 @@ $AJAX = function (obj) {
     }
 
     callback = function() {
-        var status,
-            statusText,
-            responses = {};
         if ( xhr.readyState === 4  ) {
             if  (args.async) {
                 clearTimeout(timeout);
             }
-            callback = undefined;
+            callback = 'undefined';
             if ( xhr.readyState !== 4 ) {
                 xhr.abort();
             } else {
@@ -222,9 +243,9 @@ $AJAX = function (obj) {
             }
             if (status === 200) {
                 if(args.dataType === 'text') {
-                    var res = responses.text || '';
+                    res = responses.text || '';
                 } else if (args.dataType === 'json') {
-                    var res = JSON.parse(responses.text) || '';
+                    res = JSON.parse(responses.text) || '';
                 }
                 /**
                  * @param a responce result
@@ -255,24 +276,24 @@ var phoneCodes = {
     /**
      * Сортировать номера телефонов по ключу
      * @param maskList
-     * @param key
-     * @param sort
+     * @param k
+     * @param s
      * @returns {*}
      */
-    sortPhones:function (maskList, key, sort) {
+    sortPhones:function (maskList, k, s) {
         var txt_mask = 'mask',
             txt_desc = 'desc',
-            txt_asc  = 'asc';
-            key      = (key  == txt_mask) ? txt_mask : 'name',
-            sort     = (sort == txt_desc) ? txt_desc : txt_asc;
+            txt_asc  = 'asc',
+            key      = (k  == txt_mask) ? txt_mask : 'name',
+            sort     = (s == txt_desc) ? txt_desc : txt_asc;
         maskList.sort(function (a, b) {
             if (typeof a[key] === und || typeof b[key] === und)return;
             if (key === txt_mask){
-                var a = a[key].replace(/\D+/g,"");
-                var b = b[key].replace(/\D+/g,"");
+                a = a[key].replace(/\D+/g,"");
+                b = b[key].replace(/\D+/g,"");
             } else {
-                var a = a[key];
-                var b = b[key];
+                a = a[key];
+                b = b[key];
             }
             if (a > b) {
                 return sort==txt_asc ? 1:-1;
@@ -306,7 +327,6 @@ var actions = {
             regex       = p.regex,
             instance    = p.selectInstance(self),
             code        = e.which || e.keyCode,
-            codeo       = e.which || e.keyCode,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
             set_caret   = instance.setCaret,
@@ -359,9 +379,6 @@ var actions = {
             } else {
                 return _false;
             }
-            if (/[\(\)\- ]/.test(value[index])) {
-                set_caret(self, index, index);
-            }
         }  else if(code === 13) {
             if (opt.onsend) {
                 opt.onsend(opt);
@@ -382,10 +399,10 @@ var inpClass = function (el, args) {
         instId:         plugin.prefix + makeid(),          //  Селектор выбранного елемента
         element:        el,
         lang:           args.lang    ||    'ru',
-        country:        args.country ||    'ru',
+        country:        args.country ||     'ru',
         phone:          args.phone   ||    false,
-        mask:           args.mask    ||    '',
-        onsend:         args.onsend  ||    null,
+        mask:           args.mask    ||     '',
+        onsend:         args.onsend  || null,
         value:          '',
         name:           '',
         old:            {}
@@ -395,56 +412,85 @@ var inpClass = function (el, args) {
 
 inpClass.prototype = {
     init: function(el, args) {
+        var mask,
+            element,
+            options,
+            self = this,
+            p = plugin;
         if (args.phone) {
-            var self      = this,
+            var i,
+                iso,
+                finded,
                 phone     = self.getVal(args.phone+''),
+                pl        = phone.length,
                 pc        = phoneCodes,
-                for_code  = self.maskFinder(pc.all, phone.length > 6 ? phone.substring(0, 6) : phone);
+                for_code  = self.maskFinder(pc.all, pl > 6 ? phone.substring(0, 6) : phone);
             if (for_code) {
-                iso = for_code.obj.iso_code;
+                iso = for_code.obj['iso_code'];
                 if(typeof pc[iso] !== 'undefined' && pc[iso].length === 0) {
-
-                    plugin.loadMasks(iso, args.lang, function() {
-                        for (var p in phone) {
-                            var finded       = self.maskFinder(pc[iso], phone);
-                            if (finded && phone !== for_code.obj.phone_code) {
-                                args.mask    = self.setNewMaskValue(phone, finded.mask);
-                                args.country = finded.obj.iso_code;
-                                args.phone   = phone;
-                                break;
-                            } else phone = phone.substring(0, phone.length - 1);
+                    p.loadMasks(iso, args.lang, function() {
+                        for (i in phone) {
+                            if (phone.hasOwnProperty(i)) {
+                                finded = self.maskFinder(pc[iso], phone);
+                                if (finded && phone !== for_code.obj['phone_code']) {
+                                    args.mask    = self.setNewMaskValue(phone, finded.mask);
+                                    args.country = finded.obj['iso_code'];
+                                    args.phone   = phone;
+                                    break;
+                                } else phone = phone.substring(0, pl - 1);
+                            }
                         }
-
                         self.init(el, args);
                         return true;
                     });
                     return true;
                 }
                 args.mask    = self.setNewMaskValue(phone, for_code.mask);
-                args.country = for_code.obj.iso_code;
+                args.country = for_code.obj['iso_code'];
             }
         }
-        plugin.loaded = true;
-        this.opt       = plugin.extend(this.opt, args);
+        p.loaded = true;
+        self.opt       = p.extend(self.opt, args);
 
-        this.setTemplate();
+        self.setTemplate();
 
-        var options = this.opt,
-            mask    = options.mask;
-
-        element = this.opt.element;
+        options = self.opt;
+        mask    = options.mask;
+        element = self.opt.element;
 
         element.value       = mask;
         element.placeholder = mask;
 
         addClass(element, options.instId);
 
-        this.addActions(options.element);
+        self.addActions(options.element);
     },
     setTemplate: function() {
-        var opt = this.opt,
-            el  = this.opt.element,
-            p  = plugin,
+        var i,
+            li,
+            ul,
+            ico,
+            span,
+            flag,
+            caret,
+            cur_el,
+            wrapper,
+            selected,
+            flags_block,
+            sortedCodes,
+            self             = this,
+            w                = window,
+            d                = document,
+            opt              = self.opt,
+            el               = opt.element,
+            p                = plugin,
+            lists            = 'lists',
+            active           = 'active',
+            top              = 'top',
+            opened_elements  = d.getElementsByClassName(lists+' '+active),
+
+
+
             document_create  = function (e) {
                 return document.createElement(e);
             },
@@ -461,62 +507,65 @@ inpClass.prototype = {
             text_div = 'div',
             text_flag = 'flag';
 
-        var wrapper = document_create('div');
-        inner_HTML(wrapper,el);
-        className(wrapper,'CBH-masks');
+
+        wrapper = document_create('div');
+            inner_HTML(wrapper, el);
+            className(wrapper,'CBH-masks');
 
         el.parentNode.replaceChild(wrapper, el);
 
-        var caret                   = document_create('i');
-        className(caret,'caret');
-        var flag                    = document_create(text_div);
-        inner_HTML(flag,caret);
-        className(flag, text_flag+' ' + opt.country);
-        var selected                = document_create(text_div);
-        inner_HTML(selected,flag);
-        className(selected,'selected');
-        var flags_block             = document_create(text_div);
-        inner_HTML(flags_block,selected);
-        className(flags_block,'flags');
-        var ul                      = document_create('ul');
-        className(ul,'lists');
+        caret                   = document_create('i');
+            className(caret,'caret');
+        flag                    = document_create(text_div);
+            inner_HTML(flag, caret);
+            className(flag, text_flag+' ' + opt.country);
+        selected                = document_create(text_div);
+            inner_HTML(selected, flag);
+            className(selected,'selected');
+        flags_block             = document_create(text_div);
+            inner_HTML(flags_block, selected);
+            className(flags_block,'flags');
+        ul                      = document_create('ul');
+            className(ul, 'lists');
 
-        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
+        sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
         if(sortedCodes.length===0) {
             return;
         }
         for (i in sortedCodes) {
-            var one             = sortedCodes[i],
-                iso             = one.iso_code.toString().toLowerCase(),
-                name            = one.name,
-                mask            = one.mask;
+            if (sortedCodes.hasOwnProperty(i)) {
+                var one             = sortedCodes[i],
+                    iso             = one['iso_code'].toString().toLowerCase(),
+                    name            = one.name,
+                    mask            = one.mask;
 
-            if (typeof name === und)continue;
-            if (opt.phone === false) {
-                if (opt.country === iso) {
-                    this.opt.name = name;
-                    this.opt.mask = mask;
+                if (typeof name === und)continue;
+                if (opt.phone === false) {
+                    if (opt.country === iso) {
+                        self.opt.name = name;
+                        self.opt.mask = mask;
+                    }
                 }
-            }
-            var li                      = document_create('li');
+                li                      = document_create('li');
                 li.className            = 'country';
                 li.dataset['isoCode']   = iso;
                 li.dataset['mask']      = mask;
 
-            Event.add(li,'click', this.maskReplace);
+                Event.add(li,'click', self.maskReplace);
 
-            var i                       = document_create('i');
-            className(i, text_flag+' ' + iso);
-            append_child(li, i);
-            var span                    = document_create('span');
-            className(span, 'name');
-            span.innerHTML = name;
-            append_child(li, span);
-            var span                    = document_create('span');
-            className(span, 'code');
-            span.innerHTML = '+'+one.phone_code;
-            append_child(li, span);
-            append_child(ul, li)
+                ico                       = document_create('i');
+                className(ico, text_flag+' ' + iso);
+                append_child(li, ico);
+                span                    = document_create('span');
+                className(span, 'name');
+                span.innerHTML = name;
+                append_child(li, span);
+                span                    = document_create('span');
+                className(span, 'code');
+                span.innerHTML = '+'+one['phone_code'];
+                append_child(li, span);
+                append_child(ul, li)
+            }
         }
 
         append_child(flags_block, ul);
@@ -527,16 +576,10 @@ inpClass.prototype = {
 
         wrapper.insertBefore( flags_block, wrapper.firstChild );
         wrapper.getElementsByClassName('selected')[0].onclick = function () {
-            var w       = window,
-                d       = document,
-                lists   = 'lists',
-                active  = 'active',
-                top     = 'top',
-                opened_elements = d.getElementsByClassName(lists+' '+active),
-                cur_el          = wrapper.getElementsByClassName(lists)[0];
+            cur_el           = wrapper.getElementsByClassName(lists)[0];
             if(!!opened_elements.length) {
-                for(var i in opened_elements) {
-                    if (cur_el !== opened_elements[i] && opened_elements.hasOwnProperty(i)) {
+                for(i in opened_elements) {
+                    if (opened_elements.hasOwnProperty(i) && cur_el !== opened_elements[i]) {
                         removeClass(opened_elements[i], active);
                     }
                 }
@@ -556,10 +599,12 @@ inpClass.prototype = {
                 removeClass(cur_el, top);
             }
         };
-        this.opt.element = wrapper.childNodes[1];
+        self.opt.element = wrapper.childNodes[1];
     },
     maskReplace: function () {
-        var self        = this,
+        var flag_el,
+            list_el,
+            self        = this,
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
@@ -569,7 +614,7 @@ inpClass.prototype = {
         var finded_old          = instance.findMaskByCode(instance.opt.country);
         var finded_new          = instance.findMaskByCode(dataset['isoCode']);
         input.value             = instance.setNewMaskValue(
-            instance.getVal(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+            instance.getVal(input.value).replace(finded_old['phone_code'], finded_new['phone_code']),
             instance.opt.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
         );
 
@@ -577,10 +622,10 @@ inpClass.prototype = {
         instance.opt.value      = input.value;
         instance.opt.name       = finded_new.name;
         instance.opt.mask       = finded_new.mask;
-        instance.opt.country    = finded_new.iso_code;
+        instance.opt.country    = finded_new['iso_code'];
 
         flag_el                 = parent.childNodes[0].childNodes[0];
-        flag_el.className       = 'flag '+ finded_new.iso_code,
+        flag_el.className       = 'flag '+ finded_new['iso_code'];
         list_el                 = parent.childNodes[1];
 
         removeClass(list_el,'active');
@@ -601,11 +646,12 @@ inpClass.prototype = {
      * Сфокусировать маску на доступном для ввода элементе
      */
     focused: function() {
-        var e = this.opt.element,
-            v = e.value;
-        var num = v.indexOf('_');
-        var i = (num === -1) ? v.length : num;
-        this.setCaret(e, i, i);
+        var self  = this,
+            e     = self.opt.element,
+            v     = e.value,
+            num   = v.indexOf('_'),
+            i     = (num === -1) ? v.length : num;
+        self.setCaret(e, i, i);
     },
 
     /**
@@ -629,12 +675,13 @@ inpClass.prototype = {
 
     /**
      * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
-     * @param inp
+     * @param e
      * @returns {Number}
      */
     getLastNum:function(e) {
-        var v = e.value;
-        for (var i = v.length; i >= 0; i--) {
+        var i,
+            v  = e.value;
+        for (i = v.length; i >= 0; i--) {
             if (plugin.regex.test(v[i])) {
                 break;
             }
@@ -644,8 +691,8 @@ inpClass.prototype = {
 
     /**
      * Удалить последний элемент
-     * @param inp
-     * @param index
+     * @param e
+     * @param i
      */
     removeChar:function(e, i) {
         var temp = e.value.split('');
@@ -654,34 +701,37 @@ inpClass.prototype = {
     },
 
     setCheckedMask: function (e) {
-        var self        = this,
+        var iso,
+            new_value,
+            newSearch,
+            self        = this,
             value       = self.getVal(e.value),
             phone_codes = phoneCodes,
             finded      = self.maskFinder(phone_codes.all, value),
             old         = self.opt.old;
 
         if(finded !== false) {
-            if (value.length && typeof phone_codes[finded.obj.iso_code] !== und) {
-                if (phone_codes[finded.obj.iso_code].length === 0) {
-                    plugin.loadMasks(finded.obj.iso_code, self.opt.lang);
+            if (value.length && typeof phone_codes[finded.obj['iso_code']] !== und) {
+                if (phone_codes[finded.obj['iso_code']].length === 0) {
+                    plugin.loadMasks(finded.obj['iso_code'], self.opt.lang);
                 }
             }
-            if (typeof phone_codes[finded.obj.iso_code] !== und && typeof old !== 'null') {
-                var newSearch = self.maskFinder(phone_codes[finded.obj.iso_code], value);
+            if (typeof phone_codes[finded.obj['iso_code']] !== und && typeof old !== 'null') {
+                newSearch = self.maskFinder(phone_codes[finded.obj['iso_code']], value);
                 if (newSearch) {
                     finded = newSearch;
                 }
             }
             if (typeof finded.obj.name === und && old.obj != finded.obj) {
-                var iso       = finded.obj.iso_code;        //  ищем по коду и ставим аргументы
-                var new_value = self.findMaskByCode(iso);
+                iso       = finded.obj['iso_code'];        //  ищем по коду и ставим аргументы
+                new_value = self.findMaskByCode(iso);
                 if (new_value) {
                     finded.obj.name = new_value.name;
                 }
             }
             if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
                 self.opt.old  = finded;
-                self.setInputAttrs(e, finded.obj.iso_code, finded.obj.name, self.setNewMaskValue(value, finded.mask));
+                self.setInputAttrs(e, finded.obj['iso_code'], finded.obj.name, self.setNewMaskValue(value, finded.mask));
                 self.focused(e);
             }
         }
@@ -704,44 +754,57 @@ inpClass.prototype = {
      * @returns {boolean|*}
      */
     maskFinder: function(masklist, value) {
-        var maths = [],
+        var i,
+            it,
+            im,
+            val,
+            find,
+            mask,
+            pass,
+            determined,
+            maths = [],
+            self  = this,
             regex = plugin.regex;
-        for (var mid in masklist) {
-            var mask = masklist[mid]['mask'];
-            var pass = true;
-            for (var it=0, im=0; (it < value.length && im < mask.length);) {
-                var chm = mask.charAt(im);
-                var cht = value.charAt(it);
+        for (i in masklist) {
+            if (masklist.hasOwnProperty(i)) {
+                mask = masklist[i]['mask'];
+                pass = true;
+                for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
+                    var chm = mask.charAt(im);
+                    var cht = value.charAt(it);
 
-                if (!regex.test(chm) && chm !== '_') {
-                    im++;
-                    continue;
-                }
+                    if (!regex.test(chm) && chm !== '_') {
+                        im++;
+                        continue;
+                    }
 
-                if ((chm === '_' && regex.test(cht)) || (cht == chm)) {
-                    it++;
-                    im++;
-                } else {
-                    pass = false;
-                    break;
+                    if ((chm === '_' && regex.test(cht)) || (cht == chm)) {
+                        it++;
+                        im++;
+                    } else {
+                        pass = false;
+                        break;
+                    }
                 }
-            }
-            if (pass && it==value.length) {
-                var determined = mask.substr(im).search(regex) == -1;
-                mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
-                maths.push({
-                    mask:       mask,
-                    obj:        masklist[mid],
-                    determined: determined
-                });
+                if (pass && it == value.length) {
+                    determined = mask.substr(im).search(regex) == -1;
+                    mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
+                    maths.push({
+                        mask: mask,
+                        obj: masklist[i],
+                        determined: determined
+                    });
+                }
             }
         }
 
-        var find = false;
-        for (var i in maths) {
-            var val = this.getVal(maths[i].obj.mask);
-            if (parseInt(val) === parseInt(value)) {
-                find = maths[i];
+        find = false;
+        for (i in maths) {
+            if (maths.hasOwnProperty(i)) {
+                val = self.getVal(maths[i].obj.mask);
+                if (parseInt(val) === parseInt(value)) {
+                    find = maths[i];
+                }
             }
         }
 
@@ -749,26 +812,34 @@ inpClass.prototype = {
     },
 
     findMaskByCode: function(code){
-        var phone_codes = phoneCodes;
-        var sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
+        var i,
+            one,
+            phone_codes = phoneCodes,
+            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name");
         for (i in phone_codes.all) {
-            var one = sortedCodes[i];
-            if (sortedCodes[i].iso_code === code) {
-                return one;
+            if (phone_codes.all.hasOwnProperty(i)) {
+                one = sortedCodes[i];
+                if (one['iso_code'] === code) {
+                    return one;
+                }
             }
         }
         return false;
     },
-    setNewMaskValue: function(value, mask) {
-        var value       = this.getVal(value),
-            mask        = mask.split(''),
+    setNewMaskValue: function(v, m) {
+        var i,
+            digit,
+            value       = this.getVal(v),
+            mask        = m.split(''),
             len         = 0;
         for (i in mask) {
-            var digit = mask[i];
-            if (digit == '_') {
-                if (len < value.length) {
-                    mask[i] = value[len];
-                    len++;
+            if (mask.hasOwnProperty(i)) {
+                digit = mask[i];
+                if (digit == '_') {
+                    if (len < value.length) {
+                        mask[i] = value[len];
+                        len++;
+                    }
                 }
             }
         }
@@ -777,12 +848,13 @@ inpClass.prototype = {
 
     setInputAttrs:function (e, flag, title, value) {
         e.value          = value;
-        var i = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
-            i.className = 'flag '+ flag;
+        var opt          = this.opt,
+            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
+            i.className  = 'flag '+ flag;
             i.parentNode.setAttribute('title', title);
-        this.opt.country = flag;
-        this.opt.name    = title;
-        this.opt.value   = value;
+        opt.country = flag;
+        opt.name    = title;
+        opt.value   = value;
     }
 };
 var opt = {
@@ -792,26 +864,27 @@ var opt = {
 var plugin = {
     path:   opt.path,
     prefix: opt.prefix,
-    regex:  new RegExp(/[0-9]/),
+    regex:  new RegExp('[0-9]'),
     instances:[],
     loaded:true,
     init: function (selector, args) {
-        var elements = [],
+        var i,
+            f_e,
+            tId,
+            elements = [],
             self     = this,
             elem,
             doc      = document;
         if ( typeof selector === "string" ) {
-            var f_e = selector[0];
+            f_e = selector[0];
             if ( (f_e === '.') || (f_e === '#') ) {
                 selector = selector.substr(1);
             }
             if (f_e === '.') {
                 elem = doc.getElementsByClassName( selector );
                 for(i in elem) {
-                    if (elem.hasOwnProperty(i)) {
-                        if (elem[i] !== null) {
-                            elements[elem[i].id||i] = elem[i];
-                        }
+                    if (elem.hasOwnProperty(i) && elem[i] !== null) {
+                        elements[elem[i].id||i] = elem[i];
                     }
                 }
             } else if (f_e === '#') {
@@ -828,7 +901,7 @@ var plugin = {
             }
         }
         if (self.loaded === false) {
-            var tId = setInterval(function() {
+            tId = setInterval(function() {
                 if (self.loaded === true) {
                     self.loop(elements, args);
                     clearInterval(tId);
@@ -839,11 +912,14 @@ var plugin = {
         }
     },
     loop: function (elements, args) {
+        var i,
+            el,
+            opt,
+            self = this;
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
-                var self = this,
-                    el   = elements[i],
-                    opt  = self.extend(self.extend({}, args), el.dataset);
+                el   = elements[i];
+                opt  = self.extend(self.extend({}, args), el.dataset);
 
                 if (phoneCodes.all.length === 0) {
                     self.loaded = false;
@@ -863,15 +939,17 @@ var plugin = {
         self.instances[obj.opt.instId] = obj;
     },
     loadMasks: function (type, lang, callback) {
+        var self  = this,
+            pc    = phoneCodes,
+            _true = true;
         $AJAX({
-            url:         this.path + type + '/' + (lang='ru'?'ru':'en') + '.min.json',
+            url:         self.path + type + '/' + (lang == 'ru' ? 'ru' : 'en') + '.min.json',
             type:        "GET",
-            async:       true,
-            crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
+            async:       _true,
+            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
             dataType:    'json',
             result: function (responce) {
-                phoneCodes[type] = phoneCodes.sortPhones(responce, "mask", 'desc');
-
+                pc[type] = pc.sortPhones(responce, "mask", 'desc');
                 if (typeof callback == 'function') {
                     callback();
                 }
@@ -879,26 +957,29 @@ var plugin = {
         });
     },
     selectInstance: function (e) {
-        return plugin.instances[e.className.match(new RegExp(/instId_[0-9a-zA-Z]+/))];
+        var p = plugin;
+        return p.instances[e.className.match(new RegExp(p.prefix+'[0-9a-zA-Z]+'))];
     },
     extend: function ( defaults, options ) {
-        var extended = {};
-        var prop;
-        var prototype = Object.prototype.hasOwnProperty;
-        for (prop in defaults) {
-            if (prototype.call(defaults, prop)) {
-                extended[prop] = defaults[prop];
+        var i,
+            extended = {},
+            prototype = Object.prototype.hasOwnProperty;
+
+        for (i in defaults) {
+            if (defaults.hasOwnProperty(i) && prototype.call(defaults, i)) {
+                extended[i] = defaults[i];
             }
         }
-        for (prop in options) {
-            if (prototype.call(options, prop)) {
-                extended[prop] = options[prop];
+        for (i in options) {
+            if (options.hasOwnProperty(i) && prototype.call(options, i)) {
+                extended[i] = options[i];
             }
         }
         return extended;
     },
     findPos: function (obj) {
-        var curleft = curtop = 0;
+        var curleft = 0,
+            curtop  = 0;
         if (obj && obj.offsetParent) {
             do {
                 curleft += obj.offsetLeft;
@@ -918,8 +999,5 @@ var plugin = {
         return false;
     }
 };
-
-
-
     return plugin;
 })();
