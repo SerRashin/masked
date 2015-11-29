@@ -136,6 +136,7 @@ inpClass.prototype = {
             className(ul, 'lists');
 
         sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
+
         if(sortedCodes.length===0) {
             return;
         }
@@ -247,6 +248,7 @@ inpClass.prototype = {
         Event.add(e,'click',       actions.click);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
+        Event.add(e,'paste',       actions.paste);
     },
 
     /**
@@ -307,36 +309,58 @@ inpClass.prototype = {
         e.value = temp.join('');
     },
 
-    setCheckedMask: function (e) {
+    /**
+     * Установка маски
+     *
+     * */
+    setCheckedMask: function (e,reload) {
         var iso,
             new_value,
             newSearch,
+            subPhones,
             self        = this,
             value       = self.getVal(e.value),
             phone_codes = phoneCodes,
             finded      = self.maskFinder(phone_codes.all, value),
             old         = self.opt.old;
 
+        if(finded === false) {
+            finded  = self.maskFinder(phone_codes.all, value.length > 6 ? value.substring(0, 6) : value);
+        }
+
         if(finded !== false) {
-            if (value.length && typeof phone_codes[finded.obj['iso_code']] !== und) {
-                if (phone_codes[finded.obj['iso_code']].length === 0) {
-                    plugin.loadMasks(finded.obj['iso_code'], self.opt.lang);
+            iso = finded.obj['iso_code'];
+            subPhones = typeof phone_codes[iso] !== und ? phone_codes[iso] : false ;
+
+            if (subPhones !== false ) {
+                if (value.length && subPhones.length === 0) {
+                    plugin.loadMasks(iso, self.opt.lang);
+                }
+
+                if (subPhones.length !== 0 && subPhones[0]['mask'] !== finded.obj['mask'] ) {
+                    subPhones.unshift({
+                        'iso_code': finded.obj['iso_code'],
+                        'mask': finded.obj['mask']
+                    })
+                }
+
+                if (typeof old !== 'null') {
+                    newSearch = self.maskFinder(subPhones, value);
+                    if (newSearch) {
+                        finded = newSearch;
+                    }
                 }
             }
-            if (typeof phone_codes[finded.obj['iso_code']] !== und && typeof old !== 'null') {
-                newSearch = self.maskFinder(phone_codes[finded.obj['iso_code']], value);
-                if (newSearch) {
-                    finded = newSearch;
-                }
-            }
+
+
             if (typeof finded.obj.name === und && old.obj != finded.obj) {
-                iso       = finded.obj['iso_code'];        //  ищем по коду и ставим аргументы
-                new_value = self.findMaskByCode(iso);
+                new_value = self.findMaskByCode(iso); //  ищем по коду и ставим аргументы
                 if (new_value) {
                     finded.obj.name = new_value.name;
                 }
             }
-            if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
+
+            if (finded && (old.obj != finded.obj || old.determined != finded.determined) || typeof reload !== 'undefined') {
                 self.opt.old  = finded;
                 self.setInputAttrs(e, finded.obj['iso_code'], finded.obj.name, self.setNewMaskValue(value, finded.mask));
                 self.focused(e);
@@ -351,6 +375,27 @@ inpClass.prototype = {
      */
     getVal: function(mask) {
         return mask.replace(/\D+/g,"");
+    },
+
+    ifIssetNextMask: function () {
+        var self            = this,
+            p               = plugin,
+            iso             = self.opt.country,
+            phone_codes     = phoneCodes,
+            value           = self.opt.element.value,
+            cur_length      = value.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[+()-]/g,"").length;
+
+        if (typeof phone_codes[iso] !== und) {
+            for(var i in phone_codes[iso]) {
+                if (phone_codes[iso].hasOwnProperty(i)) {
+                    var one = (phone_codes[iso][i]['mask'].replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[0-9+()-]/g, "")).length;
+                    if (one > cur_length) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     },
 
 

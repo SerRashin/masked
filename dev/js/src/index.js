@@ -4,6 +4,7 @@ var plugin = {
     regex:  new RegExp('[0-9]'),
     instances:[],
     loaded:true,
+    phoneCodes: phoneCodes,
     init: function (selector, args) {
         var i,
             f_e,

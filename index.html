@@ -4,28 +4,17 @@
     <title>test proj page</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/masked.css">
-    <script type="text/javascript" src="//cbh.local/cbh-debug.js"></script>
+    <!--<script type="text/javascript" src="//cbh.local/cbh-debug.js"></script>-->
     <script type="text/javascript" src="js/inputmask.js"></script>
     <script  type="text/javascript">
       var tId = setInterval(function() {
         if (document.readyState === "complete") {
 
           CBHMasks.init('.mask',{
-            phone:'38095'
-          });
-
-          CBHMasks.init('.mask2',{
-            phone:false
-          });
-
-          CBHMasks.init('.masks',{
-            phone:'12345678900'
+             phone:'491'
           });
 
 
-          CBHMasks.init('.masks3',{
-            phone:''
-          });
 
           clearInterval(tId);
         }

@@ -268,9 +268,41 @@ $AJAX = function (obj) {
 };
 var phoneCodes = {
     all:    [],     // список масок для всех стран
-    ru:     [],     // список кодов для россии
-    us:     [],     // список кодов для США
+    ae:     [],     //
+    an:     [],     //
+    ba:     [],     //
+    bt:     [],     //
     ca:     [],     // список кодов для канады
+    cn:     [],     //
+    de:     [],     //
+    ec:     [],     //
+    ee:     [],     //
+    id:     [],     //
+    il:     [],     //
+    jp:     [],     //
+    kp:     [],     //
+    la:     [],     //
+    lb:     [],     //
+    ly:     [],     //
+    mc:     [],     //
+    mm:     [],     //
+    mx:     [],     //
+    my:     [],     //
+    ng:     [],     //
+    nz:     [],     //
+    ru:     [],     // список кодов для россии
+    sa:     [],     //
+    sb:     [],     //
+    so:     [],     //
+    sr:     [],     //
+    th:     [],     //
+    tl:     [],     //
+    tv:     [],     //
+    tw:     [],     //
+    us:     [],     // список кодов для США
+    vn:     [],     //
+    vu:     [],     //
+    ye:     [],     //
 
 
     /**
@@ -287,7 +319,10 @@ var phoneCodes = {
             key      = (k  == txt_mask) ? txt_mask : 'name',
             sort     = (s == txt_desc) ? txt_desc : txt_asc;
         maskList.sort(function (a, b) {
-            if (typeof a[key] === und || typeof b[key] === und)return;
+            if (typeof a[key] === und || typeof b[key] === und) {
+                return typeof a[key] === und ? 1 : -1;
+            }
+
             if (key === txt_mask){
                 a = a[key].replace(/\D+/g,"");
                 b = b[key].replace(/\D+/g,"");
@@ -303,6 +338,7 @@ var phoneCodes = {
                 return 0;
             }
         });
+
         return maskList;
     }
 };
@@ -319,7 +355,6 @@ var actions = {
 
     /* При нажатии клавиши */
     keydown: function (e) {
-
         var index,
             num,
             self        = this,
@@ -327,6 +362,7 @@ var actions = {
             regex       = p.regex,
             instance    = p.selectInstance(self),
             code        = e.which || e.keyCode,
+            ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
             set_caret   = instance.setCaret,
@@ -338,20 +374,29 @@ var actions = {
             if (regex.test(value[index]) === _true) {
                 instance.removeChar(self, index);
                 set_caret(self, index ,index);
+                instance.setCheckedMask(self); // ищем новую маску
                 return _false;
             } else {
                 return _false;
             }
         } else {
-            num = value.indexOf('_');
-            if (num !== -1) { // если есть еще пустые символы
-                if (regex.test(key) === _true) {
-                    set_caret(self, num, (num+1) );
+            if(ctrlKey === true && code === 86) {
+                return _true;
+            } else {
+                num = value.indexOf('_');
+                if (num !== -1) { // если есть еще пустые символы
+                    if (regex.test(key) === _true) {
+                        set_caret(self, num, (num + 1));
+                    } else {
+                        return _false;
+                    }
                 } else {
+                    // тут добавляем проверку на коды большей длинны
+                    if (instance.ifIssetNextMask()) {
+                        return _true;
+                    }
                     return _false;
                 }
-            } else {
-                return _false;
             }
         }
     },
@@ -387,8 +432,20 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
             set_caret(self, index, index);
+            //instance.opt.element.value='4912365436345643564356';
             instance.setCheckedMask(self); // ищем новую маску
         }
+    },
+
+    paste: function(e) {
+        e.preventDefault();
+        var self            = this,
+            p               = plugin,
+            instance        = p.selectInstance(self),
+            clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
+
+        instance.opt.element.value = instance.getVal(clipboard_text);
+        instance.setCheckedMask(self, true); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
 /**
@@ -529,6 +586,7 @@ inpClass.prototype = {
             className(ul, 'lists');
 
         sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 'asc'); // phoneCodes
+
         if(sortedCodes.length===0) {
             return;
         }
@@ -640,6 +698,7 @@ inpClass.prototype = {
         Event.add(e,'click',       actions.click);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
+        Event.add(e,'paste',       actions.paste);
     },
 
     /**
@@ -700,36 +759,58 @@ inpClass.prototype = {
         e.value = temp.join('');
     },
 
-    setCheckedMask: function (e) {
+    /**
+     * Установка маски
+     *
+     * */
+    setCheckedMask: function (e,reload) {
         var iso,
             new_value,
             newSearch,
+            subPhones,
             self        = this,
             value       = self.getVal(e.value),
             phone_codes = phoneCodes,
             finded      = self.maskFinder(phone_codes.all, value),
             old         = self.opt.old;
 
+        if(finded === false) {
+            finded  = self.maskFinder(phone_codes.all, value.length > 6 ? value.substring(0, 6) : value);
+        }
+
         if(finded !== false) {
-            if (value.length && typeof phone_codes[finded.obj['iso_code']] !== und) {
-                if (phone_codes[finded.obj['iso_code']].length === 0) {
-                    plugin.loadMasks(finded.obj['iso_code'], self.opt.lang);
+            iso = finded.obj['iso_code'];
+            subPhones = typeof phone_codes[iso] !== und ? phone_codes[iso] : false ;
+
+            if (subPhones !== false ) {
+                if (value.length && subPhones.length === 0) {
+                    plugin.loadMasks(iso, self.opt.lang);
+                }
+
+                if (subPhones.length !== 0 && subPhones[0]['mask'] !== finded.obj['mask'] ) {
+                    subPhones.unshift({
+                        'iso_code': finded.obj['iso_code'],
+                        'mask': finded.obj['mask']
+                    })
+                }
+
+                if (typeof old !== 'null') {
+                    newSearch = self.maskFinder(subPhones, value);
+                    if (newSearch) {
+                        finded = newSearch;
+                    }
                 }
             }
-            if (typeof phone_codes[finded.obj['iso_code']] !== und && typeof old !== 'null') {
-                newSearch = self.maskFinder(phone_codes[finded.obj['iso_code']], value);
-                if (newSearch) {
-                    finded = newSearch;
-                }
-            }
+
+
             if (typeof finded.obj.name === und && old.obj != finded.obj) {
-                iso       = finded.obj['iso_code'];        //  ищем по коду и ставим аргументы
-                new_value = self.findMaskByCode(iso);
+                new_value = self.findMaskByCode(iso); //  ищем по коду и ставим аргументы
                 if (new_value) {
                     finded.obj.name = new_value.name;
                 }
             }
-            if (finded && (old.obj != finded.obj || old.determined != finded.determined)) {
+
+            if (finded && (old.obj != finded.obj || old.determined != finded.determined) || typeof reload !== 'undefined') {
                 self.opt.old  = finded;
                 self.setInputAttrs(e, finded.obj['iso_code'], finded.obj.name, self.setNewMaskValue(value, finded.mask));
                 self.focused(e);
@@ -744,6 +825,27 @@ inpClass.prototype = {
      */
     getVal: function(mask) {
         return mask.replace(/\D+/g,"");
+    },
+
+    ifIssetNextMask: function () {
+        var self            = this,
+            p               = plugin,
+            iso             = self.opt.country,
+            phone_codes     = phoneCodes,
+            value           = self.opt.element.value,
+            cur_length      = value.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[+()-]/g,"").length;
+
+        if (typeof phone_codes[iso] !== und) {
+            for(var i in phone_codes[iso]) {
+                if (phone_codes[iso].hasOwnProperty(i)) {
+                    var one = (phone_codes[iso][i]['mask'].replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[0-9+()-]/g, "")).length;
+                    if (one > cur_length) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     },
 
 
@@ -867,6 +969,7 @@ var plugin = {
     regex:  new RegExp('[0-9]'),
     instances:[],
     loaded:true,
+    phoneCodes: phoneCodes,
     init: function (selector, args) {
         var i,
             f_e,
