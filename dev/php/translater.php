@@ -1,8 +1,8 @@
 <?php
-  $api_key = '';
+  $api_key = 'trnsl.1.1.20151130T072110Z.1617b00046a5fd4f.5ca0a43cd3c89128bacd763ce95e8ab0c1c036fb';
 //$available_languages = ['en','fr'];
 
-  $available_languages = ['en'];
+  $available_languages = ['fr'];
 
   $path = '../js/codes/';
 
@@ -27,16 +27,13 @@
 
         $new_filepath = $country_dir.$lang.'.json';
 
-        echo '<pre>';
+
         file_put_contents($new_filepath, print_r($new_json, true));
-        echo '</pre>';
 
         if ($v === 'ca') { // для us и ca содержимое файлов одинаковое
-          echo '<pre>';
-          file_put_contents($country_dir.'us.json', print_r($new_json, true));
-          echo '</pre>';
+          file_put_contents($path.'us'.'/'.$lang.'.json', print_r($new_json, true));
         }
-
+        echo ';';
       }
 
     }
@@ -59,7 +56,7 @@ function translateJson($origin_json, $lang) {
         $j = file_get_contents($url.urlencode($el->name));
         $obj = json_decode($j);
 
-        if(!empty($obj->text)){
+        if (!empty($obj->text)) {
           $el->name = current($obj->text);
         }
 
@@ -96,7 +93,7 @@ function translateJson($origin_json, $lang) {
 
         $new .= '}';
       }
-    }else{
+    } else {
       $new .= '{'."\n";
       $new .= "    \"iso_code\": "."\"".   $el->iso_code  ."\","."\n";
       $new .= "    \"mask\": "."\"".       $el->mask       ."\""."\n";
@@ -107,6 +104,7 @@ function translateJson($origin_json, $lang) {
       $new .= ',';
       $counter++;
     }
+    echo '-';
   }
   $new .= ']';
   return $new;

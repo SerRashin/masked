@@ -48,7 +48,7 @@ var actions = {
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (instance.ifIssetNextMask()) {
+                    if (instance.ifIssetNextMask() && regex.test(key) === _true) {
                         return _true;
                     }
                     return _false;
@@ -99,7 +99,9 @@ var actions = {
             p               = plugin,
             instance        = p.selectInstance(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
-
+        /*
+        * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
+        * */
         instance.opt.element.value = instance.getVal(clipboard_text);
         instance.setCheckedMask(self, true); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }

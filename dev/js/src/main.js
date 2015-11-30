@@ -352,7 +352,6 @@ inpClass.prototype = {
                 }
             }
 
-
             if (typeof finded.obj.name === und && old.obj != finded.obj) {
                 new_value = self.findMaskByCode(iso); //  ищем по коду и ставим аргументы
                 if (new_value) {
