@@ -12,7 +12,7 @@
   foreach($dir1 as $v) {
     if (is_dir($path.$v)) {
 
-      if ($v === '.' || $v === '..') {
+      if ($v === '.' || $v === '..' || $v === 'us') { // исключения
         continue;
       }
 
@@ -31,6 +31,11 @@
         file_put_contents($new_filepath, print_r($new_json, true));
         echo '</pre>';
 
+        if ($v === 'ca') { // для us и ca содержимое файлов одинаковое
+          echo '<pre>';
+          file_put_contents($country_dir.'us.json', print_r($new_json, true));
+          echo '</pre>';
+        }
 
       }
 
@@ -84,7 +89,7 @@ function translateJson($origin_json, $lang) {
 
         $new .= '{'."\n";
         $new .= "    \"iso_code\": "."\"".   $el->iso_code   ."\","."\n";
-        $new .= "    \"mask\": "."\"".       $el->mask       ."\""."\n";
+        $new .= "    \"mask\": "."\"".       $el->mask       ."\","."\n";
         $new .= "    \"region\": "."\"".     $el->region     ."\","."\n";
         $new .= "    \"city\": "."\"".       $el->city       ."\","."\n";
         $new .= "    \"operator\": "."\"".   $el->operator   ."\""."\n";
