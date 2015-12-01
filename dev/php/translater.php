@@ -1,8 +1,8 @@
 <?php
   $api_key = 'trnsl.1.1.20151130T072110Z.1617b00046a5fd4f.5ca0a43cd3c89128bacd763ce95e8ab0c1c036fb';
-//$available_languages = ['en','fr'];
 
-  $available_languages = ['fr'];
+  $available_languages = ['en', 'fr', 'fr'];
+
 
   $path = '../js/codes/';
 
@@ -62,11 +62,11 @@ function translateJson($origin_json, $lang) {
         $obj = json_decode($j);
 
         if (!empty($obj->text)) {
-          $el->name = current($obj->text);
-        }
+          $name = current($obj->text);
+        } else $name = $el->name;
 
         $new .= '{'."\n";
-        $new .= "    \"name\": "."\"".       $el->name       ."\","."\n";
+        $new .= "    \"name\": "."\"".       $name       ."\","."\n";
         $new .= "    \"iso_code\": "."\"".   $el->iso_code   ."\","."\n";
         $new .= "    \"phone_code\": "."\"". $el->phone_code ."\","."\n";
         $new .= "    \"mask\": "."\"".       $el->mask       ."\""."\n";
@@ -78,23 +78,23 @@ function translateJson($origin_json, $lang) {
         $obj_oper  = !empty($el->operator) ? json_decode(file_get_contents($url.urlencode($el->operator))) : '';
 
         if(!empty($obj_reg->text)){
-          $el->region = current($obj_reg->text);
-        }
+          $region = current($obj_reg->text);
+        }  else $region = $el->region;
 
         if(!empty($obj_city->text)){
-          $el->city = current($obj_city->text);
-        }
+          $city = current($obj_city->text);
+        }  else $city = $el->city;
 
         if(!empty($obj_oper->text)){
-          $el->operator = current($obj_oper->text);
-        }
+          $operator = current($obj_oper->text);
+        }  else $operator = $el->operator;
 
         $new .= '{'."\n";
         $new .= "    \"iso_code\": "."\"".   $el->iso_code   ."\","."\n";
         $new .= "    \"mask\": "."\"".       $el->mask       ."\","."\n";
-        $new .= "    \"region\": "."\"".     $el->region     ."\","."\n";
-        $new .= "    \"city\": "."\"".       $el->city       ."\","."\n";
-        $new .= "    \"operator\": "."\"".   $el->operator   ."\""."\n";
+        $new .= "    \"region\": "."\"".     $region     ."\","."\n";
+        $new .= "    \"city\": "."\"".       $city       ."\","."\n";
+        $new .= "    \"operator\": "."\"".   $operator   ."\""."\n";
 
         $new .= '}';
       }
