@@ -12,7 +12,7 @@
   foreach($dir1 as $v) {
     if (is_dir($path.$v)) {
 
-      if ($v === '.' || $v === '..' || $v === 'us') { // исключения
+      if ($v === '.' || $v === '..' || $v === 'us' ) { // исключения
         continue;
       }
 
@@ -20,6 +20,11 @@
       $origin       = $country_dir.'ru.json';
 
       $origin_file  = file_get_contents($origin);
+
+      if ($v === 'ca') { // для us и ca содержимое файлов одинаковое
+        file_put_contents($path.'us'.'/ru.json', $origin_file);exit;
+      }
+
       $origin_json  = json_decode($origin_file);
 
       foreach($available_languages as $lang) {
