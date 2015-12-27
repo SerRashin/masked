@@ -1,7 +1,7 @@
 <?php
   $api_key = 'trnsl.1.1.20151130T072110Z.1617b00046a5fd4f.5ca0a43cd3c89128bacd763ce95e8ab0c1c036fb';
 
-  $available_languages = ['en', 'fr', 'fr'];
+  $available_languages = ['ar', 'bg', 'cs', 'de', 'en', 'es', 'et', 'fr', 'he', 'hu', 'id', 'it', 'lv', 'ms', 'pl', 'pt', 'ro', 'ru', 'th', 'uk', 'vi', 'zh'];
 
 
   $path = '../js/codes/';
@@ -22,7 +22,7 @@
       $origin_file  = file_get_contents($origin);
 
       if ($v === 'ca') { // для us и ca содержимое файлов одинаковое
-        file_put_contents($path.'us'.'/ru.json', $origin_file);exit;
+        file_put_contents($path.'us'.'/ru.json', $origin_file);
       }
 
       $origin_json  = json_decode($origin_file);
