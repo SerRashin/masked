@@ -9,14 +9,12 @@ module.exports = function(grunt) {
             },
             masked: {
                 src: [
-                    'dev/js/src/header.js',
                     'dev/js/src/helpers.js',
                     'dev/js/src/phone_codes.js',
                     'dev/js/src/actions.js',
                     'dev/js/src/main.js',
                     'dev/js/src/settings.js',
-                    'dev/js/src/index.js',
-                    'dev/js/src/footer.js'
+                    'dev/js/src/index.js'
                 ],
                 dest:'js/inputmask.js'
             }
@@ -90,6 +88,23 @@ module.exports = function(grunt) {
                 }]
             }
         },
+        code_wrap: {
+            masked: {
+                src: 'dev/js/template/js/wrapper.js',
+                dest: 'js/inputmask.js',
+                options: {
+                    'data': {
+                        'source': function () {
+                            return grunt.file.read('js/inputmask.js')
+                        }
+                    },
+                    selector: {
+                        start: "{{",
+                        end: "}}"
+                    }
+                }
+            }
+        },
 
         browserSync: {
             bsFiles: {
@@ -113,19 +128,23 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-jsonmin');
 
+    grunt.loadTasks('dev/tasks');
+
     grunt.registerTask('debug', [
         'concat:masked',
+        'code_wrap:masked',
         'uglify:masked',
 
         //'sass:masked',
         //'cssmin:masked',
-        'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
+       // 'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
        // 'browserSync',
         'watch'
     ]);
 
     grunt.registerTask('prod', [
         'concat:masked',
+        'code_wrap:masked',
         'uglify:masked',
 
        // 'sass'

@@ -25,21 +25,24 @@ module.exports = function (grunt) {
       var template = src.map(function(filePath) {
         return grunt.file.read(filePath);
       }).join('\n');
+
       var replaceMap = [];
       for(var key in options.data) {
+        if(!options.data.hasOwnProperty(key)) continue;
+
         replaceMap.push({
-            key:options.selector.start + key+ options.selector.end,
-            value:options.data[key]
+          key: options.selector.start + key + options.selector.end,
+          value: ( (typeof options.data[key] === 'function')  ? options.data[key]() : options.data[key] )
         });
       }
-      var temp = '';
+      var temp = template;
       if (typeof replaceMap !== 'undefined') {
-          for(var i in replaceMap) {
-            var el = replaceMap[i];
-
-            var temp = template.replace("{{"+key+"}}",el.value);
-          }
+        for(var i in replaceMap) {
+          var el = replaceMap[i];
+          temp = temp.replace(el.key, el.value);
+        }
       }
+
       grunt.file.write(file.dest, temp);
       grunt.log.writeln('File `' + file.dest + '` created.');
     });

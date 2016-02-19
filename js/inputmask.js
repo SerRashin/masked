@@ -1,5 +1,5 @@
-/* Кто скопирует код тот какашка! */
-var CBHMasks = (function(){
+var CBHMasks = (function() {
+    /* Кто скопирует код тот какашка! */
 var und = 'undefined';
 
 var Event = (function() {
