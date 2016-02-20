@@ -137,7 +137,7 @@ module.exports = function(grunt) {
 
         //'sass:masked',
         //'cssmin:masked',
-       // 'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
+        'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
        // 'browserSync',
         'watch'
     ]);

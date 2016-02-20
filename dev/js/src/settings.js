@@ -1,4 +1,4 @@
 var opt = {
-    path:'//test.proj/js/masks/',
+    path:'//masked.proj/js/masks/',
     prefix:'instId_'
 };

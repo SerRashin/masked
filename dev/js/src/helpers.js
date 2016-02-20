@@ -56,7 +56,7 @@ var Event = (function() {
             if (!elem.events) {
                 elem.events = {};
                 elem.handle = function(event) {
-                    if (typeof Event !== "undefined") {
+                    if (isset(Event)) {
                         return commonHandle.call(elem, event);
                     }
                 }
@@ -132,6 +132,9 @@ function makeid() {
      Opera 12+
      Safari 4+
      Internet Explorer 8+
+
+ @author Sergey Rashin
+ @link https://github.com/serhanters/sAJAX
  */
 
 $AJAX = function (obj) {
@@ -159,7 +162,7 @@ $AJAX = function (obj) {
             dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
         };
 
-    if (typeof args.url === und || args.url === false) {
+    if (empty(args.url)) {
         return;
     }
 
@@ -193,7 +196,7 @@ $AJAX = function (obj) {
     }
 
     for ( i in headers ) { // Support: IE<9
-        if ( headers.hasOwnProperty(i) && typeof headers[ i ] !== 'undefined' ) {
+        if ( headers.hasOwnProperty(i) && isset(headers[ i ]) ) {
             xhr.setRequestHeader( i, headers[ i ] + "" );
         }
     }
@@ -259,8 +262,54 @@ $AJAX = function (obj) {
     if ( !args.async ) {
         callback();
     } else if ( xhr.readyState === 4 ) { // (IE6 & IE7) if it's in cache and has been
-        setTimeout( callback );
+        setTimeout( callback, 20 );
     } else {
         xhr.onreadystatechange = callback;
     }
 };
+
+
+/**
+ * Проверяет переменную на существование
+ * @returns {boolean}
+ */
+function isset() {
+    var a  = arguments,
+        l  = a.length,
+        i  = 0,
+        u  = undefined,
+        uu = ''+u;
+
+    while (i !== l) {
+        if (a[i] === u || typeof a[i] === uu || a[i] === null) {
+            return false;
+        }
+        i++;
+    }
+
+    return true;
+}
+
+/**
+ * Проверяет переменную на пустоту
+ * @returns {boolean}
+ */
+function empty()  {
+    var a  = arguments,
+        l  = a.length,
+        i  = 0,
+        i2 = 0,
+        u  = undefined,
+        uu = ''+ u,
+        ev = [u, false, ''],
+        el = ev.length;
+    while (i !== l) {
+        for (i2 = 0; i2 < el; i2++) {
+            if (typeof a[i] === uu || a[i] === ev[i2] || a[i].length === 0) {
+                return true;
+            }
+        }
+        i++;
+    }
+    return false;
+}

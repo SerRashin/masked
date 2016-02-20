@@ -50,12 +50,13 @@ var phoneCodes = {
             txt_asc  = 'asc',
             key      = (k  == txt_mask) ? txt_mask : 'name',
             sort     = (s == txt_desc) ? txt_desc : txt_asc;
+
         maskList.sort(function (a, b) {
-            if (typeof a[key] === und || typeof b[key] === und) {
-                return typeof a[key] === und ? 1 : -1;
+            if (!isset(a[key]) || !isset(b[key])) {
+                return !isset(a[key]) ? 1 : -1;
             }
 
-            if (key === txt_mask){
+            if (key === txt_mask) {
                 a = a[key].replace(/\D+/g,"");
                 b = b[key].replace(/\D+/g,"");
             } else {

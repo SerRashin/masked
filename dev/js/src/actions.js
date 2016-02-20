@@ -1,15 +1,24 @@
 var actions = {
-    /* При фокусе на поле ввода */
+    /**
+     * При фокусе на поле ввода
+     * @return void
+     */
     focus: function () {
         plugin.selectInstance(this).focused();
     },
 
-    /* При нажатии на поле ввода */
+    /**
+     * При нажатии на поле ввода
+     * @return void
+     */
     click: function () {
         plugin.selectInstance(this).focused();
     },
 
-    /* При нажатии клавиши */
+    /**
+     * При нажатии клавиши
+     * @return void|boolean
+     */
     keydown: function (e) {
         var index,
             num,
@@ -57,7 +66,11 @@ var actions = {
         }
     },
 
-    /*  При отпускании клавиши проверим фокусировку */
+    /**
+     * При отпускании клавиши проверим фокусировку
+     * @param e
+     * @return boolean|void
+     */
     keyup: function (e) {
         var index,
             num,
@@ -88,11 +101,15 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
             set_caret(self, index, index);
-            //instance.opt.element.value='4912365436345643564356';
             instance.setCheckedMask(self); // ищем новую маску
         }
     },
 
+    /**
+     * При вставке номера телефона
+     * @param e
+     * @return void
+     */
     paste: function(e) {
         e.preventDefault();
         var self            = this,
@@ -103,6 +120,6 @@ var actions = {
         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
         * */
         instance.opt.element.value = instance.getVal(clipboard_text);
-        instance.setCheckedMask(self, true); // ищем новую маску, и принудительно перезагружаем вторым аргументом
+        instance.setCheckedMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };

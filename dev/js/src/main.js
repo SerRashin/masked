@@ -19,59 +19,95 @@ var inpClass = function (el, args) {
 
 inpClass.prototype = {
     init: function(el, args) {
-        var mask,
-            element,
+        var element,
             options,
-            self = this,
-            p = plugin;
+            self = this;
+
         if (args.phone) {
-            var i,
-                iso,
-                finded,
-                phone     = self.getVal(args.phone+''),
-                pl        = phone.length,
-                pc        = phoneCodes,
-                for_code  = self.maskFinder(pc.all, pl > 6 ? phone.substring(0, 6) : phone);
-            if (for_code) {
-                iso = for_code.obj['iso_code'];
-                if(typeof pc[iso] !== 'undefined' && pc[iso].length === 0) {
-                    p.loadMasks(iso, args.lang, function() {
-                        for (i in phone) {
-                            if (phone.hasOwnProperty(i)) {
-                                finded = self.maskFinder(pc[iso], phone);
-                                if (finded && phone !== for_code.obj['phone_code']) {
-                                    args.mask    = self.setNewMaskValue(phone, finded.mask);
-                                    args.country = finded.obj['iso_code'];
-                                    args.phone   = phone;
-                                    break;
-                                } else phone = phone.substring(0, pl - 1);
-                            }
-                        }
-                        self.init(el, args);
-                        return true;
-                    });
-                    return true;
-                }
-                args.mask    = self.setNewMaskValue(phone, for_code.mask);
-                args.country = for_code.obj['iso_code'];
+            var finded = self.maskFinder(args.phone);
+
+            if (!finded) {
+                args.phone = false;
             }
         }
-        p.loaded = true;
-        self.opt       = p.extend(self.opt, args);
 
         self.setTemplate();
 
         options = self.opt;
-        mask    = options.mask;
         element = self.opt.element;
 
-        element.value       = mask;
-        element.placeholder = mask;
+        element.value       = options.value;
+        element.placeholder = options.value;
 
         addClass(element, options.instId);
 
         self.addActions(options.element);
     },
+
+    /**
+     * Метод поиска маски
+     * @param _value
+     * @param _country
+     * @returns {boolean|*}
+     */
+    maskFinder: function(_value, _country) {
+        var iso,
+            obj,
+            find,
+            self    = this,
+            value   = self.getVal(_value+''),
+            country = _country ? _country : false,
+            pc      = phoneCodes,
+            p       = plugin;
+
+        find = this.simpleFinder(value, country);
+
+        if (find) {
+            obj = find.obj;
+            iso = obj['iso_code'];
+
+            if(isset(pc[iso]) && empty(pc[iso])) {
+                p.loadMasks(iso, 'ru', function() {
+                    find = self.simpleFinder(value, iso);
+                    self.setInputAttrs(self.opt.element, find.obj['iso_code'], find.obj.name, self.setNewMaskValue(value, find['mask']));
+                    self.focused();
+                    p.loaded = true;
+                });
+            } else {
+                self.setInputAttrs(self.opt.element, obj['iso_code'], obj['name'], self.setNewMaskValue(value, find['mask']));
+            }
+
+        }
+        self.focused();
+        return find;
+    },
+
+    /**
+     * Установка маски
+     *
+     **/
+    setCheckedMask: function (e) {
+        this.maskFinder(e.value, this.opt.country);
+    },
+
+    setInputAttrs:function (e, flag, title, value) {
+        e.value          = value;
+
+        var i,
+            opt          = this.opt;
+        if (!empty(e.parentNode.getElementsByClassName('selected')[0])) {
+            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
+            i.className  = 'flag '+ flag;
+            i.parentNode.setAttribute('title', title);
+        }
+
+
+        opt.country     = flag;
+        opt.name        = title;
+        opt.value       = value;
+        opt.mask        = value;
+    },
+
     setTemplate: function() {
         var i,
             li,
@@ -147,11 +183,13 @@ inpClass.prototype = {
                     name            = one.name,
                     mask            = one.mask;
 
-                if (typeof name === und)continue;
+                if (!isset(name))continue;
                 if (opt.phone === false) {
                     if (opt.country === iso) {
                         self.opt.name = name;
                         self.opt.mask = mask;
+                        self.opt.value = mask;
+
                     }
                 }
                 li                      = document_create('li');
@@ -309,63 +347,7 @@ inpClass.prototype = {
         e.value = temp.join('');
     },
 
-    /**
-     * Установка маски
-     *
-     * */
-    setCheckedMask: function (e,reload) {
-        var iso,
-            new_value,
-            newSearch,
-            subPhones,
-            self        = this,
-            value       = self.getVal(e.value),
-            phone_codes = phoneCodes,
-            finded      = self.maskFinder(phone_codes.all, value),
-            old         = self.opt.old;
 
-        if(finded === false) {
-            finded  = self.maskFinder(phone_codes.all, value.length > 6 ? value.substring(0, 6) : value);
-        }
-
-        if(finded !== false) {
-            iso = finded.obj['iso_code'];
-            subPhones = typeof phone_codes[iso] !== und ? phone_codes[iso] : false ;
-
-            if (subPhones !== false ) {
-                if (value.length && subPhones.length === 0) {
-                    plugin.loadMasks(iso, self.opt.lang);
-                }
-
-                if (subPhones.length !== 0 && subPhones[0]['mask'] !== finded.obj['mask'] ) {
-                    subPhones.unshift({
-                        'iso_code': finded.obj['iso_code'],
-                        'mask': finded.obj['mask']
-                    })
-                }
-
-                if (typeof old !== 'null') {
-                    newSearch = self.maskFinder(subPhones, value);
-                    if (newSearch) {
-                        finded = newSearch;
-                    }
-                }
-            }
-
-            if (typeof finded.obj.name === und && old.obj != finded.obj) {
-                new_value = self.findMaskByCode(iso); //  ищем по коду и ставим аргументы
-                if (new_value) {
-                    finded.obj.name = new_value.name;
-                }
-            }
-
-            if (finded && (old.obj != finded.obj || old.determined != finded.determined) || typeof reload !== 'undefined') {
-                self.opt.old  = finded;
-                self.setInputAttrs(e, finded.obj['iso_code'], finded.obj.name, self.setNewMaskValue(value, finded.mask));
-                self.focused(e);
-            }
-        }
-    },
 
     /**
      * Получить значение маски без символов только int
@@ -384,7 +366,7 @@ inpClass.prototype = {
             value           = self.opt.element.value,
             cur_length      = value.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[+()-]/g,"").length;
 
-        if (typeof phone_codes[iso] !== und) {
+        if (isset(phone_codes[iso])) {
             for(var i in phone_codes[iso]) {
                 if (phone_codes[iso].hasOwnProperty(i)) {
                     var one = (phone_codes[iso][i]['mask'].replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_').replace(/[0-9+()-]/g, "")).length;
@@ -399,12 +381,14 @@ inpClass.prototype = {
 
 
     /**
-     * Метод поиска маски
-     * @param masklist
+     *
+     * @todo можно будет сделать исключения (для спорных ситуаций таких как CA и US) при которых флаг страны не отображается
+     *
      * @param value
-     * @returns {boolean|*}
+     * @param mask_code
+     * @returns {*}
      */
-    maskFinder: function(masklist, value) {
+    simpleFinder:function(value, mask_code) {
         var i,
             it,
             im,
@@ -413,12 +397,23 @@ inpClass.prototype = {
             mask,
             pass,
             determined,
-            maths = [],
-            self  = this,
-            regex = plugin.regex;
+            maths     = [],
+            _false    = false,
+            self      = this,
+            pc        = phoneCodes,
+            masklist  = pc.all,
+            regex     = plugin.regex;
+
+        masklist = phoneCodes.sortPhones(masklist,'mask','desc');
+
+        if (!empty(pc[mask_code])) {
+            masklist = pc[mask_code].concat(masklist);
+        }
+
         for (i in masklist) {
             if (masklist.hasOwnProperty(i)) {
                 mask = masklist[i]['mask'];
+
                 pass = true;
                 for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
                     var chm = mask.charAt(im);
@@ -433,7 +428,7 @@ inpClass.prototype = {
                         it++;
                         im++;
                     } else {
-                        pass = false;
+                        pass = _false;
                         break;
                     }
                 }
@@ -442,24 +437,40 @@ inpClass.prototype = {
                     mask = mask.replace(new RegExp([regex.source].concat('_').join('|'), 'g'), '_');
                     maths.push({
                         mask: mask,
-                        obj: masklist[i],
-                        determined: determined
+                        obj: masklist[i]
                     });
                 }
             }
         }
 
-        find = false;
+        if (mask_code === 'us' || mask_code === 'ca') {
+            maths = phoneCodes.sortPhones(maths,'obj.mask','asc');
+        }
+
+        find = _false;
         for (i in maths) {
             if (maths.hasOwnProperty(i)) {
-                val = self.getVal(maths[i].obj.mask);
+                val = maths[i].obj.mask.replace(/\D+/g,"");
                 if (parseInt(val) === parseInt(value)) {
                     find = maths[i];
                 }
             }
         }
 
-        return find || maths[0] || false;
+        if (!find && maths.length > 1) {
+            maths.sort(function (a, b) {
+                return Math.sign((a['mask'].match(/_/g) || []).length - (b['mask'].match(/_/g) || []).length);
+            });
+        }
+
+        if (!isset(maths[0])) {
+            value = value.substring(0, value.length - 1);
+            if (value) { // если есть еще символы
+                return self.simpleFinder(value, mask_code);
+            }
+        } else {
+            return find || maths[0] || _false;
+        }
     },
 
     findMaskByCode: function(code) {
@@ -467,6 +478,7 @@ inpClass.prototype = {
             one,
             phone_codes = phoneCodes,
             sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 1);
+
         for (i in phone_codes.all) {
             if (phone_codes.all.hasOwnProperty(i)) {
                 one = sortedCodes[i];
@@ -495,16 +507,5 @@ inpClass.prototype = {
             }
         }
         return mask.join('');
-    },
-
-    setInputAttrs:function (e, flag, title, value) {
-        e.value          = value;
-        var opt          = this.opt,
-            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
-            i.className  = 'flag '+ flag;
-            i.parentNode.setAttribute('title', title);
-        opt.country = flag;
-        opt.name    = title;
-        opt.value   = value;
     }
 };

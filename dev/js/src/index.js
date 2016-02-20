@@ -3,7 +3,7 @@ var plugin = {
     prefix: opt.prefix,
     regex:  new RegExp('[0-9]'),
     instances:[],
-    loaded:true,
+    loaded: true,
     phoneCodes: phoneCodes,
     init: function (selector, args) {
         var i,
@@ -82,7 +82,7 @@ var plugin = {
             pc    = phoneCodes,
             _true = true;
         $AJAX({
-            url:         self.path + type + '/' + (lang == 'ru' ? 'ru' : 'en') + '.min.json',
+            url:         self.path + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
             type:        "GET",
             async:       _true,
             crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
