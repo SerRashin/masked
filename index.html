@@ -4,59 +4,61 @@
     <title>Masks Project</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/masked.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="js/inputmask.js"></script>
     <script  type="text/javascript">
-      var tId = setInterval(function() {
-        if (document.readyState === "complete") {
+      $(document).ready(function() {
+        CBHMasks.init('.mask', {
+          phone:'7'
+        });
 
-          CBHMasks.init('.mask', {
-            phone:'7'
-          });
+        CBHMasks.init('.mask2', {
+          phone:false
+        });
 
-          CBHMasks.init('.mask2', {
-            phone:false
-          });
-
-          CBHMasks.init('.masks', {
-            phone:'12345678900'
-          });
+        CBHMasks.init('.masks', {
+          phone:'12345678900'
+        });
 
 
-          CBHMasks.init('.masks3', {
-            phone:''
-          });
+        CBHMasks.init('.masks3', {
+          phone:''
+        });
 
-          clearInterval(tId);
-        }
-      }, 11);
+
+        $(document).on('click','.toggleState',function() {
+          var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
+          CBHMasks.toggle(element);
+        });
+      });
     </script>
   </head>
   <body>
   <div class="container" style="max-width:300px;margin-top:150px">
     <form>
       <div class="form-group">
-        <label>----</label>
-        <input type="text" class="mask" >
+        <label for="phone-ex-1">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-1" type="text" class="mask" >
       </div>
       <div class="form-group">
-        <label>Введите номер телефона</label>
-        <input type="text" id="example2" class="mask2"  data-lang="ru" data-country="ru">
+        <label for="phone-ex-2">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-2" type="text" class="mask2"  data-lang="ru" data-country="ru">
       </div>
       <div class="form-group">
-        <label>Введите номер телефона</label>
-        <input type="text"  class="masks"  data-lang="ru" data-country="ru">
+        <label for="phone-ex-3">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-3" type="text"  class="masks"  data-lang="ru" data-country="ru">
       </div>
       <div class="form-group">
-        <label>Введите номер телефона</label>
-        <input type="text"  class="masks"  data-lang="ru" data-country="ru" data-phone="380957131373">
+        <label for="phone-ex-4">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-4" type="text"  class="masks"  data-lang="ru" data-country="ru" data-phone="380957131373">
       </div>
       <div class="form-group">
-        <label>Введите номер телефона</label>
-        <input type="text"  class="masks"  data-lang="ru" data-phone="77985472145" data-country="ru">
+        <label for="phone-ex-5">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-5" type="text"  class="masks"  data-lang="ru" data-phone="77985472145" data-country="ru">
       </div>
       <div class="form-group">
-        <label>Введите номер телефона</label>
-        <input type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
+        <label for="phone-ex-6">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+        <input id="phone-ex-6" type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
       </div>
     </form>
   </div>
