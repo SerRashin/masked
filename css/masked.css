@@ -9,7 +9,7 @@
   clear: both;
 }
 .CBH-masks .flag {
-  background-image: url("img/flags.png");
+  background-image: url("../img/flags.png");
   display: block;
 }
 .CBH-masks .flags .selected {
