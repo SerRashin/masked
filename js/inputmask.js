@@ -1049,7 +1049,7 @@ inpClass.prototype = {
     }
 };
 var opt = {
-    path:'//serhanters.github.io/masked/js/masks/',
+    path:'//masked.proj/js/masks/',
     prefix:'instId_'
 };
 var plugin = {
