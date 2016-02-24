@@ -95,7 +95,12 @@ var plugin = {
             }
         });
     },
-    selectInstance: function (e) {
+    /**
+     * Получить инстанс
+     * @param e
+     * @returns {*}
+     */
+    getInst: function (e) {
         var p = plugin;
         return p.instances[e.className.match(new RegExp(p.prefix+'[0-9a-zA-Z]+'))];
     },
@@ -133,8 +138,26 @@ var plugin = {
     getById: function (id) {
         var el = document.getElementById(id);
         if(el !== null){
-            return this.selectInstance(el);
+            return this.getInst(el);
         }
         return false;
+    },
+
+    /**
+     * Переключение статуса
+     * @param e Элемент или класс
+     */
+    toggle: function(e) {
+        var self = this.getInst(e),
+            opt  = self.opt;
+
+        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+            e.parentNode.outerHTML = opt.oldState;
+        } else {
+            opt.element = e;
+            self.setTemplate();
+            opt.element.value       = opt.value;
+            self.addActions(opt.element);
+        }
     }
 };

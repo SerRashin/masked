@@ -113,7 +113,16 @@ function addClass(o, c) {
 function removeClass(o, c) {
     o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
-
+/**
+ * Проверяет есть ли в родительском елементе указанный
+ * @param c Child node
+ * @param p Parent node
+ * @returns {boolean}
+ */
+function childOf(c,p){ //returns boolean
+    while((c=c.parentNode)&&c!==p);
+    return !!c;
+}
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

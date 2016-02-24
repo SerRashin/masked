@@ -115,7 +115,16 @@ function addClass(o, c) {
 function removeClass(o, c) {
     o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
 }
-
+/**
+ * Проверяет есть ли в родительском елементе указанный
+ * @param c Child node
+ * @param p Parent node
+ * @returns {boolean}
+ */
+function childOf(c,p){ //returns boolean
+    while((c=c.parentNode)&&c!==p);
+    return !!c;
+}
 function makeid() {
     var text = "";
     var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -398,7 +407,7 @@ var actions = {
      * @return void
      */
     focus: function () {
-        plugin.selectInstance(this).focused();
+        plugin.getInst(this).focused();
     },
 
     /**
@@ -406,7 +415,7 @@ var actions = {
      * @return void
      */
     click: function () {
-        plugin.selectInstance(this).focused();
+        plugin.getInst(this).focused();
     },
 
     /**
@@ -419,7 +428,7 @@ var actions = {
             self        = this,
             p           = plugin,
             regex       = p.regex,
-            instance    = p.selectInstance(self),
+            instance    = p.getInst(self),
             code        = e.which || e.keyCode,
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
@@ -431,9 +440,9 @@ var actions = {
         if (code === 8) {  // BACKSPACE
             index = instance.getLastNum(self);
             if (regex.test(value[index]) === _true) {
-                instance.removeChar(self, index);
+                instance.remChar(self, index);
                 set_caret(self, index ,index);
-                instance.setCheckedMask(self); // ищем новую маску
+                instance.setMask(self); // ищем новую маску
                 return _false;
             } else {
                 return _false;
@@ -471,7 +480,7 @@ var actions = {
             self        = this,
             p           = plugin,
             regex       = p.regex,
-            instance    = p.selectInstance(self),
+            instance    = p.getInst(self),
             code        = e.keyCode || e.which,
             value       = self.value,
             opt         = instance.opt,
@@ -495,7 +504,7 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
             set_caret(self, index, index);
-            instance.setCheckedMask(self); // ищем новую маску
+            instance.setMask(self); // ищем новую маску
         }
     },
 
@@ -508,13 +517,13 @@ var actions = {
         e.preventDefault();
         var self            = this,
             p               = plugin,
-            instance        = p.selectInstance(self),
+            instance        = p.getInst(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
         /*
         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
         * */
         instance.opt.element.value = instance.getVal(clipboard_text);
-        instance.setCheckedMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
+        instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
 /**
@@ -522,17 +531,21 @@ var actions = {
  */
 var inpClass = function (el, args) {
     this.opt = {
+        listOpened:     false,                              // список открыт
         instId:         plugin.prefix + makeid(),          //  Селектор выбранного елемента
         element:        el,
         lang:           args.lang    ||    'ru',
         country:        args.country ||     'ru',
         phone:          args.phone   ||    false,
         mask:           args.mask    ||     '',
-        onsend:         args.onsend  || null,
+        onsend:         args.onsend  ||    null,
         value:          '',
         name:           '',
-        old:            {}
+        old:            {},
+        oldState:       null    // предыдущее состояние для переключения активности
     };
+
+
     this.init(el, this.opt);
 };
 
@@ -550,6 +563,9 @@ inpClass.prototype = {
             }
         }
 
+        addClass(self.opt.element, self.opt.instId);
+        self.opt.oldState =  el.outerHTML;
+
         self.setTemplate();
 
         options = self.opt;
@@ -557,8 +573,6 @@ inpClass.prototype = {
 
         element.value       = options.value;
         element.placeholder = options.value;
-
-        addClass(element, options.instId);
 
         self.addActions(options.element);
     },
@@ -588,12 +602,12 @@ inpClass.prototype = {
             if(isset(pc[iso]) && empty(pc[iso])) {
                 p.loadMasks(iso, 'ru', function() {
                     find = self.simpleFinder(value, iso);
-                    self.setInputAttrs(self.opt.element, find.obj['iso_code'], find.obj.name, self.setNewMaskValue(value, find['mask']));
+                    self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], self.setNewMaskValue(value, find['mask']));
                     self.focused();
                     p.loaded = true;
                 });
             } else {
-                self.setInputAttrs(self.opt.element, obj['iso_code'], obj['name'], self.setNewMaskValue(value, find['mask']));
+                self.setInp(self.opt.element, obj['iso_code'], obj['name'], self.setNewMaskValue(value, find['mask']));
             }
 
         }
@@ -605,11 +619,11 @@ inpClass.prototype = {
      * Установка маски
      *
      **/
-    setCheckedMask: function (e) {
+    setMask: function (e) {
         this.maskFinder(e.value, this.opt.country);
     },
 
-    setInputAttrs:function (e, flag, title, value) {
+    setInp:function (e, flag, title, value) {
         e.value          = value;
 
         var i,
@@ -619,7 +633,6 @@ inpClass.prototype = {
             i.className  = 'flag '+ flag;
             i.parentNode.setAttribute('title', title);
         }
-
 
         opt.country     = flag;
         opt.name        = title;
@@ -649,9 +662,8 @@ inpClass.prototype = {
             lists            = 'lists',
             active           = 'active',
             top              = 'top',
+            cbm              = 'CBH-masks',
             opened_elements  = d.getElementsByClassName(lists+' '+active),
-
-
 
             document_create  = function (e) {
                 return document.createElement(e);
@@ -672,7 +684,7 @@ inpClass.prototype = {
 
         wrapper = document_create('div');
             inner_HTML(wrapper, el);
-            className(wrapper,'CBH-masks');
+            className(wrapper,cbm);
 
         el.parentNode.replaceChild(wrapper, el);
 
@@ -735,13 +747,22 @@ inpClass.prototype = {
 
         append_child(flags_block, ul);
 
-        Event.add(ul,'mousedown', function(e){
+        Event.add(ul,'mousedown', function(e) {
             e.stopPropagation();
         });
+
 
         wrapper.insertBefore( flags_block, wrapper.firstChild );
         wrapper.getElementsByClassName('selected')[0].onclick = function () {
             cur_el           = wrapper.getElementsByClassName(lists)[0];
+            var doc = document,
+                handler = function(e) {
+                if(!childOf(e.target, flags_block)) {
+                    removeClass(cur_el, active);
+                    removeClass(cur_el, top);
+                    Event.remove(doc,'click',handler);
+                }
+            };
             if(!!opened_elements.length) {
                 for(i in opened_elements) {
                     if (opened_elements.hasOwnProperty(i) && cur_el !== opened_elements[i]) {
@@ -750,6 +771,9 @@ inpClass.prototype = {
                 }
             }
             if (/active/.test(cur_el.className) !== true) {
+
+                Event.add(doc,'click', handler);
+
                 addClass(cur_el, active);
                 var winHeight       = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
                     offset          = p.findPos(cur_el),
@@ -762,40 +786,36 @@ inpClass.prototype = {
             } else {
                 removeClass(cur_el, active);
                 removeClass(cur_el, top);
+
+                Event.remove(doc,'click',handler);
             }
         };
+
         self.opt.element = wrapper.childNodes[1];
     },
     maskReplace: function () {
-        var flag_el,
-            list_el,
-            self        = this,
+        var self        = this,
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             p           = plugin,
-            instance    = p.selectInstance(input),
+            instance    = p.getInst(input),
             dataset     = self.dataset;
 
         var finded_old          = instance.findMaskByCode(instance.opt.country);
         var finded_new          = instance.findMaskByCode(dataset['isoCode']);
-        input.value             = instance.setNewMaskValue(
-            instance.getVal(input.value).replace(finded_old['phone_code'], finded_new['phone_code']),
-            instance.opt.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
-        );
 
-        input.placeholder       = finded_new.mask;
-        instance.opt.value      = input.value;
-        instance.opt.name       = finded_new.name;
-        instance.opt.mask       = finded_new.mask;
-        instance.opt.country    = finded_new['iso_code'];
+        instance.setInp(
+           instance.opt.element,
+           finded_new.iso_code,
+           finded_new.name,
+           instance.setNewMaskValue(
+               instance.getVal(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+               finded_new.mask.replace(new RegExp([p.regex.source].concat('_').join('|'), 'g'), '_')
+           )
+       );
 
-        flag_el                 = parent.childNodes[0].childNodes[0];
-        flag_el.className       = 'flag '+ finded_new['iso_code'];
-        list_el                 = parent.childNodes[1];
-
-        removeClass(list_el,'active');
+        removeClass(parent.childNodes[1],'active');
     },
-
     /**
      * Добавление событий на елемент
      * @param e Элемент
@@ -860,7 +880,7 @@ inpClass.prototype = {
      * @param e
      * @param i
      */
-    removeChar:function(e, i) {
+    remChar:function(e, i) {
         var temp = e.value.split('');
             temp[i]='_';
         e.value = temp.join('');
@@ -996,12 +1016,12 @@ inpClass.prototype = {
         var i,
             one,
             phone_codes = phoneCodes,
-            sortedCodes = phone_codes.sortPhones(phone_codes.all, "name", 1);
+            sortedCodes = phone_codes.sortPhones(phone_codes.all, 'name', 1);
 
         for (i in phone_codes.all) {
             if (phone_codes.all.hasOwnProperty(i)) {
                 one = sortedCodes[i];
-                if (one['iso_code'] === code) {
+                if (one.iso_code === code) {
                     return one;
                 }
             }
@@ -1129,7 +1149,12 @@ var plugin = {
             }
         });
     },
-    selectInstance: function (e) {
+    /**
+     * Получить инстанс
+     * @param e
+     * @returns {*}
+     */
+    getInst: function (e) {
         var p = plugin;
         return p.instances[e.className.match(new RegExp(p.prefix+'[0-9a-zA-Z]+'))];
     },
@@ -1167,9 +1192,27 @@ var plugin = {
     getById: function (id) {
         var el = document.getElementById(id);
         if(el !== null){
-            return this.selectInstance(el);
+            return this.getInst(el);
         }
         return false;
+    },
+
+    /**
+     * Переключение статуса
+     * @param e Элемент или класс
+     */
+    toggle: function(e) {
+        var self = this.getInst(e),
+            opt  = self.opt;
+
+        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+            e.parentNode.outerHTML = opt.oldState;
+        } else {
+            opt.element = e;
+            self.setTemplate();
+            opt.element.value       = opt.value;
+            self.addActions(opt.element);
+        }
     }
 };
     return plugin;

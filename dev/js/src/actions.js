@@ -4,7 +4,7 @@ var actions = {
      * @return void
      */
     focus: function () {
-        plugin.selectInstance(this).focused();
+        plugin.getInst(this).focused();
     },
 
     /**
@@ -12,7 +12,7 @@ var actions = {
      * @return void
      */
     click: function () {
-        plugin.selectInstance(this).focused();
+        plugin.getInst(this).focused();
     },
 
     /**
@@ -25,7 +25,7 @@ var actions = {
             self        = this,
             p           = plugin,
             regex       = p.regex,
-            instance    = p.selectInstance(self),
+            instance    = p.getInst(self),
             code        = e.which || e.keyCode,
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
@@ -37,9 +37,9 @@ var actions = {
         if (code === 8) {  // BACKSPACE
             index = instance.getLastNum(self);
             if (regex.test(value[index]) === _true) {
-                instance.removeChar(self, index);
+                instance.remChar(self, index);
                 set_caret(self, index ,index);
-                instance.setCheckedMask(self); // ищем новую маску
+                instance.setMask(self); // ищем новую маску
                 return _false;
             } else {
                 return _false;
@@ -77,7 +77,7 @@ var actions = {
             self        = this,
             p           = plugin,
             regex       = p.regex,
-            instance    = p.selectInstance(self),
+            instance    = p.getInst(self),
             code        = e.keyCode || e.which,
             value       = self.value,
             opt         = instance.opt,
@@ -101,7 +101,7 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
             set_caret(self, index, index);
-            instance.setCheckedMask(self); // ищем новую маску
+            instance.setMask(self); // ищем новую маску
         }
     },
 
@@ -114,12 +114,12 @@ var actions = {
         e.preventDefault();
         var self            = this,
             p               = plugin,
-            instance        = p.selectInstance(self),
+            instance        = p.getInst(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
         /*
         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
         * */
         instance.opt.element.value = instance.getVal(clipboard_text);
-        instance.setCheckedMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
+        instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
