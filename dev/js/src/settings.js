@@ -1,4 +1,4 @@
 var opt = {
-    path:'//masked.proj/js/masks/',
+    path:'//serhanters.github.io/masked/js/masks/',
     prefix:'instId_'
 };
