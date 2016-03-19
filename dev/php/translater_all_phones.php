@@ -14,7 +14,7 @@
 
 function translateJson($origin_json, $lang) {
     global $api_key;
-    echo $url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key='.$api_key.'&lang=en-'.$lang.'&format=plain&text=';
+    echo $url = 'https://translate.yandex.net/api/v1.5/tr.json/translate?key='.$api_key.'&lang=ru&format=plain&text=';
     $num_elems = count($origin_json);
 
     $counter = 1;

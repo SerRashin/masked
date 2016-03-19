@@ -12,7 +12,9 @@
   foreach($dir1 as $v) {
     if (is_dir($path.$v)) {
 
-      if ($v === '.' || $v === '..' || $v === 'us' ) { // исключения
+      if ($v === '.' || $v === '..' || $v === 'us' ||
+          $v !== 'ru'
+      ) { // исключения
         continue;
       }
 
@@ -28,6 +30,13 @@
       $origin_json  = json_decode($origin_file);
 
       foreach($available_languages as $lang) {
+        if (
+            $lang == 'ar' ||
+            $lang == 'bg' ||
+            $lang == 'cs'
+        ) { // исключения
+          continue;
+        }
         $new_json     = translateJson($origin_json, $lang);
 
         $new_filepath = $country_dir.$lang.'.json';
