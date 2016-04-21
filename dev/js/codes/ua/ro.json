@@ -1,3619 +1,3619 @@
 [{
     "iso_code": "ua",
     "mask": "+380(312)__-__-__",
-    "region": "Закарпатская область",
-    "city": "Ужгород",
+    "region": "Regiune",
+    "city": "Ujgorod",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3122)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Среднее",
+    "region": "Regiune",
+    "city": "Medie",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3131)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Мукачево",
+    "region": "Regiune",
+    "city": "Mucacevo",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3132)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Рахов",
+    "region": "Regiune",
+    "city": "Rachel",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3133)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Поляна",
+    "region": "Regiune",
+    "city": "Poiana",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3134)_-__-__",
-    "region": "Закарпатская область",
+    "region": "Regiune",
     "city": "Буштыно",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3135)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Великий Березный",
+    "region": "Regiune",
+    "city": "Mare Березный",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3136)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Нижние Ворота",
+    "region": "Regiune",
+    "city": "Inferioare Poarta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3137)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Чоп",
+    "region": "Regiune",
+    "city": "Chop",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3141)_-__-__",
-    "region": "Закарпатская область",
+    "region": "Regiune",
     "city": "Берегово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(31422)__-__",
-    "region": "Закарпатская область",
+    "region": "Regiune",
     "city": "Хуст",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3143)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Вилок",
+    "region": "Regiune",
+    "city": "Furca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3144)_-__-__",
-    "region": "Закарпатская область",
-    "city": "Долгое",
+    "region": "Regiune",
+    "city": "O lungă perioadă de",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3145)_-__-__",
-    "region": "Закарпатская область",
+    "region": "Regiune",
     "city": "Перечин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3146)_-__-__",
-    "region": "Закарпатская область",
+    "region": "Regiune",
     "city": "Межгорье",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(32)___-__-__",
-    "region": "Львовская область",
-    "city": "Львов",
+    "region": "Regiunea lviv",
+    "city": "Lei",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(322)__-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Брюховичи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3230)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Пустомыты",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3231)_-__-__",
-    "region": "Львовская область",
-    "city": "Городок",
+    "region": "Regiunea lviv",
+    "city": "Oraș",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3234)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Мостиска",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3236)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Дубляны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3238)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Добромиль",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3239)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Гнездычев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3241)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Роздол",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3244)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Дрогобыч",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3245)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Дашава",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3247)_-__-__",
-    "region": "Львовская область",
-    "city": "Трускавец",
+    "region": "Regiunea lviv",
+    "city": "Truscaveț",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3248)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Борислав",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3249)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Червоноград",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3251)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Сколе",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3252)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Дубляны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3254)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Добротвор",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3255)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Лопатин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3257)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Белз",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3259)_-__-__",
-    "region": "Львовская область",
-    "city": "Ивано-Франково",
+    "region": "Regiunea lviv",
+    "city": "Ivano-Франково",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(32606)__-__",
-    "region": "Львовская область",
-    "city": "Моршин",
+    "region": "Regiunea lviv",
+    "city": "Morșin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3261)_-__-__",
-    "region": "Львовская область",
-    "city": "Новый Роздол",
+    "region": "Regiunea lviv",
+    "city": "Noul Роздол",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3263)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Бобрка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3264)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Буск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3265)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Глиняны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3266)_-__-__",
-    "region": "Львовская область",
-    "city": "Броды",
+    "region": "Regiunea lviv",
+    "city": "Brody",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3269)_-__-__",
-    "region": "Львовская область",
+    "region": "Regiunea lviv",
     "city": "Борыня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(33)___-__-__",
-    "region": "Волынская область",
-    "city": "Луцк",
+    "region": "Volyn zona",
+    "city": "Sydney",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(332)__-__-__",
-    "region": "Волынская область",
-    "city": "Луцк",
+    "region": "Volyn zona",
+    "city": "Sydney",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3322)_-__-__",
-    "region": "Волынская область",
-    "city": "Торчин",
+    "region": "Volyn zona",
+    "city": "Torchin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3342)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Устилуг",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3344)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Нововолынск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3346)_-__-__",
-    "region": "Волынская область",
-    "city": "Старая Выжевка",
+    "region": "Volyn zona",
+    "city": "Vechea Выжевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3352)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Голобы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3357)_-__-__",
-    "region": "Волынская область",
-    "city": "Камень-Каширский",
+    "region": "Volyn zona",
+    "city": "Piatra-Râpa",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3362)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Любешов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3363)_-__-__",
-    "region": "Волынская область",
-    "city": "Луков",
+    "region": "Volyn zona",
+    "city": "Arcuri",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3365)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Киверцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3366)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Ратно",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3368)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Березолуки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3372)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Иваничи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3374)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Локачи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3376)_-__-__",
-    "region": "Волынская область",
-    "city": "Колки",
+    "region": "Volyn zona",
+    "city": "Divizarea",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3377)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Головно",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3379)_-__-__",
-    "region": "Волынская область",
+    "region": "Volyn zona",
     "city": "Берестечко",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(34)___-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Ивано-Франковск",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Ivano-Frankivsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(342)__-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Ивано-Франковск",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Ivano-Frankivsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3430)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Чернелица",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3431)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Большовцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3432)_-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Верховина",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Verkhovyna",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3433)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Гвоздец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3434)_-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Ворохта",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Vorohta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(34342)__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Яремче",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Yaremche",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3435)_-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Букачёвцы",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Букачевцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3436)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Лисец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3438)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Бурштын",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3471)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Богородчаны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3472)_-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Калуш",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Kalush",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3474)_-__-__",
-    "region": "Ивано-Франковская область",
-    "city": "Брошнев-Осада",
+    "region": "Ivano-Frankivsk regiune",
+    "city": "Брошнев-Asediul",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3475)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Делятин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3476)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Снятын",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3477)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Болехов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3478)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Косов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3479)_-__-__",
-    "region": "Ивано-Франковская область",
+    "region": "Ivano-Frankivsk regiune",
     "city": "Тлумач",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(35)___-__-__",
-    "region": "Тернопольская область",
-    "city": "Тернополь",
+    "region": "Regiunea ternopil regiune",
+    "city": "Ternopil",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(352)__-__-__",
-    "region": "Тернопольская область",
-    "city": "Тернополь",
+    "region": "Regiunea ternopil regiune",
+    "city": "Ternopil",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3540)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Заложцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3541)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Борщёв",
+    "region": "Regiunea ternopil regiune",
+    "city": "Борщев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3542)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Подгайцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3543)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Новое Село",
+    "region": "Regiunea ternopil regiune",
+    "city": "Un Nou Sat",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3544)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Бучач",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3546)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Кременец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3547)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Козлов",
+    "region": "Regiunea ternopil regiune",
+    "city": "Capre",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3548)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Бережаны",
+    "region": "Regiunea ternopil regiune",
+    "city": "Berejany",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3549)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Лановцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3550)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Вишневец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3551)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Микулинцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3552)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Чортков",
+    "region": "Regiunea ternopil regiune",
+    "city": "Ciortkiv",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3554)_-__-__",
-    "region": "Тернопольская область",
-    "city": "Толстое",
+    "region": "Regiunea ternopil regiune",
+    "city": "Gros",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3555)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Коропец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3556)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Дубно",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3557)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Гримайлов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3558)_-__-__",
-    "region": "Тернопольская область",
+    "region": "Regiunea ternopil regiune",
     "city": "Шумск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(36)___-__-__",
-    "region": "Ровненская область",
-    "city": "Ровно",
+    "region": "Ровненская zona",
+    "city": "Exact",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(362)__-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Клевань",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3632)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Заречное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3633)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Радивилов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3634)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Владимирец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3635)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Рокитное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3636)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Кузнецовск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3650)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Гоща",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3651)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Корец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3652)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Мизоч",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(36522)__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Здолбунов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3653)_-__-__",
-    "region": "Ровненская область",
-    "city": "Березно",
+    "region": "Ровненская zona",
+    "city": ",",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3654)_-__-__",
-    "region": "Ровненская область",
-    "city": "Острог",
+    "region": "Ровненская zona",
+    "city": "Ostrog",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(36552)__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Клесов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3656)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Смыга",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3657)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Костополь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3658)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Дубровица",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3659)_-__-__",
-    "region": "Ровненская область",
+    "region": "Ровненская zona",
     "city": "Демидовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(37)___-__-__",
-    "region": "Черновицкая область",
-    "city": "Черновцы",
+    "region": "Cernăuți zona",
+    "city": "Cernăuți",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(372)__-__-__",
-    "region": "Черновицкая область",
-    "city": "Черновцы",
+    "region": "Cernăuți zona",
+    "city": "Cernăuți",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3722)_-__-__",
-    "region": "Черновицкая область",
-    "city": "Черновцы",
+    "region": "Cernăuți zona",
+    "city": "Cernăuți",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3730)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Берегомет",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(37312)__-__",
-    "region": "Черновицкая область",
-    "city": "Хотин",
+    "region": "Cernăuți zona",
+    "city": "Hotin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3732)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Кельменцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3733)_-__-__",
-    "region": "Черновицкая область",
-    "city": "Новоселица",
+    "region": "Cernăuți zona",
+    "city": "Suliță",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3734)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Глыбокая",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3735)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Красноильск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3736)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Кицмань",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3737)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Кострижевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3738)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Путила",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3739)_-__-__",
-    "region": "Черновицкая область",
+    "region": "Cernăuți zona",
     "city": "Сокиряны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3740)_-__-__",
-    "region": "Черновицкая область",
-    "city": "Герца",
+    "region": "Cernăuți zona",
+    "city": "Hertz",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3741)_-__-__",
-    "region": "Черновицкая область",
-    "city": "Новоднестровск",
+    "region": "Cernăuți zona",
+    "city": "Novodnestrovsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(38)___-__-__",
-    "region": "Хмельницкая область",
-    "city": "Хмельницкий",
+    "region": "Hmelnițki zona",
+    "city": "Hmelnițk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(382)__-__-__",
-    "region": "Хмельницкая область",
-    "city": "Хмельницкий",
+    "region": "Hmelnițki zona",
+    "city": "Hmelnițk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3822)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Чёрный Остров",
+    "region": "Hmelnițki zona",
+    "city": "Insula De Negru",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3840)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Грицев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3841)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Ямполь",
+    "region": "Hmelnițki zona",
+    "city": "Iampolul",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3842)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Славута",
+    "region": "Hmelnițki zona",
+    "city": "Slavuta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3843)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Полонное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3844)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Базалия",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3845)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Войтовцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3846)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Виньковцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3847)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Новая Ушица",
+    "region": "Hmelnițki zona",
+    "city": "Un Nou Ушица",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3848)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Нетешин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3849)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Каменец-Подольский",
+    "region": "Hmelnițki zona",
+    "city": "Kamenetz-Podolsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3850)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Старая Синява",
+    "region": "Hmelnițki zona",
+    "city": "Vechea Синява",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3851)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Городок",
+    "region": "Hmelnițki zona",
+    "city": "Oraș",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3852)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Изяслав",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3853)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Ярмолинцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3854)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Староконстантинов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3855)_-__-__",
-    "region": "Хмельницкая область",
-    "city": "Антонины",
+    "region": "Hmelnițki zona",
+    "city": "De către antonina",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3856)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Деражня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3857)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Летичев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3858)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Дунаевцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(3859)_-__-__",
-    "region": "Хмельницкая область",
+    "region": "Hmelnițki zona",
     "city": "Чемеровцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(41)___-__-__",
-    "region": "Житомирская область",
-    "city": "Житомир",
+    "region": "Jitomir regiune",
+    "city": "Jitomir",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(412)__-__-__",
-    "region": "Житомирская область",
-    "city": "Житомир",
+    "region": "Jitomir regiune",
+    "city": "Jitomir",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4122)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Гуйва",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4130)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Коростышев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4131)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Червоноармейск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4132)_-__-__",
-    "region": "Житомирская область",
-    "city": "Белая Криница",
+    "region": "Jitomir regiune",
+    "city": "Alb Криница",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4133)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Чоповичи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4134)_-__-__",
-    "region": "Житомирская область",
-    "city": "Черняхов",
+    "region": "Jitomir regiune",
+    "city": "Sec",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4135)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Бучманы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4136)_-__-__",
-    "region": "Житомирская область",
-    "city": "Андрушёвка",
+    "region": "Jitomir regiune",
+    "city": "Андрушевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4137)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Корнин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(41372)__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Попельня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4138)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Ружин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4139)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Чуднов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4140)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Народичи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4141)_-__-__",
-    "region": "Житомирская область",
-    "city": "Броницкая Гута",
+    "region": "Jitomir regiune",
+    "city": "Броницкая Guta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4142)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Коростень",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4143)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Бердичев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4144)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Довбыш",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(41444)__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Барановка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4145)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Иршанск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4146)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Быковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4147)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Любар",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4148)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Першотравневое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(41483)__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Овруч",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4149)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Яблонец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(41494)__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Емильчино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4161)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Лугины",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4162)_-__-__",
-    "region": "Житомирская область",
+    "region": "Jitomir regiune",
     "city": "Брусилов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4191)_-__-__",
-    "region": "Житомирская область",
-    "city": "Жовтневое",
+    "region": "Jitomir regiune",
+    "city": "Zhovtneve",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(43)___-__-__",
-    "region": "Винницкая область",
-    "city": "Винница",
+    "region": "Vinița regiune",
+    "city": "Vinnytsya",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(432)__-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Стрижавка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4330)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Оратов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4331)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Брацлав",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4332)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Браилов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4333)_-__-__",
-    "region": "Винницкая область",
-    "city": "Калиновка",
+    "region": "Vinița regiune",
+    "city": "Calinovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4334)_-__-__",
-    "region": "Винницкая область",
-    "city": "Гайсин",
+    "region": "Vinița regiune",
+    "city": "Gysin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4335)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Кирнасовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4336)_-__-__",
-    "region": "Винницкая область",
-    "city": "Ямполь",
+    "region": "Vinița regiune",
+    "city": "Iampolul",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4337)_-__-__",
-    "region": "Винницкая область",
-    "city": "Могилёв-Подольский",
+    "region": "Vinița regiune",
+    "city": "Moghiliov-Podolsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(43)386-1_-__",
-    "region": "Винницкая область",
-    "city": "Уланов",
+    "region": "Vinița regiune",
+    "city": "Ulanov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(43388)__-__",
-    "region": "Винницкая область",
-    "city": "Хмельник",
+    "region": "Vinița regiune",
+    "city": "Hop-gradina",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4340)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Крыжополь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4341)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Копайгород",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(43410)__-__",
-    "region": "Винницкая область",
-    "city": "Бар",
+    "region": "Vinița regiune",
+    "city": "Bar",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4342)_-__-__",
-    "region": "Винницкая область",
-    "city": "Казатин",
+    "region": "Vinița regiune",
+    "city": "Kazatin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4343)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Ладыжин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4344)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Шаргород",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4345)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Дашев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4346)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Погребище",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4347)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Литин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4348)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Томашполь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4349)_-__-__",
-    "region": "Винницкая область",
-    "city": "Песчанка",
+    "region": "Vinița regiune",
+    "city": "Chickweed",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4350)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Вапнярка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4351)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Чечельник",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4352)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Бершадь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4353)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Теплик",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4355)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Гнивань",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4356)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Мурованые Куриловцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4358)_-__-__",
-    "region": "Винницкая область",
+    "region": "Vinița regiune",
     "city": "Липовец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(44)___-__-__",
-    "region": "Киевская область",
-    "city": "Киев",
+    "region": "Kiev zona",
+    "city": "Kiev",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(44474)__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Мироновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4460)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Тетиев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4461)_-__-__",
-    "region": "Киевская область",
-    "city": "Богуслав",
+    "region": "Kiev zona",
+    "city": "Bogusław",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4462)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Ракитное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4463)_-__-__",
-    "region": "Киевская область",
-    "city": "Белая Церковь",
+    "region": "Kiev zona",
+    "city": "Biserica Albă",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4464)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Ставище",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4465)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Боровая",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4466)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Тараща",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4467)_-__-__",
-    "region": "Киевская область",
-    "city": "Переяслав-Хмельницкий",
+    "region": "Kiev zona",
+    "city": "Переяслав-Hmelnițk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4468)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Сквира",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4470)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Згуровка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4471)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Глеваха",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4472)_-__-__",
-    "region": "Киевская область",
-    "city": "Козин",
+    "region": "Kiev zona",
+    "city": "Kozin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4473)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Кагарлык",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4475)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Яготин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4476)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Барышевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4477)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Бабинцы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4478)_-__-__",
-    "region": "Киевская область",
-    "city": "Макаров",
+    "region": "Kiev zona",
+    "city": "Makarov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4479)_-__-__",
-    "region": "Киевская область",
-    "city": "Славутич",
+    "region": "Kiev zona",
+    "city": "Tuborg",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4491)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Иванков",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4492)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Полесское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4493)_-__-__",
-    "region": "Киевская область",
-    "city": "Чернобыль",
+    "region": "Kiev zona",
+    "city": "Cernobîl",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4494)_-__-__",
-    "region": "Киевская область",
-    "city": "Бровары",
+    "region": "Kiev zona",
+    "city": "Brovary",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4495)_-__-__",
-    "region": "Киевская область",
-    "city": "Борисполь",
+    "region": "Kiev zona",
+    "city": "Borispol",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4496)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Дымер",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4497)_-__-__",
-    "region": "Киевская область",
-    "city": "Буча",
+    "region": "Kiev zona",
+    "city": "Booch",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4498)_-__-__",
-    "region": "Киевская область",
+    "region": "Kiev zona",
     "city": "Боярка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(46)___-__-__",
-    "region": "Черниговская область",
-    "city": "Чернигов",
+    "region": "Chernihiv regiune",
+    "city": "Cernigov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(462)__-__-__",
-    "region": "Черниговская область",
-    "city": "Чернигов",
+    "region": "Chernihiv regiune",
+    "city": "Cernigov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4622)_-__-__",
-    "region": "Черниговская область",
-    "city": "Чернигов",
+    "region": "Chernihiv regiune",
+    "city": "Cernigov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4631)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Лосиновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4632)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Бобровица",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4633)_-__-__",
-    "region": "Черниговская область",
-    "city": "Дружба",
+    "region": "Chernihiv regiune",
+    "city": "Prietenia",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4634)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Талалаевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4635)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Бахмач",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4636)_-__-__",
-    "region": "Черниговская область",
-    "city": "Варна",
+    "region": "Chernihiv regiune",
+    "city": "Varna",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4637)_-__-__",
-    "region": "Черниговская область",
-    "city": "Ладан",
+    "region": "Chernihiv regiune",
+    "city": "Tămâie",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4639)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Дегтяри",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4641)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Добрянка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4642)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Носовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4643)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Куликовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4644)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Березна",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4645)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Городня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4646)_-__-__",
-    "region": "Черниговская область",
-    "city": "Десна",
+    "region": "Chernihiv regiune",
+    "city": "Gingiile",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4653)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Борзна",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4654)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Щорс",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4655)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Сосница",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4656)_-__-__",
-    "region": "Черниговская область",
+    "region": "Chernihiv regiune",
     "city": "Короп",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4657)_-__-__",
-    "region": "Черниговская область",
-    "city": "Холмы",
+    "region": "Chernihiv regiune",
+    "city": "Dealurile",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4658)_-__-__",
-    "region": "Черниговская область",
-    "city": "Новгород-Северский",
+    "region": "Chernihiv regiune",
+    "city": "Novgorod-Северский",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4659)_-__-__",
-    "region": "Черниговская область",
-    "city": "Семёновка",
+    "region": "Chernihiv regiune",
+    "city": "Semionovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(47)___-__-__",
-    "region": "Черкасская область",
-    "city": "Черкассы",
+    "region": "Cherkasy regiune",
+    "city": "Cherkasy",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(472)__-__-__",
-    "region": "Черкасская область",
-    "city": "Черкассы",
+    "region": "Cherkasy regiune",
+    "city": "Cherkasy",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4722)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Ирдынь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4730)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Чигирин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4731)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Тальное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4732)_-__-__",
-    "region": "Черкасская область",
-    "city": "Каменка",
+    "region": "Cherkasy regiune",
+    "city": "Camenca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4733)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Ротмистровка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4734)_-__-__",
-    "region": "Черкасская область",
-    "city": "Городище",
+    "region": "Cherkasy regiune",
+    "city": "Grădiște",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4735)_-__-__",
-    "region": "Черкасская область",
-    "city": "Корсунь-Шевченковский",
+    "region": "Cherkasy regiune",
+    "city": "Korsun-Șevcenkivskîi",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4736)_-__-__",
-    "region": "Черкасская область",
-    "city": "Канев",
+    "region": "Cherkasy regiune",
+    "city": "Kanev",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4737)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Золотоноша",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4738)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Драбов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4739)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Чернобай",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4740)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Ватутино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4741)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Шпола",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4742)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Катеринополь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4744)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Умань",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4745)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Христиновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4746)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Монастырище",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4747)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Жашков",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4748)_-__-__",
-    "region": "Черкасская область",
-    "city": "Буки",
+    "region": "Cherkasy regiune",
+    "city": "Buki",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4749)_-__-__",
-    "region": "Черкасская область",
+    "region": "Cherkasy regiune",
     "city": "Лысянка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(48)___-__-__",
-    "region": "Одесская область",
-    "city": "Одесса",
+    "region": "Regiunea odesa",
+    "city": "Odesa",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(482)__-__-__",
-    "region": "Одесская область",
-    "city": "Новые Беляры",
+    "region": "Regiunea odesa",
+    "city": "Noi Беляры",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4840)_-__-__",
-    "region": "Одесская область",
-    "city": "Рени",
+    "region": "Regiunea odesa",
+    "city": "Reni",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4841)_-__-__",
-    "region": "Одесская область",
-    "city": "Измаил",
+    "region": "Regiunea odesa",
+    "city": "Ismail",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4843)_-__-__",
-    "region": "Одесская область",
-    "city": "Килия",
+    "region": "Regiunea odesa",
+    "city": "Chilia",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4844)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Татарбунары",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4845)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Арциз",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4846)_-__-__",
-    "region": "Одесская область",
-    "city": "Болград",
+    "region": "Regiunea odesa",
+    "city": "Bolgrad",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4847)_-__-__",
-    "region": "Одесская область",
-    "city": "Березино",
+    "region": "Regiunea odesa",
+    "city": "Berezino",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4848)_-__-__",
-    "region": "Одесская область",
-    "city": "Сарата",
+    "region": "Regiunea odesa",
+    "city": "Sarata",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4849)_-__-__",
-    "region": "Одесская область",
-    "city": "Белгород-Днестровский",
+    "region": "Regiunea odesa",
+    "city": "-Belgorod-Dnestrovsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4851)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Овидиополь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4852)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Беляевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4853)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Лиманское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4854)_-__-__",
-    "region": "Одесская область",
-    "city": "Ивановка",
+    "region": "Regiunea odesa",
+    "city": "Ivanovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4855)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Коминтерновское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4856)_-__-__",
-    "region": "Одесская область",
-    "city": "Березовка",
+    "region": "Regiunea odesa",
+    "city": "Berezovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4858)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Ширяево",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4859)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Цебриково",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4860)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Фрунзовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4861)_-__-__",
-    "region": "Одесская область",
-    "city": "Красные Окны",
+    "region": "Regiunea odesa",
+    "city": "Roșii Окны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4862)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Котовск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4864)_-__-__",
-    "region": "Одесская область",
-    "city": "Любашёвка",
+    "region": "Regiunea odesa",
+    "city": "Любашевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4865)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Саврань",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4866)_-__-__",
-    "region": "Одесская область",
-    "city": "Балта",
+    "region": "Regiunea odesa",
+    "city": "Balta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4867)_-__-__",
-    "region": "Одесская область",
+    "region": "Regiunea odesa",
     "city": "Кодыма",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(4868)_-__-__",
-    "region": "Одесская область",
-    "city": "Ильичёвск",
+    "region": "Regiunea odesa",
+    "city": "Ильичевск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(51)___-__-__",
-    "region": "Николаевская область",
-    "city": "Николаев",
+    "region": "Nicolae zona",
+    "city": "Nikolaev",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(512)__-__-__",
-    "region": "Николаевская область",
-    "city": "Николаев",
+    "region": "Nicolae zona",
+    "city": "Nikolaev",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5131)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Братское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5132)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Арбузинка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5133)_-__-__",
-    "region": "Николаевская область",
-    "city": "Кривое Озеро",
+    "region": "Nicolae zona",
+    "city": "Deformată Lac",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5134)_-__-__",
-    "region": "Николаевская область",
-    "city": "Александровка",
+    "region": "Nicolae zona",
+    "city": "Aleksandrovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5135)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Врадиевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5136)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Южноукраинск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5151)_-__-__",
-    "region": "Николаевская область",
-    "city": "Новый Буг",
+    "region": "Nicolae zona",
+    "city": "Un Nou Bug",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5152)_-__-__",
-    "region": "Николаевская область",
-    "city": "Доманёвка",
+    "region": "Nicolae zona",
+    "city": "Доманевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5153)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Березанка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5154)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Очаков",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5158)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Баштанка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5159)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Еланец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5161)_-__-__",
-    "region": "Николаевская область",
-    "city": "Первомайск",
+    "region": "Nicolae zona",
+    "city": "Pervomaisc",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5162)_-__-__",
-    "region": "Николаевская область",
-    "city": "Снигирёвка",
+    "region": "Nicolae zona",
+    "city": "Снигиревка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5163)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Кудрявцевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5164)_-__-__",
-    "region": "Николаевская область",
-    "city": "Казанка",
+    "region": "Nicolae zona",
+    "city": "Ceaunului-spre centru)",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5167)_-__-__",
-    "region": "Николаевская область",
-    "city": "Новая Одесса",
+    "region": "Nicolae zona",
+    "city": "Un Nou Odesa",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5168)_-__-__",
-    "region": "Николаевская область",
+    "region": "Nicolae zona",
     "city": "Березнеговатое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(52)___-__-__",
-    "region": "Кировоградская область",
-    "city": "Кировоград",
+    "region": "Kirovograd regiune",
+    "city": "Kirovograd",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(522)__-__-__",
-    "region": "Кировоградская область",
-    "city": "Кировоград",
+    "region": "Kirovograd regiune",
+    "city": "Kirovograd",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5233)_-__-__",
-    "region": "Кировоградская область",
-    "city": "Знаменка",
+    "region": "Kirovograd regiune",
+    "city": "Popeni",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5234)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Долинская",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5235)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Димитрово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5236)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Светловодск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5237)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Петрово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5238)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Онуфриевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5239)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Устиновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5240)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Компанеевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5241)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Новгородка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5242)_-__-__",
-    "region": "Кировоградская область",
-    "city": "Александровка",
+    "region": "Kirovograd regiune",
+    "city": "Aleksandrovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5250)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Ольшанка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5251)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Новоукраинка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5252)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Голованевск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5253)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Добровеличковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5254)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Гайворон",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5255)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Новоархангельск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5256)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Капитановка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5257)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Бобринец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5258)_-__-__",
-    "region": "Кировоградская область",
-    "city": "Малая Виска",
+    "region": "Kirovograd regiune",
+    "city": "O Mică Tampla",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5259)_-__-__",
-    "region": "Кировоградская область",
+    "region": "Kirovograd regiune",
     "city": "Ульяновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(53)___-__-__",
-    "region": "Полтавская область",
-    "city": "Полтава",
+    "region": "Regiunea poltava",
+    "city": "Poltava",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(532)__-__-__",
-    "region": "Полтавская область",
-    "city": "Полтава",
+    "region": "Regiunea poltava",
+    "city": "Poltava",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5340)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Чернухи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5341)_-__-__",
-    "region": "Полтавская область",
-    "city": "Семеновка",
+    "region": "Regiunea poltava",
+    "city": "Semionovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5342)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Козельщина",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5343)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Кобеляки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5344)_-__-__",
-    "region": "Полтавская область",
-    "city": "Новые Санжары",
+    "region": "Regiunea poltava",
+    "city": "Noi Санжары",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5345)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Гоголево",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5346)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Карловка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5347)_-__-__",
-    "region": "Полтавская область",
-    "city": "Артёмовка",
+    "region": "Regiunea poltava",
+    "city": "Артемовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5348)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Комсомольск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5350)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Котельва",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5351)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Диканька",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5352)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Шишаки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5353)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Опошня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5354)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Гадяч",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5355)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Камышня",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5356)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Червонозаводское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5357)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Новооржицкое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5358)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Пирятин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5359)_-__-__",
-    "region": "Полтавская область",
-    "city": "Гребёнка",
+    "region": "Regiunea poltava",
+    "city": "Distribuitor",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(53615)__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Лубны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5362)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Хорол",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5363)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Решетиловка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5364)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Машевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5365)_-__-__",
-    "region": "Полтавская область",
+    "region": "Regiunea poltava",
     "city": "Глобино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(54)___-__-__",
-    "region": "Сумская область",
-    "city": "Сумы",
+    "region": "Sumskaya zona",
+    "city": "Sumi",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(542)__-__-__",
-    "region": "Сумская область",
-    "city": "Хотин",
+    "region": "Sumskaya zona",
+    "city": "Hotin",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5422)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Степановка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5442)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Путивль",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5443)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Белополье",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5444)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Червоное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5445)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Лебедин",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5446)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Чупаховка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5447)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Дубовязовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5448)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Ромны",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5449)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Шостка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5451)_-__-__",
-    "region": "Сумская область",
-    "city": "Середина-Буда",
+    "region": "Sumskaya zona",
+    "city": "Turistic-Buda",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5452)_-__-__",
-    "region": "Сумская область",
-    "city": "Липовая Долина",
+    "region": "Sumskaya zona",
+    "city": "Липовая Valea",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5453)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Кролевец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5454)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Бурынь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5455)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Недригайлов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5456)_-__-__",
-    "region": "Сумская область",
-    "city": "Дружба",
+    "region": "Sumskaya zona",
+    "city": "Prietenia",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5457)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Кириковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5458)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Тростянец",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5459)_-__-__",
-    "region": "Сумская область",
+    "region": "Sumskaya zona",
     "city": "Краснополье",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(55)___-__-__",
-    "region": "Херсонская область",
-    "city": "Херсон",
+    "region": "Herson zona",
+    "city": "Kherson",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(552)__-__-__",
-    "region": "Херсонская область",
-    "city": "Херсон",
+    "region": "Herson zona",
+    "city": "Kherson",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5530)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Каланчак",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5531)_-__-__",
-    "region": "Херсонская область",
-    "city": "Ивановка",
+    "region": "Herson zona",
+    "city": "Ivanovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5532)_-__-__",
-    "region": "Херсонская область",
-    "city": "Белая Криница",
+    "region": "Herson zona",
+    "city": "Alb Криница",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5533)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Нововоронцовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5534)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Геническ",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5535)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Архангельское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5536)_-__-__",
-    "region": "Херсонская область",
-    "city": "Каховка",
+    "region": "Herson zona",
+    "city": "Preț",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5537)_-__-__",
-    "region": "Херсонская область",
-    "city": "Антоновка",
+    "region": "Herson zona",
+    "city": "Antonovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5538)_-__-__",
-    "region": "Херсонская область",
-    "city": "Аскания-Нова",
+    "region": "Herson zona",
+    "city": "Аскания Nova",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5539)_-__-__",
-    "region": "Херсонская область",
-    "city": "Голая Пристань",
+    "region": "Herson zona",
+    "city": "Nud La Portul De Agrement",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5540)_-__-__",
-    "region": "Херсонская область",
-    "city": "Нижние Серогозы",
+    "region": "Herson zona",
+    "city": "Inferioare Серогозы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5542)_-__-__",
-    "region": "Херсонская область",
-    "city": "Брилёвка",
+    "region": "Herson zona",
+    "city": "Брилевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(55431)__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Рубановка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5544)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Горностаевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5545)_-__-__",
-    "region": "Херсонская область",
-    "city": "Верхний Рогачик",
+    "region": "Herson zona",
+    "city": "Superioară Рогачик",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5546)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Берислав",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5547)_-__-__",
-    "region": "Херсонская область",
-    "city": "Белозёрка",
+    "region": "Herson zona",
+    "city": "Balta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5548)_-__-__",
-    "region": "Херсонская область",
+    "region": "Herson zona",
     "city": "Новотроицкое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5549)_-__-__",
-    "region": "Херсонская область",
-    "city": "Новая Каховка",
+    "region": "Herson zona",
+    "city": "Nova Kakhovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(56)___-__-__",
-    "region": "Днепропетровская область",
-    "city": "Днепропетровск",
+    "region": "Dnepropetrovsk zona",
+    "city": "Dnepropetrovsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5610)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Царичанка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5611)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Магдалиновка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5612)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Губиниха",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5615)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Синельниково",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5616)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Солёное",
+    "region": "Dnepropetrovsk zona",
+    "city": "Sarat",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5617)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Аулы",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5618)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Новониколаевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(562)__-__-__",
-    "region": "Днепропетровская область",
-    "city": "Днепропетровск",
+    "region": "Dnepropetrovsk zona",
+    "city": "Dnepropetrovsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(564)__-__-__",
-    "region": "Днепропетровская область",
-    "city": "Кривой Рог",
+    "region": "Dnepropetrovsk zona",
+    "city": "Krivoy Rog",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5650)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Софиевка",
+    "region": "Dnepropetrovsk zona",
+    "city": "Sofievca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(56510)__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Пятихатки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5652)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Жёлтые Воды",
+    "region": "Dnepropetrovsk zona",
+    "city": "Apele Galbene",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5653)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Вольногорск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5655)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Зеленодольск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5656)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Апостолово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5657)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Николаевка",
+    "region": "Dnepropetrovsk zona",
+    "city": "Nicolaevca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5662)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Червоногригоровка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5665)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Марганец",
+    "region": "Dnepropetrovsk zona",
+    "city": "Mangan",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5667)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Орджоникидзе",
+    "region": "Dnepropetrovsk zona",
+    "city": "Ordjonikidze",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5668)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Томаковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5670)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Межевая",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5671)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Петропавловка",
+    "region": "Dnepropetrovsk zona",
+    "city": "Petropavlovca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5672)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Павлоград",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5673)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Першотравенск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5678)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Покровское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5679)_-__-__",
-    "region": "Днепропетровская область",
+    "region": "Dnepropetrovsk zona",
     "city": "Чаплино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5692)_-__-__",
-    "region": "Днепропетровская область",
-    "city": "Днепродзержинск",
+    "region": "Dnepropetrovsk zona",
+    "city": "Dneprodzerzhinsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(57)___-__-__",
-    "region": "Харьковская область",
-    "city": "Харьков",
+    "region": "Kharkiv regiune",
+    "city": "Harkov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(572)__-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Бабаи",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5733)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Коломак",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5740)_-__-__",
-    "region": "Харьковская область",
-    "city": "Новая Водолага",
+    "region": "Kharkiv regiune",
+    "city": "Un Nou Водолага",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5741)_-__-__",
-    "region": "Харьковская область",
-    "city": "Старый Салтов",
+    "region": "Kharkiv regiune",
+    "city": "Vechi Салтов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5742)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Ковшаровка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5743)_-__-__",
-    "region": "Харьковская область",
-    "city": "Изюм",
+    "region": "Kharkiv regiune",
+    "city": "Stafide",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(57442)__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Красноград",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5745)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Краснопавловка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5746)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Чкаловское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5747)_-__-__",
-    "region": "Харьковская область",
-    "city": "Комсомольское",
+    "region": "Kharkiv regiune",
+    "city": "Komsomolsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5748)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Первомайский",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5749)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Балаклея",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5750)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Двуречная",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5751)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Шевченково",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5752)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Приколотное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5753)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Ковяги",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5754)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Близнюки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5755)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Чапаево",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5756)_-__-__",
-    "region": "Харьковская область",
-    "city": "Константиновка",
+    "region": "Kharkiv regiune",
+    "city": "Konstantinovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(57572)__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Барвенково",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5758)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Богодухов",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5759)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Боровая",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5761)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Зачепиловка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5762)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Сахновщина",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5763)_-__-__",
-    "region": "Харьковская область",
-    "city": "Черкасская Лозовая",
+    "region": "Kharkiv regiune",
+    "city": "Cherkasy Lozova",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5764)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Золочев",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(5765)_-__-__",
-    "region": "Харьковская область",
+    "region": "Kharkiv regiune",
     "city": "Печенеги",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(61)___-__-__",
-    "region": "Запорожская область",
-    "city": "Запорожье",
+    "region": "Regiunea zaporozhye",
+    "city": "Zaporozhye",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(612)__-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Балабино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6131)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Кирилловка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6132)_-__-__",
-    "region": "Запорожская область",
-    "city": "Михайловка",
+    "region": "Regiunea zaporozhye",
+    "city": "Mikhaylovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6133)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Нововасилевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6136)_-__-__",
-    "region": "Запорожская область",
-    "city": "Весёлое",
+    "region": "Regiunea zaporozhye",
+    "city": "Plina de",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6137)_-__-__",
-    "region": "Запорожская область",
-    "city": "Приморск",
+    "region": "Regiunea zaporozhye",
+    "city": "Primorsc",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6138)_-__-__",
-    "region": "Запорожская область",
-    "city": "Каменка-Днепровская",
+    "region": "Regiunea zaporozhye",
+    "city": "Camenca-Днепровская",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6139)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Энергодар",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6140)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Черниговка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6141)_-__-__",
-    "region": "Запорожская область",
-    "city": "Камышеваха",
+    "region": "Regiunea zaporozhye",
+    "city": "Kamyshevakha remiză districtul",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6142)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Мелитополь",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6143)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Вольнянск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6144)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Новониколаевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6145)_-__-__",
-    "region": "Запорожская область",
-    "city": "Гуляйполе",
+    "region": "Regiunea zaporozhye",
+    "city": "Gulyaypole",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6147)_-__-__",
-    "region": "Запорожская область",
-    "city": "Камыш-Заря",
+    "region": "Regiunea zaporozhye",
+    "city": "Stuf-Zarya",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6153)_-__-__",
-    "region": "Запорожская область",
-    "city": "Бердянск",
+    "region": "Regiunea zaporozhye",
+    "city": "Preț",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6162)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Розовка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6165)_-__-__",
-    "region": "Запорожская область",
-    "city": "Пологи",
+    "region": "Regiunea zaporozhye",
+    "city": "Copertine",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6175)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Днепрорудное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6178)_-__-__",
-    "region": "Запорожская область",
+    "region": "Regiunea zaporozhye",
     "city": "Токмак",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(62)___-__-__",
-    "region": "Донецкая область",
-    "city": "Донецк",
+    "region": "Donețk regiune",
+    "city": "Donetsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(622)__-__-__",
-    "region": "Донецкая область",
-    "city": "Донецк",
+    "region": "Donețk regiune",
+    "city": "Donetsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6212)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Красногоровка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6213)_-__-__",
-    "region": "Донецкая область",
-    "city": "Великая Новосёлка",
+    "region": "Donețk regiune",
+    "city": "Novoselka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6214)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Докучаевск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6217)_-__-__",
-    "region": "Донецкая область",
-    "city": "Комсомольское",
+    "region": "Donețk regiune",
+    "city": "Komsomolsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6232)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Макеевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6236)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Авдеевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6237)_-__-__",
-    "region": "Донецкая область",
-    "city": "Горняк",
+    "region": "Donețk regiune",
+    "city": "Miner",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6239)_-__-__",
-    "region": "Донецкая область",
-    "city": "Димитров",
+    "region": "Donețk regiune",
+    "city": "Dimitrov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6242)_-__-__",
-    "region": "Донецкая область",
-    "city": "Горловка",
+    "region": "Donețk regiune",
+    "city": "Gorlovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6247)_-__-__",
-    "region": "Донецкая область",
-    "city": "Дзержинск",
+    "region": "Donețk regiune",
+    "city": "Dzerzhinsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6249)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Дебальцево",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6250)_-__-__",
-    "region": "Донецкая область",
-    "city": "Кировское",
+    "region": "Donețk regiune",
+    "city": "Kirov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6252)_-__-__",
-    "region": "Донецкая область",
-    "city": "Дружное",
+    "region": "Donețk regiune",
+    "city": "Cor",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6254)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Торез",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6255)_-__-__",
-    "region": "Донецкая область",
-    "city": "Шахтёрск",
+    "region": "Donețk regiune",
+    "city": "Шахтерск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6256)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Бражино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6257)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Иловайск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6259)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Амвросиевка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6261)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Дробышево",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6262)_-__-__",
-    "region": "Донецкая область",
-    "city": "Андреевка",
+    "region": "Donețk regiune",
+    "city": "Andreevca",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6264)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Беленькое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6267)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Дружковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6269)_-__-__",
-    "region": "Донецкая область",
-    "city": "Александровка",
+    "region": "Donețk regiune",
+    "city": "Aleksandrovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6272)_-__-__",
-    "region": "Донецкая область",
-    "city": "Константиновка",
+    "region": "Donețk regiune",
+    "city": "Konstantinovka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6273)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Угледар",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6274)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Артемовск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6277)_-__-__",
-    "region": "Донецкая область",
-    "city": "Белозёрское",
+    "region": "Donețk regiune",
+    "city": "Белозерское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6279)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Тельманово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(629)__-__-__",
-    "region": "Донецкая область",
-    "city": "Мариуполь",
+    "region": "Donețk regiune",
+    "city": "Mariupol",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6296)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Новоазовск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6297)_-__-__",
-    "region": "Донецкая область",
+    "region": "Donețk regiune",
     "city": "Першотравневое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6299)_-__-__",
-    "region": "Донецкая область",
-    "city": "Мирное",
+    "region": "Donețk regiune",
+    "city": "Pace",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(64)___-__-__",
-    "region": "Луганская область",
-    "city": "Луганск",
+    "region": "Lugansk zona",
+    "city": "Lugansk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(642)__-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Luhansk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6431)_-__-__",
-    "region": "Луганская область",
-    "city": "Антрацит",
+    "region": "Lugansk zona",
+    "city": "Antracit",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6432)_-__-__",
-    "region": "Луганская область",
-    "city": "Красный Луч",
+    "region": "Lugansk zona",
+    "city": "Roșu Fascicul",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6433)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Ровеньки",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6434)_-__-__",
-    "region": "Луганская область",
-    "city": "Свердловск",
+    "region": "Lugansk zona",
+    "city": "Sverdlovsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6435)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Изварино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6436)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Лутугино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6441)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Перевальск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6442)_-__-__",
-    "region": "Луганская область",
-    "city": "Алчевск",
+    "region": "Lugansk zona",
+    "city": "Alchevsk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6443)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Брянка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6444)_-__-__",
-    "region": "Луганская область",
-    "city": "Стаханов",
+    "region": "Lugansk zona",
+    "city": "Stahanov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6445)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Новоайдар",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6446)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Кировск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6451)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Лисичанск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6452)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Северодонецк",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6453)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Рубежное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6454)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Кременная",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6455)_-__-__",
-    "region": "Луганская область",
-    "city": "Первомайск",
+    "region": "Lugansk zona",
+    "city": "Pervomaisc",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6456)_-__-__",
-    "region": "Луганская область",
-    "city": "Троицкое",
+    "region": "Lugansk zona",
+    "city": "Troițcoe",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6461)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Старобельск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6462)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Белокуракино",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6463)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Белолуцк",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6464)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Марковка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6465)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Меловое",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6471)_-__-__",
-    "region": "Луганская область",
-    "city": "Нижняя Дуванка",
+    "region": "Lugansk zona",
+    "city": "Partea De Jos Дуванка",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6472)_-__-__",
-    "region": "Луганская область",
-    "city": "Станица Луганская",
+    "region": "Lugansk zona",
+    "city": "Станица Lugansk",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6473)_-__-__",
-    "region": "Луганская область",
-    "city": "Фрунзе",
+    "region": "Lugansk zona",
+    "city": "Frunze",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6474)_-__-__",
-    "region": "Луганская область",
+    "region": "Lugansk zona",
     "city": "Попасная",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(65)___-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Симферополь",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Simferopol",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(652)__-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Аэрофлотский",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(654)__-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Алупка",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Alupka",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6550)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Нижнегорский",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6551)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Советский",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Sovietică",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6552)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Первомайский район",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Первомайский zona",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6553)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Новосёловское",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Новоселовское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6554)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Бахчисарай",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6555)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Кировское",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Kirov",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6556)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Красногвардейское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6557)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Багерово",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6558)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Черноморское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6559)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Зуя",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6560)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Алушта",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Alushta",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6561)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Керчь",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Kerch",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6562)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Феодосия",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Teodosie",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6563)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Саки",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Saki",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6564)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Азовское",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6565)_-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Армянск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6566)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Курортное",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Balnear",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(6569)_-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Новоозёрное",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Новоозерное",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(69)___-__-__",
-    "region": "Автономная Республика Крым",
-    "city": "Севастополь",
+    "region": "Republica Autonomă Crimeea",
+    "city": "Sevastopol",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+380(692)__-__-__",
-    "region": "Автономная Республика Крым",
+    "region": "Republica Autonomă Crimeea",
     "city": "Белокаменск",
     "operator": ""
 },{
     "iso_code": "ua",
     "mask": "+38(039)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар (Golden Telecom)"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar (Golden Telecom)"
 },{
     "iso_code": "ua",
     "mask": "+38(067)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar"
 },{
     "iso_code": "ua",
     "mask": "+38(068)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar"
 },{
     "iso_code": "ua",
     "mask": "+38(096)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar"
 },{
     "iso_code": "ua",
     "mask": "+38(097)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar"
 },{
     "iso_code": "ua",
     "mask": "+38(098)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Киевстар"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Kyivstar"
 },{
     "iso_code": "ua",
     "mask": "+38(066)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "МТС"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "MTS"
 },{
     "iso_code": "ua",
     "mask": "+38(050)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "МТС"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "MTS"
 },{
     "iso_code": "ua",
     "mask": "+38(095)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "МТС"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "MTS"
 },{
     "iso_code": "ua",
     "mask": "+38(099)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "МТС"
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "MTS"
 },{
     "iso_code": "ua",
     "mask": "+38(900)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
-    "operator": "Платные услуги "
+    "region": "Ucraina",
+    "city": "Tot orașul",
+    "operator": "Servicii cu plată "
 },{
     "iso_code": "ua",
     "mask": "+38(063)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
+    "region": "Ucraina",
+    "city": "Tot orașul",
     "operator": "life:)"
 },{
     "iso_code": "ua",
     "mask": "+38(093)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
+    "region": "Ucraina",
+    "city": "Tot orașul",
     "operator": "life:)"
 },{
     "iso_code": "ua",
     "mask": "+38(091)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
+    "region": "Ucraina",
+    "city": "Tot orașul",
     "operator": "Utel"
 },{
     "iso_code": "ua",
     "mask": "+38(092)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
+    "region": "Ucraina",
+    "city": "Tot orașul",
     "operator": "PEOPLEnet"
 },{
     "iso_code": "ua",
     "mask": "+38(094)___-__-__",
-    "region": "Украина",
-    "city": "Все города",
+    "region": "Ucraina",
+    "city": "Tot orașul",
     "operator": "Интертелеком"
 }]

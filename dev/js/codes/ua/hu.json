@@ -1,0 +1,3619 @@
+[{
+    "iso_code": "ua",
+    "mask": "+380(312)__-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Ungvár",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3122)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Átlagos",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3131)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Munkács",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3132)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Rahó",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3133)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Glade",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3134)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Bushtyno",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3135)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "A Nagybereznai Járás Területén",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3136)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Alsó Kapu",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3137)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Chop",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3141)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Beregszász",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(31422)__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Huszti",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3143)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Villák",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3144)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Hosszú",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3145)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Vezetője",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3146)_-__-__",
+    "region": "Kárpátaljai régió",
+    "city": "Volovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(32)___-__-__",
+    "region": "Lviv régió",
+    "city": "Lviv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(322)__-__-__",
+    "region": "Lviv régió",
+    "city": "Bryukhovychi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3230)_-__-__",
+    "region": "Lviv régió",
+    "city": "Pustomyty",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3231)_-__-__",
+    "region": "Lviv régió",
+    "city": "Város",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3234)_-__-__",
+    "region": "Lviv régió",
+    "city": "Mostiska",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3236)_-__-__",
+    "region": "Lviv régió",
+    "city": "Dublyany",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3238)_-__-__",
+    "region": "Lviv régió",
+    "city": "Dobromyl",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3239)_-__-__",
+    "region": "Lviv régió",
+    "city": "Gnezdychev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3241)_-__-__",
+    "region": "Lviv régió",
+    "city": "Rozdil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3244)_-__-__",
+    "region": "Lviv régió",
+    "city": "Drogobych",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3245)_-__-__",
+    "region": "Lviv régió",
+    "city": "Dashava",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3247)_-__-__",
+    "region": "Lviv régió",
+    "city": "Truskavets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3248)_-__-__",
+    "region": "Lviv régió",
+    "city": "Borislav",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3249)_-__-__",
+    "region": "Lviv régió",
+    "city": "Chervonograd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3251)_-__-__",
+    "region": "Lviv régió",
+    "city": "Skole",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3252)_-__-__",
+    "region": "Lviv régió",
+    "city": "Dublyany",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3254)_-__-__",
+    "region": "Lviv régió",
+    "city": "Dobrotvor",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3255)_-__-__",
+    "region": "Lviv régió",
+    "city": "Lopatin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3257)_-__-__",
+    "region": "Lviv régió",
+    "city": "Belz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3259)_-__-__",
+    "region": "Lviv régió",
+    "city": "Ivano-Frankove",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(32606)__-__",
+    "region": "Lviv régió",
+    "city": "Morshyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3261)_-__-__",
+    "region": "Lviv régió",
+    "city": "Novyi Rozdil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3263)_-__-__",
+    "region": "Lviv régió",
+    "city": "Bibrka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3264)_-__-__",
+    "region": "Lviv régió",
+    "city": "Busk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3265)_-__-__",
+    "region": "Lviv régió",
+    "city": "Agyag",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3266)_-__-__",
+    "region": "Lviv régió",
+    "city": "Brody",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3269)_-__-__",
+    "region": "Lviv régió",
+    "city": "Borynia",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(33)___-__-__",
+    "region": "Volyn régió",
+    "city": "Lutsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(332)__-__-__",
+    "region": "Volyn régió",
+    "city": "Lutsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3322)_-__-__",
+    "region": "Volyn régió",
+    "city": "Torchyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3342)_-__-__",
+    "region": "Volyn régió",
+    "city": "Ustilug",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3344)_-__-__",
+    "region": "Volyn régió",
+    "city": "Novovolynsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3346)_-__-__",
+    "region": "Volyn régió",
+    "city": "Régi Vyzhevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3352)_-__-__",
+    "region": "Volyn régió",
+    "city": "Goloby",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3357)_-__-__",
+    "region": "Volyn régió",
+    "city": "A Kő-Kashirsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3362)_-__-__",
+    "region": "Volyn régió",
+    "city": "Térképek lyubeshov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3363)_-__-__",
+    "region": "Volyn régió",
+    "city": "Íjak",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3365)_-__-__",
+    "region": "Volyn régió",
+    "city": "Kivercy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3366)_-__-__",
+    "region": "Volyn régió",
+    "city": "Ratno",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3368)_-__-__",
+    "region": "Volyn régió",
+    "city": "Bertoluci",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3372)_-__-__",
+    "region": "Volyn régió",
+    "city": "Ivanichi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3374)_-__-__",
+    "region": "Volyn régió",
+    "city": "Lokaci",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3376)_-__-__",
+    "region": "Volyn régió",
+    "city": "Válassz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3377)_-__-__",
+    "region": "Volyn régió",
+    "city": "Fej",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3379)_-__-__",
+    "region": "Volyn régió",
+    "city": "Beresztecskói",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(34)___-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Ivano-Frankivsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(342)__-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Ivano-Frankivsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3430)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Chernelytsya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3431)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Bolshova",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3432)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Verkhovyna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3433)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Gvozdets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3434)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Vorokhta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(34342)__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Yaremche",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3435)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Bukachevtsy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3436)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Kunyhó",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3438)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Burshtyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3471)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Bohorodchany",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3472)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Kalush",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3474)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Broshnev-Az Ostrom",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3475)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Delyatyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3476)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Sniatyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3477)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Bolekhiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3478)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "A CBS",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3479)_-__-__",
+    "region": "Ivano-Frankivsk régió",
+    "city": "Tlumach",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(35)___-__-__",
+    "region": "Ternopil régió",
+    "city": "Ternopil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(352)__-__-__",
+    "region": "Ternopil régió",
+    "city": "Ternopil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3540)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Zalozhtsy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3541)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Borschev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3542)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Pidhaitsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3543)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Új Falu",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3544)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Buchach",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3546)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Kremenets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3547)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Kozlov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3548)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Berezhany",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3549)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Lanivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3550)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Vishnevets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3551)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Mykulyntsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3552)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Chortkiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3554)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Vastag",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3555)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Koropets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3556)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Mint varsó",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3557)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Gromilov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3558)_-__-__",
+    "region": "Ternopil régió",
+    "city": "Shumsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(36)___-__-__",
+    "region": "Rivne régió",
+    "city": "Pontosan",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(362)__-__-__",
+    "region": "Rivne régió",
+    "city": "Klevan",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3632)_-__-__",
+    "region": "Rivne régió",
+    "city": "Nina",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3633)_-__-__",
+    "region": "Rivne régió",
+    "city": "Radivilov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3634)_-__-__",
+    "region": "Rivne régió",
+    "city": "A Vlagyimir kormány",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3635)_-__-__",
+    "region": "Rivne régió",
+    "city": "Rokytne",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3636)_-__-__",
+    "region": "Rivne régió",
+    "city": "Kuznetsovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3650)_-__-__",
+    "region": "Rivne régió",
+    "city": "A Goscha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3651)_-__-__",
+    "region": "Rivne régió",
+    "city": "Koretz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3652)_-__-__",
+    "region": "Rivne régió",
+    "city": "Mitch",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(36522)__-__",
+    "region": "Rivne régió",
+    "city": "Zdolbuniv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3653)_-__-__",
+    "region": "Rivne régió",
+    "city": "Berezno",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3654)_-__-__",
+    "region": "Rivne régió",
+    "city": "Börtönben",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(36552)__-__",
+    "region": "Rivne régió",
+    "city": "Tart",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3656)_-__-__",
+    "region": "Rivne régió",
+    "city": "Smyga",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3657)_-__-__",
+    "region": "Rivne régió",
+    "city": "Kostopil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3658)_-__-__",
+    "region": "Rivne régió",
+    "city": "Dubrovytsia",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3659)_-__-__",
+    "region": "Rivne régió",
+    "city": "Demidovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(37)___-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Chernivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(372)__-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Chernivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3722)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Chernivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3730)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Berehomet",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(37312)__-__",
+    "region": "Chernivtsi régió",
+    "city": "Hawtin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3732)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "A Kelmentsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3733)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Novoselitsa",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3734)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Glybokaya város",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3735)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Krasnoilsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3736)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Kitsman",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3737)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Térképek kostryzhivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3738)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Putila",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3739)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Sokiryany",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3740)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Hertz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3741)_-__-__",
+    "region": "Chernivtsi régió",
+    "city": "Novodnistrovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(38)___-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Khmelnitsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(382)__-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Khmelnitsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3822)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "A Fekete-Sziget",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3840)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Gritsev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3841)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Yampol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3842)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Szlavuta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3843)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Polonnoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3844)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Basalts",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3845)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Voitovtsy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3846)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Vinkovci",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3847)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Nova Ushytsya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3848)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Netishyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3849)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Kamianets-Podilskyi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3850)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Régi Sinyava",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3851)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Város",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3852)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Izyaslav",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3853)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Yarmolyntsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3854)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Starokostiantyniv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3855)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Antonina",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3856)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Derazhnya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3857)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Letichev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3858)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "Dunaivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(3859)_-__-__",
+    "region": "Khmelnytskyi régió",
+    "city": "A Chemerivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(41)___-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Zhytomyr",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(412)__-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Zhytomyr",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4122)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Guyva",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4130)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Korostyshiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4131)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Mint a",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4132)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Bila Krynytsya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4133)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Chopovychi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4134)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Chernyahov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4135)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Buchman",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4136)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Andrushevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4137)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "A cronyn",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(41372)__-__",
+    "region": "Zhytomyr régió",
+    "city": "Popelnyu",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4138)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Ruzhin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4139)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Chudnov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4140)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Narodichi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4141)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Bronitskaya Guta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4142)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Koroszteny",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4143)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Berdichev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4144)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Dovbysh",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(41444)__-__",
+    "region": "Zhytomyr régió",
+    "city": "Baranovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4145)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "A irshansky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4146)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Bykovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4147)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Chop",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4148)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Pershotravneve",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(41483)__-__",
+    "region": "Zhytomyr régió",
+    "city": "Ovruch",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4149)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Jablonec",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(41494)__-__",
+    "region": "Zhytomyr régió",
+    "city": "Emilchino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4161)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Lugina",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4162)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Brusilov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4191)_-__-__",
+    "region": "Zhytomyr régió",
+    "city": "Zhovtneve",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(43)___-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Vinnitsa",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(432)__-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Strizhavka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4330)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Oratov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4331)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Bratslav",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4332)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Brailov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4333)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Kalinovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4334)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Gaisin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4335)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Kirnasovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4336)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Yampol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4337)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Rodolfo-Podolsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(43)386-1_-__",
+    "region": "Vinnytsia régió",
+    "city": "Ulanov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(43388)__-__",
+    "region": "Vinnytsia régió",
+    "city": "Khmilnyk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4340)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Krizhopil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4341)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Kopaigorod",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(43410)__-__",
+    "region": "Vinnytsia régió",
+    "city": "Bár",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4342)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Kazatin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4343)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Ladyzhin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4344)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Shargorod",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4345)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "A dashev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4346)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Pohrebysche",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4347)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Litin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4348)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Tomashpol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4349)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Hörcsög",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4350)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Vapniarka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4351)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "A:",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4352)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Bershad",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4353)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Teplik",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4355)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Gnivan",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4356)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Murovani Kurylivtsi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4358)_-__-__",
+    "region": "Vinnytsia régió",
+    "city": "Lipovets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(44)___-__-__",
+    "region": "Kijev régió",
+    "city": "Kijev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(44474)__-__",
+    "region": "Kijev régió",
+    "city": "Myronivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4460)_-__-__",
+    "region": "Kijev régió",
+    "city": "Tetiev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4461)_-__-__",
+    "region": "Kijev régió",
+    "city": "Bohuslav",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4462)_-__-__",
+    "region": "Kijev régió",
+    "city": "Rakitnoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4463)_-__-__",
+    "region": "Kijev régió",
+    "city": "Fehér Templom",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4464)_-__-__",
+    "region": "Kijev régió",
+    "city": "Stavische",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4465)_-__-__",
+    "region": "Kijev régió",
+    "city": "Felvidéki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4466)_-__-__",
+    "region": "Kijev régió",
+    "city": "Tarashcha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4467)_-__-__",
+    "region": "Kijev régió",
+    "city": "Pereyaslav-Khmelnitsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4468)_-__-__",
+    "region": "Kijev régió",
+    "city": "Skvira",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4470)_-__-__",
+    "region": "Kijev régió",
+    "city": "A Zgurovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4471)_-__-__",
+    "region": "Kijev régió",
+    "city": "Glevaha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4472)_-__-__",
+    "region": "Kijev régió",
+    "city": "Kozin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4473)_-__-__",
+    "region": "Kijev régió",
+    "city": "Kagarlyk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4475)_-__-__",
+    "region": "Kijev régió",
+    "city": "Yagotin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4476)_-__-__",
+    "region": "Kijev régió",
+    "city": "Baryshevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4477)_-__-__",
+    "region": "Kijev régió",
+    "city": "Slavyansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4478)_-__-__",
+    "region": "Kijev régió",
+    "city": "Makarov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4479)_-__-__",
+    "region": "Kijev régió",
+    "city": "Slavutich",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4491)_-__-__",
+    "region": "Kijev régió",
+    "city": "Ivankov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4492)_-__-__",
+    "region": "Kijev régió",
+    "city": "Poliske",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4493)_-__-__",
+    "region": "Kijev régió",
+    "city": "Csernobil",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4494)_-__-__",
+    "region": "Kijev régió",
+    "city": "Brovary",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4495)_-__-__",
+    "region": "Kijev régió",
+    "city": "Borispol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4496)_-__-__",
+    "region": "Kijev régió",
+    "city": "Diemer",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4497)_-__-__",
+    "region": "Kijev régió",
+    "city": "Butch",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4498)_-__-__",
+    "region": "Kijev régió",
+    "city": "Boyarka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(46)___-__-__",
+    "region": "Chernihiv régió",
+    "city": "Chernigov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(462)__-__-__",
+    "region": "Chernihiv régió",
+    "city": "Chernigov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4622)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Chernigov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4631)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "A losinovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4632)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Bobrovitsa",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4633)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Barátság",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4634)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Talalaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4635)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Bakhmach",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4636)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Várna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4637)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Tömjén",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4639)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Degtyari",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4641)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Dobryanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4642)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "A Nosovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4643)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Kulikovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4644)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Berezna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4645)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Gorodnya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4646)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Gumicsizma",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4653)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Borzna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4654)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Schors",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4655)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Sosnica",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4656)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Korop",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4657)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Hegyek",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4658)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Novgorod-Seversky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4659)_-__-__",
+    "region": "Chernihiv régió",
+    "city": "Semenovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(47)___-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Cserkaszi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(472)__-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Cserkaszi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4722)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Irdyn'",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4730)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Chigirin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4731)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Talne",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4732)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Kamenka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4733)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Rotmistrovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4734)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "A település",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4735)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Korsun-Shevchenkivskyi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4736)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Kanev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4737)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Zolotonosha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4738)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Drabov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4739)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Chernobay",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4740)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Vatutine",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4741)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Shpola",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4742)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Katerinopol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4744)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Uman",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4745)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Khrystynivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4746)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Monastyrysche",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4747)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Zhashkiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4748)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Buki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4749)_-__-__",
+    "region": "Cserkaszi régió",
+    "city": "Lysianka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(48)___-__-__",
+    "region": "Odessa régió",
+    "city": "Odessa",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(482)__-__-__",
+    "region": "Odessa régió",
+    "city": "Novi Biliari",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4840)_-__-__",
+    "region": "Odessa régió",
+    "city": "Reni",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4841)_-__-__",
+    "region": "Odessa régió",
+    "city": "Ishmael",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4843)_-__-__",
+    "region": "Odessa régió",
+    "city": "Kiliya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4844)_-__-__",
+    "region": "Odessa régió",
+    "city": "Tatarbunary",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4845)_-__-__",
+    "region": "Odessa régió",
+    "city": "Artsiz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4846)_-__-__",
+    "region": "Odessa régió",
+    "city": "Bolgrad",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4847)_-__-__",
+    "region": "Odessa régió",
+    "city": "Berezino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4848)_-__-__",
+    "region": "Odessa régió",
+    "city": "Sarata",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4849)_-__-__",
+    "region": "Odessa régió",
+    "city": "Belgorod-Dnestrovsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4851)_-__-__",
+    "region": "Odessa régió",
+    "city": "Mi nem",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4852)_-__-__",
+    "region": "Odessa régió",
+    "city": "Belyaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4853)_-__-__",
+    "region": "Odessa régió",
+    "city": "Liman",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4854)_-__-__",
+    "region": "Odessa régió",
+    "city": "Ivanovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4855)_-__-__",
+    "region": "Odessa régió",
+    "city": "Kominternovskoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4856)_-__-__",
+    "region": "Odessa régió",
+    "city": "Berezovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4858)_-__-__",
+    "region": "Odessa régió",
+    "city": "Shiryaevo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4859)_-__-__",
+    "region": "Odessa régió",
+    "city": "Tsebrikovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4860)_-__-__",
+    "region": "Odessa régió",
+    "city": "Frunzovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4861)_-__-__",
+    "region": "Odessa régió",
+    "city": "Krasnye Okny",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4862)_-__-__",
+    "region": "Odessa régió",
+    "city": "Kotovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4864)_-__-__",
+    "region": "Odessa régió",
+    "city": "Liubashivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4865)_-__-__",
+    "region": "Odessa régió",
+    "city": "Savran",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4866)_-__-__",
+    "region": "Odessa régió",
+    "city": "Balta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4867)_-__-__",
+    "region": "Odessa régió",
+    "city": "Kodym",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(4868)_-__-__",
+    "region": "Odessa régió",
+    "city": "Ilyichevsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(51)___-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Nikolaev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(512)__-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Nikolaev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5131)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Testvéri",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5132)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Arbuzinka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5133)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Görbe-Tó",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5134)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Aleksandrovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5135)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Vradiyevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5136)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Yuzhnoukrainsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5151)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Új Bogár",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5152)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Domanevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5153)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Berezanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5154)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Ochakov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5158)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Bashtanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5159)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Elanets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5161)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Pervomaisk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5162)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Snigirevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5163)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Kudryavtsevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5164)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Kazanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5167)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Új Odessa",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5168)_-__-__",
+    "region": "Mikolajiv régió",
+    "city": "Bereznegovatoye",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(52)___-__-__",
+    "region": "Kirovograd régió",
+    "city": "Kirovograd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(522)__-__-__",
+    "region": "Kirovograd régió",
+    "city": "Kirovograd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5233)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Znamenka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5234)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Dolinskaya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5235)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Dimitrova",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5236)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Svetlovodsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5237)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Petrovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5238)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "A térképek Onufrievka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5239)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Ustinovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5240)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Kompaneevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5241)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "A polgár Novgorod",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5242)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Aleksandrovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5250)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Olshanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5251)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Novoukrainka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5252)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Golovanevsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5253)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Dobrovelichkivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5254)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Gajvoron",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5255)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Arkangyal",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5256)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "A kapitanivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5257)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Bobrynets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5258)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Malaya Viska",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5259)_-__-__",
+    "region": "Kirovograd régió",
+    "city": "Ulyanovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(53)___-__-__",
+    "region": "Poltava régió",
+    "city": "Poltava",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(532)__-__-__",
+    "region": "Poltava régió",
+    "city": "Poltava",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5340)_-__-__",
+    "region": "Poltava régió",
+    "city": "Chernukha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5341)_-__-__",
+    "region": "Poltava régió",
+    "city": "Semenovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5342)_-__-__",
+    "region": "Poltava régió",
+    "city": "A kozelschina",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5343)_-__-__",
+    "region": "Poltava régió",
+    "city": "Iroda",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5344)_-__-__",
+    "region": "Poltava régió",
+    "city": "Novi Sanzhary",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5345)_-__-__",
+    "region": "Poltava régió",
+    "city": "Gogolevo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5346)_-__-__",
+    "region": "Poltava régió",
+    "city": "Karlovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5347)_-__-__",
+    "region": "Poltava régió",
+    "city": "Artemovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5348)_-__-__",
+    "region": "Poltava régió",
+    "city": "Komsomolsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5350)_-__-__",
+    "region": "Poltava régió",
+    "city": "A Kotelva",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5351)_-__-__",
+    "region": "Poltava régió",
+    "city": "Dikanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5352)_-__-__",
+    "region": "Poltava régió",
+    "city": "Shishaki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5353)_-__-__",
+    "region": "Poltava régió",
+    "city": "Oposhnya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5354)_-__-__",
+    "region": "Poltava régió",
+    "city": "Gadyach",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5355)_-__-__",
+    "region": "Poltava régió",
+    "city": "Knysna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5356)_-__-__",
+    "region": "Poltava régió",
+    "city": "Chervonozavodsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5357)_-__-__",
+    "region": "Poltava régió",
+    "city": "Novorijskoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5358)_-__-__",
+    "region": "Poltava régió",
+    "city": "Piryatin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5359)_-__-__",
+    "region": "Poltava régió",
+    "city": "Comb",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(53615)__-__",
+    "region": "Poltava régió",
+    "city": "Lubny",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5362)_-__-__",
+    "region": "Poltava régió",
+    "city": "Khorol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5363)_-__-__",
+    "region": "Poltava régió",
+    "city": "Reshetylivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5364)_-__-__",
+    "region": "Poltava régió",
+    "city": "Mashivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5365)_-__-__",
+    "region": "Poltava régió",
+    "city": "Globino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(54)___-__-__",
+    "region": "Sumy régió",
+    "city": "Sumy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(542)__-__-__",
+    "region": "Sumy régió",
+    "city": "Hawtin",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5422)_-__-__",
+    "region": "Sumy régió",
+    "city": "Stepanovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5442)_-__-__",
+    "region": "Sumy régió",
+    "city": "Putivl",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5443)_-__-__",
+    "region": "Sumy régió",
+    "city": "Bilopillya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5444)_-__-__",
+    "region": "Sumy régió",
+    "city": "Chervone",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5445)_-__-__",
+    "region": "Sumy régió",
+    "city": "Hattyú",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5446)_-__-__",
+    "region": "Sumy régió",
+    "city": "Chupakhovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5447)_-__-__",
+    "region": "Sumy régió",
+    "city": "Dubovyazovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5448)_-__-__",
+    "region": "Sumy régió",
+    "city": "Romney",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5449)_-__-__",
+    "region": "Sumy régió",
+    "city": "Shostka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5451)_-__-__",
+    "region": "Sumy régió",
+    "city": "Közép-Buda",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5452)_-__-__",
+    "region": "Sumy régió",
+    "city": "A Mész-Völgyben",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5453)_-__-__",
+    "region": "Sumy régió",
+    "city": "Krolevets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5454)_-__-__",
+    "region": "Sumy régió",
+    "city": "Unalmas",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5455)_-__-__",
+    "region": "Sumy régió",
+    "city": "Nedrigailov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5456)_-__-__",
+    "region": "Sumy régió",
+    "city": "Barátság",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5457)_-__-__",
+    "region": "Sumy régió",
+    "city": "Kirikovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5458)_-__-__",
+    "region": "Sumy régió",
+    "city": "Trostyanets",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5459)_-__-__",
+    "region": "Sumy régió",
+    "city": "Krasnopole",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(55)___-__-__",
+    "region": "Kherson régió",
+    "city": "Kherson",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(552)__-__-__",
+    "region": "Kherson régió",
+    "city": "Kherson",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5530)_-__-__",
+    "region": "Kherson régió",
+    "city": "Kalanchak",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5531)_-__-__",
+    "region": "Kherson régió",
+    "city": "Ivanovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5532)_-__-__",
+    "region": "Kherson régió",
+    "city": "Bila Krynytsya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5533)_-__-__",
+    "region": "Kherson régió",
+    "city": "Novovorontsovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5534)_-__-__",
+    "region": "Kherson régió",
+    "city": "Henichesk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5535)_-__-__",
+    "region": "Kherson régió",
+    "city": "Arhangelszk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5536)_-__-__",
+    "region": "Kherson régió",
+    "city": "Kahovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5537)_-__-__",
+    "region": "Kherson régió",
+    "city": "Antonovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5538)_-__-__",
+    "region": "Kherson régió",
+    "city": "Askania-Nova",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5539)_-__-__",
+    "region": "Kherson régió",
+    "city": "Hola Prystan",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5540)_-__-__",
+    "region": "Kherson régió",
+    "city": "Alsó Sirohozy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5542)_-__-__",
+    "region": "Kherson régió",
+    "city": "Brilevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(55431)__-__",
+    "region": "Kherson régió",
+    "city": "Kijev",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5544)_-__-__",
+    "region": "Kherson régió",
+    "city": "Gornostaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5545)_-__-__",
+    "region": "Kherson régió",
+    "city": "Top Rogachik",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5546)_-__-__",
+    "region": "Kherson régió",
+    "city": "Berislav",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5547)_-__-__",
+    "region": "Kherson régió",
+    "city": "Bilozerka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5548)_-__-__",
+    "region": "Kherson régió",
+    "city": "Novotroitsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5549)_-__-__",
+    "region": "Kherson régió",
+    "city": "Nova Kahovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(56)___-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Dnepropetrovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5610)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Tsarychanka;",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5611)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "A mahdalynivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5612)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Hubynykha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5615)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Sinelnikovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5616)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Só",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5617)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Falvak",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5618)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Novonikolaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(562)__-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Dnepropetrovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(564)__-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Krivoy Rog",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5650)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Sofiyivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(56510)__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Piatykhatky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5652)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Sárga Víz",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5653)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Vilnohirsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5655)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Zelenodolsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5656)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Apostolovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5657)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Nikolaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5662)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Chervonogrigorovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5665)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Mangán",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5667)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Ordzhonikidze",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5668)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Tomakivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5670)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Iránypont",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5671)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "A péter-Pál erőd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5672)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Pavlograd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5673)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Pershotravensk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5678)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Pokrovskoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5679)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Chaplino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5692)_-__-__",
+    "region": "Dnepropetrovsk régió",
+    "city": "Dneprodzerzhinsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(57)___-__-__",
+    "region": "Kharkiv régió",
+    "city": "Kharkiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(572)__-__-__",
+    "region": "Kharkiv régió",
+    "city": "Babai",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5733)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Kolomak",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5740)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Nova Vodolaha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5741)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Régi Saltov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5742)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Kovsharovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5743)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Mazsola",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(57442)__-__",
+    "region": "Kharkiv régió",
+    "city": "Krasnograd",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5745)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "A krasnopavlivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5746)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Chkalovsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5747)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Komszomol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5748)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Lehet, hogy nap",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5749)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Balakliya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5750)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Dvorichna ott",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5751)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Shevchenkovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5752)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Prikolotnoe",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5753)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Kavagi",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5754)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Bliznuki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5755)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Chapaevo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5756)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Konstantinovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(57572)__-__",
+    "region": "Kharkiv régió",
+    "city": "Barvenkovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5758)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Bogoduhov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5759)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Felvidéki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5761)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Zachepilovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5762)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Sahnovshina",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5763)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Cserkaszi Lozovaya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5764)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "Zolochiv",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(5765)_-__-__",
+    "region": "Kharkiv régió",
+    "city": "A Besenyők Támadása Miatt",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(61)___-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Zaporozhye",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(612)__-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Térképek balabyne",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6131)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Kirillovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6132)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Mikhaylovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6133)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Novovasilevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6136)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Szórakozás",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6137)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Primorsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6138)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Kamenka-Dneprovskaya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6139)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Energodar",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6140)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Chernigovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6141)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Komyshuvakha",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6142)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Melitopol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6143)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Volnyansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6144)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Novonikolaevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6145)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Huliaipole",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6147)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Kamysh-Hajnal",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6153)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Berdyansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6162)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Rozivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6165)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Előtetők",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6175)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Dniprorudne",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6178)_-__-__",
+    "region": "Zaporizhzhya régió",
+    "city": "Tokmak",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(62)___-__-__",
+    "region": "Donetsk régió",
+    "city": "Donetsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(622)__-__-__",
+    "region": "Donetsk régió",
+    "city": "Donetsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6212)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Krasnogorovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6213)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Nagy Novoselka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6214)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Dokuchaevsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6217)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Komszomol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6232)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Makeevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6236)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Avdeevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6237)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Bányász",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6239)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Dimitrov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6242)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Gorlovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6247)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Dzerzhinsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6249)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Átlagos ár",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6250)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Kirov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6252)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Barátságos",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6254)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Torez",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6255)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Shakhtersk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6256)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Bragino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6257)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Ilovaysk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6259)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Amvrosiyivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6261)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Drobyshevo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6262)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Andreevka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6264)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Fehér",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6267)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Druzhkovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6269)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Aleksandrovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6272)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Konstantinovka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6273)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Ugledar",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6274)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Artemovska",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6277)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Belozerskoye",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6279)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Almanova",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(629)__-__-__",
+    "region": "Donetsk régió",
+    "city": "Mariupol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6296)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Novoazovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6297)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Pershotravneve",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6299)_-__-__",
+    "region": "Donetsk régió",
+    "city": "Béke",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(64)___-__-__",
+    "region": "Város régió",
+    "city": "Lugansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(642)__-__-__",
+    "region": "Város régió",
+    "city": "Luhansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6431)_-__-__",
+    "region": "Város régió",
+    "city": "Antracit",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6432)_-__-__",
+    "region": "Város régió",
+    "city": "A Vörös Sugár",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6433)_-__-__",
+    "region": "Város régió",
+    "city": "Rovenki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6434)_-__-__",
+    "region": "Város régió",
+    "city": "Szverdlovszk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6435)_-__-__",
+    "region": "Város régió",
+    "city": "Izvarino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6436)_-__-__",
+    "region": "Város régió",
+    "city": "Lutugino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6441)_-__-__",
+    "region": "Város régió",
+    "city": "Perevalsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6442)_-__-__",
+    "region": "Város régió",
+    "city": "Alchevsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6443)_-__-__",
+    "region": "Város régió",
+    "city": "Bryanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6444)_-__-__",
+    "region": "Város régió",
+    "city": "Stakhanov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6445)_-__-__",
+    "region": "Város régió",
+    "city": "Novoaidar",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6446)_-__-__",
+    "region": "Város régió",
+    "city": "Kirovsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6451)_-__-__",
+    "region": "Város régió",
+    "city": "Lisichansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6452)_-__-__",
+    "region": "Város régió",
+    "city": "Találtam véletlenül",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6453)_-__-__",
+    "region": "Város régió",
+    "city": "Rubezhnoye",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6454)_-__-__",
+    "region": "Város régió",
+    "city": "Kreminna",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6455)_-__-__",
+    "region": "Város régió",
+    "city": "Pervomaisk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6456)_-__-__",
+    "region": "Város régió",
+    "city": "Szentháromság",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6461)_-__-__",
+    "region": "Város régió",
+    "city": "Starobilsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6462)_-__-__",
+    "region": "Város régió",
+    "city": "Belokurakino",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6463)_-__-__",
+    "region": "Város régió",
+    "city": "Belolutsk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6464)_-__-__",
+    "region": "Város régió",
+    "city": "Markivka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6465)_-__-__",
+    "region": "Város régió",
+    "city": "Kréta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6471)_-__-__",
+    "region": "Város régió",
+    "city": "Alsó Duvanka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6472)_-__-__",
+    "region": "Város régió",
+    "city": "A Falu A Luhansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6473)_-__-__",
+    "region": "Város régió",
+    "city": "Frunze",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6474)_-__-__",
+    "region": "Város régió",
+    "city": "Popasnaya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(65)___-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Simferopol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(652)__-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Aeroflotskaya",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(654)__-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Alupka",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6550)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "A Nizhnegorsky",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6551)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Szovjet",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6552)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Lehet, hogy nap terület",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6553)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Novosyolovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6554)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Bakhchisaray",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6555)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Kirov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6556)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Krasnogvardeyskiy",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6557)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Bagerovo",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6558)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Fekete-tenger",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6559)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Használata",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6560)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Alushta",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6561)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Kerch",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6562)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Theodosius",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6563)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Saki",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6564)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Azov",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6565)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Armyansk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6566)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Üdülő",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(6569)_-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Novoozerne",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(69)___-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Sevastopol",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+380(692)__-__-__",
+    "region": "Krími Autonóm Köztársaság",
+    "city": "Belokamensk",
+    "operator": ""
+},{
+    "iso_code": "ua",
+    "mask": "+38(039)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar (Arany Telecom)"
+},{
+    "iso_code": "ua",
+    "mask": "+38(067)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar"
+},{
+    "iso_code": "ua",
+    "mask": "+38(068)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar"
+},{
+    "iso_code": "ua",
+    "mask": "+38(096)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar"
+},{
+    "iso_code": "ua",
+    "mask": "+38(097)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar"
+},{
+    "iso_code": "ua",
+    "mask": "+38(098)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Kyivstar"
+},{
+    "iso_code": "ua",
+    "mask": "+38(066)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "MTS"
+},{
+    "iso_code": "ua",
+    "mask": "+38(050)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "MTS"
+},{
+    "iso_code": "ua",
+    "mask": "+38(095)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "MTS"
+},{
+    "iso_code": "ua",
+    "mask": "+38(099)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "MTS"
+},{
+    "iso_code": "ua",
+    "mask": "+38(900)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Fizetős szolgáltatások "
+},{
+    "iso_code": "ua",
+    "mask": "+38(063)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "élet:)"
+},{
+    "iso_code": "ua",
+    "mask": "+38(093)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "élet:)"
+},{
+    "iso_code": "ua",
+    "mask": "+38(091)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Utel"
+},{
+    "iso_code": "ua",
+    "mask": "+38(092)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "PEOPLEnet"
+},{
+    "iso_code": "ua",
+    "mask": "+38(094)___-__-__",
+    "region": "Ukrajna",
+    "city": "Minden város",
+    "operator": "Intertelecom"
+}]
