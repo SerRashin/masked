@@ -580,6 +580,7 @@ inpClass.prototype = {
 
     /**
      * Метод поиска маски
+     *
      * @param _value
      * @param _country
      * @returns {boolean|*}
@@ -601,13 +602,16 @@ inpClass.prototype = {
             iso = obj['iso_code'];
 
             if(isset(pc[iso]) && empty(pc[iso])) {
-                p.loadMasks(iso, 'ru', function() {
+                p.loadMasks(iso, self.opt.lang, function() {
                     find = self.simpleFinder(value, iso);
                     self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], self.setNewMaskValue(value, find['mask']));
                     self.focused();
                     p.loaded = true;
                 });
             } else {
+                if(isset(pc[iso]) && !empty(pc[iso]) && country === false) {
+                    find = this.simpleFinder(value, iso);
+                }
                 self.setInp(self.opt.element, obj['iso_code'], obj['name'], self.setNewMaskValue(value, find['mask']));
             }
 
@@ -944,7 +948,7 @@ inpClass.prototype = {
             masklist  = pc.all,
             regex     = plugin.regex;
 
-        masklist = phoneCodes.sortPhones(masklist,'mask','desc');
+        masklist = phoneCodes.sortPhones(masklist, 'mask', 'desc');
 
         if (!empty(pc[mask_code])) {
             masklist = pc[mask_code].concat(masklist);
