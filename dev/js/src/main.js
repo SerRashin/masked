@@ -80,7 +80,7 @@ inpClass.prototype = {
                     p.loaded = true;
                 });
             } else {
-                if(isset(pc[iso]) && !empty(pc[iso]) && country === false) {
+                if(isset(pc[iso]) && !empty(pc[iso])) {
                     find = this.simpleFinder(value, iso);
                 }
                 self.setInp(self.opt.element, obj['iso_code'], obj['name'], self.setNewMaskValue(value, find['mask']));
