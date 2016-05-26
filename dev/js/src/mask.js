@@ -27,7 +27,7 @@ var Mask = function (el, args) {
         element.value       = options.value;
         element.placeholder = options.value;
 
-       self.addActions(options.element);
+        self.addActions(options.element);
     };
 
     /**
