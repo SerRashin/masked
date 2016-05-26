@@ -74,5 +74,50 @@ var phoneCodes = {
         });
 
         return maskList;
+    },
+
+    /**
+     * Загрузить маски
+     *
+     * @param type
+     * @param lang
+     * @param callback
+     */
+    loadMasks: function (type, lang, callback) {
+        var self  = this,
+            _true = true;
+
+        sAJAX({
+            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
+            type:        'GET',
+            async:       _true,
+            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
+            dataType:    'json',
+            result: function (responce) {
+                self[type] = self.sortPhones(responce, 'mask', 'desc');
+                if (typeof callback == 'function') {
+                    callback();
+                }
+            }
+        });
+    },
+    findMaskByCode: function(code) {
+        var i,
+            one,
+            self = this,
+            sortedCodes = self.sortPhones(self.all, 'name', 1);
+
+        for (i in self.all) {
+            if (self.all.hasOwnProperty(i)) {
+                one = sortedCodes[i];
+                /**
+                 * @namespace one.iso_code Код страны
+                 */
+                if (one.iso_code === code) {
+                    return one;
+                }
+            }
+        }
+        return false;
     }
 };

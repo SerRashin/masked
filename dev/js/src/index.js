@@ -1,163 +1,192 @@
-var plugin = {
-    path:   opt.path,
-    prefix: opt.prefix,
-    regex:  new RegExp('[0-9]'),
-    instances:[],
-    loaded: true,
-    phoneCodes: phoneCodes,
-    init: function (selector, args) {
-        var i,
-            f_e,
-            tId,
-            elements = [],
-            self     = this,
-            elem,
-            doc      = document;
-        if ( typeof selector === "string" ) {
-            f_e = selector[0];
-            if ( (f_e === '.') || (f_e === '#') ) {
-                selector = selector.substr(1);
+/**
+ * @var mixed doc
+ * @var null type_null
+ */
+
+var Global = {
+    initialization: true,
+    instances: [],
+    countries: [], // коды стран которые необходимо дополнительно подключить
+};
+
+var plugin = function (options) {
+    var self        = this;
+    self.elements   = [];
+    self.options    = {
+        lang:       MConf('lang'),
+        country:    MConf('country')
+    };
+
+    self.init(options);
+
+    if(typeof MaskedReady.use === type_undefined) {
+        alternativeReady.init();
+    }
+    
+    return self;
+};
+
+/**
+ * После отгрузки всех масок проинициализируем все еще раз с доп масками если есть
+ */
+plugin.postload = function () {
+    var i,
+        iso,
+        object,
+        country,
+        pc = phoneCodes,
+        g = Global,
+        ge = g.instances,
+        gc = g.countries;
+
+    for(i in gc) {
+        if(gc.hasOwnProperty(i)) {
+            country = gc[i];
+            if (isset(pc[country.iso_code]) && empty(pc[country.iso_code])) {
+
+                pc.loadMasks(country.iso_code, country.lang, function () {
+                    for (i in ge) {
+                        object = ge[i];
+                        var c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
+
+                        if(ge.hasOwnProperty(i) && languageIsset(gc, c)) {
+                            
+                            object.maskFinder(object.opt.phone, object.opt.country)
+                        }
+                    }
+                });
             }
-            if (f_e === '.') {
-                elem = doc.getElementsByClassName( selector );
-                for(i in elem) {
-                    if (elem.hasOwnProperty(i) && elem[i] !== null) {
-                        elements[elem[i].id||i] = elem[i];
+        }
+    }
+
+    g.initialization = false;
+};
+
+/**
+ * Получить инстанс
+ * @param e
+ * @returns {*}
+ */
+plugin.getInst = function (e) {
+    return Global.instances[e.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))];
+};
+
+/**
+ * Открываем доступ из вне для обращения к Masked.phoneCodes
+ */
+plugin.phoneCodes = phoneCodes;
+
+
+plugin.getById = function (id) {
+    var el = document.getElementById(id);
+    if(el !== null){
+        return this.getInst(el);
+    }
+    return false;
+}
+
+/**
+ * Переключение статуса
+ * @param e Элемент или класс
+ */
+plugin.toggle = function(e) {
+    var self = this.getInst(e),
+        opt  = self.opt;
+
+    if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+        e.parentNode.outerHTML = opt.oldState;
+    } else {
+        opt.element = e;
+        self.setTemplate();
+        opt.element.value       = opt.value;
+        self.addActions(opt.element);
+    }
+}
+
+
+plugin.prototype = {
+    init:  function(options) {
+        var self      = this;
+
+        if (options) {
+            if (typeof options === 'string') {
+                options = {
+                    selector: options
+                };
+            }
+            self.options = generalMaskedFn.extend(self.options, options);
+        }
+
+        if (typeof options.selector !== type_undefined) {
+
+            /**
+             * Вернет массив елементов
+             *
+             * @param options
+             */
+            function select(options) {
+                var i,
+                    elem,
+                    first_digit,
+                    elements = [],
+                    selector = options.selector;
+
+                if ( typeof selector === 'string' ) {
+                    first_digit = selector[0];
+
+                    if ( (first_digit === '.') || (first_digit === '#') ) {
+                        selector = selector.substr(1);
+                    }
+
+                    if (first_digit === '.') {
+                        elem = doc.getElementsByClassName( selector );
+                        for(i in elem) {
+                            if (elem.hasOwnProperty(i) && elem[i] !== type_null) {
+                                elements[elem[i].id||i] = elem[i];
+                            }
+                        }
+                    } else if (first_digit === '#') {
+                        elem = doc.getElementById( selector );
+                        if (elem !== type_null) {
+                            elements.push(elem);
+                        }
+                    } else {
+                        console.log('selector finder empty');
+                    }
+                } else if (selector.nodeType) {
+                    if (selector !== type_null) {
+                        elements.push(selector);
                     }
                 }
-            } else if (f_e === '#') {
-                elem = doc.getElementById( selector );
-                if (elem !== null) {
-                    elements.push(elem);
-                }
-            } else {
-                return ;
+                return elements;
             }
-        } else if(selector.nodeType) {
-            if (selector !== null) {
-                elements.push(selector);
-            }
+
+            self.elements = select(options);
         }
-        if (self.loaded === false) {
-            tId = setInterval(function() {
-                if (self.loaded === true) {
-                    self.loop(elements, args);
-                    clearInterval(tId);
-                }
-            }, 10);
-        } else {
-            self.loop(elements, args);
+
+        if (Object.keys(self.elements).length) {
+            MaskedObserver.add(self);
         }
+
+        return self;
     },
-    loop: function (elements, args) {
+
+    start: function () {
         var i,
             el,
             opt,
-            self = this;
+            object,
+            self     = this,
+            elements = self.elements;
+
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                opt  = self.extend(self.extend({}, args), el.dataset);
+                opt  = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
-                if (phoneCodes.all.length === 0) {
-                    self.loaded = false;
-                    self.loadMasks('all', opt.lang, (function(o) {
-                        return function () {
-                            self.loop(elements, o);
-                        }})(opt));
-                    break;
-                } else {
-                    self.preload(el, opt);
-                }
+                object  = new Mask(el, opt);
+                Global.instances[object.opt.instId] = object;
             }
-        }
-    },
-    preload:function (el, opt) {
-        var self = this,
-            obj  = new inpClass(el, opt);
-        self.instances[obj.opt.instId] = obj;
-    },
-    loadMasks: function (type, lang, callback) {
-        var self  = this,
-            pc    = phoneCodes,
-            _true = true;
-        $AJAX({
-            url:         self.path + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
-            type:        "GET",
-            async:       _true,
-            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
-            dataType:    'json',
-            result: function (responce) {
-                pc[type] = pc.sortPhones(responce, "mask", 'desc');
-                if (typeof callback == 'function') {
-                    callback(opt);
-                }
-            }
-        });
-    },
-    /**
-     * Получить инстанс
-     * @param e
-     * @returns {*}
-     */
-    getInst: function (e) {
-        var p = plugin;
-        return p.instances[e.className.match(new RegExp(p.prefix+'[0-9a-zA-Z]+'))];
-    },
-    extend: function ( defaults, options ) {
-        var i,
-            extended = {},
-            prototype = Object.prototype.hasOwnProperty;
-
-        for (i in defaults) {
-            if (defaults.hasOwnProperty(i) && prototype.call(defaults, i)) {
-                extended[i] = defaults[i];
-            }
-        }
-        for (i in options) {
-            if (options.hasOwnProperty(i) && prototype.call(options, i)) {
-                extended[i] = options[i];
-            }
-        }
-        return extended;
-    },
-    findPos: function (obj) {
-        var curleft = 0,
-            curtop  = 0;
-        if (obj && obj.offsetParent) {
-            do {
-                curleft += obj.offsetLeft;
-                curtop += obj.offsetTop;
-            } while (obj = obj.offsetParent);
-        }
-        return {
-            left: curleft,
-            top: curtop
-        };
-    },
-    getById: function (id) {
-        var el = document.getElementById(id);
-        if(el !== null){
-            return this.getInst(el);
-        }
-        return false;
-    },
-
-    /**
-     * Переключение статуса
-     * @param e Элемент или класс
-     */
-    toggle: function(e) {
-        var self = this.getInst(e),
-            opt  = self.opt;
-
-        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
-            e.parentNode.outerHTML = opt.oldState;
-        } else {
-            opt.element = e;
-            self.setTemplate();
-            opt.element.value       = opt.value;
-            self.addActions(opt.element);
         }
     }
 };

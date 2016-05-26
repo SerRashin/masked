@@ -5,25 +5,48 @@
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/masked.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-  <script type="text/javascript" src="js/inputmask.js"></script>
+  <script type="text/javascript" src="js/masked.js"></script>
   <script  type="text/javascript">
     $(document).ready(function() {
-      CBHMasks.init('.mask', {
-        phone:'7'
-      });
+        new Masked({
+            selector: '.mask',
+            phone:'7'
+        });
 
-      CBHMasks.init('.mask2', {
-        phone:false
-      });
+        new Masked({
+            selector: '.mask2',
+            phone:false,
+            one_country: 'ru'
+        });
 
-      CBHMasks.init('.masks', {
-        phone:'12345678900'
-      });
+        new Masked({
+            selector: '.masks',
+            phone:'12345678900'
+        });
+
+        var msks = new Masked({
+            phone:'12345678900'
+        });
+        msks.init('.masks3');
 
 
-      CBHMasks.init('.masks3', {
-        phone:''
-      });
+        new Masked({
+            selector: '.mask_with_exceptions',
+            phone:    '+7',
+            exceptions: {
+                'ru' : {
+                    exceptions: {
+                        '8975': '975'
+                    }
+                },
+
+                'en' : {
+                    exceptions: {
+                        '911': '199'
+                    }
+                }
+            }
+        });
 
 
       $(document).on('click','.toggleState',function() {
@@ -41,7 +64,7 @@
       <input id="phone-ex-1" type="text" class="mask" >
     </div>
     <div class="form-group">
-      <label for="phone-ex-2">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+      <label for="phone-ex-2">режим одной страны <span class="toggleState">(toggle)</span></label>
       <input id="phone-ex-2" type="text" class="mask2"  data-lang="ru" data-country="ru">
     </div>
     <div class="form-group">
@@ -60,6 +83,11 @@
       <label for="phone-ex-6">Введите номер телефона <span class="toggleState">(toggle)</span></label>
       <input id="phone-ex-6" type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
     </div>
+    <div class="form-group">
+      <label for="phone-ex-7">Маска с исключением  <span class="toggleState">(toggle)</span></label>
+      <input id="phone-ex-7" type="text"  class="mask_with_exceptions"  data-lang="ru" data-phone="" data-country="ru">
+    </div>
+      <p>Исключение +78975<p>
   </form>
 </div>
 

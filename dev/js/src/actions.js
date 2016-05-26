@@ -4,7 +4,7 @@ var actions = {
      * @return void
      */
     focus: function () {
-        plugin.getInst(this).focused();
+        Masked.getInst(this).focused();
     },
 
     /**
@@ -12,7 +12,7 @@ var actions = {
      * @return void
      */
     click: function () {
-        plugin.getInst(this).focused();
+        Masked.getInst(this).focused();
     },
 
     /**
@@ -24,21 +24,19 @@ var actions = {
             num,
             self        = this,
             p           = plugin,
-            regex       = p.regex,
             instance    = p.getInst(self),
             code        = e.which || e.keyCode,
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
-            set_caret   = instance.setCaret,
             _false      = false,
             _true       = true;
 
         if (code === 8) {  // BACKSPACE
-            index = instance.getLastNum(self);
-            if (regex.test(value[index]) === _true) {
-                instance.remChar(self, index);
-                set_caret(self, index ,index);
+            index = getLastNum(self);
+            if (_regex.test(value[index]) === _true) {
+                removeLastChar(self, index);
+                setCaretFocus(self, index ,index);
                 instance.setMask(self); // ищем новую маску
                 return _false;
             } else {
@@ -50,14 +48,14 @@ var actions = {
             } else {
                 num = value.indexOf('_');
                 if (num !== -1) { // если есть еще пустые символы
-                    if (regex.test(key) === _true) {
-                        set_caret(self, num, (num + 1));
+                    if (_regex.test(key) === _true) {
+                        setCaretFocus(self, num, (num + 1));
                     } else {
                         return _false;
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (instance.ifIssetNextMask() && regex.test(key) === _true) {
+                    if (instance.ifIssetNextMask() && _regex.test(key) === _true) {
                         return _true;
                     }
                     return _false;
@@ -76,19 +74,17 @@ var actions = {
             num,
             self        = this,
             p           = plugin,
-            regex       = p.regex,
             instance    = p.getInst(self),
             code        = e.keyCode || e.which,
             value       = self.value,
             opt         = instance.opt,
-            set_caret   = instance.setCaret,
             _false      = false;
 
         if (code === 8) {     // BACKSPACE
-            index = instance.getLastNum(self);
-            if (regex.test(value[index]) === true) {
+            index = getLastNum(self);
+            if (_regex.test(value[index]) === true) {
                 index += 1;
-                set_caret(self, index ,index);
+                setCaretFocus(self, index ,index);
                 return _false;
             } else {
                 return _false;
@@ -100,7 +96,7 @@ var actions = {
         } else {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
-            set_caret(self, index, index);
+            setCaretFocus(self, index, index);
             instance.setMask(self); // ищем новую маску
         }
     },
@@ -117,9 +113,9 @@ var actions = {
             instance        = p.getInst(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
         /*
-        * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-        * */
-        instance.opt.element.value = instance.getVal(clipboard_text);
+         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
+         * */
+        instance.opt.element.value = getPhone(clipboard_text);
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };

@@ -1,6 +1,13 @@
 {
-  "name": "inputmask",
-  "version": "1.0.0",
+  "name": "Masked",
+  "description": "Masked lib",
+  "version": "1.0.1",
+  "author": {
+    "name": "Rashin Sergey",
+    "email": "serhanters@yandex.ru",
+    "url": "http://vk.com/ser_r"
+  },
+
   "devDependencies": {
     "browser-sync": "^2.2.3",
     "grunt": "~0.4.5",

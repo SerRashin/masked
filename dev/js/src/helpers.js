@@ -1,5 +1,11 @@
-var und = 'undefined';
-
+var type_undefined      = 'undefined',
+    type_null           = 'null',
+    _regex          =  new RegExp('[0-9]');
+/**
+ * Обработчик событий
+ *
+ * @type {{add, remove}}
+ */
 var Event = (function() {
     var guid = 0;
     var win = window;
@@ -105,48 +111,21 @@ var Event = (function() {
     }
 }());
 
-function addClass(o, c) {
-    var object_class = o.className;
-    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return;
-    o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-}
-function removeClass(o, c) {
-    o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
-}
-/**
- * Проверяет есть ли в родительском елементе указанный
- * @param c Child node
- * @param p Parent node
- * @returns {boolean}
- */
-function childOf(c,p){ //returns boolean
-    while((c=c.parentNode)&&c!==p);
-    return !!c;
-}
-function makeid() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for( var i=0; i < 8; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
-}
-
 /**
  *  SUPPOORT
  *
-     CORS is supported in the following browsers:
-
-     Chrome 3+
-     Firefox 3.5+
-     Opera 12+
-     Safari 4+
-     Internet Explorer 8+
-
- @author Sergey Rashin
- @link https://github.com/serhanters/sAJAX
+ *   CORS is supported in the following browsers:
+ *
+ *   Chrome 3+
+ *   Firefox 3.5+
+ *   Opera 12+
+ *   Safari 4+
+ *   Internet Explorer 8+
+ *
+ * @author Sergey Rashin
+ * @link https://github.com/serhanters/sAJAX
  */
-
-$AJAX = function (obj) {
+var sAJAX = function (obj) {
     var i,
         res,
         url,
@@ -155,6 +134,7 @@ $AJAX = function (obj) {
         statusText,
         callback,
         responses = {},
+        und       = 'undefined',
         availableType       = ['GET', 'POST', 'PUT'],
         availableDataType   = ['json', 'text'],
         headers             = {},
@@ -169,6 +149,15 @@ $AJAX = function (obj) {
             timeout:        obj.timeout         || 10000,
             type:           ( availableType.indexOf(obj.type) !== -1 ? obj.type : null )                || "GET",
             dataType:       ( availableDataType.indexOf(obj.dataType) !== -1 ? obj.dataType : null )    || "json"
+        },
+        makeQueryString      = function(data) {
+            var query = [];
+            for (var i in data) {
+                if (data.hasOwnProperty(i)) {
+                    query.push(encodeURIComponent(i) + '=' + encodeURIComponent(data[i]));
+                }
+            }
+            return query.join('&');
         };
 
     if (empty(args.url)) {
@@ -195,6 +184,15 @@ $AJAX = function (obj) {
     xhr = new (("onload" in new xmlhttpobj()) ? xmlhttpobj : XDomainRequest)();
 
     url = args.url;
+
+    if (typeof args.data === 'string') {
+        try {args.data = JSON.parse(args.data);} catch ( e ) {}
+    }
+
+    if (typeof args.data === 'object') {
+        args.data = makeQueryString(args.data);
+    }
+
     if (args.type === 'GET' && args.data && args.data.length>0) {
         url = args.url + '?' +args.data.toString();
     }
@@ -255,7 +253,11 @@ $AJAX = function (obj) {
                 if(args.dataType === 'text') {
                     res = responses.text || '';
                 } else if (args.dataType === 'json') {
-                    res = JSON.parse(responses.text) || '';
+                    try {
+                        res = JSON.parse(responses.text) || '';
+                    } catch ( e ) {
+                        res = '';
+                    }
                 }
                 /**
                  * @param a responce result
@@ -276,7 +278,6 @@ $AJAX = function (obj) {
         xhr.onreadystatechange = callback;
     }
 };
-
 
 /**
  * Проверяет переменную на существование
@@ -321,4 +322,134 @@ function empty()  {
         i++;
     }
     return false;
+}
+
+/**
+ * Добавляет класс
+ *
+ * @param o
+ * @param c
+ */
+function addClass(o, c) {
+    var object_class = o.className;
+    if (new RegExp("(^|\\s)" + c + "(\\s|$)", "g").test(object_class)) return;
+    o.className = (object_class + " " + c).replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+}
+
+/**
+ * Удаляет класс
+ * @param o
+ * @param c
+ */
+function removeClass(o, c) {
+    o.className = o.className.replace(new RegExp("(^|\\s)" + c + "(\\s|$)", "g"), "$1").replace(/\s+/g, " ").replace(/(^ | $)/g, "")
+}
+
+/**
+ * Проверяет есть ли в родительском елементе указанный
+ *
+ * @param c Child node
+ * @param p Parent node
+ * @returns {boolean}
+ */
+function childOf(c,p){ //returns boolean
+    while((c=c.parentNode)&&c!==p);
+    return !!c;
+}
+
+/**
+ * Получить значение маски без символов только int
+ * @param value
+ * @returns {string}
+ */
+function getPhone(value) {
+    return value.replace(/\D+/g,"");
+}
+
+/**
+ * Вернуть заполненное значение маски
+ *
+ * @param _value
+ * @param _mask
+ * @returns {string}
+ */
+function getNewMaskValue(_value, _mask) {
+    var i,
+        digit,
+        value       = getPhone(_value),
+        mask        = _mask.split(''),
+        len         = 0;
+    for (i in mask) {
+        if (mask.hasOwnProperty(i)) {
+            digit = mask[i];
+            if (digit == '_') {
+                if (len < value.length) {
+                    mask[i] = value[len];
+                    len++;
+                }
+            }
+        }
+    }
+    return mask.join('');
+}
+
+/**
+ * Функция может устанавливать курсор на позицию start||end или выделять символ для замены
+ *   если start и end равны, то курсор устанавливается на позицию start||end
+ *   если не равны, выделяет символы от start до end
+ */
+function setCaretFocus(input, start, end) {
+    var character = 'character';
+    input.focus();
+    if (input.setSelectionRange) {
+        input.setSelectionRange(start, end);
+    } else if (input.createTextRange) {
+        var range = input.createTextRange();
+        range.collapse(true);
+        range.moveEnd(character, start);
+        range.moveStart(character, end);
+        range.select();
+    }
+}
+
+
+/**
+ * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
+ * @param e
+ * @returns {Number}
+ */
+function getLastNum(e) {
+    var i,
+        v  = e.value;
+    for (i = v.length; i >= 0; i--) {
+        if (_regex.test(v[i])) {
+            break;
+        }
+    }
+    return i;
+}
+
+
+/**
+ * Удалить последний элемент
+ * @param e
+ * @param i
+ */
+function removeLastChar(e, i) {
+    var temp = e.value.split('');
+    temp[i]='_';
+    e.value = temp.join('');
+}
+
+function languageIsset(_array, _object) {
+    var a = false;
+    for(var i in _array) {
+        if(_array.hasOwnProperty(i)) {
+            if (_array[i].iso_code === _object.iso_code && _array[i].lang === _object.lang) {
+                a = true;break;
+            }
+        }
+    }
+
+    return a;
 }

@@ -16,6 +16,18 @@
     display:block;
   }
 
+  .country {
+    .selected {
+      .flag{
+        left: 8px;
+        position: absolute;
+        top: 28%;
+        width: 20px;
+        z-index:1;
+      }
+    }
+  }
+
   .flags {
     .selected {
       cursor: pointer;
@@ -32,7 +44,7 @@
       .flag {
         left: 8px;
         position: absolute;
-        top: 32%;
+        top: 28%;
         width: 20px;
 
         .caret {
@@ -138,6 +150,7 @@
 
     &.ac {
       height: 10px;
+      top:34% !important;
       background-position: 0px 0px;
     }
     &.ad {
@@ -146,6 +159,7 @@
     }
     &.ae {
       height: 10px;
+      top:34% !important;
       background-position: -44px 0px;
     }
     &.af {
@@ -158,6 +172,7 @@
     }
     &.ai {
       height: 10px;
+      top:34% !important;
       background-position: -110px 0px;
     }
     &.al {
@@ -166,6 +181,7 @@
     }
     &.am {
       height: 10px;
+      top:34% !important;
       background-position: -154px 0px;
     }
     &.ao {
@@ -182,6 +198,7 @@
     }
     &.as {
       height: 10px;
+      top:34% !important;
       background-position: -242px 0px;
     }
     &.at {
@@ -190,6 +207,7 @@
     }
     &.au {
       height: 10px;
+      top:34% !important;
       background-position: -286px 0px;
     }
     &.aw {
@@ -202,10 +220,12 @@
     }
     &.az {
       height: 10px;
+      top:34% !important;
       background-position: -352px 0px;
     }
     &.ba {
       height: 10px;
+      top:34% !important;
       background-position: -374px 0px;
     }
     &.bb {
@@ -246,10 +266,12 @@
     }
     &.bm {
       height: 10px;
+      top:34% !important;
       background-position: -592px 0px;
     }
     &.bn {
       height: 10px;
+      top:34% !important;
       background-position: -614px 0px;
     }
     &.bo {
@@ -266,6 +288,7 @@
     }
     &.bs {
       height: 10px;
+      top:34% !important;
       background-position: -702px 0px;
     }
     &.bt {
@@ -282,6 +305,7 @@
     }
     &.by {
       height: 10px;
+      top:34% !important;
       background-position: -790px 0px;
     }
     &.bz {
@@ -290,10 +314,12 @@
     }
     &.ca {
       height: 10px;
+      top:34% !important;
       background-position: -834px 0px;
     }
     &.cc {
       height: 10px;
+      top:34% !important;
       background-position: -856px 0px;
     }
     &.cd {
@@ -318,6 +344,7 @@
     }
     &.ck {
       height: 10px;
+      top:34% !important;
       background-position: -983px 0px;
     }
     &.cl {
@@ -346,6 +373,7 @@
     }
     &.cu {
       height: 10px;
+      top:34% !important;
       background-position: -1137px 0px;
     }
     &.cv {
@@ -358,6 +386,7 @@
     }
     &.cx {
       height: 10px;
+      top:34% !important;
       background-position: -1203px 0px;
     }
     &.cy {
@@ -374,6 +403,7 @@
     }
     &.dg {
       height: 10px;
+      top:34% !important;
       background-position: -1291px 0px;
     }
     &.dj {
@@ -386,6 +416,7 @@
     }
     &.dm {
       height: 10px;
+      top:34% !important;
       background-position: -1357px 0px;
     }
     &.do {
@@ -414,10 +445,12 @@
     }
     &.eh {
       height: 10px;
+      top:34% !important;
       background-position: -1511px 0px;
     }
     &.er {
       height: 10px;
+      top:34% !important;
       background-position: -1533px 0px;
     }
     &.es {
@@ -426,6 +459,7 @@
     }
     &.et {
       height: 10px;
+      top:34% !important;
       background-position: -1577px 0px;
     }
     &.eu {
@@ -438,10 +472,12 @@
     }
     &.fj {
       height: 10px;
+      top:34% !important;
       background-position: -1643px 0px;
     }
     &.fk {
       height: 10px;
+      top:34% !important;
       background-position: -1665px 0px;
     }
     &.fm {
@@ -462,6 +498,7 @@
     }
     &.gb {
       height: 10px;
+      top:34% !important;
       background-position: -1775px 0px;
     }
     &.gd {
@@ -486,6 +523,7 @@
     }
     &.gi {
       height: 10px;
+      top:34% !important;
       background-position: -1907px 0px;
     }
     &.gl {
@@ -514,6 +552,7 @@
     }
     &.gs {
       height: 10px;
+      top:34% !important;
       background-position: -2061px 0px;
     }
     &.gt {
@@ -526,6 +565,7 @@
     }
     &.gw {
       height: 10px;
+      top:34% !important;
       background-position: -2127px 0px;
     }
     &.gy {
@@ -538,14 +578,17 @@
     }
     &.hm {
       height: 10px;
+      top:34% !important;
       background-position: -2193px 0px;
     }
     &.hn {
       height: 10px;
+      top:34% !important;
       background-position: -2215px 0px;
     }
     &.hr {
       height: 10px;
+      top:34% !important;
       background-position: -2237px 0px;
     }
     &.ht {
@@ -554,6 +597,7 @@
     }
     &.hu {
       height: 10px;
+      top:34% !important;
       background-position: -2281px 0px;
     }
     &.ic {
@@ -566,6 +610,7 @@
     }
     &.ie {
       height: 10px;
+      top:34% !important;
       background-position: -2347px 0px;
     }
     &.il {
@@ -574,6 +619,7 @@
     }
     &.im {
       height: 10px;
+      top:34% !important;
       background-position: -2391px 0px;
     }
     &.in {
@@ -582,6 +628,7 @@
     }
     &.io {
       height: 10px;
+      top:34% !important;
       background-position: -2435px 0px;
     }
     &.iq {
@@ -606,10 +653,12 @@
     }
     &.jm {
       height: 10px;
+      top:34% !important;
       background-position: -2567px 0px;
     }
     &.jo {
       height: 10px;
+      top:34% !important;
       background-position: -2589px 0px;
     }
     &.jp {
@@ -630,6 +679,7 @@
     }
     &.ki {
       height: 10px;
+      top:34% !important;
       background-position: -2699px 0px;
     }
     &.km {
@@ -642,6 +692,7 @@
     }
     &.kp {
       height: 10px;
+      top:34% !important;
       background-position: -2765px 0px;
     }
     &.kr {
@@ -650,14 +701,17 @@
     }
     &.kw {
       height: 10px;
+      top:34% !important;
       background-position: -2809px 0px;
     }
     &.ky {
       height: 10px;
+      top:34% !important;
       background-position: -2831px 0px;
     }
     &.kz {
       height: 10px;
+      top:34% !important;
       background-position: -2853px 0px;
     }
     &.la {
@@ -670,6 +724,7 @@
     }
     &.lc {
       height: 10px;
+      top:34% !important;
       background-position: -2919px 0px;
     }
     &.li {
@@ -678,6 +733,7 @@
     }
     &.lk {
       height: 10px;
+      top:34% !important;
       background-position: -2963px 0px;
     }
     &.lr {
@@ -698,10 +754,12 @@
     }
     &.lv {
       height: 10px;
+      top:34% !important;
       background-position: -3073px 0px;
     }
     &.ly {
       height: 10px;
+      top:34% !important;
       background-position: -3095px 0px;
     }
     &.ma {
@@ -714,10 +772,12 @@
     }
     &.md {
       height: 10px;
+      top:34% !important;
       background-position: -3160px 0px;
     }
     &.me {
       height: 10px;
+      top:34% !important;
       background-position: -3182px 0px;
     }
     &.mf {
@@ -734,6 +794,7 @@
     }
     &.mk {
       height: 10px;
+      top:34% !important;
       background-position: -3270px 0px;
     }
     &.ml {
@@ -746,6 +807,7 @@
     }
     &.mn {
       height: 10px;
+      top:34% !important;
       background-position: -3336px 0px;
     }
     &.mo {
@@ -754,6 +816,7 @@
     }
     &.mp {
       height: 10px;
+      top:34% !important;
       background-position: -3380px 0px;
     }
     &.mq {
@@ -766,6 +829,7 @@
     }
     &.ms {
       height: 10px;
+      top:34% !important;
       background-position: -3446px 0px;
     }
     &.mt {
@@ -790,6 +854,7 @@
     }
     &.my {
       height: 10px;
+      top:34% !important;
       background-position: -3578px 0px;
     }
     &.mz {
@@ -802,6 +867,7 @@
     }
     &.nc {
       height: 10px;
+      top:34% !important;
       background-position: -3644px 0px;
     }
     &.ne {
@@ -810,10 +876,12 @@
     }
     &.nf {
       height: 10px;
+      top:34% !important;
       background-position: -3686px 0px;
     }
     &.ng {
       height: 10px;
+      top:34% !important;
       background-position: -3708px 0px;
     }
     &.ni {
@@ -834,18 +902,22 @@
     }
     &.nr {
       height: 10px;
+      top:34% !important;
       background-position: -3811px 0px;
     }
     &.nu {
       height: 10px;
+      top:34% !important;
       background-position: -3833px 0px;
     }
     &.nz {
       height: 10px;
+      top:34% !important;
       background-position: -3855px 0px;
     }
     &.om {
       height: 10px;
+      top:34% !important;
       background-position: -3877px 0px;
     }
     &.pa {
@@ -866,6 +938,7 @@
     }
     &.ph {
       height: 10px;
+      top:34% !important;
       background-position: -3987px 0px;
     }
     &.pk {
@@ -882,6 +955,7 @@
     }
     &.pn {
       height: 10px;
+      top:34% !important;
       background-position: -4075px 0px;
     }
     &.pr {
@@ -890,6 +964,7 @@
     }
     &.ps {
       height: 10px;
+      top:34% !important;
       background-position: -4119px 0px;
     }
     &.pt {
@@ -934,14 +1009,17 @@
     }
     &.sb {
       height: 10px;
+      top:34% !important;
       background-position: -4361px 0px;
     }
     &.sc {
       height: 10px;
+      top:34% !important;
       background-position: -4383px 0px;
     }
     &.sd {
       height: 10px;
+      top:34% !important;
       background-position: -4405px 0px;
     }
     &.se {
@@ -954,10 +1032,12 @@
     }
     &.sh {
       height: 10px;
+      top:34% !important;
       background-position: -4471px 0px;
     }
     &.si {
       height: 10px;
+      top:34% !important;
       background-position: -4493px 0px;
     }
     &.sj {
@@ -990,10 +1070,12 @@
     }
     &.ss {
       height: 10px;
+      top:34% !important;
       background-position: -4669px 0px;
     }
     &.st {
       height: 10px;
+      top:34% !important;
       background-position: -4691px 0px;
     }
     &.sv {
@@ -1014,10 +1096,12 @@
     }
     &.ta {
       height: 10px;
+      top:34% !important;
       background-position: -4801px 0px;
     }
     &.tc {
       height: 10px;
+      top:34% !important;
       background-position: -4823px 0px;
     }
     &.td {
@@ -1038,14 +1122,17 @@
     }
     &.tj {
       height: 10px;
+      top:34% !important;
       background-position: -4933px 0px;
     }
     &.tk {
       height: 10px;
+      top:34% !important;
       background-position: -4955px 0px;
     }
     &.tl {
       height: 10px;
+      top:34% !important;
       background-position: -4977px 0px;
     }
     &.tm {
@@ -1058,6 +1145,7 @@
     }
     &.to {
       height: 10px;
+      top:34% !important;
       background-position: -5043px 0px;
     }
     &.tr {
@@ -1070,6 +1158,7 @@
     }
     &.tv {
       height: 10px;
+      top:34% !important;
       background-position: -5109px 0px;
     }
     &.tw {
@@ -1090,6 +1179,7 @@
     }
     &.uk {
       height: 10px;
+      top:34% !important;
       background-position: -1775px 0px;
     }
     &.um {
@@ -1106,6 +1196,7 @@
     }
     &.uz {
       height: 10px;
+      top:34% !important;
       background-position: -5285px 0px;
     }
     &.va {
@@ -1122,6 +1213,7 @@
     }
     &.vg {
       height: 10px;
+      top:34% !important;
       background-position: -5368px 0px;
     }
     &.vi {
@@ -1142,6 +1234,7 @@
     }
     &.ws {
       height: 10px;
+      top:34% !important;
       background-position: -5478px 0px;
     }
     &.xk {
@@ -1166,6 +1259,7 @@
     }
     &.zw {
       height: 10px;
+      top:34% !important;
       background-position: -5610px 0px;
     }
 

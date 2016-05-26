@@ -1,30 +1,36 @@
+var banner =
+"/**! \n" +
+"* <%= pkg.name %> - v<%= pkg.version %> - \n" +
+"* \n" +
+"* @author Rashin Sergey \n" +
+"* @version <%= pkg.version %> <%= grunt.template.today('yyyy-mm-dd') %>\n" +
+"*/\n"
+    ;
 module.exports = function(grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
         concat: {
-            options: {
-                banner: '/* Кто скопирует код тот какашка! */\n'
-            },
             masked: {
                 src: [
                     'dev/js/src/helpers.js',
                     'dev/js/src/phone_codes.js',
                     'dev/js/src/actions.js',
-                    'dev/js/src/main.js',
-                    'dev/js/src/settings.js',
+                    'dev/js/src/mask.js',
                     'dev/js/src/index.js'
                 ],
-                dest:'js/inputmask.js'
+                dest:'js/masked.js'
             }
         },
 
         uglify: {
-            options: {},
+            options: {
+                banner: banner
+            },
             masked: {
                 files: {
-                    'js/inputmask.min.js' : '<%= concat.masked.dest %>'
+                    'js/masked.min.js' : '<%= concat.masked.dest %>'
                 }
             }
         },
@@ -91,11 +97,18 @@ module.exports = function(grunt) {
         code_wrap: {
             masked: {
                 src: 'dev/js/template/js/wrapper.js',
-                dest: 'js/inputmask.js',
+                dest: 'js/masked.js',
                 options: {
                     'data': {
+                        'banner': banner,
+                        'general': function () {
+                            return grunt.file.read('dev/js/src/general.js')
+                        },
+                        'config_source': function () {
+                            return grunt.file.read('dev/js/src/config.js')
+                        },
                         'source': function () {
-                            return grunt.file.read('js/inputmask.js')
+                            return grunt.file.read('js/masked.js')
                         }
                     },
                     selector: {
@@ -137,7 +150,7 @@ module.exports = function(grunt) {
 
         //'sass:masked',
         //'cssmin:masked',
-        'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
+       // 'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
        // 'browserSync',
         'watch'
     ]);
@@ -147,6 +160,6 @@ module.exports = function(grunt) {
         'code_wrap:masked',
         'uglify:masked',
 
-       // 'sass'
+       'sass'
     ]);
 };
