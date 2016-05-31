@@ -2,7 +2,7 @@
 * Masked - v1.0.1 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.1 2016-05-26
+* @version 1.0.1 2016-05-31
 */
 
 
@@ -881,7 +881,7 @@ var Mask = function (el, args) {
         instId:           MConf('prefix') + makeId(),   //  Селектор выбранного елемента
         element:          el,
         lang:             args.lang,
-        country:          args.country,
+        country:          args.country              || MConf('country'),
         phone:            args.phone                || false,
         mask:             args.mask                 || '',
         onsend:           args.onsend               || null,
@@ -928,12 +928,13 @@ Mask.prototype = {
             _false = false;
 
 
+
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
          */
         if (!value) {
-            if (MConf('one_country') !== false) {
-                if (find = pc.findMaskByCode(MConf('one_country'))) {
+            if (one_country !== false) {
+                if (find = pc.findMaskByCode(one_country)) {
                     value = getPhone(find.mask);
                 }
             } else {
@@ -1583,10 +1584,12 @@ plugin.prototype = {
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                opt  = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
+                if (!el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
+                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
-                object  = new Mask(el, opt);
-                Global.instances[object.opt.instId] = object;
+                    object = new Mask(el, opt);
+                    Global.instances[object.opt.instId] = object;
+                }
             }
         }
     }

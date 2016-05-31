@@ -182,10 +182,12 @@ plugin.prototype = {
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                opt  = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
+                if (!el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
+                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
-                object  = new Mask(el, opt);
-                Global.instances[object.opt.instId] = object;
+                    object = new Mask(el, opt);
+                    Global.instances[object.opt.instId] = object;
+                }
             }
         }
     }

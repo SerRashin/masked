@@ -48,7 +48,7 @@ var Mask = function (el, args) {
         instId:           MConf('prefix') + makeId(),   //  Селектор выбранного елемента
         element:          el,
         lang:             args.lang,
-        country:          args.country,
+        country:          args.country              || MConf('country'),
         phone:            args.phone                || false,
         mask:             args.mask                 || '',
         onsend:           args.onsend               || null,
@@ -95,12 +95,13 @@ Mask.prototype = {
             _false = false;
 
 
+
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
          */
         if (!value) {
-            if (MConf('one_country') !== false) {
-                if (find = pc.findMaskByCode(MConf('one_country'))) {
+            if (one_country !== false) {
+                if (find = pc.findMaskByCode(one_country)) {
                     value = getPhone(find.mask);
                 }
             } else {
