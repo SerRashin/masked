@@ -51,7 +51,8 @@ plugin.postload = function () {
 
                         if(ge.hasOwnProperty(i) && languageIsset(gc, c)) {
                             
-                            object.maskFinder(object.opt.phone, object.opt.country)
+                            object.maskFinder(object.opt.phone, object.opt.country);
+                            object.blured();
                         }
                     }
                 });
@@ -59,6 +60,12 @@ plugin.postload = function () {
         }
     }
 
+    for(i in ge) {
+        if(ge.hasOwnProperty(i)) {
+            ge[i].blured();
+        }
+    }
+    
     g.initialization = false;
 };
 

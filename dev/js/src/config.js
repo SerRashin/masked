@@ -12,7 +12,7 @@ var MaskedConfig = MConf = (function() {
 
 
     var options = {
-        pathToList:         '//masked.proj/js/masks/',
+        pathToList:         '/js/masks/',
         prefix:             'instId_',
         lang:               'ru',
         country:            'ru',

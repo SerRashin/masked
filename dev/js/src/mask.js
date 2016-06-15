@@ -416,6 +416,13 @@ Mask.prototype = {
         setCaretFocus(e, i, i);
     },
 
+    /**
+     * Снять фокус
+     */
+    blured: function() {
+        this.opt.element.blur();
+    },
+
     maskReplace: function () {
         var self        = this,
             pc          = phoneCodes,

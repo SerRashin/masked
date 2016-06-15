@@ -2,7 +2,7 @@
 * Masked - v1.0.1 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.1 2016-05-31
+* @version 1.0.1 2016-06-15
 */
 
 
@@ -111,7 +111,7 @@ var MaskedConfig = MConf = (function() {
 
 
     var options = {
-        pathToList:         '//masked.proj/js/masks/',
+        pathToList:         '/js/masks/',
         prefix:             'instId_',
         lang:               'ru',
         country:            'ru',
@@ -1249,6 +1249,13 @@ Mask.prototype = {
         setCaretFocus(e, i, i);
     },
 
+    /**
+     * Снять фокус
+     */
+    blured: function() {
+        this.opt.element.blur();
+    },
+
     maskReplace: function () {
         var self        = this,
             pc          = phoneCodes,
@@ -1453,7 +1460,8 @@ plugin.postload = function () {
 
                         if(ge.hasOwnProperty(i) && languageIsset(gc, c)) {
                             
-                            object.maskFinder(object.opt.phone, object.opt.country)
+                            object.maskFinder(object.opt.phone, object.opt.country);
+                            object.blured();
                         }
                     }
                 });
@@ -1461,6 +1469,12 @@ plugin.postload = function () {
         }
     }
 
+    for(i in ge) {
+        if(ge.hasOwnProperty(i)) {
+            ge[i].blured();
+        }
+    }
+    
     g.initialization = false;
 };
 
