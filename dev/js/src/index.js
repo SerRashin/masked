@@ -31,6 +31,7 @@ var plugin = function (options) {
  */
 plugin.postload = function () {
     var i,
+        c,
         iso,
         object,
         country,
@@ -46,13 +47,15 @@ plugin.postload = function () {
 
                 pc.loadMasks(country.iso_code, country.lang, function () {
                     for (i in ge) {
-                        object = ge[i];
-                        var c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
+                        if(ge.hasOwnProperty(i)) {
+                            object = ge[i];
+                            c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
 
-                        if(ge.hasOwnProperty(i) && languageIsset(gc, c)) {
-                            
-                            object.maskFinder(object.opt.phone, object.opt.country);
-                            object.blured();
+                            if(languageIsset(gc, c)) {
+
+                                object.maskFinder(object.opt.phone, object.opt.country);
+                                object.blured();
+                            }
                         }
                     }
                 });
