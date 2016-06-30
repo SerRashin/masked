@@ -9,8 +9,6 @@ var MaskedConfig = MConf = (function() {
         }
     };
 
-
-
     var options = {
         pathToList:         '/js/masks/',
         prefix:             'instId_',
@@ -26,7 +24,7 @@ var MaskedConfig = MConf = (function() {
         if (typeof args === 'string') {
             return options[args];
         } else {
-            return generalMaskedFn.extend(options, args);
+            return options = generalMaskedFn.extend(options, args);
         }
     };
 })();

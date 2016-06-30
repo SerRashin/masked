@@ -52,26 +52,28 @@ var phoneCodes = {
             key      = (k  == txt_mask) ? txt_mask : 'name',
             sort     = (s == txt_desc) ? txt_desc : txt_asc;
 
-        maskList.sort(function (a, b) {
-            if (!isset(a[key]) || !isset(b[key])) {
-                return !isset(a[key]) ? 1 : -1;
-            }
+        if (maskList) {
+            maskList.sort(function (a, b) {
+                if (!isset(a[key]) || !isset(b[key])) {
+                    return !isset(a[key]) ? 1 : -1;
+                }
 
-            if (key === txt_mask) {
-                a = a[key].replace(/\D+/g,"");
-                b = b[key].replace(/\D+/g,"");
-            } else {
-                a = a[key];
-                b = b[key];
-            }
-            if (a > b) {
-                return sort==txt_asc ? 1:-1;
-            } else if (a < b) {
-                return sort==txt_asc ? -1:1;
-            } else {
-                return 0;
-            }
-        });
+                if (key === txt_mask) {
+                    a = a[key].replace(/\D+/g,"");
+                    b = b[key].replace(/\D+/g,"");
+                } else {
+                    a = a[key];
+                    b = b[key];
+                }
+                if (a > b) {
+                    return sort==txt_asc ? 1:-1;
+                } else if (a < b) {
+                    return sort==txt_asc ? -1:1;
+                } else {
+                    return 0;
+                }
+            });
+        }
 
         return maskList;
     },
