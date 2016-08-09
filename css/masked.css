@@ -1,5 +1,6 @@
 .CBH-masks {
   position: relative;
+  display: inline-block;
 }
 .CBH-masks:before, .CBH-masks:after {
   content: " ";
@@ -104,6 +105,14 @@
   z-index: 0;
   user-select: none !important;
   margin: 0;
+}
+.CBH-masks input::selection {
+  background: #00a3e1;
+  color: #fff;
+}
+.CBH-masks input::-moz-selection {
+  background: #00a3e1;
+  color: #fff;
 }
 
 .CBH-masks .flag {

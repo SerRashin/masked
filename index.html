@@ -4,13 +4,18 @@
   <title>Masks Project</title>
   <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet" href="css/masked.css">
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
   <script type="text/javascript" src="js/masked.js"></script>
   <script  type="text/javascript">
     $(document).ready(function() {
+
+        MaskedConfig({'lang': 'ru'});
+
         new Masked({
-            selector: '.mask',
-            phone:'7'
+            selector: '#phone-editable',
+            phone:'7',
+            select_range: true // разрешено выделение длязамены
         });
 
         new Masked({
@@ -39,7 +44,6 @@
                         '8975': '975'
                     }
                 },
-
                 'en' : {
                     exceptions: {
                         '911': '199'
@@ -57,34 +61,34 @@
   </script>
 </head>
 <body>
-<div class="container" style="max-width:300px;margin-top:150px">
+<div class="container">
   <form>
     <div class="form-group">
-      <label for="phone-ex-1">Введите номер телефона <span class="toggleState">(toggle)</span></label>
-      <input id="phone-ex-1" type="text" class="mask" >
+      <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span></label>
+      <input id="phone-editable" type="text" class="mask" >
     </div>
     <div class="form-group">
-      <label for="phone-ex-2">режим одной страны <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-2">режим одной страны <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-ex-2" type="text" class="mask2"  data-lang="ru" data-country="ru">
     </div>
     <div class="form-group">
-      <label for="phone-ex-3">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-3">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-ex-3" type="text"  class="masks"  data-lang="ru" data-country="ru">
     </div>
     <div class="form-group">
-      <label for="phone-ex-4">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-4">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-ex-4" type="text"  class="masks"  data-lang="ru" data-country="ru" data-phone="380957131373">
     </div>
     <div class="form-group">
-      <label for="phone-ex-5">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-5">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-ex-5" type="text"  class="masks"  data-lang="ru" data-phone="77985472145" data-country="ru">
     </div>
     <div class="form-group">
-      <label for="phone-ex-6">Введите номер телефона <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-6">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-ex-6" type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
     </div>
     <div class="form-group">
-      <label for="phone-ex-7">Маска с исключением  <span class="toggleState">(toggle)</span></label>
+      <label class="db" for="phone-ex-7">Маска с исключением  </label>
       <input id="phone-ex-7" type="text"  class="mask_with_exceptions"  data-lang="ru" data-phone="" data-country="ru">
     </div>
       <p>Исключение +78975<p>

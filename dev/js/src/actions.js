@@ -1,10 +1,20 @@
+
+
 var actions = {
+    text:null,
     /**
      * При фокусе на поле ввода
      * @return void
      */
-    focus: function () {
+    focus: function (e) {
         Masked.getInst(this).focused();
+    },
+
+    /**
+     * При двойном нажатии
+     */
+    dblclick:function () {
+        this.click();
     },
 
     /**
@@ -12,7 +22,29 @@ var actions = {
      * @return void
      */
     click: function () {
-        Masked.getInst(this).focused();
+        var inst = Masked.getInst(this);
+
+        if (inst.opt.select_range !== false) {
+            inst.setRange();
+        } else {
+            inst.focused();
+        }
+    },
+
+    mouseup: function () {
+
+
+        // var selObj = window.getSelection();
+        // alert(selObj);
+        // var selRange = selObj.getRangeAt(0);
+
+    },
+
+    blur: function () {
+        var inst = Masked.getInst(this);
+        if (inst.opt.select_range !== false) {
+            inst.unsetRange();
+        }
     },
 
     /**
@@ -29,15 +61,26 @@ var actions = {
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
+            select_range= instance.opt.select_range,
             _false      = false,
             _true       = true;
 
         if (code === 8) {  // BACKSPACE
             index = getLastNum(self);
             if (_regex.test(value[index]) === _true) {
+
+                if (select_range !== false) {
+                    if (select_range.focus === true) {
+                        instance.replaceRange();
+                        index   = select_range.start;
+                        instance.unsetRange();
+                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                    }
+                }
                 removeLastChar(self, index);
                 setCaretFocus(self, index ,index);
                 instance.setMask(self); // ищем новую маску
+                instance.focused();
                 return _false;
             } else {
                 return _false;
@@ -46,9 +89,20 @@ var actions = {
             if(ctrlKey === true && code === 86) {
                 return _true;
             } else {
+
                 num = value.indexOf('_');
+                if (select_range !== false) {
+                    if (select_range.focus === true) {
+                        instance.replaceRange();
+                        num   = select_range.start;
+                        value = self.value;
+                        instance.unsetRange();
+                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                    }
+                }
+
                 if (num !== -1) { // если есть еще пустые символы
-                    if (_regex.test(key) === _true) {
+                    if (_regex.test(key) === _true && value[num] === '_' ) {
                         setCaretFocus(self, num, (num + 1));
                     } else {
                         return _false;
@@ -84,7 +138,7 @@ var actions = {
             index = getLastNum(self);
             if (_regex.test(value[index]) === true) {
                 index += 1;
-                setCaretFocus(self, index ,index);
+                instance.focused();
                 return _false;
             } else {
                 return _false;
@@ -96,8 +150,9 @@ var actions = {
         } else {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
-            setCaretFocus(self, index, index);
+
             instance.setMask(self); // ищем новую маску
+            instance.focused();
         }
     },
 
@@ -112,9 +167,11 @@ var actions = {
             p               = plugin,
             instance        = p.getInst(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
-        /*
+
+        /**
          * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-         * */
+         *
+         */
         instance.opt.element.value = getPhone(clipboard_text);
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }

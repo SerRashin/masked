@@ -412,7 +412,6 @@ function setCaretFocus(input, start, end) {
     }
 }
 
-
 /**
  * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
  * @param e
@@ -446,7 +445,8 @@ function languageIsset(_array, _object) {
     for(var i in _array) {
         if(_array.hasOwnProperty(i)) {
             if (_array[i].iso_code === _object.iso_code && _array[i].lang === _object.lang) {
-                a = true;break;
+                a = true;
+                break;
             }
         }
     }

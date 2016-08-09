@@ -17,6 +17,8 @@ var MaskedConfig = MConf = (function() {
         one_country:        false, // false or string 'iso_code'
         first_countries:    ['ru'],
         exceptions:         exception_example,
+        initial_focus:      false,
+        select_range:       false
     };
 
     

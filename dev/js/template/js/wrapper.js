@@ -5,10 +5,10 @@
 {{config_source}}
 
 
-var Masked = (function(doc) {
+var Masked = (function(doc, win) {
     {{source}}
     return plugin;
-})(document);
+})(document, window);
 // $.masked = new Masked;
 
 /**

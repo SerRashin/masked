@@ -19,6 +19,8 @@ var Mask = function (el, args) {
         addClass(self.opt.element, self.opt.instId);
         self.opt.oldState =  el.outerHTML;
 
+
+
         self.setTemplate();
 
         options = self.opt;
@@ -58,7 +60,14 @@ var Mask = function (el, args) {
         value:            '',
         name:             '',
         old:              {},
-        oldState:         null    // предыдущее состояние для переключения активности
+        oldState:         null,    // предыдущее состояние для переключения активностиб
+        initial_focus:    args.initial_focus       || MConf('initial_focus'),
+        select_range:     !args.select_range && !MConf('select_range') ? false : {  // разрешать выделять диапазон
+            focus:   false,
+            changed: false,
+            start:   0,
+            end:     0
+        }
     };
 
     init(el, self.opt);
@@ -93,8 +102,6 @@ Mask.prototype = {
             one_country = self.opt.one_country,
             exceptions  = self.opt.exceptions,
             _false = false;
-
-
 
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
@@ -150,7 +157,9 @@ Mask.prototype = {
                         pc.loadMasks(iso, self.opt.lang, function() {
                             find = hardSearch(value, iso);
                             self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], getNewMaskValue(value, find['mask']));
-                            self.focused();
+                            if (self.opt.initial_focus === true) {
+                                self.focused();
+                            }
                         });
                     }
                 }
@@ -161,11 +170,14 @@ Mask.prototype = {
                     find = hardSearch(value, iso);
                 }
 
-                self.setInp(self.opt.element, obj['iso_code'], obj['name'], getNewMaskValue(value, find['mask']));
+                value = (self.opt.select_range.changed === true && _value.indexOf('_') !== -1) ? _value : getNewMaskValue(value, find['mask']);
+
+                self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
             }
         }
-
-        self.focused();
+        if (self.opt.initial_focus === true) {
+            self.focused();
+        }
 
         return find;
     },
@@ -409,11 +421,69 @@ Mask.prototype = {
      */
     focused: function() {
         var self  = this,
+            o     = self.opt,
             e     = self.opt.element,
             v     = e.value,
             num   = v.indexOf('_'),
             i     = (num === -1) ? v.length : num;
+
         setCaretFocus(e, i, i);
+    },
+
+    /**
+     * Установить выделение
+     */
+    setRange: function() {
+        var self     = this,
+            o        = self.opt,
+            e        = self.opt.element,
+            start    = e.selectionStart,
+            end      = e.selectionEnd;
+
+        if (start !== end) {
+            o.select_range = {
+                focus:   true,
+                changed: false,
+                start:   start,
+                end:     end
+            };
+        }
+    },
+
+    /**
+     * Удалить выделение
+     */
+    unsetRange: function() {
+        this.opt.select_range = {
+            focus: false,
+            changed: false,
+            start: 0,
+            end:   0
+        };
+    },
+
+    /**
+     * Замена символов
+     */
+    replaceRange: function() {
+        var self     = this,
+            o        = self.opt,
+            e        = self.opt.element;
+            value    = self.opt.element.value.split('');
+            selected = self.opt.select_range;
+
+        var a = false;
+        for(var i in value) {
+            if(value.hasOwnProperty(i)) {
+                if (i >= selected.start && i < selected.end) {
+                    if (_regex.test(value[i])) {
+                        value[i] = '_';
+                    }
+                }
+            }
+        }
+
+        self.opt.element.value = value.join('');
     },
 
     /**
@@ -473,10 +543,13 @@ Mask.prototype = {
      */
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
+        Event.add(e,'blur',        actions.blur);
         Event.add(e,'click',       actions.click);
+        Event.add(e,'dblclick',    actions.dblclick);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
         Event.add(e,'paste',       actions.paste);
+        Event.add(e,'mouseup',     actions.mouseup);
     },
 };
 

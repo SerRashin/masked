@@ -51,11 +51,11 @@ plugin.postload = function () {
                             object = ge[i];
                             c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
 
-                            if(languageIsset(gc, c)) {
 
+                            if(languageIsset(gc, c)) {
                                 object.maskFinder(object.opt.phone, object.opt.country);
-                                object.blured();
                             }
+
                         }
                     }
                 });
@@ -63,12 +63,6 @@ plugin.postload = function () {
         }
     }
 
-    for(i in ge) {
-        if(ge.hasOwnProperty(i)) {
-            ge[i].blured();
-        }
-    }
-    
     g.initialization = false;
 };
 

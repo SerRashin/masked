@@ -2,7 +2,7 @@
 * Masked - v1.0.1 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.1 2016-06-15
+* @version 1.0.1 2016-08-09
 */
 
 
@@ -108,8 +108,6 @@ var MaskedConfig = MConf = (function() {
         }
     };
 
-
-
     var options = {
         pathToList:         '/js/masks/',
         prefix:             'instId_',
@@ -118,6 +116,8 @@ var MaskedConfig = MConf = (function() {
         one_country:        false, // false or string 'iso_code'
         first_countries:    ['ru'],
         exceptions:         exception_example,
+        initial_focus:      false,
+        select_range:       false
     };
 
     
@@ -125,13 +125,13 @@ var MaskedConfig = MConf = (function() {
         if (typeof args === 'string') {
             return options[args];
         } else {
-            return generalMaskedFn.extend(options, args);
+            return options = generalMaskedFn.extend(options, args);
         }
     };
 })();
 
 
-var Masked = (function(doc) {
+var Masked = (function(doc, win) {
     var type_undefined      = 'undefined',
     type_null           = 'null',
     _regex          =  new RegExp('[0-9]');
@@ -546,7 +546,6 @@ function setCaretFocus(input, start, end) {
     }
 }
 
-
 /**
  * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
  * @param e
@@ -580,7 +579,8 @@ function languageIsset(_array, _object) {
     for(var i in _array) {
         if(_array.hasOwnProperty(i)) {
             if (_array[i].iso_code === _object.iso_code && _array[i].lang === _object.lang) {
-                a = true;break;
+                a = true;
+                break;
             }
         }
     }
@@ -641,26 +641,28 @@ var phoneCodes = {
             key      = (k  == txt_mask) ? txt_mask : 'name',
             sort     = (s == txt_desc) ? txt_desc : txt_asc;
 
-        maskList.sort(function (a, b) {
-            if (!isset(a[key]) || !isset(b[key])) {
-                return !isset(a[key]) ? 1 : -1;
-            }
+        if (maskList) {
+            maskList.sort(function (a, b) {
+                if (!isset(a[key]) || !isset(b[key])) {
+                    return !isset(a[key]) ? 1 : -1;
+                }
 
-            if (key === txt_mask) {
-                a = a[key].replace(/\D+/g,"");
-                b = b[key].replace(/\D+/g,"");
-            } else {
-                a = a[key];
-                b = b[key];
-            }
-            if (a > b) {
-                return sort==txt_asc ? 1:-1;
-            } else if (a < b) {
-                return sort==txt_asc ? -1:1;
-            } else {
-                return 0;
-            }
-        });
+                if (key === txt_mask) {
+                    a = a[key].replace(/\D+/g,"");
+                    b = b[key].replace(/\D+/g,"");
+                } else {
+                    a = a[key];
+                    b = b[key];
+                }
+                if (a > b) {
+                    return sort==txt_asc ? 1:-1;
+                } else if (a < b) {
+                    return sort==txt_asc ? -1:1;
+                } else {
+                    return 0;
+                }
+            });
+        }
 
         return maskList;
     },
@@ -710,13 +712,23 @@ var phoneCodes = {
         return false;
     }
 };
+
+
 var actions = {
+    text:null,
     /**
      * При фокусе на поле ввода
      * @return void
      */
-    focus: function () {
+    focus: function (e) {
         Masked.getInst(this).focused();
+    },
+
+    /**
+     * При двойном нажатии
+     */
+    dblclick:function () {
+        this.click();
     },
 
     /**
@@ -724,7 +736,29 @@ var actions = {
      * @return void
      */
     click: function () {
-        Masked.getInst(this).focused();
+        var inst = Masked.getInst(this);
+
+        if (inst.opt.select_range !== false) {
+            inst.setRange();
+        } else {
+            inst.focused();
+        }
+    },
+
+    mouseup: function () {
+
+
+        // var selObj = window.getSelection();
+        // alert(selObj);
+        // var selRange = selObj.getRangeAt(0);
+
+    },
+
+    blur: function () {
+        var inst = Masked.getInst(this);
+        if (inst.opt.select_range !== false) {
+            inst.unsetRange();
+        }
     },
 
     /**
@@ -741,15 +775,26 @@ var actions = {
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
             value       = self.value,
+            select_range= instance.opt.select_range,
             _false      = false,
             _true       = true;
 
         if (code === 8) {  // BACKSPACE
             index = getLastNum(self);
             if (_regex.test(value[index]) === _true) {
+
+                if (select_range !== false) {
+                    if (select_range.focus === true) {
+                        instance.replaceRange();
+                        index   = select_range.start;
+                        instance.unsetRange();
+                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                    }
+                }
                 removeLastChar(self, index);
                 setCaretFocus(self, index ,index);
                 instance.setMask(self); // ищем новую маску
+                instance.focused();
                 return _false;
             } else {
                 return _false;
@@ -758,9 +803,20 @@ var actions = {
             if(ctrlKey === true && code === 86) {
                 return _true;
             } else {
+
                 num = value.indexOf('_');
+                if (select_range !== false) {
+                    if (select_range.focus === true) {
+                        instance.replaceRange();
+                        num   = select_range.start;
+                        value = self.value;
+                        instance.unsetRange();
+                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                    }
+                }
+
                 if (num !== -1) { // если есть еще пустые символы
-                    if (_regex.test(key) === _true) {
+                    if (_regex.test(key) === _true && value[num] === '_' ) {
                         setCaretFocus(self, num, (num + 1));
                     } else {
                         return _false;
@@ -796,7 +852,7 @@ var actions = {
             index = getLastNum(self);
             if (_regex.test(value[index]) === true) {
                 index += 1;
-                setCaretFocus(self, index ,index);
+                instance.focused();
                 return _false;
             } else {
                 return _false;
@@ -808,8 +864,9 @@ var actions = {
         } else {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
-            setCaretFocus(self, index, index);
+
             instance.setMask(self); // ищем новую маску
+            instance.focused();
         }
     },
 
@@ -824,9 +881,11 @@ var actions = {
             p               = plugin,
             instance        = p.getInst(self),
             clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
-        /*
+
+        /**
          * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-         * */
+         *
+         */
         instance.opt.element.value = getPhone(clipboard_text);
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
@@ -851,6 +910,8 @@ var Mask = function (el, args) {
 
         addClass(self.opt.element, self.opt.instId);
         self.opt.oldState =  el.outerHTML;
+
+
 
         self.setTemplate();
 
@@ -891,7 +952,14 @@ var Mask = function (el, args) {
         value:            '',
         name:             '',
         old:              {},
-        oldState:         null    // предыдущее состояние для переключения активности
+        oldState:         null,    // предыдущее состояние для переключения активностиб
+        initial_focus:    args.initial_focus       || MConf('initial_focus'),
+        select_range:     !args.select_range && !MConf('select_range') ? false : {  // разрешать выделять диапазон
+            focus:   false,
+            changed: false,
+            start:   0,
+            end:     0
+        }
     };
 
     init(el, self.opt);
@@ -926,8 +994,6 @@ Mask.prototype = {
             one_country = self.opt.one_country,
             exceptions  = self.opt.exceptions,
             _false = false;
-
-
 
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
@@ -983,7 +1049,9 @@ Mask.prototype = {
                         pc.loadMasks(iso, self.opt.lang, function() {
                             find = hardSearch(value, iso);
                             self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], getNewMaskValue(value, find['mask']));
-                            self.focused();
+                            if (self.opt.initial_focus === true) {
+                                self.focused();
+                            }
                         });
                     }
                 }
@@ -994,11 +1062,14 @@ Mask.prototype = {
                     find = hardSearch(value, iso);
                 }
 
-                self.setInp(self.opt.element, obj['iso_code'], obj['name'], getNewMaskValue(value, find['mask']));
+                value = (self.opt.select_range.changed === true && _value.indexOf('_') !== -1) ? _value : getNewMaskValue(value, find['mask']);
+
+                self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
             }
         }
-
-        self.focused();
+        if (self.opt.initial_focus === true) {
+            self.focused();
+        }
 
         return find;
     },
@@ -1242,11 +1313,69 @@ Mask.prototype = {
      */
     focused: function() {
         var self  = this,
+            o     = self.opt,
             e     = self.opt.element,
             v     = e.value,
             num   = v.indexOf('_'),
             i     = (num === -1) ? v.length : num;
+
         setCaretFocus(e, i, i);
+    },
+
+    /**
+     * Установить выделение
+     */
+    setRange: function() {
+        var self     = this,
+            o        = self.opt,
+            e        = self.opt.element,
+            start    = e.selectionStart,
+            end      = e.selectionEnd;
+
+        if (start !== end) {
+            o.select_range = {
+                focus:   true,
+                changed: false,
+                start:   start,
+                end:     end
+            };
+        }
+    },
+
+    /**
+     * Удалить выделение
+     */
+    unsetRange: function() {
+        this.opt.select_range = {
+            focus: false,
+            changed: false,
+            start: 0,
+            end:   0
+        };
+    },
+
+    /**
+     * Замена символов
+     */
+    replaceRange: function() {
+        var self     = this,
+            o        = self.opt,
+            e        = self.opt.element;
+            value    = self.opt.element.value.split('');
+            selected = self.opt.select_range;
+
+        var a = false;
+        for(var i in value) {
+            if(value.hasOwnProperty(i)) {
+                if (i >= selected.start && i < selected.end) {
+                    if (_regex.test(value[i])) {
+                        value[i] = '_';
+                    }
+                }
+            }
+        }
+
+        self.opt.element.value = value.join('');
     },
 
     /**
@@ -1306,10 +1435,13 @@ Mask.prototype = {
      */
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
+        Event.add(e,'blur',        actions.blur);
         Event.add(e,'click',       actions.click);
+        Event.add(e,'dblclick',    actions.dblclick);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
         Event.add(e,'paste',       actions.paste);
+        Event.add(e,'mouseup',     actions.mouseup);
     },
 };
 
@@ -1440,6 +1572,7 @@ var plugin = function (options) {
  */
 plugin.postload = function () {
     var i,
+        c,
         iso,
         object,
         country,
@@ -1455,13 +1588,15 @@ plugin.postload = function () {
 
                 pc.loadMasks(country.iso_code, country.lang, function () {
                     for (i in ge) {
-                        object = ge[i];
-                        var c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
+                        if(ge.hasOwnProperty(i)) {
+                            object = ge[i];
+                            c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
 
-                        if(ge.hasOwnProperty(i) && languageIsset(gc, c)) {
-                            
-                            object.maskFinder(object.opt.phone, object.opt.country);
-                            object.blured();
+
+                            if(languageIsset(gc, c)) {
+                                object.maskFinder(object.opt.phone, object.opt.country);
+                            }
+
                         }
                     }
                 });
@@ -1469,12 +1604,6 @@ plugin.postload = function () {
         }
     }
 
-    for(i in ge) {
-        if(ge.hasOwnProperty(i)) {
-            ge[i].blured();
-        }
-    }
-    
     g.initialization = false;
 };
 
@@ -1610,7 +1739,7 @@ plugin.prototype = {
 };
 
     return plugin;
-})(document);
+})(document, window);
 // $.masked = new Masked;
 
 /**

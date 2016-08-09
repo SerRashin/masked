@@ -1,0 +1,20 @@
+.container {
+    max-width:480px;
+    margin-top:90px
+}
+
+form div {
+    text-align:center;
+}
+
+.form-group {
+    border: 1px solid #edeaea;
+    padding: 0 0 12px;
+}
+
+label.db {
+    border-bottom: 1px solid #edeaea;
+    display: block;
+    margin-bottom: 11px;
+    padding: 5px 0 3px;
+}
