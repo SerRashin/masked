@@ -436,7 +436,9 @@ function getLastNum(e) {
  */
 function removeLastChar(e, i) {
     var temp = e.value.split('');
-    temp[i]='_';
+    if (_regex.test(temp[i])) {
+        temp[i]='_';
+    }
     e.value = temp.join('');
 }
 

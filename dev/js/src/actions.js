@@ -1,7 +1,4 @@
-
-
 var actions = {
-    text:null,
     /**
      * При фокусе на поле ввода
      * @return void
@@ -12,6 +9,7 @@ var actions = {
 
     /**
      * При двойном нажатии
+     * @return void
      */
     dblclick:function () {
         this.click();
@@ -31,15 +29,10 @@ var actions = {
         }
     },
 
-    mouseup: function () {
-
-
-        // var selObj = window.getSelection();
-        // alert(selObj);
-        // var selRange = selObj.getRangeAt(0);
-
-    },
-
+    /**
+     * При потери фокуса
+     * @return void
+     */
     blur: function () {
         var inst = Masked.getInst(this);
         if (inst.opt.select_range !== false) {
@@ -93,11 +86,13 @@ var actions = {
                 num = value.indexOf('_');
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        instance.replaceRange();
-                        num   = select_range.start;
-                        value = self.value;
-                        instance.unsetRange();
-                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        if (_regex.test(key) === _true) {
+                            instance.replaceRange();
+                            num   = select_range.start;
+                            value = self.value;
+                            instance.unsetRange();
+                            instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        }
                     }
                 }
 

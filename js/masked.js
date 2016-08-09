@@ -1,8 +1,8 @@
 /**! 
-* Masked - v1.0.1 - 
+* Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.1 2016-08-09
+* @version 1.0.2 2016-08-09
 */
 
 
@@ -570,7 +570,9 @@ function getLastNum(e) {
  */
 function removeLastChar(e, i) {
     var temp = e.value.split('');
-    temp[i]='_';
+    if (_regex.test(temp[i])) {
+        temp[i]='_';
+    }
     e.value = temp.join('');
 }
 
@@ -712,10 +714,7 @@ var phoneCodes = {
         return false;
     }
 };
-
-
 var actions = {
-    text:null,
     /**
      * При фокусе на поле ввода
      * @return void
@@ -726,6 +725,7 @@ var actions = {
 
     /**
      * При двойном нажатии
+     * @return void
      */
     dblclick:function () {
         this.click();
@@ -745,15 +745,10 @@ var actions = {
         }
     },
 
-    mouseup: function () {
-
-
-        // var selObj = window.getSelection();
-        // alert(selObj);
-        // var selRange = selObj.getRangeAt(0);
-
-    },
-
+    /**
+     * При потери фокуса
+     * @return void
+     */
     blur: function () {
         var inst = Masked.getInst(this);
         if (inst.opt.select_range !== false) {
@@ -807,11 +802,13 @@ var actions = {
                 num = value.indexOf('_');
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        instance.replaceRange();
-                        num   = select_range.start;
-                        value = self.value;
-                        instance.unsetRange();
-                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        if (_regex.test(key) === _true) {
+                            instance.replaceRange();
+                            num   = select_range.start;
+                            value = self.value;
+                            instance.unsetRange();
+                            instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        }
                     }
                 }
 
@@ -1374,7 +1371,6 @@ Mask.prototype = {
                 }
             }
         }
-
         self.opt.element.value = value.join('');
     },
 
@@ -1441,7 +1437,6 @@ Mask.prototype = {
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
         Event.add(e,'paste',       actions.paste);
-        Event.add(e,'mouseup',     actions.mouseup);
     },
 };
 

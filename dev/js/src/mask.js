@@ -482,7 +482,6 @@ Mask.prototype = {
                 }
             }
         }
-
         self.opt.element.value = value.join('');
     },
 
@@ -549,7 +548,6 @@ Mask.prototype = {
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
         Event.add(e,'paste',       actions.paste);
-        Event.add(e,'mouseup',     actions.mouseup);
     },
 };
 
