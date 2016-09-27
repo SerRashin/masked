@@ -52,7 +52,7 @@ $M.ready = $M;
 /**
  * Этот способ намного хуже способа с оберткой через $M.ready
  */
-var alternativeReady = (function() {
+var  alternativeReady = (function() {
     return {
         timerID: 0,
         init: function() {

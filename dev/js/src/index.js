@@ -6,7 +6,7 @@
 var Global = {
     initialization: true,
     instances: [],
-    countries: [], // коды стран которые необходимо дополнительно подключить
+    countries: [] // коды стран которые необходимо дополнительно подключить
 };
 
 var plugin = function (options) {
@@ -32,7 +32,6 @@ var plugin = function (options) {
 plugin.postload = function () {
     var i,
         c,
-        iso,
         object,
         country,
         pc = phoneCodes,
@@ -44,7 +43,6 @@ plugin.postload = function () {
         if(gc.hasOwnProperty(i)) {
             country = gc[i];
             if (isset(pc[country.iso_code]) && empty(pc[country.iso_code])) {
-
                 pc.loadMasks(country.iso_code, country.lang, function () {
                     for (i in ge) {
                         if(ge.hasOwnProperty(i)) {
@@ -87,7 +85,7 @@ plugin.getById = function (id) {
         return this.getInst(el);
     }
     return false;
-}
+};
 
 /**
  * Переключение статуса
@@ -105,7 +103,7 @@ plugin.toggle = function(e) {
         opt.element.value       = opt.value;
         self.addActions(opt.element);
     }
-}
+};
 
 
 plugin.prototype = {
@@ -167,7 +165,7 @@ plugin.prototype = {
 
             self.elements = select(options);
         }
-
+        
         if (Object.keys(self.elements).length) {
             MaskedObserver.add(self);
         }
@@ -186,12 +184,21 @@ plugin.prototype = {
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                if (!el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
+                if (el && !el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
                     opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
                     object = new Mask(el, opt);
                     Global.instances[object.opt.instId] = object;
                 }
+            }
+        }
+    },
+
+    setPhone: function (value) {
+        var elements = this.elements;
+        for(var i in elements) {
+            if (elements.hasOwnProperty(i)) {
+                plugin.getInst(elements[i]).maskFinder(value);
             }
         }
     }

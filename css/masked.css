@@ -75,6 +75,7 @@
   font-size: 14px !important;
   line-height: 1pc;
   padding: 4px 10px;
+  text-align: left !important;
 }
 .CBH-masks .flags .lists li:hover {
   background-color: rgba(0, 0, 0, 0.05);
@@ -94,6 +95,11 @@
   color: #999999 !important;
   margin-left: 8px;
   display: inline-block !important;
+}
+.CBH-masks .flags .lists hr {
+  border-top: 1px solid #eee;
+  margin-bottom: 8px;
+  margin-top: 8px;
 }
 .CBH-masks input {
   border: 1px solid #ccc;

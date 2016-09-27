@@ -139,8 +139,8 @@ var actions = {
                 return _false;
             }
         }  else if(code === 13) {
-            if (opt.onsend) {
-                opt.onsend(opt);
+            if (opt.onSend) {
+                opt.onSend(opt);
             }
         } else {
             num   = value.indexOf('_');

@@ -87,6 +87,8 @@
         font-size: 14px!important;
         line-height: 1pc;
         padding: 4px 10px;
+        text-align: left !important;
+
         &:hover{
           background-color: rgba(0, 0, 0, 0.05);
         }
@@ -106,6 +108,11 @@
           margin-left: 8px;
           display: inline-block !important;
         }
+      }
+      hr {
+        border-top: 1px solid #eee;
+        margin-bottom: 8px;
+        margin-top: 8px;
       }
     }
   }

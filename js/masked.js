@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2016-08-09
+* @version 1.0.2 2016-09-27
 */
 
 
@@ -60,7 +60,7 @@ $M.ready = $M;
 /**
  * Этот способ намного хуже способа с оберткой через $M.ready
  */
-var alternativeReady = (function() {
+var  alternativeReady = (function() {
     return {
         timerID: 0,
         init: function() {
@@ -589,6 +589,10 @@ function languageIsset(_array, _object) {
 
     return a;
 }
+
+function isFunction(a) {
+    return typeof a === 'function';
+}
 var phoneCodes = {
     all:    [],     // список масок для всех стран
     ae:     [],     //
@@ -855,8 +859,8 @@ var actions = {
                 return _false;
             }
         }  else if(code === 13) {
-            if (opt.onsend) {
-                opt.onsend(opt);
+            if (opt.onSend) {
+                opt.onSend(opt);
             }
         } else {
             num   = value.indexOf('_');
@@ -938,11 +942,14 @@ var Mask = function (el, args) {
         listOpened:       false,                        // список открыт
         instId:           MConf('prefix') + makeId(),   //  Селектор выбранного елемента
         element:          el,
-        lang:             args.lang,
+        lang:             args.lang                 || MConf('lang'),
         country:          args.country              || MConf('country'),
         phone:            args.phone                || false,
         mask:             args.mask                 || '',
-        onsend:           args.onsend               || null,
+        onSend:           args.onSend               || null,
+        onToggleList:     args.onToggleList         || null,
+        onShowList:       args.onShowList           || null,
+        onHideList:       args.onHideList           || null,
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -1174,7 +1181,7 @@ Mask.prototype = {
                 li.dataset['isoCode']   = iso;
                 li.dataset['mask']      = mask;
 
-                Event.add(li,'click', self.maskReplace);
+                Event.add(li, 'click', self.maskReplace);
 
                 ico                     = document_create('i');
                 className(ico, text_flag+' ' + iso);
@@ -1231,21 +1238,37 @@ Mask.prototype = {
         if (!one_country) {
             wrapper.getElementsByClassName('selected')[0].onclick = function () {
                 cur_el = wrapper.getElementsByClassName(lists)[0];
-                var doc = document,
-                    handler = function (e) {
+                var txt_opened = 'opened',
+                    txt_closed = 'closed',
+                    list_status = 'closed',
+                    doc         = document,
+                    handler     = function (e) {
                         if (!childOf(e.target, flags_block)) {
                             removeClass(cur_el, active);
                             removeClass(cur_el, top);
                             Event.remove(doc, 'click', handler);
+
+                            /**
+                             * При клике на li так же отсылаем статус closed
+                             */
+                            if (isFunction(opt.onHideList)) {
+                                opt.onHideList();
+                            }
+
+                            if (isFunction(opt.onToggleList)) {
+                                opt.onToggleList(txt_closed);
+                            }
                         }
                     };
+
                 if (!!opened_elements.length) {
-                    for (i in opened_elements) {
-                        if (opened_elements.hasOwnProperty(i) && cur_el !== opened_elements[i]) {
+                    for (i=0; i<opened_elements.length; i++) {
+                        if (cur_el !== opened_elements[i]) {
                             removeClass(opened_elements[i], active);
                         }
                     }
                 }
+
                 if (/active/.test(cur_el.className) !== true) {
 
                     Event.add(doc, 'click', handler);
@@ -1274,11 +1297,25 @@ Mask.prototype = {
                     if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
                         addClass(cur_el, top);
                     }
+                    list_status = txt_opened
+
                 } else {
                     removeClass(cur_el, active);
                     removeClass(cur_el, top);
-
                     Event.remove(doc, 'click', handler);
+                    list_status = txt_closed
+                }
+
+                if (list_status === txt_opened && isFunction(opt.onShowList)) {
+                    opt.onShowList();
+                }
+
+                if (list_status === txt_closed && isFunction(opt.onHideList)) {
+                    opt.onHideList();
+                }
+
+                if (isFunction(opt.onToggleList)) {
+                    opt.onToggleList(list_status);
                 }
             };
         }
@@ -1287,14 +1324,16 @@ Mask.prototype = {
     },
 
 
-    setInp:function (e, flag, title, value) {
+    setInp: function (e, flag, title, value) {
         var i,
             opt          = this.opt;
 
         if (!empty(e.parentNode.getElementsByClassName('selected')[0])) {
             i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
             i.className  = 'flag '+ flag;
-            i.parentNode.setAttribute('title', title);
+            if (typeof title !== type_undefined) {
+                i.parentNode.setAttribute('title', title);
+            }
         }
 
         opt.country     = flag;
@@ -1403,6 +1442,17 @@ Mask.prototype = {
         );
 
         removeClass(parent.childNodes[1],'active');
+
+        /**
+         * При клике на li так же отсылаем статус closed
+         */
+        if (isFunction(instance.opt.onHideList)) {
+            instance.opt.onHideList();
+        }
+
+        if (isFunction(instance.opt.onToggleList)) {
+            instance.opt.onToggleList('closed');
+        }
     },
 
     ifIssetNextMask: function () {
@@ -1423,6 +1473,22 @@ Mask.prototype = {
             }
         }
         return false;
+    },
+
+    /**
+     * Установка нового номера телефона
+     * @param value
+     * @return void
+     */
+    setPhone: function(value) {
+        var self            = this;
+
+        /**
+         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
+         *
+         */
+        self.opt.element.value = getPhone(value);
+        self.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     },
 
     /**
@@ -1542,7 +1608,7 @@ function hardSearch(value, mask_code) {
 var Global = {
     initialization: true,
     instances: [],
-    countries: [], // коды стран которые необходимо дополнительно подключить
+    countries: [] // коды стран которые необходимо дополнительно подключить
 };
 
 var plugin = function (options) {
@@ -1568,7 +1634,6 @@ var plugin = function (options) {
 plugin.postload = function () {
     var i,
         c,
-        iso,
         object,
         country,
         pc = phoneCodes,
@@ -1580,7 +1645,6 @@ plugin.postload = function () {
         if(gc.hasOwnProperty(i)) {
             country = gc[i];
             if (isset(pc[country.iso_code]) && empty(pc[country.iso_code])) {
-
                 pc.loadMasks(country.iso_code, country.lang, function () {
                     for (i in ge) {
                         if(ge.hasOwnProperty(i)) {
@@ -1623,7 +1687,7 @@ plugin.getById = function (id) {
         return this.getInst(el);
     }
     return false;
-}
+};
 
 /**
  * Переключение статуса
@@ -1641,7 +1705,7 @@ plugin.toggle = function(e) {
         opt.element.value       = opt.value;
         self.addActions(opt.element);
     }
-}
+};
 
 
 plugin.prototype = {
@@ -1703,7 +1767,7 @@ plugin.prototype = {
 
             self.elements = select(options);
         }
-
+        
         if (Object.keys(self.elements).length) {
             MaskedObserver.add(self);
         }
@@ -1722,12 +1786,21 @@ plugin.prototype = {
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                if (!el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
+                if (el && !el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
                     opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
                     object = new Mask(el, opt);
                     Global.instances[object.opt.instId] = object;
                 }
+            }
+        }
+    },
+
+    setPhone: function (value) {
+        var elements = this.elements;
+        for(var i in elements) {
+            if (elements.hasOwnProperty(i)) {
+                plugin.getInst(elements[i]).maskFinder(value);
             }
         }
     }
