@@ -10,7 +10,7 @@ var MaskedConfig = MConf = (function() {
     };
 
     var options = {
-        pathToList:         '/js/masks/',
+        pathToList:         '//serhanters.github.io/masked/js/masks/',
         prefix:             'instId_',
         lang:               'ru',
         country:            'ru',
@@ -21,7 +21,7 @@ var MaskedConfig = MConf = (function() {
         select_range:       false
     };
 
-    
+
     return function (args) {
         if (typeof args === 'string') {
             return options[args];
