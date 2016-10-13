@@ -198,8 +198,77 @@ plugin.prototype = {
         var elements = this.elements;
         for(var i in elements) {
             if (elements.hasOwnProperty(i)) {
-                plugin.getInst(elements[i]).maskFinder(value);
+                if (!empty(plugin.getInst(elements[i]))) {
+                    plugin.getInst(elements[i]).maskFinder(value);
+                }
             }
         }
-    }
+    },
+
+    /**
+     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
+     * вернет строку или массив, можно вернуть номер без маски
+     * @param value
+     * @param _with_mask
+     * @returns {string}|{object}
+     */
+    getPhone: function (value, _with_mask) {
+        var phone,
+            inst,
+            phones   = [],
+            elements   = [],
+            hs         = hardSearch,
+            with_mask  = _with_mask || true;
+
+        if (value) {
+            phone = getNewMaskValue(getPhone(value), hs(value).mask);
+            if (!with_mask) {
+                phone = getPhone(phone);
+            }
+            phones.push(phone);
+        } else {
+            elements = this.elements;
+
+            for(var i in elements) {
+                if (elements.hasOwnProperty(i)) {
+                    if (!empty(plugin.getInst(elements[i]))) {
+                        phone = plugin.getInst(elements[i]).opt.value;
+
+                        phone = getNewMaskValue(phone, hs(getPhone(phone)).mask);
+                        if (!with_mask) {
+                            phone = getPhone(phone);
+                        }
+                        phones.push(phone);
+                    }
+                }
+            }
+        }
+
+        return (
+            value || !value && (Object.keys(elements).length == 1)
+        ) ? phones[0] : phones;
+    },
+
+    isValid: function (value) {
+        var phone,
+            valid = false,
+            hs         = hardSearch,
+            elements   = [];
+
+        if (value) {
+            valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+        } else {
+             elements = this.elements;
+
+             if (Object.keys(elements).length) {
+                 phone = plugin.getInst(elements[0]).opt.value;
+
+                 valid = getNewMaskValue(getPhone(phone), hs(getPhone(phone)).mask).indexOf('_') === -1;
+             } else {
+                 valid = false;
+             }
+        }
+        return valid;
+    },
+
 };

@@ -57,6 +57,7 @@ var Mask = function (el, args) {
         onToggleList:     args.onToggleList         || null,
         onShowList:       args.onShowList           || null,
         onHideList:       args.onHideList           || null,
+        onValueChanged:   args.onValueChanged       || null,
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -82,7 +83,17 @@ Mask.prototype = {
      *
      **/
     setMask: function (e) {
+        var self = this,
+            oldValue = self.opt.value;
+
         this.maskFinder(e.value, this.opt.country);
+
+        if (
+            isFunction(self.opt.onHideList) &&
+            oldValue != self.opt.value
+        ) {
+            self.opt.onValueChanged(getPhone(e.value), e.value);
+        }
     },
 
     /**
@@ -271,7 +282,7 @@ Mask.prototype = {
                 name            = one.name,
                 mask            = one.mask;
 
-          
+
             if (!isset(name)) {
                 return false;
             }
@@ -447,7 +458,7 @@ Mask.prototype = {
         opt.name        = title;
         opt.value       = value;
         opt.mask        = value;
-        
+
         e.value         = value;
     },
 
@@ -504,8 +515,8 @@ Mask.prototype = {
         var self     = this,
             o        = self.opt,
             e        = self.opt.element;
-            value    = self.opt.element.value.split('');
-            selected = self.opt.select_range;
+        value    = self.opt.element.value.split('');
+        selected = self.opt.select_range;
 
         var a = false;
         for(var i in value) {

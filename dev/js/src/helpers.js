@@ -459,3 +459,4 @@ function languageIsset(_array, _object) {
 function isFunction(a) {
     return typeof a === 'function';
 }
+

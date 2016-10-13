@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2016-09-27
+* @version 1.0.2 2016-10-13
 */
 
 
@@ -593,6 +593,8 @@ function languageIsset(_array, _object) {
 function isFunction(a) {
     return typeof a === 'function';
 }
+
+
 var phoneCodes = {
     all:    [],     // список масок для всех стран
     ae:     [],     //
@@ -950,6 +952,7 @@ var Mask = function (el, args) {
         onToggleList:     args.onToggleList         || null,
         onShowList:       args.onShowList           || null,
         onHideList:       args.onHideList           || null,
+        onValueChanged:   args.onValueChanged       || null,
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -975,7 +978,17 @@ Mask.prototype = {
      *
      **/
     setMask: function (e) {
+        var self = this,
+            oldValue = self.opt.value;
+
         this.maskFinder(e.value, this.opt.country);
+
+        if (
+            isFunction(self.opt.onHideList) &&
+            oldValue != self.opt.value
+        ) {
+            self.opt.onValueChanged(getPhone(e.value), e.value);
+        }
     },
 
     /**
@@ -1164,7 +1177,7 @@ Mask.prototype = {
                 name            = one.name,
                 mask            = one.mask;
 
-          
+
             if (!isset(name)) {
                 return false;
             }
@@ -1340,7 +1353,7 @@ Mask.prototype = {
         opt.name        = title;
         opt.value       = value;
         opt.mask        = value;
-        
+
         e.value         = value;
     },
 
@@ -1397,8 +1410,8 @@ Mask.prototype = {
         var self     = this,
             o        = self.opt,
             e        = self.opt.element;
-            value    = self.opt.element.value.split('');
-            selected = self.opt.select_range;
+        value    = self.opt.element.value.split('');
+        selected = self.opt.select_range;
 
         var a = false;
         for(var i in value) {
@@ -1800,10 +1813,79 @@ plugin.prototype = {
         var elements = this.elements;
         for(var i in elements) {
             if (elements.hasOwnProperty(i)) {
-                plugin.getInst(elements[i]).maskFinder(value);
+                if (!empty(plugin.getInst(elements[i]))) {
+                    plugin.getInst(elements[i]).maskFinder(value);
+                }
             }
         }
-    }
+    },
+
+    /**
+     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
+     * вернет строку или массив, можно вернуть номер без маски
+     * @param value
+     * @param _with_mask
+     * @returns {string}|{object}
+     */
+    getPhone: function (value, _with_mask) {
+        var phone,
+            inst,
+            phones   = [],
+            elements   = [],
+            hs         = hardSearch,
+            with_mask  = _with_mask || true;
+
+        if (value) {
+            phone = getNewMaskValue(getPhone(value), hs(value).mask);
+            if (!with_mask) {
+                phone = getPhone(phone);
+            }
+            phones.push(phone);
+        } else {
+            elements = this.elements;
+
+            for(var i in elements) {
+                if (elements.hasOwnProperty(i)) {
+                    if (!empty(plugin.getInst(elements[i]))) {
+                        phone = plugin.getInst(elements[i]).opt.value;
+
+                        phone = getNewMaskValue(phone, hs(getPhone(phone)).mask);
+                        if (!with_mask) {
+                            phone = getPhone(phone);
+                        }
+                        phones.push(phone);
+                    }
+                }
+            }
+        }
+
+        return (
+            value || !value && (Object.keys(elements).length == 1)
+        ) ? phones[0] : phones;
+    },
+
+    isValid: function (value) {
+        var phone,
+            valid = false,
+            hs         = hardSearch,
+            elements   = [];
+
+        if (value) {
+            valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+        } else {
+             elements = this.elements;
+
+             if (Object.keys(elements).length) {
+                 phone = plugin.getInst(elements[0]).opt.value;
+
+                 valid = getNewMaskValue(getPhone(phone), hs(getPhone(phone)).mask).indexOf('_') === -1;
+             } else {
+                 valid = false;
+             }
+        }
+        return valid;
+    },
+
 };
 
     return plugin;
