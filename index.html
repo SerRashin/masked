@@ -9,11 +9,12 @@
   <script type="text/javascript" src="js/masked.js"></script>
   <script  type="text/javascript">
     var msks = null;
+    var MASK1 = null;
     $(document).ready(function() {
 
         MaskedConfig({'lang': 'ru'});
 
-        new Masked({
+        MASK1 = new Masked({
             selector: '#phone-editable',
             phone:'7',
             select_range: true, // разрешено выделение длязамены
@@ -29,8 +30,16 @@
             onToggleList: function (status) {
               console.log('action onToggleList', status );
             },
+            onValueChanged: function (phone) {
+              console.log('action onToggleList', phone );
+            },
         });
+      $(document).on('click', '.asd', function () {
+        $e = ad.isValid('');
+        $e = ad.isValid('');
 
+        console.log($e);
+      });
 
         new Masked({
           selector: '.mask2',
@@ -55,9 +64,10 @@
         });
         msks.init('.masks3');
 
-        $(document).on('click', '.new-phone-by-click', function () {
-            msks.setPhone('+1(234)567-8901');
-        });
+      $(document).on('click', '.new-phone-by-click', function () {
+        msks.setPhone('+1(234)567-8901');
+      });
+
 
         new Masked({
             selector: '.mask_with_exceptions',
@@ -76,6 +86,12 @@
             }
         });
 
+      var m1 = new Masked({
+        phone:'12345678900'
+      });
+      m1.init('.m1');
+
+      m1.init('.m2');
 
       $(document).on('click','.toggleState',function() {
         var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
@@ -87,8 +103,27 @@
 <body>
 <div class="container">
   <form>
+
     <div class="form-group">
-      <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span></label>
+      <label class="db" >Маска с исключением  </label>
+      <input  type="text"  class="m1"  data-lang="ru" data-phone="" data-country="ru">
+    </div>
+    <div class="form-group">
+      <label class="db" >Маска с исключением  </label>
+      <input  type="text"  class="m2"  data-lang="ru" data-phone="" data-country="ru">
+    </div>
+    <div class="form-group">
+      <label class="db" >Маска с исключением  </label>
+      <input  type="text"  class="m3"  data-lang="ru" data-phone="" data-country="ru">
+    </div>
+    <div class="form-group">
+      <label class="db" >Маска с исключением  </label>
+      <input  type="text"  class="m4"  data-lang="ru" data-phone="" data-country="ru">
+    </div>
+
+
+    <div class="form-group">
+      <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span> <span class="asd">(new phone)</span></label>
       <input id="phone-editable" type="text" class="mask" >
     </div>
     <div class="form-group">
@@ -115,6 +150,10 @@
       <label class="db" for="phone-ex-7">Маска с исключением  </label>
       <input id="phone-ex-7" type="text"  class="mask_with_exceptions"  data-lang="ru" data-phone="" data-country="ru">
     </div>
+
+
+
+
       <p>Исключение +78975<p>
   </form>
 </div>
