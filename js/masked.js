@@ -1,9 +1,4 @@
-/**! 
-* Masked - v1.0.2 - 
-* 
-* @author Rashin Sergey 
-* @version 1.0.2 2016-10-13
-*/
+/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
 
 
 /**
@@ -984,9 +979,10 @@ Mask.prototype = {
         this.maskFinder(e.value, this.opt.country);
 
         if (
-            isFunction(self.opt.onHideList) &&
+            isFunction(self.opt.onValueChanged) &&
             oldValue != self.opt.value
         ) {
+            "!";
             self.opt.onValueChanged(getPhone(e.value), e.value);
         }
     },
