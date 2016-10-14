@@ -90,7 +90,7 @@ Mask.prototype = {
 
         if (
             isFunction(self.opt.onValueChanged) &&
-            oldValue != self.opt.value
+            oldValue != e.value
         ) {
             self.opt.onValueChanged(getPhone(e.value), e.value);
         }
