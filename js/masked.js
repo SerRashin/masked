@@ -100,12 +100,12 @@ var generalMaskedFn = {
 var MaskedConfig = MConf = (function() {
 
     var exception_example = {
-        'ru' : {
+        // 'ru' : {
             //localFormat:'8',
-            exceptions: {
-                '8975': '7975'
-            }
-        }
+            // exceptions: {
+            //     '8975': '7975'
+            // }
+        // }
     };
 
     var options = {
@@ -1843,10 +1843,8 @@ plugin.prototype = {
             hs         = hardSearch,
             with_mask  = _with_mask || true;
 
-        console.log(this);
-
         if (value) {
-            phone = getNewMaskValue(getPhone(value), hs(value).mask);
+            phone = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask);
             if (!with_mask) {
                 phone = getPhone(phone);
             }
