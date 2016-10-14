@@ -1,4 +1,9 @@
-/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
+/**! 
+* Masked - v1.0.2 - 
+* 
+* @author Rashin Sergey 
+* @version 1.0.2 2016-10-14
+*/
 
 
 /**
@@ -28,14 +33,23 @@ var MaskedObserver = (function() {
             /**
              * Загружаем системную маску и инициализируем все объекты
              */
-            Masked.phoneCodes.loadMasks('all', MConf('lang'), function() {
 
+            var callback = function () {
                 self.subscribers.forEach(function(mask) {
                     mask.start()
                 });
 
                 Masked.postload();
-            });
+            };
+
+            if (Object.keys(Masked.phoneCodes.all).length === 0) {
+                Masked.phoneCodes.loadMasks('all', MConf('lang'), function() {
+                    callback();
+                });
+            } else {
+                callback();
+            }
+
 
         }
     };
