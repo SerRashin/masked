@@ -7,7 +7,6 @@
     "email": "serhanters@yandex.ru",
     "url": "http://vk.com/ser_r"
   },
-
   "devDependencies": {
     "browser-sync": "^2.2.3",
     "grunt": "~0.4.5",
@@ -20,5 +19,11 @@
     "grunt-contrib-uglify": "~0.5.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsonmin": "^0.2.4"
-  }
+  },
+  "readme": "# Masked\nMasked - это уникальный, универсальный плагин для стилизации input(ов).\nОн дает возможность отображать в input, маску ввода номера телефона, отображает селектор стран, в котором можно выбрать необходимый код телефона(по стране с флагом).\nПлагин очень легковесный, написан на чистом JS без всевозможных плагинов и библиотек.\n\n## Установка <sup>(для разработчиков)</sup>\n1. Установите Node.js и npm.  \n    ```shell\n    sudo apt-get install nodejs npm\n    ```\n    \n2. Установите необходимые для работы компоненты.  \n    ```shell\n    sudo npm install -g grunt-cli jshint uglify-js grunt-browser-sync grunt-jsonmin\n    ```\n    >* grunt-cli          - Сам Grunt для консольных команд.\n    >* jshint \t         - Инструмент для проверки кода JavaScript.\n    >* uglify-js          - Компрессор (минификатор) JS.\n    >* grunt-browser-sync - Live Reload перегрузка файлов.\n    >* grunt-jsonmin      - минимизация json.\n    \n3. В директории, где лежит Gruntfile.js выполните команду.\n    ```shell\n    npm install\n    ```\n    >**НЕ используйте sudo для этой команды.**\n\n## Конфиги\n### Глобальные конфиги\nДля установки глобальных настроек, воспользуйтесь функцией-сеттером\n```js\n    MConf({\n        pathToList  :'//masked.proj/js/masks/'\n    });\n```\nДля того чтобы получить текущие настройки воспользуйтесь этим же методом, но без параметров, результат объект {ключ:значение}\n```js\n    MConf();\n```",
+  "readmeFilename": "README.md",
+  "_id": "Masked@1.0.2",
+  "_shasum": "c2edbf495321d91fe6bf5f46eb13793f3da16d23",
+  "_resolved": "git://github.com/serhanters/masked#c660f690d9a76c9899c21df7291b390ebe729604",
+  "_from": "git://github.com/serhanters/masked"
 }
