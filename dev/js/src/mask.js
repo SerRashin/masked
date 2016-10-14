@@ -646,6 +646,9 @@ function hardSearch(value, mask_code) {
         pc        = phoneCodes,
         masklist  = pc.all;
 
+    if (empty(masklist)) {
+        return false;
+    }
 
     masklist = pc.sortPhones(masklist, 'mask', 'desc');
 

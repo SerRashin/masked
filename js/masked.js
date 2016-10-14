@@ -1,9 +1,4 @@
-/**! 
-* Masked - v1.0.2 - 
-* 
-* @author Rashin Sergey 
-* @version 1.0.2 2016-10-14
-*/
+/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
 
 
 /**
@@ -1541,6 +1536,9 @@ function hardSearch(value, mask_code) {
         pc        = phoneCodes,
         masklist  = pc.all;
 
+    if (empty(masklist)) {
+        return false;
+    }
 
     masklist = pc.sortPhones(masklist, 'mask', 'desc');
 
@@ -1844,7 +1842,12 @@ plugin.prototype = {
             with_mask  = _with_mask || true;
 
         if (value) {
-            phone = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask);
+            value = getPhone(value);
+            phone = hs(value);
+
+            if (phone) {
+                phone = getNewMaskValue(value, phone.mask);
+            }
             if (!with_mask) {
                 phone = getPhone(phone);
             }

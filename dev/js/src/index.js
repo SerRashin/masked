@@ -229,7 +229,12 @@ plugin.prototype = {
             with_mask  = _with_mask || true;
 
         if (value) {
-            phone = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask);
+            value = getPhone(value);
+            phone = hs(value);
+
+            if (phone) {
+                phone = getNewMaskValue(value, phone.mask);
+            }
             if (!with_mask) {
                 phone = getPhone(phone);
             }
