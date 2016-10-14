@@ -1,12 +1,12 @@
 var MaskedConfig = MConf = (function() {
 
     var exception_example = {
-        'ru' : {
+        // 'ru' : {
             //localFormat:'8',
-            exceptions: {
-                '8975': '7975'
-            }
-        }
+            // exceptions: {
+            //     '8975': '7975'
+            // }
+        // }
     };
 
     var options = {
