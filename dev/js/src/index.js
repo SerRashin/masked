@@ -87,6 +87,14 @@ plugin.getById = function (id) {
     return false;
 };
 
+plugin.getPhone = function (value) {
+    return value ? plugin.prototype.getPhone(value) : false;
+};
+
+plugin.isValid = function (value) {
+    return value ? plugin.prototype.isValid(value) : false;
+};
+
 /**
  * Переключение статуса
  * @param e Элемент или класс
@@ -219,6 +227,8 @@ plugin.prototype = {
             elements   = [],
             hs         = hardSearch,
             with_mask  = _with_mask || true;
+
+        console.log(this);
 
         if (value) {
             phone = getNewMaskValue(getPhone(value), hs(value).mask);

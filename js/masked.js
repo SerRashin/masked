@@ -1,4 +1,9 @@
-/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
+/**! 
+* Masked - v1.0.2 - 
+* 
+* @author Rashin Sergey 
+* @version 1.0.2 2016-10-14
+*/
 
 
 /**
@@ -982,7 +987,6 @@ Mask.prototype = {
             isFunction(self.opt.onValueChanged) &&
             oldValue != self.opt.value
         ) {
-            "!";
             self.opt.onValueChanged(getPhone(e.value), e.value);
         }
     },
@@ -1698,6 +1702,14 @@ plugin.getById = function (id) {
     return false;
 };
 
+plugin.getPhone = function (value) {
+    return value ? plugin.prototype.getPhone(value) : false;
+};
+
+plugin.isValid = function (value) {
+    return value ? plugin.prototype.isValid(value) : false;
+};
+
 /**
  * Переключение статуса
  * @param e Элемент или класс
@@ -1830,6 +1842,8 @@ plugin.prototype = {
             elements   = [],
             hs         = hardSearch,
             with_mask  = _with_mask || true;
+
+        console.log(this);
 
         if (value) {
             phone = getNewMaskValue(getPhone(value), hs(value).mask);
