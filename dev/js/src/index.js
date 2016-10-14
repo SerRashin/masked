@@ -228,10 +228,8 @@ plugin.prototype = {
             hs         = hardSearch,
             with_mask  = _with_mask || true;
 
-        console.log(this);
-
         if (value) {
-            phone = getNewMaskValue(getPhone(value), hs(value).mask);
+            phone = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask);
             if (!with_mask) {
                 phone = getPhone(phone);
             }
