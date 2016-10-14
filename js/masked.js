@@ -1021,6 +1021,7 @@ Mask.prototype = {
             exceptions  = self.opt.exceptions,
             _false = false;
 
+
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
          */
@@ -1030,6 +1031,9 @@ Mask.prototype = {
                     value = getPhone(find.mask);
                 }
             } else {
+                if (_value === false) { /// форсированная установка значения в пустоту
+                    self.setInp(self.opt.element, self.opt.country, self.opt.name, self.opt.value.replace(/[0-9]/g,'_'));
+                }
                 return false;
             }
         } else {
@@ -1830,11 +1834,13 @@ plugin.prototype = {
     },
 
     setPhone: function (value) {
-        var elements = this.elements;
+        var instance,
+            elements = this.elements;
         for(var i in elements) {
             if (elements.hasOwnProperty(i)) {
-                if (!empty(plugin.getInst(elements[i]))) {
-                    plugin.getInst(elements[i]).maskFinder(value);
+                instance = plugin.getInst(elements[i]);
+                if (!empty(instance)) {
+                    instance.maskFinder(value ? value : false);
                 }
             }
         }

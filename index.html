@@ -34,69 +34,14 @@
               console.log('action onToggleList', phone );
             },
         });
-      $(document).on('click', '.asd', function () {
-        $e = ad.isValid('');
-        $e = ad.isValid('');
-
-        console.log($e);
-      });
-
-        new Masked({
-          selector: '.mask2',
-          phone:false,
-          one_country: 'ru'
-        });
 
 
 
 
-        new Masked({
-            selector: '.masks',
-            phone:'12345678900',
-            lang: 'en'
-        });
 
 
 
 
-        msks = new Masked({
-            phone:'12345678900'
-        });
-        msks.init('.masks3');
-
-      $(document).on('click', '.new-phone-by-click', function () {
-        msks.setPhone('+1(234)567-8901');
-      });
-
-
-        new Masked({
-            selector: '.mask_with_exceptions',
-            phone:    '+7',
-            exceptions: {
-                'ru' : {
-                    exceptions: {
-                        '8975': '975'
-                    }
-                },
-                'en' : {
-                    exceptions: {
-                        '911': '199'
-                    }
-                }
-            }
-        });
-
-      var m1 = new Masked({
-        phone:'12345678900'
-      });
-      m1.init('.m1');
-
-      m1.init('.m2');
-
-      $(document).on('click','.toggleState',function() {
-        var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
-          Masked.toggle(element);
-      });
     });
   </script>
 </head>

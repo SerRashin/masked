@@ -117,6 +117,7 @@ Mask.prototype = {
             exceptions  = self.opt.exceptions,
             _false = false;
 
+
         /**
          * Если маска полностью очищается, оставляем последнее совпадение
          */
@@ -126,6 +127,9 @@ Mask.prototype = {
                     value = getPhone(find.mask);
                 }
             } else {
+                if (_value === false) { /// форсированная установка значения в пустоту
+                    self.setInp(self.opt.element, self.opt.country, self.opt.name, self.opt.value.replace(/[0-9]/g,'_'));
+                }
                 return false;
             }
         } else {
