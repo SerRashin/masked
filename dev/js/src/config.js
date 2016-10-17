@@ -18,7 +18,12 @@ var MaskedConfig = MConf = (function() {
         first_countries:    ['ru'],
         exceptions:         exception_example,
         initial_focus:      false,
-        select_range:       false
+        select_range:       false,
+        onToggleList:       null,
+        onShowList:         null,
+        onHideList:         null,
+        onSend:             null,
+        onValueChanged:     null
     };
 
     
