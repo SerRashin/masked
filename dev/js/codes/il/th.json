@@ -1,4 +1,151 @@
 [{
     "iso_code": "il",
-    "mask": "+972-5_-___-____"
+    "mask": "+972-2_-___-____",
+    "region": "เยรูซาเล็มเขต",
+    "city": "เยรูซาเล็ม",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-3_-___-____",
+    "region": "ที่ israel. kgm เขต",
+    "city": "Israel. Kgm",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-4_-___-____",
+    "region": "Israel. kgm เขต",
+    "city": "Israel. kgm",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-8_-___-____",
+    "region": "ใต้เขต",
+    "city": "Italy. kgm",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-9_-___-____",
+    "region": "ในเขตนิคมอุตสหาหกรร",
+    "city": "Hod HaSharon",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-50-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Pelephone"
+},{
+    "iso_code": "il",
+    "mask": "+972-52-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-53-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "ร้อนแรงเคลื่อนที่"
+},{
+    "iso_code": "il",
+    "mask": "+972-54-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "คู่หูการติดต่อสื่อสาร—สีส้ม"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-22_-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "กลับบ้านเซลล์"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-66_-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Rami Levy Hashikma การตลาด"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-88_-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Alon งเซลล์—YouPhone"
+},{
+    "iso_code": "il",
+    "mask": "+972-56-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Wataniya Telecom นปาเลสไตน์พร้อม"
+},{
+    "iso_code": "il",
+    "mask": "+972-57-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "ร้อนแรงเคลื่อนที่"
+},{
+    "iso_code": "il",
+    "mask": "+972-58-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Golan Telecom"
+},{
+    "iso_code": "il",
+    "mask": "+972-59-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Jawwal นปาเลสไตน์พร้อม"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "012 อยยิ้ม"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-3__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-7__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "013 Netvision"
+},{
+    "iso_code": "il",
+    "mask": "+972-74-7__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "สีส้ม"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-5__-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Bezeq ระหว่างประเทศบริการ"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-88_-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "Bezeq"
+},{
+    "iso_code": "il",
+    "mask": "+972-77-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "ร้อนแรง"
+},{
+    "iso_code": "il",
+    "mask": "+972-__-___-____",
+    "region": "อิสราเอล",
+    "city": "ทั้งเมือง",
+    "operator": "ร้อนแรง"
 }]

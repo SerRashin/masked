@@ -1,4 +1,151 @@
 [{
     "iso_code": "il",
-    "mask": "+972-5_-___-____"
+    "mask": "+972-2_-___-____",
+    "region": "Jerusalén distrito",
+    "city": "Jerusalén",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-3_-___-____",
+    "region": "Tel aviv distrito",
+    "city": "Tel Aviv",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-4_-___-____",
+    "region": "El distrito de haifa",
+    "city": "Haifa",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-8_-___-____",
+    "region": "Distrito sur",
+    "city": "Beer-Sheva",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-9_-___-____",
+    "region": "Céntrico distrito",
+    "city": "El progreso-ha-sharon",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-50-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Пелефон"
+},{
+    "iso_code": "il",
+    "mask": "+972-52-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-53-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Hot Mobile"
+},{
+    "iso_code": "il",
+    "mask": "+972-54-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Partner Communications — Orange"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-22_-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Home Cellular"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-66_-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Rami Levy Hashikma Marketing"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-88_-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Alon Cellular — YouPhone"
+},{
+    "iso_code": "il",
+    "mask": "+972-56-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Wataniya Telecom, territorios Palestinos"
+},{
+    "iso_code": "il",
+    "mask": "+972-57-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Hot Mobile"
+},{
+    "iso_code": "il",
+    "mask": "+972-58-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Golan Telecom"
+},{
+    "iso_code": "il",
+    "mask": "+972-59-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Jawwal, territorios Palestinos"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "012 Smile"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-3__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-7__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "013 Netvision"
+},{
+    "iso_code": "il",
+    "mask": "+972-74-7__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Orange"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-5__-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Bezeq International service"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-88_-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Bezeq"
+},{
+    "iso_code": "il",
+    "mask": "+972-77-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Hot"
+},{
+    "iso_code": "il",
+    "mask": "+972-__-___-____",
+    "region": "Israel",
+    "city": "Todas las ciudades",
+    "operator": "Hot"
 }]

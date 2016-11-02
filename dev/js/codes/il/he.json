@@ -1,4 +1,151 @@
 [{
     "iso_code": "il",
-    "mask": "+972-5_-___-____"
+    "mask": "+972-2_-___-____",
+    "region": "ירושלים, מחוז ירושלים",
+    "city": "ירושלים",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-3_-___-____",
+    "region": "במחוז תל אביב",
+    "city": "תל אביב",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-4_-___-____",
+    "region": "המחוזי בחיפה",
+    "city": "חיפה",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-8_-___-____",
+    "region": "דרום מחוז",
+    "city": "באר שבע",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-9_-___-____",
+    "region": "מחוז המרכז",
+    "city": "הוד השרון",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-50-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "פלאפון"
+},{
+    "iso_code": "il",
+    "mask": "+972-52-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "סלקום"
+},{
+    "iso_code": "il",
+    "mask": "+972-53-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "הוט מובייל"
+},{
+    "iso_code": "il",
+    "mask": "+972-54-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "פרטנר תקשורת — אורנג'"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-22_-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "הום סלולר"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-66_-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "רמי לוי שיווק Hashikma"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-88_-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "אלון סלולר — YouPhone"
+},{
+    "iso_code": "il",
+    "mask": "+972-56-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "Wataniya טלקום, פלסטין"
+},{
+    "iso_code": "il",
+    "mask": "+972-57-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "הוט מובייל"
+},{
+    "iso_code": "il",
+    "mask": "+972-58-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "גולן טלקום"
+},{
+    "iso_code": "il",
+    "mask": "+972-59-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "Jawwal, פלסטין"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "012 סמייל"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "סלקום"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-3__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "סלקום"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-7__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "013 Netvision"
+},{
+    "iso_code": "il",
+    "mask": "+972-74-7__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "כתום"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-5__-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "בזק בינלאומי שירות"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-88_-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "בזק"
+},{
+    "iso_code": "il",
+    "mask": "+972-77-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "חם"
+},{
+    "iso_code": "il",
+    "mask": "+972-__-___-____",
+    "region": "ישראל",
+    "city": "כל הערים",
+    "operator": "חם"
 }]

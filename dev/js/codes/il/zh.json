@@ -1,4 +1,151 @@
 [{
     "iso_code": "il",
-    "mask": "+972-5_-___-____"
+    "mask": "+972-2_-___-____",
+    "region": "耶路撒冷区",
+    "city": "耶路撒冷",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-3_-___-____",
+    "region": "特拉维夫区",
+    "city": "特拉维夫",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-4_-___-____",
+    "region": "海法地区",
+    "city": "海法",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-8_-___-____",
+    "region": "南区",
+    "city": "贝尔谢巴的",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-9_-___-____",
+    "region": "中央区",
+    "city": "Hod沙龙",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-50-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Pelephone"
+},{
+    "iso_code": "il",
+    "mask": "+972-52-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "塞康"
+},{
+    "iso_code": "il",
+    "mask": "+972-53-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "热移动"
+},{
+    "iso_code": "il",
+    "mask": "+972-54-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "合作伙伴通信的—橙色"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-22_-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "家庭蜂窝"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-66_-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Rami征Hashikma营销"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-88_-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Alon蜂窝列"
+},{
+    "iso_code": "il",
+    "mask": "+972-56-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Wataniya电信、巴勒斯坦"
+},{
+    "iso_code": "il",
+    "mask": "+972-57-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "热移动"
+},{
+    "iso_code": "il",
+    "mask": "+972-58-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "戈兰高地的电信"
+},{
+    "iso_code": "il",
+    "mask": "+972-59-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Jawwal，巴勒斯坦"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "012微笑"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "塞康"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-3__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "塞康"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-7__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "013Netvision"
+},{
+    "iso_code": "il",
+    "mask": "+972-74-7__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "橙色"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-5__-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Bezeq国际服务"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-88_-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "Bezeq"
+},{
+    "iso_code": "il",
+    "mask": "+972-77-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "热"
+},{
+    "iso_code": "il",
+    "mask": "+972-__-___-____",
+    "region": "以色列",
+    "city": "所有的城市",
+    "operator": "热"
 }]

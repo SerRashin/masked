@@ -1,4 +1,151 @@
 [{
     "iso_code": "il",
-    "mask": "+972-5_-___-____"
+    "mask": "+972-2_-___-____",
+    "region": "Jeruzsálem kerület",
+    "city": "Jeruzsálem",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-3_-___-____",
+    "region": "A tel Aviv-i kerület",
+    "city": "Tel Aviv",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-4_-___-____",
+    "region": "Haifa district",
+    "city": "Haifa",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-8_-___-____",
+    "region": "Déli kerület",
+    "city": "Beersheba",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-9_-___-____",
+    "region": "Központi kerületi",
+    "city": "Hod HaSharon",
+    "operator": ""
+},{
+    "iso_code": "il",
+    "mask": "+972-50-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Pelephone"
+},{
+    "iso_code": "il",
+    "mask": "+972-52-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-53-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Forró Mobil"
+},{
+    "iso_code": "il",
+    "mask": "+972-54-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Partner Kommunikáció — Narancs"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-22_-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Haza Mobil"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-66_-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Rami Illeték Hashikma Marketing"
+},{
+    "iso_code": "il",
+    "mask": "+972-55-88_-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Alon Mobil — YouPhone"
+},{
+    "iso_code": "il",
+    "mask": "+972-56-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Wataniya Telecom, Palesztina"
+},{
+    "iso_code": "il",
+    "mask": "+972-57-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Forró Mobil"
+},{
+    "iso_code": "il",
+    "mask": "+972-58-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Golan Telecom"
+},{
+    "iso_code": "il",
+    "mask": "+972-59-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Jawwal, Palesztina"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "012 Mosoly"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-2__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-3__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Cellcom"
+},{
+    "iso_code": "il",
+    "mask": "+972-72-7__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "013 Netvision"
+},{
+    "iso_code": "il",
+    "mask": "+972-74-7__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Narancs"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-5__-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Bezeq Nemzetközi szolgáltatás"
+},{
+    "iso_code": "il",
+    "mask": "+972-76-88_-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Bezeq"
+},{
+    "iso_code": "il",
+    "mask": "+972-77-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Forró"
+},{
+    "iso_code": "il",
+    "mask": "+972-__-___-____",
+    "region": "Izrael",
+    "city": "Minden város",
+    "operator": "Forró"
 }]
