@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2016-10-14
+* @version 1.0.2 2016-11-09
 */
 
 
@@ -126,7 +126,12 @@ var MaskedConfig = MConf = (function() {
         first_countries:    ['ru'],
         exceptions:         exception_example,
         initial_focus:      false,
-        select_range:       false
+        select_range:       false,
+        onToggleList:       null,
+        onShowList:         null,
+        onHideList:         null,
+        onSend:             null,
+        onValueChanged:     null
     };
 
     
@@ -957,11 +962,11 @@ var Mask = function (el, args) {
         country:          args.country              || MConf('country'),
         phone:            args.phone                || false,
         mask:             args.mask                 || '',
-        onSend:           args.onSend               || null,
-        onToggleList:     args.onToggleList         || null,
-        onShowList:       args.onShowList           || null,
-        onHideList:       args.onHideList           || null,
-        onValueChanged:   args.onValueChanged       || null,
+        onSend:           args.onSend               || MConf('onSend'),
+        onToggleList:     args.onToggleList         || MConf('onToggleList'),
+        onShowList:       args.onShowList           || MConf('onShowList'),
+        onHideList:       args.onHideList           || MConf('onHideList'),
+        onValueChanged:   args.onValueChanged       || MConf('onValueChanged'),
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -1598,7 +1603,8 @@ function hardSearch(value, mask_code) {
     }
 
     if (mask_code === 'us' || mask_code === 'ca') {
-        maths = phoneCodes.sortPhones(maths,'obj.mask','asc');
+        //console.log('invert 2');
+        //maths = phoneCodes.sortPhones(maths,'obj.mask','desc');
     }
 
     find = _false;

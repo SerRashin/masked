@@ -694,7 +694,8 @@ function hardSearch(value, mask_code) {
     }
 
     if (mask_code === 'us' || mask_code === 'ca') {
-        maths = phoneCodes.sortPhones(maths,'obj.mask','asc');
+        //console.log('invert 2');
+        //maths = phoneCodes.sortPhones(maths,'obj.mask','desc');
     }
 
     find = _false;

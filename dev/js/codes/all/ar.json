@@ -1158,13 +1158,13 @@
     "phone_code": "263",
     "mask": "+263-_-______"
 },{
-    "name": "الولايات المتحدة",
-    "iso_code": "us",
+    "name": "كندا",
+    "iso_code": "ca",
     "phone_code": "1",
     "mask": "+1(___)___-____"
 },{
-    "name": "كندا",
-    "iso_code": "ca",
+    "name": "الولايات المتحدة",
+    "iso_code": "us",
     "phone_code": "1",
     "mask": "+1(___)___-____"
 }]
