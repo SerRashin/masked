@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2016-11-09
+* @version 1.0.2 2016-11-10
 */
 
 
@@ -118,7 +118,7 @@ var MaskedConfig = MConf = (function() {
     };
 
     var options = {
-        pathToList:         '/js/masks/',
+        pathToList:         'dev/js/codes/',
         prefix:             'instId_',
         lang:               'ru',
         country:            'ru',
@@ -701,7 +701,7 @@ var phoneCodes = {
             _true = true;
 
         sAJAX({
-            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
+            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.json',
             type:        'GET',
             async:       _true,
             crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -1073,8 +1073,6 @@ Mask.prototype = {
                 return false;
             }
 
-
-
             if (isset(pc[iso]) && empty(pc[iso])) {
                 var t = {'iso_code':iso, 'lang': self.opt.lang };
                 if (!languageIsset(gc, t)) {
@@ -1406,6 +1404,8 @@ Mask.prototype = {
                 start:   start,
                 end:     end
             };
+        } else {
+            self.focused();
         }
     },
 
@@ -1563,7 +1563,7 @@ function hardSearch(value, mask_code) {
         return false;
     }
 
-    masklist = pc.sortPhones(masklist, 'mask', 'desc');
+    masklist = pc.sortPhones(masklist, 'mask', 'asc');
 
     if (!empty(pc[mask_code])) {
         masklist = pc[mask_code].concat(masklist);

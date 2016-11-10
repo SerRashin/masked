@@ -164,8 +164,6 @@ Mask.prototype = {
                 return false;
             }
 
-
-
             if (isset(pc[iso]) && empty(pc[iso])) {
                 var t = {'iso_code':iso, 'lang': self.opt.lang };
                 if (!languageIsset(gc, t)) {
@@ -497,6 +495,8 @@ Mask.prototype = {
                 start:   start,
                 end:     end
             };
+        } else {
+            self.focused();
         }
     },
 
@@ -654,7 +654,7 @@ function hardSearch(value, mask_code) {
         return false;
     }
 
-    masklist = pc.sortPhones(masklist, 'mask', 'desc');
+    masklist = pc.sortPhones(masklist, 'mask', 'asc');
 
     if (!empty(pc[mask_code])) {
         masklist = pc[mask_code].concat(masklist);
