@@ -497,6 +497,8 @@ Mask.prototype = {
                 start:   start,
                 end:     end
             };
+        } else {
+            self.focused();
         }
     },
 
