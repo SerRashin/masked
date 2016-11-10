@@ -118,7 +118,7 @@ var MaskedConfig = MConf = (function() {
     };
 
     var options = {
-        pathToList:         'dev/js/codes/',
+        pathToList:         '/js/masks/',
         prefix:             'instId_',
         lang:               'ru',
         country:            'ru',
@@ -701,7 +701,7 @@ var phoneCodes = {
             _true = true;
 
         sAJAX({
-            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.json',
+            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
             type:        'GET',
             async:       _true,
             crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
@@ -1073,6 +1073,8 @@ Mask.prototype = {
                 return false;
             }
 
+
+
             if (isset(pc[iso]) && empty(pc[iso])) {
                 var t = {'iso_code':iso, 'lang': self.opt.lang };
                 if (!languageIsset(gc, t)) {
@@ -1404,8 +1406,6 @@ Mask.prototype = {
                 start:   start,
                 end:     end
             };
-        } else {
-            self.focused();
         }
     },
 
@@ -1563,7 +1563,7 @@ function hardSearch(value, mask_code) {
         return false;
     }
 
-    masklist = pc.sortPhones(masklist, 'mask', 'asc');
+    masklist = pc.sortPhones(masklist, 'mask', 'desc');
 
     if (!empty(pc[mask_code])) {
         masklist = pc[mask_code].concat(masklist);
@@ -1600,10 +1600,6 @@ function hardSearch(value, mask_code) {
                 });
             }
         }
-    }
-
-    if (mask_code === 'us' || mask_code === 'ca') {
-        maths = phoneCodes.sortPhones(maths,'mask','desc');
     }
 
     find = _false;
