@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2016-11-10
+* @version 1.0.2 2016-11-16
 */
 
 
@@ -1596,12 +1596,21 @@ function hardSearch(value, mask_code) {
             if (pass && it == value.length) {
                 determined = mask.substr(im).search(_regex) == -1;
                 mask = mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_');
+
+                if (value === '1' && masklist[i].iso_code !== 'us') {
+                    continue;
+                }
+
                 maths.push({
                     mask: mask,
                     obj: masklist[i]
                 });
             }
         }
+    }
+
+    if (mask_code === 'us' || mask_code === 'ca') {
+        maths = phoneCodes.sortPhones(maths,'mask','desc');
     }
 
     find = _false;
