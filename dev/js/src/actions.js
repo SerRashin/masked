@@ -38,6 +38,8 @@ var actions = {
         if (inst.opt.select_range !== false) {
             inst.unsetRange();
         }
+
+        return true;
     },
 
     /**

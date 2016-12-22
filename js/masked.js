@@ -1,9 +1,4 @@
-/**! 
-* Masked - v1.0.2 - 
-* 
-* @author Rashin Sergey 
-* @version 1.0.2 2016-11-16
-*/
+/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
 
 
 /**
@@ -774,6 +769,8 @@ var actions = {
         if (inst.opt.select_range !== false) {
             inst.unsetRange();
         }
+
+        return true;
     },
 
     /**
@@ -1531,7 +1528,7 @@ Mask.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'blur',        actions.blur);
-        Event.add(e,'click',       actions.click);
+        Event.add(e,'click',       actions.click)
         Event.add(e,'dblclick',    actions.dblclick);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);

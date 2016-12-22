@@ -1,12 +1,65 @@
 {
-  "name": "Masked",
-  "description": "Masked lib",
-  "version": "1.0.2",
+  "_args": [
+    [
+      {
+        "raw": "Masked@git://github.com/serhanters/masked.git",
+        "scope": null,
+        "escapedName": "Masked",
+        "name": "Masked",
+        "rawSpec": "git://github.com/serhanters/masked.git",
+        "spec": "git://github.com/serhanters/masked.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:serhanters/masked.git",
+          "sshUrl": "git+ssh://git@github.com/serhanters/masked.git",
+          "httpsUrl": "git+https://github.com/serhanters/masked.git",
+          "gitUrl": "git://github.com/serhanters/masked.git",
+          "shortcut": "github:serhanters/masked",
+          "directUrl": "https://raw.githubusercontent.com/serhanters/masked/master/package.json"
+        }
+      },
+      "/home/lester/Dropbox/cbh/cbh_trunk/widgets"
+    ]
+  ],
+  "_from": "git://github.com/serhanters/masked.git",
+  "_id": "Masked@1.0.2",
+  "_inCache": true,
+  "_location": "/Masked",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "Masked@git://github.com/serhanters/masked.git",
+    "scope": null,
+    "escapedName": "Masked",
+    "name": "Masked",
+    "rawSpec": "git://github.com/serhanters/masked.git",
+    "spec": "git://github.com/serhanters/masked.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:serhanters/masked.git",
+      "sshUrl": "git+ssh://git@github.com/serhanters/masked.git",
+      "httpsUrl": "git+https://github.com/serhanters/masked.git",
+      "gitUrl": "git://github.com/serhanters/masked.git",
+      "shortcut": "github:serhanters/masked",
+      "directUrl": "https://raw.githubusercontent.com/serhanters/masked/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#DEV:/"
+  ],
+  "_resolved": "git://github.com/serhanters/masked.git#d61fc79f6a0cc1d85493787c895eb69f9b1b2b49",
+  "_shasum": "116beb76d11efdd44e1b44570d838b21cbdb9aea",
+  "_shrinkwrap": null,
+  "_spec": "Masked@git://github.com/serhanters/masked.git",
+  "_where": "/home/lester/Dropbox/cbh/cbh_trunk/widgets",
   "author": {
     "name": "Rashin Sergey",
     "email": "serhanters@yandex.ru",
     "url": "http://vk.com/ser_r"
   },
+  "dependencies": {},
+  "description": "Masked lib",
   "devDependencies": {
     "browser-sync": "^2.2.3",
     "grunt": "~0.4.5",
@@ -20,10 +73,10 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-jsonmin": "^0.2.4"
   },
+  "gitHead": "d61fc79f6a0cc1d85493787c895eb69f9b1b2b49",
+  "name": "Masked",
+  "optionalDependencies": {},
   "readme": "# Masked\nMasked - это уникальный, универсальный плагин для стилизации input(ов).\nОн дает возможность отображать в input, маску ввода номера телефона, отображает селектор стран, в котором можно выбрать необходимый код телефона(по стране с флагом).\nПлагин очень легковесный, написан на чистом JS без всевозможных плагинов и библиотек.\n\n## Установка <sup>(для разработчиков)</sup>\n1. Установите Node.js и npm.  \n    ```shell\n    sudo apt-get install nodejs npm\n    ```\n    \n2. Установите необходимые для работы компоненты.  \n    ```shell\n    sudo npm install -g grunt-cli jshint uglify-js grunt-browser-sync grunt-jsonmin\n    ```\n    >* grunt-cli          - Сам Grunt для консольных команд.\n    >* jshint \t         - Инструмент для проверки кода JavaScript.\n    >* uglify-js          - Компрессор (минификатор) JS.\n    >* grunt-browser-sync - Live Reload перегрузка файлов.\n    >* grunt-jsonmin      - минимизация json.\n    \n3. В директории, где лежит Gruntfile.js выполните команду.\n    ```shell\n    npm install\n    ```\n    >**НЕ используйте sudo для этой команды.**\n\n## Конфиги\n### Глобальные конфиги\nДля установки глобальных настроек, воспользуйтесь функцией-сеттером\n```js\n    MConf({\n        pathToList  :'//masked.proj/js/masks/'\n    });\n```\nДля того чтобы получить текущие настройки воспользуйтесь этим же методом, но без параметров, результат объект {ключ:значение}\n```js\n    MConf();\n```",
   "readmeFilename": "README.md",
-  "_id": "Masked@1.0.2",
-  "_shasum": "c2edbf495321d91fe6bf5f46eb13793f3da16d23",
-  "_resolved": "git://github.com/serhanters/masked#39cd4682544e61106ce5183a01f5b44dfc9f6333",
-  "_from": "Masked@git://github.com/serhanters/masked"
+  "version": "1.0.2"
 }

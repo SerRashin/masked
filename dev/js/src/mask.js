@@ -622,7 +622,7 @@ Mask.prototype = {
     addActions: function(e) {
         Event.add(e,'focus',       actions.focus);
         Event.add(e,'blur',        actions.blur);
-        Event.add(e,'click',       actions.click);
+        Event.add(e,'click',       actions.click)
         Event.add(e,'dblclick',    actions.dblclick);
         Event.add(e,'keydown',     actions.keydown);
         Event.add(e,'keyup',       actions.keyup);
