@@ -1,42 +1,4 @@
 var phoneCodes = {
-    all:    [],     // список масок для всех стран
-    ae:     [],     //
-    an:     [],     //
-    ba:     [],     //
-    bt:     [],     //
-    ca:     [],     // список кодов для канады
-    cn:     [],     //
-    de:     [],     //
-    ec:     [],     //
-    ee:     [],     //
-    id:     [],     //
-    il:     [],     //
-    jp:     [],     //
-    kp:     [],     //
-    la:     [],     //
-    lb:     [],     //
-    ly:     [],     //
-    mc:     [],     //
-    mm:     [],     //
-    mx:     [],     //
-    my:     [],     //
-    ng:     [],     //
-    nz:     [],     //
-    ru:     [],     // список кодов для россии
-    sa:     [],     //
-    sb:     [],     //
-    so:     [],     //
-    sr:     [],     //
-    th:     [],     //
-    tl:     [],     //
-    tv:     [],     //
-    tw:     [],     //
-    ua:     [],     // список кодов для Украины
-    us:     [],     // список кодов для США
-    vn:     [],     //
-    vu:     [],     //
-    ye:     [],     //
-
 
     /**
      * Сортировать номера телефонов по ключу
@@ -79,47 +41,72 @@ var phoneCodes = {
     },
 
     /**
-     * Загрузить маски
+     * Загрузить маску
      *
      * @param type
      * @param lang
      * @param callback
      */
-    loadMasks: function (type, lang, callback) {
+    loadMask: function (types, languages, callback) {
         var self  = this,
-            _true = true;
+            gc    = Global.countries;
 
-        sAJAX({
-            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
-            type:        'GET',
-            async:       _true,
-            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
-            dataType:    'json',
-            result: function (responce) {
-                self[type] = self.sortPhones(responce, 'mask', 'desc');
-                if (typeof callback == 'function') {
-                    callback();
-                }
+        var type = typeof types === 'string' ? [types] : types.splice(0,1)[0];
+        var lang = typeof languages === 'string' ? [languages] : languages.splice(0,1)[0];
+
+        if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
+            return self.loadMask(types, languages, callback);
+        }
+
+        if (typeof gc[type][lang] !== 'undefined' && gc[type][lang].length > 0) {
+            if (languages.length === 0) {
+                return callback();
+            } else {
+                self.loadMask(types, languages, callback);
             }
-        });
+        } else {
+            sAJAX({
+                url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
+                type:        'GET',
+                async:       true,
+                crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
+                dataType:    'json',
+                result: function (responce) {
+                    gc[type][lang] = self.sortPhones(responce, 'mask', 'desc');
+
+                    if (languages.length === 0 && isFunction(callback)) {
+                        return callback();
+                    } else {
+                        self.loadMask(types, languages, callback)
+                    }
+                }
+            });
+        }
+
+        return true;
     },
-    findMaskByCode: function(code) {
+
+    findMaskByCode: function(type, code, language) {
         var i,
             one,
             self = this,
-            sortedCodes = self.sortPhones(self.all, 'name', 1);
+            gc    = Global.countries,
+            sortedCodes = self.sortPhones(gc[type][language], 'name', 1);
 
-        for (i in self.all) {
-            if (self.all.hasOwnProperty(i)) {
-                one = sortedCodes[i];
-                /**
-                 * @namespace one.iso_code Код страны
-                 */
-                if (one.iso_code === code) {
-                    return one;
+        if (sortedCodes.length > 0) {
+            for (i in sortedCodes) {
+                if (sortedCodes.hasOwnProperty(i)) {
+                    one = sortedCodes[i];
+                    /**
+                     * @namespace one.iso_code Код страны
+                     */
+                    if (one.iso_code === code) {
+                        return one;
+                    }
                 }
             }
         }
+
         return false;
     }
 };

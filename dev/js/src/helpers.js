@@ -363,7 +363,7 @@ function childOf(c,p){ //returns boolean
  * @returns {string}
  */
 function getPhone(value) {
-    return value.replace(/\D+/g,"");
+    return (value+'').replace(/\D+/g,"");
 }
 
 /**
@@ -393,54 +393,13 @@ function getNewMaskValue(_value, _mask) {
     return mask.join('');
 }
 
-/**
- * Функция может устанавливать курсор на позицию start||end или выделять символ для замены
- *   если start и end равны, то курсор устанавливается на позицию start||end
- *   если не равны, выделяет символы от start до end
- */
-function setCaretFocus(input, start, end) {
-    var character = 'character';
-    input.focus();
-    if (input.setSelectionRange) {
-        input.setSelectionRange(start, end);
-    } else if (input.createTextRange) {
-        var range = input.createTextRange();
-        range.collapse(true);
-        range.moveEnd(character, start);
-        range.moveStart(character, end);
-        range.select();
-    }
-}
-
-/**
- * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
- * @param e
- * @returns {Number}
- */
-function getLastNum(e) {
-    var i,
-        v  = e.value;
-    for (i = v.length; i >= 0; i--) {
-        if (_regex.test(v[i])) {
-            break;
-        }
-    }
-    return i;
-}
 
 
-/**
- * Удалить последний элемент
- * @param e
- * @param i
- */
-function removeLastChar(e, i) {
-    var temp = e.value.split('');
-    if (_regex.test(temp[i])) {
-        temp[i]='_';
-    }
-    e.value = temp.join('');
-}
+
+
+
+
+
 
 function languageIsset(_array, _object) {
     var a = false;
@@ -460,3 +419,58 @@ function isFunction(a) {
     return typeof a === 'function';
 }
 
+function getElements(selector) {
+    var i,
+        element,
+        elements = [],
+        first_digit;
+    if ( typeof selector === 'string' ) {
+        first_digit = selector[0];
+
+        if ( (first_digit === '.') || (first_digit === '#') ) {
+            selector = selector.substr(1);
+        }
+
+        if (first_digit === '.') {
+            element = doc.getElementsByClassName( selector );
+            for(i in element) {
+                if (element.hasOwnProperty(i) && element[i] !== type_null) {
+                    elements[element[i].id||i] = element[i];
+                }
+            }
+        } else if (first_digit === '#') {
+            element = doc.getElementById( selector );
+            if (element !== type_null) {
+                elements.push(element);
+            }
+        } else {
+            console.warn('selector finder empty');
+        }
+    } else if (selector.nodeType) {
+        if (selector !== type_null) {
+            elements.push(selector);
+        }
+    }
+
+    return elements;
+}
+
+Array.prototype.getUnique = function(){
+    var u = {}, a = [];
+    for(var i = 0, l = this.length; i < l; ++i){
+        if(u.hasOwnProperty(this[i])) {
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+};
+
+Math.sign = Math.sign || function(x) {
+    x = +x; // convert to a number
+    if (x === 0 || isNaN(x)) {
+        return x;
+    }
+    return x > 0 ? 1 : -1;
+};

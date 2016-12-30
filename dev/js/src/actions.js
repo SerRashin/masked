@@ -1,18 +1,11 @@
 var actions = {
+
     /**
      * При фокусе на поле ввода
      * @return void
      */
-    focus: function (e) {
-        Masked.getInst(this).focused();
-    },
-
-    /**
-     * При двойном нажатии
-     * @return void
-     */
-    dblclick:function () {
-        this.click();
+    focus: function () {
+       this.focused();
     },
 
     /**
@@ -20,26 +13,44 @@ var actions = {
      * @return void
      */
     click: function () {
-        var inst = Masked.getInst(this);
+        var self = this;
 
-        if (inst.opt.select_range !== false) {
-            inst.setRange();
+        if (self.opt.select_range !== false) {
+            self.setRange();
         } else {
-            inst.focused();
+            self.focused();
         }
     },
 
     /**
-     * При потери фокуса
+     * При двойном нажатии
      * @return void
      */
+    dblclick:function () {
+        actions.click.bind(this);
+    },
+
+    /**
+     * При потери фокуса
+     * @return boolean
+     */
     blur: function () {
-        var inst = Masked.getInst(this);
-        if (inst.opt.select_range !== false) {
-            inst.unsetRange();
+        var self = this;
+        if (self.opt.select_range !== false) {
+            self.unsetRange();
         }
 
         return true;
+    },
+
+    /**
+     * При вставке номера телефона
+     * @param e
+     * @return void
+     */
+    paste: function(e) {
+        e.preventDefault();
+        this.findMask(getPhone((e.originalEvent || e).clipboardData.getData('text/plain')));
     },
 
     /**
@@ -50,66 +61,66 @@ var actions = {
         var index,
             num,
             self        = this,
-            p           = plugin,
-            instance    = p.getInst(self),
+            element     = self.opt.element,
             code        = e.which || e.keyCode,
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
-            value       = self.value,
-            select_range= instance.opt.select_range,
-            _false      = false,
-            _true       = true;
+            value       = element.value,
+            select_range= self.opt.select_range;
 
         if (code === 8) {  // BACKSPACE
-            index = getLastNum(self);
-            if (_regex.test(value[index]) === _true) {
+            index = self.getLastNum();
+            if (_regex.test(value[index]) === true) {
 
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        instance.replaceRange();
+                        self.replaceRange();
                         index   = select_range.start;
-                        instance.unsetRange();
-                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        self.unsetRange();
+                        self.opt.select_range.changed  = select_range.end - select_range.start > 1;
                     }
                 }
-                removeLastChar(self, index);
-                setCaretFocus(self, index ,index);
-                instance.setMask(self); // ищем новую маску
-                instance.focused();
-                return _false;
+                self.removeLastChar(index);
+                self.setCaretFocus(index ,index);
+
+
+                self.findMask(element.value); // ищем новую маску
+                self.focused();
+
+                return false;
             } else {
-                return _false;
+                return false;
             }
         } else {
             if(ctrlKey === true && code === 86) {
-                return _true;
+                return true;
             } else {
 
                 num = value.indexOf('_');
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        if (_regex.test(key) === _true) {
-                            instance.replaceRange();
+                        if (_regex.test(key) === true) {
+                            self.replaceRange();
                             num   = select_range.start;
-                            value = self.value;
-                            instance.unsetRange();
-                            instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                            value = element.value;
+                            self.unsetRange();
+                            self.opt.select_range.changed  = select_range.end - select_range.start > 1;
                         }
                     }
                 }
 
                 if (num !== -1) { // если есть еще пустые символы
-                    if (_regex.test(key) === _true && value[num] === '_' ) {
-                        setCaretFocus(self, num, (num + 1));
+                    if (_regex.test(key) === true && value[num] === '_' ) {
+                        self.setCaretFocus(num, (num + 1));
                     } else {
-                        return _false;
+                        return false;
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (instance.ifIssetNextMask() && _regex.test(key) === _true) {
-                        return _true;
+                    if (self.ifIssetNextMask() && _regex.test(key) === true) {
+                        return true;
                     }
-                    return _false;
+                    return false;
                 }
             }
         }
@@ -124,21 +135,20 @@ var actions = {
         var index,
             num,
             self        = this,
-            p           = plugin,
-            instance    = p.getInst(self),
+            element     = self.opt.element,
             code        = e.keyCode || e.which,
-            value       = self.value,
-            opt         = instance.opt,
-            _false      = false;
+            value       = element.value,
+            opt         = self.opt,
+            select_range= opt.select_range;
 
         if (code === 8) {     // BACKSPACE
-            index = getLastNum(self);
+            index = self.getLastNum();
             if (_regex.test(value[index]) === true) {
                 index += 1;
-                instance.focused();
-                return _false;
+                self.focused();
+                return false;
             } else {
-                return _false;
+                return false;
             }
         }  else if(code === 13) {
             if (opt.onSend) {
@@ -148,28 +158,16 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
 
-            instance.setMask(self); // ищем новую маску
-            instance.focused();
+            if (select_range.changed !== true) {
+                self.findMask(element.value); // ищем новую маску
+                self.focused();
+            } else {
+                if (num === -1) {
+                    self.unsetRange();
+                    self.focused();
+                }
+            }
+
         }
     },
-
-    /**
-     * При вставке номера телефона
-     * @param e
-     * @return void
-     */
-    paste: function(e) {
-        e.preventDefault();
-        var self            = this,
-            p               = plugin,
-            instance        = p.getInst(self),
-            clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
-
-        /**
-         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-         *
-         */
-        instance.opt.element.value = getPhone(clipboard_text);
-        instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
-    }
 };

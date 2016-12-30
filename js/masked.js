@@ -1,5 +1,55 @@
-/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
+/**! 
+* Masked - v1.1.0 - 
+* 
+* @author Rashin Sergey 
+* @version 1.1.0 2016-12-30
+*/
 
+
+var Global = {
+    pre: [],
+    initialization: false,
+    instances: [],
+    countries: { // коды стран которые необходимо дополнительно подключить
+        all:    [],     // список масок для всех стран
+        ae:     [],     //
+        an:     [],     //
+        ba:     [],     //
+        bt:     [],     //
+        ca:     [],     // список кодов для канады
+        cn:     [],     //
+        de:     [],     //
+        ec:     [],     //
+        ee:     [],     //
+        id:     [],     //
+        il:     [],     //
+        jp:     [],     //
+        kp:     [],     //
+        la:     [],     //
+        lb:     [],     //
+        ly:     [],     //
+        mc:     [],     //
+        mm:     [],     //
+        mx:     [],     //
+        my:     [],     //
+        ng:     [],     //
+        nz:     [],     //
+        ru:     [],     // список кодов для россии
+        sa:     [],     //
+        sb:     [],     //
+        so:     [],     //
+        sr:     [],     //
+        th:     [],     //
+        tl:     [],     //
+        tv:     [],     //
+        tw:     [],     //
+        ua:     [],     // список кодов для Украины
+        us:     [],     // список кодов для США
+        vn:     [],     //
+        vu:     [],     //
+        ye:     [],     //
+    }
+};
 
 /**
  * Сервер подписки объектов
@@ -23,29 +73,92 @@ var MaskedObserver = (function() {
          * Отправляем всем объектам уведомление, что пора стартовать работу инпутов
          */
         notify: function () {
-            var self = this;
+            var self = this,
+                languages = [],
+                /**
+                 * Загружаем системную маску и инициализируем все объекты
+                 */
+                callback = function () {
+                    self.subscribers.forEach(function(mask) {
+                        mask.self.start(mask.elements, mask.options);
+                    });
 
-            /**
-             * Загружаем системную маску и инициализируем все объекты
-             */
+                    self.subscribers = []; // сброс подписчиков в ноль
 
-            var callback = function () {
-                self.subscribers.forEach(function(mask) {
-                    mask.start()
-                });
+                    if (MaskedSubListObserver.subscribers.length > 0) {
+                        MaskedSubListObserver.notify();
+                    } else {
+                        Global.initialization = false;
+                    }
 
-                Masked.postload();
-            };
+                };
 
-            if (Object.keys(Masked.phoneCodes.all).length === 0) {
-                Masked.phoneCodes.loadMasks('all', MConf('lang'), function() {
-                    callback();
-                });
-            } else {
-                callback();
+            Global.initialization = true;
+            if (self.subscribers) {
+                for(var i in self.subscribers) {
+                    if(self.subscribers.hasOwnProperty(i)) {
+                        languages.push(self.subscribers[i].options.lang);
+                    }
+                }
             }
 
+            Masked.phoneCodes.loadMask('all', languages, function() {
+                callback();
+            });
+        }
+    };
 
+    return new MObserver();
+})();
+
+
+var MaskedSubListObserver = (function() {
+    function MObserver() {
+        this.subscribers = [];
+    }
+
+    MObserver.prototype = {
+        /**
+         * Добавляем в наш обсервер объект для отслеживания
+         *
+         * @param options
+         */
+        add: function (options) {
+            this.subscribers.push(options);
+        },
+
+        /**
+         * Отправляем всем объектам уведомление, что пора стартовать работу инпутов
+         */
+        notify: function () {
+            var object,
+                subscriber,
+                self        = this,
+                languages   = [],
+                countries   = [],
+                objects     = [],
+                subscribers = self.subscribers;
+
+            for (var i in subscribers) {
+                if (subscribers.hasOwnProperty(i)) {
+                    subscriber = subscribers[i];
+                    objects.push(subscriber.object);
+                    languages.push(subscriber.language);
+                    countries.push(subscriber.country);
+                }
+            }
+
+            Masked.phoneCodes.loadMask(countries, languages, function() {
+                for (var i in objects) {
+                    if (objects.hasOwnProperty(i)) {
+                        object = objects[i];
+                        object.findMask(object.opt.phone);
+                    }
+                }
+            });
+
+            Global.initialization = false;
+            self.subscribers = []; // сброс подписчиков в ноль
         }
     };
 
@@ -64,13 +177,15 @@ $M.ready = $M;
 /**
  * Этот способ намного хуже способа с оберткой через $M.ready
  */
-var  alternativeReady = (function() {
+var alternativeReady = (function() {
     return {
         timerID: 0,
         init: function() {
+
             if (this.timerID) {
                 clearTimeout(this.timerID);
             }
+
             this.timerID = setTimeout(function() {
                 MaskedObserver.notify();
             }, 250);
@@ -86,7 +201,7 @@ var generalMaskedFn = {
         var i,
             extended = {},
             prototype = Object.prototype.hasOwnProperty;
-    
+
         for (i in defaults) {
             if (defaults.hasOwnProperty(i) && prototype.call(defaults, i)) {
                 extended[i] = defaults[i];
@@ -104,12 +219,12 @@ var generalMaskedFn = {
 var MaskedConfig = MConf = (function() {
 
     var exception_example = {
-        // 'ru' : {
-            //localFormat:'8',
-            // exceptions: {
-            //     '8975': '7975'
-            // }
-        // }
+        'ru' : {
+            localFormat:'8',
+            exceptions: {
+                '8975': '7975'
+            }
+        }
     };
 
     var options = {
@@ -126,7 +241,8 @@ var MaskedConfig = MConf = (function() {
         onShowList:         null,
         onHideList:         null,
         onSend:             null,
-        onValueChanged:     null
+        onValueChanged:     null,
+        popup_direction:    'auto'
     };
 
     
@@ -134,6 +250,11 @@ var MaskedConfig = MConf = (function() {
         if (typeof args === 'string') {
             return options[args];
         } else {
+            for (var i in args) {
+                if (args.hasOwnProperty(i) && typeof options[i] === 'undefined') {
+                    console.warn('masked argument not exists');
+                }
+            }
             return options = generalMaskedFn.extend(options, args);
         }
     };
@@ -506,7 +627,7 @@ function childOf(c,p){ //returns boolean
  * @returns {string}
  */
 function getPhone(value) {
-    return value.replace(/\D+/g,"");
+    return (value+'').replace(/\D+/g,"");
 }
 
 /**
@@ -536,54 +657,13 @@ function getNewMaskValue(_value, _mask) {
     return mask.join('');
 }
 
-/**
- * Функция может устанавливать курсор на позицию start||end или выделять символ для замены
- *   если start и end равны, то курсор устанавливается на позицию start||end
- *   если не равны, выделяет символы от start до end
- */
-function setCaretFocus(input, start, end) {
-    var character = 'character';
-    input.focus();
-    if (input.setSelectionRange) {
-        input.setSelectionRange(start, end);
-    } else if (input.createTextRange) {
-        var range = input.createTextRange();
-        range.collapse(true);
-        range.moveEnd(character, start);
-        range.moveStart(character, end);
-        range.select();
-    }
-}
-
-/**
- * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
- * @param e
- * @returns {Number}
- */
-function getLastNum(e) {
-    var i,
-        v  = e.value;
-    for (i = v.length; i >= 0; i--) {
-        if (_regex.test(v[i])) {
-            break;
-        }
-    }
-    return i;
-}
 
 
-/**
- * Удалить последний элемент
- * @param e
- * @param i
- */
-function removeLastChar(e, i) {
-    var temp = e.value.split('');
-    if (_regex.test(temp[i])) {
-        temp[i]='_';
-    }
-    e.value = temp.join('');
-}
+
+
+
+
+
 
 function languageIsset(_array, _object) {
     var a = false;
@@ -603,46 +683,63 @@ function isFunction(a) {
     return typeof a === 'function';
 }
 
+function getElements(selector) {
+    var i,
+        element,
+        elements = [],
+        first_digit;
+    if ( typeof selector === 'string' ) {
+        first_digit = selector[0];
+
+        if ( (first_digit === '.') || (first_digit === '#') ) {
+            selector = selector.substr(1);
+        }
+
+        if (first_digit === '.') {
+            element = doc.getElementsByClassName( selector );
+            for(i in element) {
+                if (element.hasOwnProperty(i) && element[i] !== type_null) {
+                    elements[element[i].id||i] = element[i];
+                }
+            }
+        } else if (first_digit === '#') {
+            element = doc.getElementById( selector );
+            if (element !== type_null) {
+                elements.push(element);
+            }
+        } else {
+            console.warn('selector finder empty');
+        }
+    } else if (selector.nodeType) {
+        if (selector !== type_null) {
+            elements.push(selector);
+        }
+    }
+
+    return elements;
+}
+
+Array.prototype.getUnique = function(){
+    var u = {}, a = [];
+    for(var i = 0, l = this.length; i < l; ++i){
+        if(u.hasOwnProperty(this[i])) {
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+};
+
+Math.sign = Math.sign || function(x) {
+    x = +x; // convert to a number
+    if (x === 0 || isNaN(x)) {
+        return x;
+    }
+    return x > 0 ? 1 : -1;
+};
 
 var phoneCodes = {
-    all:    [],     // список масок для всех стран
-    ae:     [],     //
-    an:     [],     //
-    ba:     [],     //
-    bt:     [],     //
-    ca:     [],     // список кодов для канады
-    cn:     [],     //
-    de:     [],     //
-    ec:     [],     //
-    ee:     [],     //
-    id:     [],     //
-    il:     [],     //
-    jp:     [],     //
-    kp:     [],     //
-    la:     [],     //
-    lb:     [],     //
-    ly:     [],     //
-    mc:     [],     //
-    mm:     [],     //
-    mx:     [],     //
-    my:     [],     //
-    ng:     [],     //
-    nz:     [],     //
-    ru:     [],     // список кодов для россии
-    sa:     [],     //
-    sb:     [],     //
-    so:     [],     //
-    sr:     [],     //
-    th:     [],     //
-    tl:     [],     //
-    tv:     [],     //
-    tw:     [],     //
-    ua:     [],     // список кодов для Украины
-    us:     [],     // список кодов для США
-    vn:     [],     //
-    vu:     [],     //
-    ye:     [],     //
-
 
     /**
      * Сортировать номера телефонов по ключу
@@ -685,65 +782,83 @@ var phoneCodes = {
     },
 
     /**
-     * Загрузить маски
+     * Загрузить маску
      *
      * @param type
      * @param lang
      * @param callback
      */
-    loadMasks: function (type, lang, callback) {
+    loadMask: function (types, languages, callback) {
         var self  = this,
-            _true = true;
+            gc    = Global.countries;
 
-        sAJAX({
-            url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
-            type:        'GET',
-            async:       _true,
-            crossDomain: _true,             /// при crossdomain не возможен заголовок XMLHttpRequest
-            dataType:    'json',
-            result: function (responce) {
-                self[type] = self.sortPhones(responce, 'mask', 'desc');
-                if (typeof callback == 'function') {
-                    callback();
-                }
+        var type = typeof types === 'string' ? [types] : types.splice(0,1)[0];
+        var lang = typeof languages === 'string' ? [languages] : languages.splice(0,1)[0];
+
+        if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
+            return self.loadMask(types, languages, callback);
+        }
+
+        if (typeof gc[type][lang] !== 'undefined' && gc[type][lang].length > 0) {
+            if (languages.length === 0) {
+                return callback();
+            } else {
+                self.loadMask(types, languages, callback);
             }
-        });
+        } else {
+            sAJAX({
+                url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
+                type:        'GET',
+                async:       true,
+                crossDomain: true,             /// при crossdomain не возможен заголовок XMLHttpRequest
+                dataType:    'json',
+                result: function (responce) {
+                    gc[type][lang] = self.sortPhones(responce, 'mask', 'desc');
+
+                    if (languages.length === 0 && isFunction(callback)) {
+                        return callback();
+                    } else {
+                        self.loadMask(types, languages, callback)
+                    }
+                }
+            });
+        }
+
+        return true;
     },
-    findMaskByCode: function(code) {
+
+    findMaskByCode: function(type, code, language) {
         var i,
             one,
             self = this,
-            sortedCodes = self.sortPhones(self.all, 'name', 1);
+            gc    = Global.countries,
+            sortedCodes = self.sortPhones(gc[type][language], 'name', 1);
 
-        for (i in self.all) {
-            if (self.all.hasOwnProperty(i)) {
-                one = sortedCodes[i];
-                /**
-                 * @namespace one.iso_code Код страны
-                 */
-                if (one.iso_code === code) {
-                    return one;
+        if (sortedCodes.length > 0) {
+            for (i in sortedCodes) {
+                if (sortedCodes.hasOwnProperty(i)) {
+                    one = sortedCodes[i];
+                    /**
+                     * @namespace one.iso_code Код страны
+                     */
+                    if (one.iso_code === code) {
+                        return one;
+                    }
                 }
             }
         }
+
         return false;
     }
 };
 var actions = {
+
     /**
      * При фокусе на поле ввода
      * @return void
      */
-    focus: function (e) {
-        Masked.getInst(this).focused();
-    },
-
-    /**
-     * При двойном нажатии
-     * @return void
-     */
-    dblclick:function () {
-        this.click();
+    focus: function () {
+       this.focused();
     },
 
     /**
@@ -751,26 +866,44 @@ var actions = {
      * @return void
      */
     click: function () {
-        var inst = Masked.getInst(this);
+        var self = this;
 
-        if (inst.opt.select_range !== false) {
-            inst.setRange();
+        if (self.opt.select_range !== false) {
+            self.setRange();
         } else {
-            inst.focused();
+            self.focused();
         }
     },
 
     /**
-     * При потери фокуса
+     * При двойном нажатии
      * @return void
      */
+    dblclick:function () {
+        actions.click.bind(this);
+    },
+
+    /**
+     * При потери фокуса
+     * @return boolean
+     */
     blur: function () {
-        var inst = Masked.getInst(this);
-        if (inst.opt.select_range !== false) {
-            inst.unsetRange();
+        var self = this;
+        if (self.opt.select_range !== false) {
+            self.unsetRange();
         }
 
         return true;
+    },
+
+    /**
+     * При вставке номера телефона
+     * @param e
+     * @return void
+     */
+    paste: function(e) {
+        e.preventDefault();
+        this.findMask(getPhone((e.originalEvent || e).clipboardData.getData('text/plain')));
     },
 
     /**
@@ -781,66 +914,66 @@ var actions = {
         var index,
             num,
             self        = this,
-            p           = plugin,
-            instance    = p.getInst(self),
+            element     = self.opt.element,
             code        = e.which || e.keyCode,
             ctrlKey     = e.ctrlKey||e.metaKey,
             key         = e.key ? e.key : (code >= 96 && code <= 105) ? String.fromCharCode(code - 48)  : String.fromCharCode(code), // для numpad(а) преобразовываем
-            value       = self.value,
-            select_range= instance.opt.select_range,
-            _false      = false,
-            _true       = true;
+            value       = element.value,
+            select_range= self.opt.select_range;
 
         if (code === 8) {  // BACKSPACE
-            index = getLastNum(self);
-            if (_regex.test(value[index]) === _true) {
+            index = self.getLastNum();
+            if (_regex.test(value[index]) === true) {
 
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        instance.replaceRange();
+                        self.replaceRange();
                         index   = select_range.start;
-                        instance.unsetRange();
-                        instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                        self.unsetRange();
+                        self.opt.select_range.changed  = select_range.end - select_range.start > 1;
                     }
                 }
-                removeLastChar(self, index);
-                setCaretFocus(self, index ,index);
-                instance.setMask(self); // ищем новую маску
-                instance.focused();
-                return _false;
+                self.removeLastChar(index);
+                self.setCaretFocus(index ,index);
+
+
+                self.findMask(element.value); // ищем новую маску
+                self.focused();
+
+                return false;
             } else {
-                return _false;
+                return false;
             }
         } else {
             if(ctrlKey === true && code === 86) {
-                return _true;
+                return true;
             } else {
 
                 num = value.indexOf('_');
                 if (select_range !== false) {
                     if (select_range.focus === true) {
-                        if (_regex.test(key) === _true) {
-                            instance.replaceRange();
+                        if (_regex.test(key) === true) {
+                            self.replaceRange();
                             num   = select_range.start;
-                            value = self.value;
-                            instance.unsetRange();
-                            instance.opt.select_range.changed  = select_range.end - select_range.start > 1;
+                            value = element.value;
+                            self.unsetRange();
+                            self.opt.select_range.changed  = select_range.end - select_range.start > 1;
                         }
                     }
                 }
 
                 if (num !== -1) { // если есть еще пустые символы
-                    if (_regex.test(key) === _true && value[num] === '_' ) {
-                        setCaretFocus(self, num, (num + 1));
+                    if (_regex.test(key) === true && value[num] === '_' ) {
+                        self.setCaretFocus(num, (num + 1));
                     } else {
-                        return _false;
+                        return false;
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (instance.ifIssetNextMask() && _regex.test(key) === _true) {
-                        return _true;
+                    if (self.ifIssetNextMask() && _regex.test(key) === true) {
+                        return true;
                     }
-                    return _false;
+                    return false;
                 }
             }
         }
@@ -855,21 +988,20 @@ var actions = {
         var index,
             num,
             self        = this,
-            p           = plugin,
-            instance    = p.getInst(self),
+            element     = self.opt.element,
             code        = e.keyCode || e.which,
-            value       = self.value,
-            opt         = instance.opt,
-            _false      = false;
+            value       = element.value,
+            opt         = self.opt,
+            select_range= opt.select_range;
 
         if (code === 8) {     // BACKSPACE
-            index = getLastNum(self);
+            index = self.getLastNum();
             if (_regex.test(value[index]) === true) {
                 index += 1;
-                instance.focused();
-                return _false;
+                self.focused();
+                return false;
             } else {
-                return _false;
+                return false;
             }
         }  else if(code === 13) {
             if (opt.onSend) {
@@ -879,30 +1011,18 @@ var actions = {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
 
-            instance.setMask(self); // ищем новую маску
-            instance.focused();
+            if (select_range.changed !== true) {
+                self.findMask(element.value); // ищем новую маску
+                self.focused();
+            } else {
+                if (num === -1) {
+                    self.unsetRange();
+                    self.focused();
+                }
+            }
+
         }
     },
-
-    /**
-     * При вставке номера телефона
-     * @param e
-     * @return void
-     */
-    paste: function(e) {
-        e.preventDefault();
-        var self            = this,
-            p               = plugin,
-            instance        = p.getInst(self),
-            clipboard_text  = (e.originalEvent || e).clipboardData.getData('text/plain');
-
-        /**
-         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-         *
-         */
-        instance.opt.element.value = getPhone(clipboard_text);
-        instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
-    }
 };
 /**
  * Объект маски
@@ -911,49 +1031,17 @@ var Mask = function (el, args) {
     var self = this;
 
     var init = function(el, args) {
-        var element,
-            options;
+        var opt = self.opt;
 
-        if (args.phone) {
-            var finded = self.maskFinder(args.phone);
-
-            if (!finded) {
-                args.phone = false;
-            }
-        }
-
-        addClass(self.opt.element, self.opt.instId);
-        self.opt.oldState =  el.outerHTML;
-
-
+        opt.oldState = el.outerHTML;
 
         self.setTemplate();
-
-        options = self.opt;
-        element = self.opt.element;
-
-        element.value       = options.value;
-        element.placeholder = options.value;
-
-        self.addActions(options.element);
-    };
-
-    /**
-     * Генерация ID для инпута
-     *
-     * @returns {string}
-     */
-    var makeId = function () {
-        var text = "";
-        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        for( var i=0; i < 8; i++ )
-            text += possible.charAt(Math.floor(Math.random() * possible.length));
-        return text;
+        self.addActions(opt.element);
     };
 
     self.opt = {
-        listOpened:       false,                        // список открыт
-        instId:           MConf('prefix') + makeId(),   //  Селектор выбранного елемента
+        pre_value:        false,
+        listOpened:       false,                    // список открыт
         element:          el,
         lang:             args.lang                 || MConf('lang'),
         country:          args.country              || MConf('country'),
@@ -967,8 +1055,13 @@ var Mask = function (el, args) {
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
-        value:            '',
         name:             '',
+        title: {
+            country:          '',
+            region:           '',
+            city:             '',
+            operator:         ''
+        },
         old:              {},
         oldState:         null,    // предыдущее состояние для переключения активностиб
         initial_focus:    args.initial_focus       || MConf('initial_focus'),
@@ -977,135 +1070,14 @@ var Mask = function (el, args) {
             changed: false,
             start:   0,
             end:     0
-        }
+        },
+        popup_direction: args.popup_direction || MConf('popup_direction')
     };
 
     init(el, self.opt);
 };
 
 Mask.prototype = {
-    /**
-     * Установка маски
-     *
-     **/
-    setMask: function (e) {
-        var self = this,
-            oldValue = self.opt.value;
-
-        this.maskFinder(e.value, this.opt.country);
-
-        if (
-            isFunction(self.opt.onValueChanged) &&
-            oldValue != e.value
-        ) {
-            self.opt.onValueChanged(getPhone(e.value), e.value);
-        }
-    },
-
-    /**
-     * Метод поиска маски
-     *
-     * @param _value
-     * @param _country
-     * @returns {boolean|*}
-     */
-    maskFinder: function (_value, _country) {
-        var iso,
-            obj,
-            find,
-            self = this,
-            g   = Global,
-            gc   = g.countries,
-            value = getPhone(_value + ''),
-            country = _country ? _country : false,
-            pc = phoneCodes,
-            one_country = self.opt.one_country,
-            exceptions  = self.opt.exceptions,
-            _false = false;
-
-
-        /**
-         * Если маска полностью очищается, оставляем последнее совпадение
-         */
-        if (!value) {
-            if (one_country !== false) {
-                if (find = pc.findMaskByCode(one_country)) {
-                    value = getPhone(find.mask);
-                }
-            } else {
-                if (_value === false) { /// форсированная установка значения в пустоту
-                    self.setInp(self.opt.element, self.opt.country, self.opt.name, self.opt.value.replace(/[0-9]/g,'_'));
-                }
-                return false;
-            }
-        } else {
-            /**
-             * Маска не пуста, если включены исключения самое время из использовать
-             */
-            if (!empty(exceptions[country]) && !empty(exceptions[country].exceptions)) {
-                var exc = exceptions[country].exceptions;
-                var phone_code = pc.findMaskByCode(country).phone_code;
-
-                for (var expr in exc) {
-                    if(exc.hasOwnProperty(expr)) {
-                        if (value === phone_code + ''+expr) {
-                            value = value.replace(phone_code + ''+expr, phone_code +''+exc[expr]);
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        find = hardSearch(value, country);
-
-        if (find) {
-            obj = find.obj;
-            iso = obj['iso_code'];
-
-            /**
-             * Если режим одной страны
-             */
-            if (one_country !== _false && one_country.toString().toLowerCase() !== iso) {
-                return false;
-            }
-
-
-
-            if (isset(pc[iso]) && empty(pc[iso])) {
-                var t = {'iso_code':iso, 'lang': self.opt.lang };
-                if (!languageIsset(gc, t)) {
-                    gc.push(t);
-
-                    if (g.initialization === _false) {
-                        pc.loadMasks(iso, self.opt.lang, function() {
-                            find = hardSearch(value, iso);
-                            self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], getNewMaskValue(value, find['mask']));
-                            if (self.opt.initial_focus === true) {
-                                self.focused();
-                            }
-                        });
-                    }
-                }
-
-                self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], getNewMaskValue(value, find['mask']));
-            } else {
-                if (isset(pc[iso]) && !empty(pc[iso]) && country !== _false) {
-                    find = hardSearch(value, iso);
-                }
-
-                value = (self.opt.select_range.changed === true && _value.indexOf('_') !== -1) ? _value : getNewMaskValue(value, find['mask']);
-
-                self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
-            }
-        }
-        if (self.opt.initial_focus === true) {
-            self.focused();
-        }
-
-        return find;
-    },
-
     setTemplate: function() {
         var i,
             li,
@@ -1141,7 +1113,7 @@ Mask.prototype = {
             className  = function (e, c) {
                 return e.className = c;
             },
-            phone_codes = phoneCodes,
+            pc = phoneCodes,
             append_child = function (e,i) {
                 e.appendChild(i);
             },
@@ -1152,6 +1124,7 @@ Mask.prototype = {
         wrapper = document_create('div');
         inner_HTML(wrapper, el);
         className(wrapper,cbm);
+
 
         el.parentNode.replaceChild(wrapper, el);
 
@@ -1180,7 +1153,7 @@ Mask.prototype = {
             className(flags_block, 'country');
         }
 
-        sortedCodes = phone_codes.sortPhones(phone_codes.all, 'name', 'asc'); // phoneCodes
+        sortedCodes = pc.sortPhones(Global.countries['all'][opt.lang], 'name', 'asc'); // phoneCodes
 
         if(sortedCodes.length===0) {
             return;
@@ -1196,11 +1169,10 @@ Mask.prototype = {
             if (!isset(name)) {
                 return false;
             }
+
             if (opt.phone === false) {
                 if (opt.country === iso) {
-                    self.opt.name = name;
-                    self.opt.mask = mask;
-                    self.opt.value = mask;
+                    self.opt.element.value = mask;
                 }
             }
             if (!one_country) {
@@ -1209,7 +1181,7 @@ Mask.prototype = {
                 li.dataset['isoCode']   = iso;
                 li.dataset['mask']      = mask;
 
-                Event.add(li, 'click', self.maskReplace);
+                Event.add(li, 'click', self.maskReplace.bind(self));
 
                 ico                     = document_create('i');
                 className(ico, text_flag+' ' + iso);
@@ -1226,7 +1198,6 @@ Mask.prototype = {
             }
 
         };
-
 
         if (!one_country) {
             for (i in sortedCodes) {
@@ -1299,7 +1270,7 @@ Mask.prototype = {
 
                 if (/active/.test(cur_el.className) !== true) {
 
-                    Event.add(doc, 'click', handler);
+                    // Event.add(doc, 'click', handler);
 
                     function findPos(obj) {
                         var curleft = 0,
@@ -1323,7 +1294,9 @@ Mask.prototype = {
                         maskBlockHeight = cur_el.clientHeight;
 
                     if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
-                        addClass(cur_el, top);
+                        if (opt.popup_direction === "auto" || opt.popup_direction === 'top') {
+                            addClass(cur_el, top);
+                        }
                     }
                     list_status = txt_opened
 
@@ -1348,28 +1321,25 @@ Mask.prototype = {
             };
         }
 
+        var value = opt.phone ? opt.phone : opt.element.value;
         self.opt.element = wrapper.childNodes[1];
+        self.opt.element.value = value;
+
+        self.findMask(value);
     },
 
-
-    setInp: function (e, flag, title, value) {
-        var i,
-            opt          = this.opt;
-
-        if (!empty(e.parentNode.getElementsByClassName('selected')[0])) {
-            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
-            i.className  = 'flag '+ flag;
-            if (typeof title !== type_undefined) {
-                i.parentNode.setAttribute('title', title);
-            }
-        }
-
-        opt.country     = flag;
-        opt.name        = title;
-        opt.value       = value;
-        opt.mask        = value;
-
-        e.value         = value;
+    /**
+     * Добавление событий на елемент
+     * @param e Элемент
+     */
+    addActions: function(e) {
+        Event.add(e, 'focus',       actions.focus.bind(this));
+        Event.add(e, 'click',       actions.click.bind(this));
+        Event.add(e, 'dblclick',    actions.dblclick.bind(this));
+        Event.add(e, 'blur',        actions.blur.bind(this));
+        Event.add(e, 'paste',       actions.paste.bind(this));
+        Event.add(e, 'keydown',     actions.keydown.bind(this));
+        Event.add(e, 'keyup',       actions.keyup.bind(this));
     },
 
     /**
@@ -1377,13 +1347,11 @@ Mask.prototype = {
      */
     focused: function() {
         var self  = this,
-            o     = self.opt,
-            e     = self.opt.element,
-            v     = e.value,
+            v     = self.opt.element.value,
             num   = v.indexOf('_'),
             i     = (num === -1) ? v.length : num;
 
-        setCaretFocus(e, i, i);
+        self.setCaretFocus(i, i);
     },
 
     /**
@@ -1420,82 +1388,220 @@ Mask.prototype = {
         };
     },
 
-    /**
-     * Замена символов
-     */
-    replaceRange: function() {
-        var self     = this,
-            o        = self.opt,
-            e        = self.opt.element;
-        value    = self.opt.element.value.split('');
-        selected = self.opt.select_range;
+    findMask: function (_phone) {
+        var find,
+            mask,
+            self = this,
+            opt = self.opt,
+            one_country =  opt.one_country,
+            language = opt.lang,
+            country = opt.country,
+            phone = getPhone(_phone),
+            pc          = phoneCodes,
+            exceptions  = opt.exceptions;
 
-        var a = false;
-        for(var i in value) {
-            if(value.hasOwnProperty(i)) {
-                if (i >= selected.start && i < selected.end) {
-                    if (_regex.test(value[i])) {
-                        value[i] = '_';
+
+        if (one_country !== false) {
+            var phone_code = pc.findMaskByCode('all', one_country, language).phone_code;
+        }
+        /**
+         * Если маска полностью очищается, оставляем последнее совпадение
+         */
+        if (!phone) {
+            if (one_country !== false) {
+                if (find = pc.findMaskByCode('all', one_country, language)) {
+                    phone = getPhone(find.mask);
+                }
+            } else {
+                if (_phone === false) { /// форсированная установка значения в пустоту
+                    self.setPhone('');
+                }
+                return false;
+            }
+        } else {
+            if (one_country !== false && phone.indexOf(phone_code, 0) === -1) {
+                phone = phone_code;
+            }
+            /**
+             * Маска не пуста, если включены исключения самое время из использовать
+             */
+            if (!empty(exceptions[country]) && !empty(exceptions[country].exceptions)) {
+                var exc = exceptions[country].exceptions;
+
+
+                for (var expr in exc) {
+                    if(exc.hasOwnProperty(expr)) {
+                        if (phone === phone_code + ''+expr) {
+                            phone = phone.replace(phone_code + ''+expr, exc[expr]);
+                            break;
+                        }
                     }
                 }
             }
+
         }
-        self.opt.element.value = value.join('');
-    },
 
-    /**
-     * Снять фокус
-     */
-    blured: function() {
-        this.opt.element.blur();
-    },
 
-    maskReplace: function () {
-        var self        = this,
-            pc          = phoneCodes,
-            parent      = self.parentNode.parentNode,
-            input       = parent.parentNode.childNodes[1],
-            instance    = Masked.getInst(input),
-            dataset     = self.dataset;
-
-        var finded_old          = pc.findMaskByCode(instance.opt.country);
-        var finded_new          = pc.findMaskByCode(dataset['isoCode']);
-
-        instance.setInp(
-            instance.opt.element,
-            finded_new.iso_code,
-            finded_new.name,
-            getNewMaskValue(
-                getPhone(input.value).replace(finded_old.phone_code, finded_new.phone_code),
-                finded_new.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
-            )
+        mask = self.hardSearch(
+            phone, language, country
         );
 
-        removeClass(parent.childNodes[1],'active');
+
+        if (mask) {
+
+            if (country !== mask.iso_code) {
+                mask = self.hardSearch(
+                        phone, language, mask.iso_code
+                    ) || mask;
+            }
+
+            self.setTitle(mask);
+            self.setMask(mask);
+            self.setPhone(phone);
+
+            if (self.opt.initial_focus === true) {
+                self.focused();
+            }
+        }
+
+
+
+        return !!mask;
+    },
+
+    setMask: function (mask) {
+        var self     = this,
+            opt      = self.opt;
+
+        opt.country         = mask.iso_code;
+        opt.mask            = mask.mask;
+
+        return self;
+    },
+
+    setTitle: function (mask) {
+        var i,
+            t,
+            self     = this,
+            opt      = self.opt,
+            e        = opt.element,
+            title    = opt.title,
+            iso_code = mask.iso_code;
+
+        for (i in title) {
+            if (title.hasOwnProperty(i)) {
+                t = title[i];
+
+                if (i === 'country' && mask.name) {
+                    title.country  = mask.name;
+                    title.region   = '';
+                    title.city     = '';
+                    title.operator = '';
+                } else if (i === 'region' && mask.region) {
+                    title.region   = mask.region;
+                    title.city     = '';
+                    title.operator = '';
+                } else if (i === 'city' && mask.city) {
+                    title.city     = mask.city;
+                    title.operator = '';
+                }  else if (i === 'operator' && mask.operator) {
+                    title.operator = mask.operator;
+                    title.region   = '';
+                    title.city     = '';
+                }
+            }
+        }
+
+        var title_text = '';
+        for (i in title) {
+            if (title.hasOwnProperty(i)) {
+                t = title[i];
+                if (t) {
+                    title_text += title_text ? ' / ' + t : t ;
+                }
+            }
+        }
+
+        if (!empty(e.parentNode.getElementsByClassName('selected')[0])) {
+            i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
+            i.className  = 'flag '+ iso_code;
+
+            if (typeof title_text !== 'undefined') {
+                i.parentNode.setAttribute('title', title_text);
+            }
+        }
+
+        return self;
+    },
+    setPhone: function (phone) {
+        var opt   = this.opt;
+        var value = getNewMaskValue(
+            phone,
+            opt.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+        );
+
+
+        opt.phone = phone;
+        // opt.value         = value; // todo ???
+
+        opt.element.placeholder = value;
+        opt.element.value       = value;
+    },
+
+    maskReplace: function (e,e2) {
+        var self        = this,
+            opt         = self.opt,
+            pc          = phoneCodes,
+            t           = e.target,
+            li          = t.tagName === 'LI' ? t : t.parentNode,
+            ul          = li.parentNode,
+            input       = opt.element,
+            dataset     = li.dataset;
+
+        var finded_old          = pc.findMaskByCode('all', opt.country, opt.lang);
+        var finded_new          = pc.findMaskByCode('all', dataset['isoCode'], opt.lang);
+
+        var phone = getNewMaskValue(
+            getPhone(input.value).replace(finded_old.phone_code, finded_new.phone_code),
+            finded_new.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+        );
+
+
+        this.setTitle(finded_new);
+
+        if(finded_new) {
+            this.setMask(finded_new);
+            this.setPhone(phone);
+        }
+
+        removeClass(ul, 'active');
 
         /**
          * При клике на li так же отсылаем статус closed
          */
-        if (isFunction(instance.opt.onHideList)) {
-            instance.opt.onHideList();
+        if (isFunction(self.opt.onHideList)) {
+            self.opt.onHideList();
         }
 
-        if (isFunction(instance.opt.onToggleList)) {
-            instance.opt.onToggleList('closed');
+        if (isFunction(self.opt.onToggleList)) {
+            self.opt.onToggleList('closed');
         }
     },
 
     ifIssetNextMask: function () {
-        var self            = this,
+        var json,
+            self            = this,
             iso             = self.opt.country,
-            pc              = phoneCodes,
+            lang            = self.opt.lang,
+            pc              = Global.countries,
             value           = self.opt.element.value,
             cur_length      = value.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_').replace(/[+()-]/g,"").length;
 
-        if (isset(pc[iso])) {
-            for(var i in pc[iso]) {
-                if (pc[iso].hasOwnProperty(i)) {
-                    var one = (pc[iso][i]['mask'].replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_').replace(/[0-9+()-]/g, "")).length;
+        if (isset(pc[iso]) && isset(pc[iso][lang])) {
+            json = pc[iso][lang];
+            for(var i in json) {
+                if (json.hasOwnProperty(i)) {
+                    var one = (json[i]['mask'].replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_').replace(/[0-9+()-]/g, "")).length;
                     if (one > cur_length) {
                         return true;
                     }
@@ -1506,211 +1612,237 @@ Mask.prototype = {
     },
 
     /**
-     * Установка нового номера телефона
+     *
+     * @todo можно будет сделать исключения (для спорных ситуаций таких как CA и US) при которых флаг страны не отображается
+     *
      * @param value
-     * @return void
+     * @param mask_code
+     * @returns {*}
      */
-    setPhone: function(value) {
-        var self            = this;
+    hardSearch: function(value, language, country) {
+        var i,
+            it,
+            im,
+            val,
+            find,
+            mask,
+            pass,
+            determined,
+            self      = this,
+            maths     = [],
+            pc        = phoneCodes,
+            masklist  = Global.countries.all[language];
 
-        /**
-         * @todo нужно сделать дополнительно вставку по субкодам если они еще не загружены
-         *
-         */
-        self.opt.element.value = getPhone(value);
-        self.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
+
+        self.opt.pre_value = !self.opt.one_country && (!self.opt.pre_value || value.length > self.opt.pre_value.length) ? value : self.opt.pre_value;
+
+        if (empty(masklist)) {
+            return false;
+        }
+
+        masklist = pc.sortPhones(masklist, 'mask', 'desc');
+
+        if (isset(Global.countries[country]) && !empty(Global.countries[country][language])) {
+            masklist = Global.countries[country][language].concat(masklist);
+        }
+
+        for (i in masklist) {
+            if (masklist.hasOwnProperty(i)) {
+                mask = masklist[i]['mask'];
+
+                pass = true;
+                for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
+                    var chm = mask.charAt(im);
+                    var cht = value.charAt(it);
+
+                    if (!_regex.test(chm) && chm !== '_') {
+                        im++;
+                        continue;
+                    }
+
+                    if ((chm === '_' && _regex.test(cht)) || (cht == chm)) {
+                        it++;
+                        im++;
+                    } else {
+                        pass = false;
+                        break;
+                    }
+                }
+                if (pass && it == value.length) {
+                    determined = mask.substr(im).search(_regex) == -1;
+                    mask = mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_');
+
+                    if (value === '1' && masklist[i].iso_code !== 'us') {
+                        continue;
+                    }
+
+                    maths.push(masklist[i]);
+                }
+            }
+        }
+
+        maths = phoneCodes.sortPhones(maths, 'mask', 'desc');
+
+        find = false;
+        for (i in maths) {
+            if (maths.hasOwnProperty(i)) {
+                val = maths[i].mask.replace(/\D+/g,"");
+                if (parseInt(val) === parseInt(value)) { // точное совпадение
+                    find = maths[i];
+                }
+            }
+        }
+
+        if (find) {
+            return find;
+        }
+
+        // так как у нас не точное совпадение начинаем искать по подмаскам
+        if (maths.length > 1) {
+            maths.sort(function (a, b) {
+                return Math.sign((a['mask'].match(/_/g) || []).length - (b['mask'].match(/_/g) || []).length);
+            });
+        }
+
+        if (isset(Global.countries[country]) && empty(Global.countries[country][language]) && maths && value) {
+
+            for(i in maths) {
+                if (maths.hasOwnProperty(i)) {
+                    var iso = maths[i]['iso_code'];
+                    if (iso === 'ca') {
+                        iso = 'us';
+                    }
+
+                    if (Global.initialization === true) {
+                        MaskedSubListObserver.add({
+                            object: self,
+                            country: iso,
+                            language: language
+                        });
+                    } else {
+
+                        Masked.phoneCodes.loadMask([iso], [language], function() {
+                            self.opt.country = iso;
+                            self.opt.lang = language;
+
+                            value = self.opt.pre_value.length > value.length ? self.opt.pre_value : value;
+
+                            self.findMask(value);
+                            if (self.opt.initial_focus === true) {
+                                self.focused();
+                            }
+
+                            self.opt.pre_value = false;
+                        });
+                        return false;
+                    }
+                }
+            }
+        }
+
+        // строка слишком длинная, обрежем 1 символ и попытаемся еще раз
+        if (!isset(maths[0])) {
+            value = value.substring(0, value.length - 1);
+            if (value) { // если есть еще символы
+                return this.hardSearch(value, language, country);
+            }
+        } else {
+            self.opt.pre_value = false;
+            return find || maths[0] || false;
+        }
+    },
+
+
+
+    /**
+     * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
+     * @returns {Number}
+     */
+    getLastNum: function() {
+        var i,
+            v  = this.opt.element.value;
+        for (i = v.length; i >= 0; i--) {
+            if (_regex.test(v[i])) {
+                break;
+            }
+        }
+        return i;
     },
 
     /**
-     * Добавление событий на елемент
-     * @param e Элемент
+     * Удалить последний элемент
+     * @param e
+     * @param i
      */
-    addActions: function(e) {
-        Event.add(e,'focus',       actions.focus);
-        Event.add(e,'blur',        actions.blur);
-        Event.add(e,'click',       actions.click)
-        Event.add(e,'dblclick',    actions.dblclick);
-        Event.add(e,'keydown',     actions.keydown);
-        Event.add(e,'keyup',       actions.keyup);
-        Event.add(e,'paste',       actions.paste);
+    removeLastChar: function (i) {
+        var e = this.opt.element,
+            temp = e.value.split('');
+
+        if (_regex.test(temp[i])) {
+            temp[i]='_';
+        }
+        e.value = temp.join('');
+    },
+
+    /**
+     * Функция может устанавливать курсор на позицию start||end или выделять символ для замены
+     *   если start и end равны, то курсор устанавливается на позицию start||end
+     *   если не равны, выделяет символы от start до end
+     */
+    setCaretFocus: function(start, end) {
+        var character = 'character';
+        e         = this.opt.element;
+
+        e.focus();
+        if (e.setSelectionRange) {
+            e.setSelectionRange(start, end);
+        } else if (e.createTextRange) {
+            var range = e.createTextRange();
+            range.collapse(true);
+            range.moveEnd(character, start);
+            range.moveStart(character, end);
+            range.select();
+        }
+    },
+    /**
+     * Замена символов
+     */
+    replaceRange: function() {
+        var self     = this,
+            o        = self.opt,
+            e        = self.opt.element,
+            value    = e.value.split(''),
+            selected = self.opt.select_range;
+
+        for(var i in value) {
+            if(value.hasOwnProperty(i)) {
+                if (i >= selected.start && i < selected.end) {
+                    if (_regex.test(value[i])) {
+                        value[i] = '_';
+                    }
+                }
+            }
+        }
+        e.value = value.join('');
     },
 };
-
-/**
- *
- * @todo можно будет сделать исключения (для спорных ситуаций таких как CA и US) при которых флаг страны не отображается
- *
- * @param value
- * @param mask_code
- * @returns {*}
- */
-function hardSearch(value, mask_code) {
-    var i,
-        it,
-        im,
-        val,
-        find,
-        mask,
-        pass,
-        determined,
-        maths     = [],
-        _false    = false,
-        pc        = phoneCodes,
-        masklist  = pc.all;
-
-    if (empty(masklist)) {
-        return false;
-    }
-
-    masklist = pc.sortPhones(masklist, 'mask', 'desc');
-
-    if (!empty(pc[mask_code])) {
-        masklist = pc[mask_code].concat(masklist);
-    }
-
-    for (i in masklist) {
-        if (masklist.hasOwnProperty(i)) {
-            mask = masklist[i]['mask'];
-
-            pass = true;
-            for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
-                var chm = mask.charAt(im);
-                var cht = value.charAt(it);
-
-                if (!_regex.test(chm) && chm !== '_') {
-                    im++;
-                    continue;
-                }
-
-                if ((chm === '_' && _regex.test(cht)) || (cht == chm)) {
-                    it++;
-                    im++;
-                } else {
-                    pass = _false;
-                    break;
-                }
-            }
-            if (pass && it == value.length) {
-                determined = mask.substr(im).search(_regex) == -1;
-                mask = mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_');
-
-                if (value === '1' && masklist[i].iso_code !== 'us') {
-                    continue;
-                }
-
-                maths.push({
-                    mask: mask,
-                    obj: masklist[i]
-                });
-            }
-        }
-    }
-
-    if (mask_code === 'us' || mask_code === 'ca') {
-        maths = phoneCodes.sortPhones(maths,'mask','desc');
-    }
-
-    find = _false;
-    for (i in maths) {
-        if (maths.hasOwnProperty(i)) {
-            val = maths[i].obj.mask.replace(/\D+/g,"");
-            if (parseInt(val) === parseInt(value)) {
-                find = maths[i];
-            }
-        }
-    }
-
-    if (!find && maths.length > 1) {
-        maths.sort(function (a, b) {
-            /**
-             * @var
-             */
-            return Math.sign((a['mask'].match(/_/g) || []).length - (b['mask'].match(/_/g) || []).length);
-        });
-    }
-
-    if (!isset(maths[0])) {
-        value = value.substring(0, value.length - 1);
-        if (value) { // если есть еще символы
-            return hardSearch(value, mask_code);
-        }
-    } else {
-        return find || maths[0] || _false;
-    }
-}
 /**
  * @var mixed doc
  * @var null type_null
  */
 
-var Global = {
-    initialization: true,
-    instances: [],
-    countries: [] // коды стран которые необходимо дополнительно подключить
-};
-
-var plugin = function (options) {
+var plugin = function (params) {
     var self        = this;
-    self.elements   = [];
-    self.options    = {
-        lang:       MConf('lang'),
-        country:    MConf('country')
-    };
 
-    self.init(options);
+    self.objects = [];
 
-    if(typeof MaskedReady.use === type_undefined) {
-        alternativeReady.init();
+    self.init(params);
+
+    if(typeof MaskedReady.use === 'undefined') {
+       return alternativeReady.init(self);
     }
-    
+
     return self;
-};
-
-/**
- * После отгрузки всех масок проинициализируем все еще раз с доп масками если есть
- */
-plugin.postload = function () {
-    var i,
-        c,
-        object,
-        country,
-        pc = phoneCodes,
-        g = Global,
-        ge = g.instances,
-        gc = g.countries;
-
-    for(i in gc) {
-        if(gc.hasOwnProperty(i)) {
-            country = gc[i];
-            if (isset(pc[country.iso_code]) && empty(pc[country.iso_code])) {
-                pc.loadMasks(country.iso_code, country.lang, function () {
-                    for (i in ge) {
-                        if(ge.hasOwnProperty(i)) {
-                            object = ge[i];
-                            c = {'iso_code': object.opt.country, 'lang': object.opt.lang };
-
-
-                            if(languageIsset(gc, c)) {
-                                object.maskFinder(object.opt.phone, object.opt.country);
-                            }
-
-                        }
-                    }
-                });
-            }
-        }
-    }
-
-    g.initialization = false;
-};
-
-/**
- * Получить инстанс
- * @param e
- * @returns {*}
- */
-plugin.getInst = function (e) {
-    return Global.instances[e.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))];
 };
 
 /**
@@ -1719,213 +1851,65 @@ plugin.getInst = function (e) {
 plugin.phoneCodes = phoneCodes;
 
 
-plugin.getById = function (id) {
-    var el = document.getElementById(id);
-    if(el !== null){
-        return this.getInst(el);
-    }
-    return false;
-};
-
-plugin.getPhone = function (value) {
-    return value ? plugin.prototype.getPhone(value) : false;
-};
-
-plugin.isValid = function (value) {
-    return value ? plugin.prototype.isValid(value) : false;
-};
-
-/**
- * Переключение статуса
- * @param e Элемент или класс
- */
-plugin.toggle = function(e) {
-    var self = this.getInst(e),
-        opt  = self.opt;
-
-    if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
-        e.parentNode.outerHTML = opt.oldState;
-    } else {
-        opt.element = e;
-        self.setTemplate();
-        opt.element.value       = opt.value;
-        self.addActions(opt.element);
-    }
-};
-
-
 plugin.prototype = {
-    init:  function(options) {
-        var self      = this;
+    /**
+     * Первичная инициализация
+     *
+     * Этап выборки елементов по селектору и передача всех элементов в сервер приема сообщений [MaskedObserver]
+     * @param params
+     * @returns {plugin}
+     */
+    init:  function(params) {
+        var self  = this,
+            elements,
+            options;
 
-        if (options) {
-            if (typeof options === 'string') {
-                options = {
-                    selector: options
+        if (params) {
+            if (typeof params === 'string') {
+                params = {
+                    selector: params
                 };
             }
-            self.options = generalMaskedFn.extend(self.options, options);
+            options = generalMaskedFn.extend(MConf(), params);
         }
 
-        if (typeof options.selector !== type_undefined) {
+        if (typeof params.selector !== 'undefined') {
+            elements = getElements(params.selector);
 
-            /**
-             * Вернет массив елементов
-             *
-             * @param options
-             */
-            function select(options) {
-                var i,
-                    elem,
-                    first_digit,
-                    elements = [],
-                    selector = options.selector;
-
-                if ( typeof selector === 'string' ) {
-                    first_digit = selector[0];
-
-                    if ( (first_digit === '.') || (first_digit === '#') ) {
-                        selector = selector.substr(1);
-                    }
-
-                    if (first_digit === '.') {
-                        elem = doc.getElementsByClassName( selector );
-                        for(i in elem) {
-                            if (elem.hasOwnProperty(i) && elem[i] !== type_null) {
-                                elements[elem[i].id||i] = elem[i];
-                            }
-                        }
-                    } else if (first_digit === '#') {
-                        elem = doc.getElementById( selector );
-                        if (elem !== type_null) {
-                            elements.push(elem);
-                        }
-                    } else {
-                        console.log('selector finder empty');
-                    }
-                } else if (selector.nodeType) {
-                    if (selector !== type_null) {
-                        elements.push(selector);
-                    }
-                }
-                return elements;
-            }
-
-            self.elements = select(options);
         }
-        
-        if (Object.keys(self.elements).length) {
-            MaskedObserver.add(self);
+
+        if (Object.keys(elements).length) {
+            MaskedObserver.add({
+                self:     self,
+                elements: elements,
+                options:  options
+            });
         }
 
         return self;
     },
+    /**
+     * Начинаем загружать масочки
+     */
+    start: function (elements, options) {
 
-    start: function () {
         var i,
             el,
             opt,
-            object,
-            self     = this,
-            elements = self.elements;
+            self     = this;
 
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
-                if (el && !el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
-                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
 
-                    object = new Mask(el, opt);
-                    Global.instances[object.opt.instId] = object;
+                if (el) {
+                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, options), el.dataset);
+                    var object = new Mask(el, opt);
+                    self.objects.push(object);
                 }
             }
         }
     },
-
-    setPhone: function (value) {
-        var instance,
-            elements = this.elements;
-        for(var i in elements) {
-            if (elements.hasOwnProperty(i)) {
-                instance = plugin.getInst(elements[i]);
-                if (!empty(instance)) {
-                    instance.maskFinder(value ? value : false);
-                }
-            }
-        }
-    },
-
-    /**
-     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
-     * вернет строку или массив, можно вернуть номер без маски
-     * @param value
-     * @param _with_mask
-     * @returns {string}|{object}
-     */
-    getPhone: function (value, _with_mask) {
-        var phone,
-            inst,
-            phones   = [],
-            elements   = [],
-            hs         = hardSearch,
-            with_mask  = _with_mask || true;
-
-        if (value) {
-            value = getPhone(value);
-            phone = hs(value);
-
-            if (phone) {
-                phone = getNewMaskValue(value, phone.mask);
-            }
-            if (!with_mask) {
-                phone = getPhone(phone);
-            }
-            phones.push(phone);
-        } else {
-            elements = this.elements;
-
-            for(var i in elements) {
-                if (elements.hasOwnProperty(i)) {
-                    if (!empty(plugin.getInst(elements[i]))) {
-                        phone = plugin.getInst(elements[i]).opt.value;
-
-                        phone = getNewMaskValue(phone, hs(getPhone(phone)).mask);
-                        if (!with_mask) {
-                            phone = getPhone(phone);
-                        }
-                        phones.push(phone);
-                    }
-                }
-            }
-        }
-
-        return (
-            value || !value && (Object.keys(elements).length == 1)
-        ) ? phones[0] : phones;
-    },
-
-    isValid: function (value) {
-        var phone,
-            valid = false,
-            hs         = hardSearch,
-            elements   = [];
-
-        if (value) {
-            valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
-        } else {
-             elements = this.elements;
-
-             if (Object.keys(elements).length) {
-                 phone = plugin.getInst(elements[0]).opt.value;
-
-                 valid = getNewMaskValue(getPhone(phone), hs(getPhone(phone)).mask).indexOf('_') === -1;
-             } else {
-                 valid = false;
-             }
-        }
-        return valid;
-    },
-
 };
 
     return plugin;

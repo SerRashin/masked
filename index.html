@@ -9,33 +9,117 @@
   <script type="text/javascript" src="js/masked.js"></script>
   <script  type="text/javascript">
     var msks = null;
-    var MASK1 = null;
     $(document).ready(function() {
 
-        MaskedConfig({'lang': 'ru'});
+     // MaskedConfig({'lang': 'ru'});
 
-        MASK1 = new Masked({
-            selector: '#phone-editable',
-            phone:'7',
-            select_range: true, // разрешено выделение длязамены
-            onSend: function () {
-              console.log('action send');
-            },
-            onShowList: function () {
-              console.log('action onShowList');
-            },
-            onHideList: function () {
-              console.log('action onHideList');
-            },
-            onToggleList: function (status) {
-              console.log('action onToggleList', status );
-            },
-            onValueChanged: function (phone) {
-              console.log('action onToggleList', phone );
-            },
+
+//
+//
+//      new Masked({
+//        selector: '.mask2',
+//        phone:false,
+//        one_country: 'ru'
+//      });
+//
+//
+//
+//
+//      new Masked({
+//        selector: '.masks',
+//        phone:'12345678900',
+//        lang: 'en'
+//      });
+//
+//
+//
+//
+//      msks = new Masked({
+//        phone:'12345678900'
+//      });
+//      msks.init('.masks3');
+//
+//      $(document).on('click', '.new-phone-by-click', function () {
+//        msks.setPhone('+1(234)567-8901');
+//      });
+//
+//      new Masked({
+//        selector: '.mask_with_exceptions',
+//        phone:    '+7',
+//        exceptions: {
+//          'ru' : {
+//            exceptions: {
+//              '8975': '975'
+//            }
+//          },
+//          'en' : {
+//            exceptions: {
+//              '911': '199'
+//            }
+//          }
+//        }
+//      });
+
+//
+//      $(document).on('click','.toggleState',function() {
+//        var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
+//        Masked.toggle(element);
+//      });
+
+
+        $M.ready(function () {
+
+            new Masked({
+                selector: '#phone-editable',
+                phone:'7',
+                one_country:'ru'
+                //select_range: true, // разрешено выделение длязамены
+//                onSend: function () {
+//                    console.log('action send');
+//                },
+//                onShowList: function () {
+//                    console.log('action onShowList');
+//                },
+//                onHideList: function () {
+//                    console.log('action onHideList');
+//                },
+//                onToggleList: function (status) {
+//                    console.log('action onToggleList', status );
+//                },
+            });
+
+//            msks = new Masked({
+//                selector: '#phone-editable',
+//               // lang: 'ru',
+////                country: 'ru',
+//                phone: '73022'
+//            });
+//
+//            msks = new Masked({
+//                selector: '#phone-ex-2',
+//                lang: 'ru',
+//                phone: '38099'
+//            });
+//
+//            new Masked({
+//                selector: '#phone-ex-3',
+//                lang: 'ru',
+//                phone: '49'
+//            });
+//
+//            new Masked({
+//                selector: '#phone-ex-4',
+//                lang: 'ru',
+//                phone: '4954354353453453',
+//                popup_direction: 'bottom'
+//            });
+
+//            msks = new Masked({
+//                selector: '.masks',
+//                    //lang: 'en',
+//            });
+//            console.log(msks);
         });
-
-
 
 
 
@@ -48,58 +132,44 @@
 <body>
 <div class="container">
   <form>
-
     <div class="form-group">
-      <label class="db" >Маска с исключением  </label>
-      <input  type="text"  class="m1"  data-lang="ru" data-phone="" data-country="ru">
-    </div>
-    <div class="form-group">
-      <label class="db" >Маска с исключением  </label>
-      <input  type="text"  class="m2"  data-lang="ru" data-phone="" data-country="ru">
-    </div>
-    <div class="form-group">
-      <label class="db" >Маска с исключением  </label>
-      <input  type="text"  class="m3"  data-lang="ru" data-phone="" data-country="ru">
-    </div>
-    <div class="form-group">
-      <label class="db" >Маска с исключением  </label>
-      <input  type="text"  class="m4"  data-lang="ru" data-phone="" data-country="ru">
-    </div>
-
-
-    <div class="form-group">
-      <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span> <span class="asd">(new phone)</span></label>
+      <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-editable" type="text" class="mask" >
     </div>
     <div class="form-group">
       <label class="db" for="phone-ex-2">режим одной страны <span class="toggleState">(скрыть/показать)</span></label>
-      <input id="phone-ex-2" type="text" class="mask2"  data-lang="ru" data-country="ru">
+        <input id="phone-ex-2" type="text" class="mask" >
     </div>
     <div class="form-group">
       <label class="db" for="phone-ex-3">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
-      <input id="phone-ex-3" type="text"  class="masks"  data-lang="ru" data-country="ru">
+      <input id="phone-ex-3" type="text"    >
     </div>
     <div class="form-group">
       <label class="db" for="phone-ex-4">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
-      <input id="phone-ex-4" type="text"  class="masks"  data-lang="ru" data-country="ru" data-phone="380957131373">
-    </div>
-    <div class="form-group">
-      <label class="db" for="phone-ex-5">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
-      <input id="phone-ex-5" type="text"  class="masks"  data-lang="ru" data-phone="77985472145" data-country="ru">
-    </div>
-    <div class="form-group">
-      <label class="db" for="phone-ex-6">Введите номер телефона <span class="toggleState">(скрыть/показать)</span> <span class="new-phone-by-click">(new phone)</span></label>
-      <input id="phone-ex-6" type="text"  class="masks3"  data-lang="ru" data-phone="79985472145" data-country="ru">
-    </div>
-    <div class="form-group">
-      <label class="db" for="phone-ex-7">Маска с исключением  </label>
-      <input id="phone-ex-7" type="text"  class="mask_with_exceptions"  data-lang="ru" data-phone="" data-country="ru">
+      <input id="phone-ex-4" type="text"   >
     </div>
 
-
-
-
-      <p>Исключение +78975<p>
+      <div class="form-group">
+          <label class="db">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
+          <input  type="text"  class="masks"  data-lang="ru" >
+      </div>
+      <div class="form-group">
+          <label class="db">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
+          <input  type="text"  class="masks"  data-lang="ru" >
+      </div>
+      <div class="form-group">
+          <label class="db">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
+          <input  type="text"  class="masks"  data-lang="ru" >
+      </div>
+      <div class="form-group">
+          <label class="db">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
+          <input  type="text"  class="masks"  data-lang="ru" >
+      </div>
+      <div class="form-group">
+          <label class="db">Введите номер телефона <span class="toggleState">(скрыть/показать)</span></label>
+          <input  type="text"  class="masks"  data-lang="ru" >
+      </div>
+    <p>Исключение +78975<p>
   </form>
 </div>
 
