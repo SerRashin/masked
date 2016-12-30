@@ -7,7 +7,7 @@ var Mask = function (el, args) {
     var init = function(el, args) {
         var opt = self.opt;
 
-        opt.oldState = el.outerHTML;
+        opt.oldState = el;
 
         self.setTemplate();
         self.addActions(opt.element);
@@ -396,12 +396,12 @@ Mask.prototype = {
             if (one_country !== false && phone.indexOf(phone_code, 0) === -1) {
                 phone = phone_code;
             }
+
             /**
              * Маска не пуста, если включены исключения самое время из использовать
              */
             if (!empty(exceptions[country]) && !empty(exceptions[country].exceptions)) {
                 var exc = exceptions[country].exceptions;
-
 
                 for (var expr in exc) {
                     if(exc.hasOwnProperty(expr)) {
@@ -412,9 +412,7 @@ Mask.prototype = {
                     }
                 }
             }
-
         }
-
 
         mask = self.hardSearch(
             phone, language, country

@@ -61,15 +61,15 @@
 //      });
 
 //
-//      $(document).on('click','.toggleState',function() {
-//        var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
-//        Masked.toggle(element);
-//      });
+      $(document).on('click','.toggleState',function() {
+        var element = $(this).parents('.form-group').find('.mask,.mask2,.masks,.masks3')[0];
+        Masked.toggle(element);
+      });
 
 
         $M.ready(function () {
 
-            new Masked({
+            msks = new Masked({
                 selector: '#phone-editable',
                 phone:'7',
                 one_country:'ru'

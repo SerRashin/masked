@@ -1,6 +1,11 @@
 /**
  * @var mixed doc
  * @var null type_null
+ * @TODO getInst ???
+ * @TODO getPhone
+ * @TODO isValid
+ * @TODO toggle
+ * @TODO o.setPhone
  */
 
 var plugin = function (params) {
@@ -21,6 +26,42 @@ var plugin = function (params) {
  * Открываем доступ из вне для обращения к Masked.phoneCodes
  */
 plugin.phoneCodes = phoneCodes;
+plugin.toggle = function(e) {
+    var i,
+        instance,
+        toggled_element,
+        instances = Global.instances;
+
+
+    for (i in instances) {
+        if (instances.hasOwnProperty(i)) {
+            instance = instances[i];
+
+            console.log(e , instance.opt.oldState);
+            if (e === instance.opt.element || e === instance.opt.oldState) {
+                toggled_element = instance;
+            }
+        }
+    }
+    console.log(toggled_element);
+    if (toggled_element) {
+        var opt = toggled_element.opt,
+            element = opt.element;
+
+        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+
+            e.parentNode.outerHTML = opt.oldState.outerHTML;
+        }
+        else {
+            console.log('set template');
+            //instance.setTemplate();
+        //     element.value       = element.value;
+        //     instance.addActions(element);
+        }
+    }
+
+
+};
 
 
 plugin.prototype = {
@@ -67,8 +108,7 @@ plugin.prototype = {
 
         var i,
             el,
-            opt,
-            self     = this;
+            opt;
 
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
@@ -77,7 +117,8 @@ plugin.prototype = {
                 if (el) {
                     opt = generalMaskedFn.extend(generalMaskedFn.extend({}, options), el.dataset);
                     var object = new Mask(el, opt);
-                    self.objects.push(object);
+                   // self.objects.push(object);
+                    Global.instances.push(object);
                 }
             }
         }
