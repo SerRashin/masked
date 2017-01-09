@@ -1,17 +1,12 @@
 /**
  * @var mixed doc
  * @var null type_null
- * @TODO getInst ???
- * @TODO getPhone
- * @TODO isValid
- * @TODO toggle
- * @TODO o.setPhone
  */
 
 var plugin = function (params) {
     var self        = this;
 
-    self.objects = [];
+    self.paths = [];
 
     self.init(params);
 
@@ -26,7 +21,39 @@ var plugin = function (params) {
  * Открываем доступ из вне для обращения к Masked.phoneCodes
  */
 plugin.phoneCodes = phoneCodes;
+
+
 plugin.toggle = function(e) {
+    var self = this.getInst(e),
+        opt  = self.opt;
+
+    if (self) {
+        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+            e.parentNode.outerHTML = opt.oldState.outerHTML;
+        } else {
+            opt.element = e;
+            self.setTemplate();
+            self.addActions(opt.element);
+        }
+    }
+};
+
+plugin.getPhone = function (value) {
+    return value ? plugin.prototype.getPhone(value) : false;
+};
+
+plugin.isValid = function (value) {
+    return value ? plugin.prototype.isValid(value) : false;
+};
+
+
+
+/**
+ * Получить инстанс
+ * @param e
+ * @returns {*}
+ */
+plugin.getInst = function (e) {
     var i,
         instance,
         toggled_element,
@@ -37,30 +64,13 @@ plugin.toggle = function(e) {
         if (instances.hasOwnProperty(i)) {
             instance = instances[i];
 
-            console.log(e , instance.opt.oldState);
-            if (e === instance.opt.element || e === instance.opt.oldState) {
+            if (getElementPath(e) === instance.opt.xpath) {
                 toggled_element = instance;
+                break;
             }
         }
     }
-    console.log(toggled_element);
-    if (toggled_element) {
-        var opt = toggled_element.opt,
-            element = opt.element;
-
-        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
-
-            e.parentNode.outerHTML = opt.oldState.outerHTML;
-        }
-        else {
-            console.log('set template');
-            //instance.setTemplate();
-        //     element.value       = element.value;
-        //     instance.addActions(element);
-        }
-    }
-
-
+    return  toggled_element;
 };
 
 
@@ -108,7 +118,8 @@ plugin.prototype = {
 
         var i,
             el,
-            opt;
+            opt,
+            self = this;
 
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
@@ -117,10 +128,86 @@ plugin.prototype = {
                 if (el) {
                     opt = generalMaskedFn.extend(generalMaskedFn.extend({}, options), el.dataset);
                     var object = new Mask(el, opt);
-                   // self.objects.push(object);
+                    self.paths.push(object.opt.xpath);
+
                     Global.instances.push(object);
                 }
             }
         }
+    },
+
+    /**
+     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
+     * вернет строку или массив, можно вернуть номер без маски
+     * @param value
+     * @param _with_mask
+     * @returns {string}|{object}
+     */
+    getPhone: function (value, _with_mask) {
+        var self = this,
+            phone,
+            context,
+            mask,
+            with_mask  = _with_mask || true;
+
+        if (value) {
+            context = new Mask(null, MConf());
+            mask = context.findMask(value);
+            phone = getNewMaskValue(
+                value,
+                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+            );
+        } else {
+            var path      = self.paths[0];
+
+            context = getInstanceByXpath(path);
+
+            if (context) {
+                phone = context.opt.element.value;
+            }
+        }
+
+        if (!with_mask) {
+            phone = getPhone(phone);
+        }
+
+        return phone;
+    },
+
+    setPhone: function (value) {
+        getInstanceByXpath(this.paths[0]).findMask(value ? value : false);
+    },
+
+    isValid: function (value) {
+        var phone,
+            mask,
+            context,
+            valid      = false;
+
+        if (value) {
+            context = new Mask(null, MConf());
+            mask = context.findMask(value);
+
+            phone = getNewMaskValue(
+                value,
+                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+            );
+        } else {
+            var path      = this.paths[0];
+
+            if (path) {
+                context = getInstanceByXpath(path);
+
+                if (context) {
+                    phone = context.opt.element.value;
+                }
+            }
+        }
+
+        if (phone) {
+            valid = phone.indexOf('_') === -1;
+        }
+
+        return valid;
     },
 };

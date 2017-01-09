@@ -117,10 +117,8 @@ var actions = {
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (self.ifIssetNextMask() && _regex.test(key) === true) {
-                        return true;
-                    }
-                    return false;
+                    return !!(self.ifIssetNextMask() && _regex.test(key) === true);
+
                 }
             }
         }
@@ -169,5 +167,5 @@ var actions = {
             }
 
         }
-    },
+    }
 };

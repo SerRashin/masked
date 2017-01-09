@@ -11,8 +11,8 @@ var phoneCodes = {
         var txt_mask = 'mask',
             txt_desc = 'desc',
             txt_asc  = 'asc',
-            key      = (k  == txt_mask) ? txt_mask : 'name',
-            sort     = (s == txt_desc) ? txt_desc : txt_asc;
+            key      = (k  === txt_mask) ? txt_mask : 'name',
+            sort     = (s === txt_desc) ? txt_desc : txt_asc;
 
         if (maskList) {
             maskList.sort(function (a, b) {
@@ -43,8 +43,8 @@ var phoneCodes = {
     /**
      * Загрузить маску
      *
-     * @param type
-     * @param lang
+     * @param types
+     * @param languages
      * @param callback
      */
     loadMask: function (types, languages, callback) {
@@ -53,6 +53,10 @@ var phoneCodes = {
 
         var type = typeof types === 'string' ? [types] : types.splice(0,1)[0];
         var lang = typeof languages === 'string' ? [languages] : languages.splice(0,1)[0];
+
+        if (typeof type === 'undefined' && typeof lang === 'undefined') {
+            return callback();
+        }
 
         if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
             return self.loadMask(types, languages, callback);

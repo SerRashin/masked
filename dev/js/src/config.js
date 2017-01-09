@@ -24,6 +24,7 @@ var MaskedConfig = MConf = (function() {
         onHideList:         null,
         onSend:             null,
         onValueChanged:     null,
+        onTitleChanged:     null,
         popup_direction:    'auto'
     };
 

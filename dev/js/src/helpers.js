@@ -22,9 +22,9 @@ var Event = (function() {
             event.target = event.srcElement;
         }
         if (!event.relatedTarget && event.fromElement) {
-            event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
+            event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
         }
-        if ( event.pageX == null && event.clientX != null ) {
+        if ( event.pageX === null && event.clientX !== null ) {
             var html = doc.documentElement,
                 body = doc.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
@@ -53,7 +53,7 @@ var Event = (function() {
     }
     return {
         add: function(elem, type, handler) {
-            if (elem.setInterval && ( elem != win && !elem.frameElement ) ) {
+            if (elem.setInterval && ( elem !== win && !elem.frameElement ) ) {
                 elem = win;
             }
             if (!handler.guid) {
@@ -164,7 +164,7 @@ var sAJAX = function (obj) {
         return;
     }
 
-    if (typeof xmlhttpobj == und){
+    if (typeof xmlhttpobj === und){
         xmlhttpobj = function () {
             try {
                 var activex_obj = ActiveXObject;
@@ -382,7 +382,7 @@ function getNewMaskValue(_value, _mask) {
     for (i in mask) {
         if (mask.hasOwnProperty(i)) {
             digit = mask[i];
-            if (digit == '_') {
+            if (digit === '_') {
                 if (len < value.length) {
                     mask[i] = value[len];
                     len++;
@@ -397,7 +397,55 @@ function getNewMaskValue(_value, _mask) {
 
 
 
+function getElementPath(element) {
+    var el = element,
+        parents = [];
 
+    while (el.parentNode !== null) {
+        var sibCount = 0;
+        var sibIndex = 0;
+        var ch = el.parentNode.childNodes;
+        for ( var i = 0; i < ch.length; i++ ) {
+            var sib = ch[i];
+            if ( sib.nodeName === el.nodeName ) {
+                if ( sib === el ) {
+                    sibIndex = sibCount;
+                }
+                sibCount++;
+            }
+        }
+
+        var nodeName = el.nodeName.toUpperCase();
+
+        if (el.className === 'CBH-masks') {
+            el = el.parentNode;
+            continue;
+        }
+
+        parents.unshift((sibCount > 1 ? nodeName + '[' + (sibIndex) + ']' : nodeName));
+
+        el = el.parentNode;
+        if (el.nodeType === 11) {
+            el = el.host;
+        }
+    }
+
+    return '//' + parents.join("/");
+}
+
+function getInstanceByXpath(path) {
+    var instance,
+        instances = Global.instances;
+    for (var i in instances) {
+        if (instances.hasOwnProperty(i)) {
+            instance = instances[i];
+
+            if (path === instance.opt.xpath) {
+                return instance;
+            }
+        }
+    }
+}
 
 
 
@@ -432,22 +480,22 @@ function getElements(selector) {
         }
 
         if (first_digit === '.') {
-            element = doc.getElementsByClassName( selector );
+            element = document.getElementsByClassName( selector );
             for(i in element) {
-                if (element.hasOwnProperty(i) && element[i] !== type_null) {
+                if (element.hasOwnProperty(i) && element[i] !== 'null') {
                     elements[element[i].id||i] = element[i];
                 }
             }
         } else if (first_digit === '#') {
-            element = doc.getElementById( selector );
-            if (element !== type_null) {
+            element = document.getElementById( selector );
+            if (element !== 'null') {
                 elements.push(element);
             }
         } else {
             console.warn('selector finder empty');
         }
     } else if (selector.nodeType) {
-        if (selector !== type_null) {
+        if (selector !== 'null') {
             elements.push(selector);
         }
     }

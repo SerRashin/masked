@@ -72,7 +72,8 @@
             msks = new Masked({
                 selector: '#phone-editable',
                 phone:'7',
-                one_country:'ru'
+//                one_country:'ru',
+//                popup_direction:    'auto'
                 //select_range: true, // разрешено выделение длязамены
 //                onSend: function () {
 //                    console.log('action send');
@@ -86,8 +87,14 @@
 //                onToggleList: function (status) {
 //                    console.log('action onToggleList', status );
 //                },
+                onTitleChanged: function (title) {
+                    $('#phone-editable-title').text(title);
+                }
             });
 
+            $('#ckeck').click(function(){
+                console.log(msks.isValid());
+            });
 //            msks = new Masked({
 //                selector: '#phone-editable',
 //               // lang: 'ru',
@@ -131,10 +138,12 @@
 </head>
 <body>
 <div class="container">
+    <button id="ckeck">btn</button>
   <form>
     <div class="form-group">
       <label class="db" for="phone-editable">Маска с выделением для изменения <span class="toggleState">(скрыть/показать)</span></label>
       <input id="phone-editable" type="text" class="mask" >
+        <p id="phone-editable-title"></p>
     </div>
     <div class="form-group">
       <label class="db" for="phone-ex-2">режим одной страны <span class="toggleState">(скрыть/показать)</span></label>

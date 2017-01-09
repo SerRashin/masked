@@ -4,16 +4,22 @@
 var Mask = function (el, args) {
     var self = this;
 
-    var init = function(el, args) {
-        var opt = self.opt;
+    var init = function(el) {
+        if (el) {
+            var opt = self.opt;
 
-        opt.oldState = el;
+            opt.oldState = el;
 
-        self.setTemplate();
-        self.addActions(opt.element);
+            self.setTemplate();
+            self.addActions(opt.element);
+
+            opt.xpath = getElementPath(opt.element);
+        }
+
     };
 
     self.opt = {
+        xpath:            false,                    // нахождение елемента по ДОМ дереву
         pre_value:        false,
         listOpened:       false,                    // список открыт
         element:          el,
@@ -26,6 +32,7 @@ var Mask = function (el, args) {
         onShowList:       args.onShowList           || MConf('onShowList'),
         onHideList:       args.onHideList           || MConf('onHideList'),
         onValueChanged:   args.onValueChanged       || MConf('onValueChanged'),
+        onTitleChanged:   args.onTitleChanged       || MConf('onTitleChanged'),
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -244,7 +251,10 @@ Mask.prototype = {
 
                 if (/active/.test(cur_el.className) !== true) {
 
-                    // Event.add(doc, 'click', handler);
+                    /**
+                     * При клике "вне" масок, скрывать список
+                     */
+                    Event.add(doc, 'click', handler);
 
                     function findPos(obj) {
                         var curleft = 0,
@@ -262,16 +272,20 @@ Mask.prototype = {
                     }
 
                     addClass(cur_el, active);
-                    var winHeight = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
-                        offset    = findPos(cur_el),
-                        fromTop   = (offset.top - cur_el.scrollTop),
-                        maskBlockHeight = cur_el.clientHeight;
 
-                    if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
-                        if (opt.popup_direction === "auto" || opt.popup_direction === 'top') {
+                    if (opt.popup_direction === "auto") {
+                        var winHeight = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
+                            offset = findPos(cur_el),
+                            fromTop = (offset.top - cur_el.scrollTop),
+                            maskBlockHeight = cur_el.clientHeight;
+
+                        if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
                             addClass(cur_el, top);
                         }
+                    } else if (opt.popup_direction === 'top') {
+                        addClass(cur_el, top);
                     }
+
                     list_status = txt_opened
 
                 } else {
@@ -367,12 +381,13 @@ Mask.prototype = {
             mask,
             self = this,
             opt = self.opt,
-            one_country =  opt.one_country,
-            language = opt.lang,
-            country = opt.country,
-            phone = getPhone(_phone),
+            one_country = opt.one_country,
+            language    = opt.lang,
+            country     = opt.country,
+            phone       = getPhone(_phone),
             pc          = phoneCodes,
             exceptions  = opt.exceptions;
+
 
 
         if (one_country !== false) {
@@ -420,25 +435,25 @@ Mask.prototype = {
 
 
         if (mask) {
-
             if (country !== mask.iso_code) {
                 mask = self.hardSearch(
                         phone, language, mask.iso_code
                     ) || mask;
             }
 
-            self.setTitle(mask);
-            self.setMask(mask);
-            self.setPhone(phone);
+            if (self.opt.element) {
+                self.setTitle(mask);
+                self.setMask(mask);
+                self.setPhone(phone);
 
-            if (self.opt.initial_focus === true) {
-                self.focused();
+                if (self.opt.initial_focus === true) {
+                    self.focused();
+                }
             }
+
         }
 
-
-
-        return !!mask;
+        return mask;
     },
 
     setMask: function (mask) {
@@ -498,8 +513,10 @@ Mask.prototype = {
             i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
             i.className  = 'flag '+ iso_code;
 
-            if (typeof title_text !== 'undefined') {
-                i.parentNode.setAttribute('title', title_text);
+            i.parentNode.setAttribute('title', title_text);
+
+            if (isFunction(opt.onTitleChanged)) {
+                opt.onTitleChanged(title_text, title);
             }
         }
 
@@ -514,7 +531,6 @@ Mask.prototype = {
 
 
         opt.phone = phone;
-        // opt.value         = value; // todo ???
 
         opt.element.placeholder = value;
         opt.element.value       = value;
@@ -693,20 +709,21 @@ Mask.prototype = {
                         });
                     } else {
 
-                        Masked.phoneCodes.loadMask([iso], [language], function() {
+                        return Masked.phoneCodes.loadMask([iso], [language], function() {
                             self.opt.country = iso;
                             self.opt.lang = language;
 
                             value = self.opt.pre_value.length > value.length ? self.opt.pre_value : value;
 
-                            self.findMask(value);
+                            var m = self.findMask(value);
                             if (self.opt.initial_focus === true) {
                                 self.focused();
                             }
 
                             self.opt.pre_value = false;
+
+                            return m;
                         });
-                        return false;
                     }
                 }
             }

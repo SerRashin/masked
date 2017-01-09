@@ -2,7 +2,7 @@
 * Masked - v1.1.0 - 
 * 
 * @author Rashin Sergey 
-* @version 1.1.0 2016-12-30
+* @version 1.1.0 2017-01-09
 */
 
 
@@ -47,7 +47,7 @@ var Global = {
         us:     [],     // список кодов для США
         vn:     [],     //
         vu:     [],     //
-        ye:     [],     //
+        ye:     []     //
     }
 };
 
@@ -242,6 +242,7 @@ var MaskedConfig = MConf = (function() {
         onHideList:         null,
         onSend:             null,
         onValueChanged:     null,
+        onTitleChanged:     null,
         popup_direction:    'auto'
     };
 
@@ -286,9 +287,9 @@ var Event = (function() {
             event.target = event.srcElement;
         }
         if (!event.relatedTarget && event.fromElement) {
-            event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
+            event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
         }
-        if ( event.pageX == null && event.clientX != null ) {
+        if ( event.pageX === null && event.clientX !== null ) {
             var html = doc.documentElement,
                 body = doc.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
@@ -317,7 +318,7 @@ var Event = (function() {
     }
     return {
         add: function(elem, type, handler) {
-            if (elem.setInterval && ( elem != win && !elem.frameElement ) ) {
+            if (elem.setInterval && ( elem !== win && !elem.frameElement ) ) {
                 elem = win;
             }
             if (!handler.guid) {
@@ -428,7 +429,7 @@ var sAJAX = function (obj) {
         return;
     }
 
-    if (typeof xmlhttpobj == und){
+    if (typeof xmlhttpobj === und){
         xmlhttpobj = function () {
             try {
                 var activex_obj = ActiveXObject;
@@ -646,7 +647,7 @@ function getNewMaskValue(_value, _mask) {
     for (i in mask) {
         if (mask.hasOwnProperty(i)) {
             digit = mask[i];
-            if (digit == '_') {
+            if (digit === '_') {
                 if (len < value.length) {
                     mask[i] = value[len];
                     len++;
@@ -661,7 +662,55 @@ function getNewMaskValue(_value, _mask) {
 
 
 
+function getElementPath(element) {
+    var el = element,
+        parents = [];
 
+    while (el.parentNode !== null) {
+        var sibCount = 0;
+        var sibIndex = 0;
+        var ch = el.parentNode.childNodes;
+        for ( var i = 0; i < ch.length; i++ ) {
+            var sib = ch[i];
+            if ( sib.nodeName === el.nodeName ) {
+                if ( sib === el ) {
+                    sibIndex = sibCount;
+                }
+                sibCount++;
+            }
+        }
+
+        var nodeName = el.nodeName.toUpperCase();
+
+        if (el.className === 'CBH-masks') {
+            el = el.parentNode;
+            continue;
+        }
+
+        parents.unshift((sibCount > 1 ? nodeName + '[' + (sibIndex) + ']' : nodeName));
+
+        el = el.parentNode;
+        if (el.nodeType === 11) {
+            el = el.host;
+        }
+    }
+
+    return '//' + parents.join("/");
+}
+
+function getInstanceByXpath(path) {
+    var instance,
+        instances = Global.instances;
+    for (var i in instances) {
+        if (instances.hasOwnProperty(i)) {
+            instance = instances[i];
+
+            if (path === instance.opt.xpath) {
+                return instance;
+            }
+        }
+    }
+}
 
 
 
@@ -696,22 +745,22 @@ function getElements(selector) {
         }
 
         if (first_digit === '.') {
-            element = doc.getElementsByClassName( selector );
+            element = document.getElementsByClassName( selector );
             for(i in element) {
-                if (element.hasOwnProperty(i) && element[i] !== type_null) {
+                if (element.hasOwnProperty(i) && element[i] !== 'null') {
                     elements[element[i].id||i] = element[i];
                 }
             }
         } else if (first_digit === '#') {
-            element = doc.getElementById( selector );
-            if (element !== type_null) {
+            element = document.getElementById( selector );
+            if (element !== 'null') {
                 elements.push(element);
             }
         } else {
             console.warn('selector finder empty');
         }
     } else if (selector.nodeType) {
-        if (selector !== type_null) {
+        if (selector !== 'null') {
             elements.push(selector);
         }
     }
@@ -752,8 +801,8 @@ var phoneCodes = {
         var txt_mask = 'mask',
             txt_desc = 'desc',
             txt_asc  = 'asc',
-            key      = (k  == txt_mask) ? txt_mask : 'name',
-            sort     = (s == txt_desc) ? txt_desc : txt_asc;
+            key      = (k  === txt_mask) ? txt_mask : 'name',
+            sort     = (s === txt_desc) ? txt_desc : txt_asc;
 
         if (maskList) {
             maskList.sort(function (a, b) {
@@ -784,8 +833,8 @@ var phoneCodes = {
     /**
      * Загрузить маску
      *
-     * @param type
-     * @param lang
+     * @param types
+     * @param languages
      * @param callback
      */
     loadMask: function (types, languages, callback) {
@@ -794,6 +843,10 @@ var phoneCodes = {
 
         var type = typeof types === 'string' ? [types] : types.splice(0,1)[0];
         var lang = typeof languages === 'string' ? [languages] : languages.splice(0,1)[0];
+
+        if (typeof type === 'undefined' && typeof lang === 'undefined') {
+            return callback();
+        }
 
         if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
             return self.loadMask(types, languages, callback);
@@ -970,10 +1023,8 @@ var actions = {
                     }
                 } else {
                     // тут добавляем проверку на коды большей длинны
-                    if (self.ifIssetNextMask() && _regex.test(key) === true) {
-                        return true;
-                    }
-                    return false;
+                    return !!(self.ifIssetNextMask() && _regex.test(key) === true);
+
                 }
             }
         }
@@ -1022,7 +1073,7 @@ var actions = {
             }
 
         }
-    },
+    }
 };
 /**
  * Объект маски
@@ -1030,16 +1081,22 @@ var actions = {
 var Mask = function (el, args) {
     var self = this;
 
-    var init = function(el, args) {
-        var opt = self.opt;
+    var init = function(el) {
+        if (el) {
+            var opt = self.opt;
 
-        opt.oldState = el;
+            opt.oldState = el;
 
-        self.setTemplate();
-        self.addActions(opt.element);
+            self.setTemplate();
+            self.addActions(opt.element);
+
+            opt.xpath = getElementPath(opt.element);
+        }
+
     };
 
     self.opt = {
+        xpath:            false,                    // нахождение елемента по ДОМ дереву
         pre_value:        false,
         listOpened:       false,                    // список открыт
         element:          el,
@@ -1052,6 +1109,7 @@ var Mask = function (el, args) {
         onShowList:       args.onShowList           || MConf('onShowList'),
         onHideList:       args.onHideList           || MConf('onHideList'),
         onValueChanged:   args.onValueChanged       || MConf('onValueChanged'),
+        onTitleChanged:   args.onTitleChanged       || MConf('onTitleChanged'),
         one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:  args.first_countries      || MConf('first_countries'),
         exceptions:       args.exceptions           || MConf('exceptions'),
@@ -1270,7 +1328,10 @@ Mask.prototype = {
 
                 if (/active/.test(cur_el.className) !== true) {
 
-                    // Event.add(doc, 'click', handler);
+                    /**
+                     * При клике "вне" масок, скрывать список
+                     */
+                    Event.add(doc, 'click', handler);
 
                     function findPos(obj) {
                         var curleft = 0,
@@ -1288,16 +1349,20 @@ Mask.prototype = {
                     }
 
                     addClass(cur_el, active);
-                    var winHeight = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
-                        offset    = findPos(cur_el),
-                        fromTop   = (offset.top - cur_el.scrollTop),
-                        maskBlockHeight = cur_el.clientHeight;
 
-                    if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
-                        if (opt.popup_direction === "auto" || opt.popup_direction === 'top') {
+                    if (opt.popup_direction === "auto") {
+                        var winHeight = w.innerHeight || d.documentElement.clientHeight || d.body.clientHeight,
+                            offset = findPos(cur_el),
+                            fromTop = (offset.top - cur_el.scrollTop),
+                            maskBlockHeight = cur_el.clientHeight;
+
+                        if ((winHeight - (fromTop + wrapper.childNodes[1].clientHeight)) <= maskBlockHeight) {
                             addClass(cur_el, top);
                         }
+                    } else if (opt.popup_direction === 'top') {
+                        addClass(cur_el, top);
                     }
+
                     list_status = txt_opened
 
                 } else {
@@ -1393,12 +1458,13 @@ Mask.prototype = {
             mask,
             self = this,
             opt = self.opt,
-            one_country =  opt.one_country,
-            language = opt.lang,
-            country = opt.country,
-            phone = getPhone(_phone),
+            one_country = opt.one_country,
+            language    = opt.lang,
+            country     = opt.country,
+            phone       = getPhone(_phone),
             pc          = phoneCodes,
             exceptions  = opt.exceptions;
+
 
 
         if (one_country !== false) {
@@ -1446,25 +1512,25 @@ Mask.prototype = {
 
 
         if (mask) {
-
             if (country !== mask.iso_code) {
                 mask = self.hardSearch(
                         phone, language, mask.iso_code
                     ) || mask;
             }
 
-            self.setTitle(mask);
-            self.setMask(mask);
-            self.setPhone(phone);
+            if (self.opt.element) {
+                self.setTitle(mask);
+                self.setMask(mask);
+                self.setPhone(phone);
 
-            if (self.opt.initial_focus === true) {
-                self.focused();
+                if (self.opt.initial_focus === true) {
+                    self.focused();
+                }
             }
+
         }
 
-
-
-        return !!mask;
+        return mask;
     },
 
     setMask: function (mask) {
@@ -1524,8 +1590,10 @@ Mask.prototype = {
             i            = e.parentNode.getElementsByClassName('selected')[0].getElementsByClassName('flag')[0];
             i.className  = 'flag '+ iso_code;
 
-            if (typeof title_text !== 'undefined') {
-                i.parentNode.setAttribute('title', title_text);
+            i.parentNode.setAttribute('title', title_text);
+
+            if (isFunction(opt.onTitleChanged)) {
+                opt.onTitleChanged(title_text, title);
             }
         }
 
@@ -1540,7 +1608,6 @@ Mask.prototype = {
 
 
         opt.phone = phone;
-        // opt.value         = value; // todo ???
 
         opt.element.placeholder = value;
         opt.element.value       = value;
@@ -1719,20 +1786,21 @@ Mask.prototype = {
                         });
                     } else {
 
-                        Masked.phoneCodes.loadMask([iso], [language], function() {
+                        return Masked.phoneCodes.loadMask([iso], [language], function() {
                             self.opt.country = iso;
                             self.opt.lang = language;
 
                             value = self.opt.pre_value.length > value.length ? self.opt.pre_value : value;
 
-                            self.findMask(value);
+                            var m = self.findMask(value);
                             if (self.opt.initial_focus === true) {
                                 self.focused();
                             }
 
                             self.opt.pre_value = false;
+
+                            return m;
                         });
-                        return false;
                     }
                 }
             }
@@ -1827,17 +1895,12 @@ Mask.prototype = {
 /**
  * @var mixed doc
  * @var null type_null
- * @TODO getInst ???
- * @TODO getPhone
- * @TODO isValid
- * @TODO toggle
- * @TODO o.setPhone
  */
 
 var plugin = function (params) {
     var self        = this;
 
-    self.objects = [];
+    self.paths = [];
 
     self.init(params);
 
@@ -1852,7 +1915,39 @@ var plugin = function (params) {
  * Открываем доступ из вне для обращения к Masked.phoneCodes
  */
 plugin.phoneCodes = phoneCodes;
+
+
 plugin.toggle = function(e) {
+    var self = this.getInst(e),
+        opt  = self.opt;
+
+    if (self) {
+        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
+            e.parentNode.outerHTML = opt.oldState.outerHTML;
+        } else {
+            opt.element = e;
+            self.setTemplate();
+            self.addActions(opt.element);
+        }
+    }
+};
+
+plugin.getPhone = function (value) {
+    return value ? plugin.prototype.getPhone(value) : false;
+};
+
+plugin.isValid = function (value) {
+    return value ? plugin.prototype.isValid(value) : false;
+};
+
+
+
+/**
+ * Получить инстанс
+ * @param e
+ * @returns {*}
+ */
+plugin.getInst = function (e) {
     var i,
         instance,
         toggled_element,
@@ -1863,30 +1958,13 @@ plugin.toggle = function(e) {
         if (instances.hasOwnProperty(i)) {
             instance = instances[i];
 
-            console.log(e , instance.opt.oldState);
-            if (e === instance.opt.element || e === instance.opt.oldState) {
+            if (getElementPath(e) === instance.opt.xpath) {
                 toggled_element = instance;
+                break;
             }
         }
     }
-    console.log(toggled_element);
-    if (toggled_element) {
-        var opt = toggled_element.opt,
-            element = opt.element;
-
-        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
-
-            e.parentNode.outerHTML = opt.oldState.outerHTML;
-        }
-        else {
-            console.log('set template');
-            //instance.setTemplate();
-        //     element.value       = element.value;
-        //     instance.addActions(element);
-        }
-    }
-
-
+    return  toggled_element;
 };
 
 
@@ -1934,7 +2012,8 @@ plugin.prototype = {
 
         var i,
             el,
-            opt;
+            opt,
+            self = this;
 
         for(i in elements) {
             if (elements.hasOwnProperty(i)) {
@@ -1943,14 +2022,89 @@ plugin.prototype = {
                 if (el) {
                     opt = generalMaskedFn.extend(generalMaskedFn.extend({}, options), el.dataset);
                     var object = new Mask(el, opt);
-                   // self.objects.push(object);
+                    self.paths.push(object.opt.xpath);
+
                     Global.instances.push(object);
                 }
             }
         }
     },
-};
 
+    /**
+     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
+     * вернет строку или массив, можно вернуть номер без маски
+     * @param value
+     * @param _with_mask
+     * @returns {string}|{object}
+     */
+    getPhone: function (value, _with_mask) {
+        var self = this,
+            phone,
+            context,
+            mask,
+            with_mask  = _with_mask || true;
+
+        if (value) {
+            context = new Mask(null, MConf());
+            mask = context.findMask(value);
+            phone = getNewMaskValue(
+                value,
+                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+            );
+        } else {
+            var path      = self.paths[0];
+
+            context = getInstanceByXpath(path);
+
+            if (context) {
+                phone = context.opt.element.value;
+            }
+        }
+
+        if (!with_mask) {
+            phone = getPhone(phone);
+        }
+
+        return phone;
+    },
+
+    setPhone: function (value) {
+        getInstanceByXpath(this.paths[0]).findMask(value ? value : false);
+    },
+
+    isValid: function (value) {
+        var phone,
+            mask,
+            context,
+            valid      = false;
+
+        if (value) {
+            context = new Mask(null, MConf());
+            mask = context.findMask(value);
+
+            phone = getNewMaskValue(
+                value,
+                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+            );
+        } else {
+            var path      = this.paths[0];
+
+            if (path) {
+                context = getInstanceByXpath(path);
+
+                if (context) {
+                    phone = context.opt.element.value;
+                }
+            }
+        }
+
+        if (phone) {
+            valid = phone.indexOf('_') === -1;
+        }
+
+        return valid;
+    },
+};
     return plugin;
 })(document, window);
 // $.masked = new Masked;
