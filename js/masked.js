@@ -847,7 +847,7 @@ var phoneCodes = {
         if (typeof type === 'undefined' && typeof lang === 'undefined') {
             return callback();
         }
-
+        console.log(types, languages);
         if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
             return self.loadMask(types, languages, callback);
         }
@@ -859,7 +859,7 @@ var phoneCodes = {
                 self.loadMask(types, languages, callback);
             }
         } else {
-            sAJAX({
+            return sAJAX({
                 url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
                 type:        'GET',
                 async:       true,
@@ -871,13 +871,13 @@ var phoneCodes = {
                     if (languages.length === 0 && isFunction(callback)) {
                         return callback();
                     } else {
-                        self.loadMask(types, languages, callback)
+                        return self.loadMask(types, languages, callback)
                     }
                 }
             });
         }
 
-        return true;
+        return false;
     },
 
     findMaskByCode: function(type, code, language) {
@@ -982,8 +982,12 @@ var actions = {
                     if (select_range.focus === true) {
                         self.replaceRange();
                         index   = select_range.start;
-                        self.unsetRange();
+                        select_range.focus = false;
                         self.opt.select_range.changed  = select_range.end - select_range.start > 1;
+
+                        if (select_range.start === 1 && select_range.end === value.length) {
+                            self.unsetRange();
+                        }
                     }
                 }
                 self.removeLastChar(index);
@@ -1004,14 +1008,25 @@ var actions = {
 
                 num = value.indexOf('_');
                 if (select_range !== false) {
+
                     if (select_range.focus === true) {
                         if (_regex.test(key) === true) {
                             self.replaceRange();
                             num   = select_range.start;
                             value = element.value;
-                            self.unsetRange();
+                            select_range.focus = false;
                             self.opt.select_range.changed  = select_range.end - select_range.start > 1;
+
+                            if (select_range.start === 1 && select_range.end === value.length) {
+                                self.unsetRange();
+                            }
                         }
+                    } else if (select_range.changed) {
+                        if (select_range.end === num+1) {
+                            self.unsetRange();
+                        }
+
+
                     }
                 }
 
@@ -1024,7 +1039,6 @@ var actions = {
                 } else {
                     // тут добавляем проверку на коды большей длинны
                     return !!(self.ifIssetNextMask() && _regex.test(key) === true);
-
                 }
             }
         }
@@ -1061,6 +1075,7 @@ var actions = {
         } else {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
+
 
             if (select_range.changed !== true) {
                 self.findMask(element.value); // ищем новую маску
@@ -1801,6 +1816,10 @@ Mask.prototype = {
 
                             var m = self.findMask(value);
                             if (self.opt.initial_focus === true) {
+                                self.focused();
+                            }
+
+                            if (Global.initialization === false) {
                                 self.focused();
                             }
 

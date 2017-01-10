@@ -57,7 +57,7 @@ var phoneCodes = {
         if (typeof type === 'undefined' && typeof lang === 'undefined') {
             return callback();
         }
-
+        console.log(types, languages);
         if (typeof type !== 'undefined' && typeof gc[type] === 'undefined') {
             return self.loadMask(types, languages, callback);
         }
@@ -69,7 +69,7 @@ var phoneCodes = {
                 self.loadMask(types, languages, callback);
             }
         } else {
-            sAJAX({
+            return sAJAX({
                 url:         MConf('pathToList') + type + '/' + (!empty(lang) ? lang : 'ru') + '.min.json',
                 type:        'GET',
                 async:       true,
@@ -81,13 +81,13 @@ var phoneCodes = {
                     if (languages.length === 0 && isFunction(callback)) {
                         return callback();
                     } else {
-                        self.loadMask(types, languages, callback)
+                        return self.loadMask(types, languages, callback)
                     }
                 }
             });
         }
 
-        return true;
+        return false;
     },
 
     findMaskByCode: function(type, code, language) {

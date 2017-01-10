@@ -76,8 +76,12 @@ var actions = {
                     if (select_range.focus === true) {
                         self.replaceRange();
                         index   = select_range.start;
-                        self.unsetRange();
+                        select_range.focus = false;
                         self.opt.select_range.changed  = select_range.end - select_range.start > 1;
+
+                        if (select_range.start === 1 && select_range.end === value.length) {
+                            self.unsetRange();
+                        }
                     }
                 }
                 self.removeLastChar(index);
@@ -98,14 +102,25 @@ var actions = {
 
                 num = value.indexOf('_');
                 if (select_range !== false) {
+
                     if (select_range.focus === true) {
                         if (_regex.test(key) === true) {
                             self.replaceRange();
                             num   = select_range.start;
                             value = element.value;
-                            self.unsetRange();
+                            select_range.focus = false;
                             self.opt.select_range.changed  = select_range.end - select_range.start > 1;
+
+                            if (select_range.start === 1 && select_range.end === value.length) {
+                                self.unsetRange();
+                            }
                         }
+                    } else if (select_range.changed) {
+                        if (select_range.end === num+1) {
+                            self.unsetRange();
+                        }
+
+
                     }
                 }
 
@@ -118,7 +133,6 @@ var actions = {
                 } else {
                     // тут добавляем проверку на коды большей длинны
                     return !!(self.ifIssetNextMask() && _regex.test(key) === true);
-
                 }
             }
         }
@@ -155,6 +169,7 @@ var actions = {
         } else {
             num   = value.indexOf('_');
             index = (num !== -1) ? num : value.length;
+
 
             if (select_range.changed !== true) {
                 self.findMask(element.value); // ищем новую маску

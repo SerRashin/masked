@@ -727,6 +727,10 @@ Mask.prototype = {
                                 self.focused();
                             }
 
+                            if (Global.initialization === false) {
+                                self.focused();
+                            }
+
                             self.opt.pre_value = false;
 
                             return m;
