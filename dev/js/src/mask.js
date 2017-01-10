@@ -523,12 +523,19 @@ Mask.prototype = {
         return self;
     },
     setPhone: function (phone) {
-        var opt   = this.opt;
+        var self  = this,
+            opt   = self.opt;
         var value = getNewMaskValue(
             phone,
             opt.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
         );
 
+        if (
+            isFunction(opt.onValueChanged) &&
+            opt.phone !== phone
+        ) {
+            opt.onValueChanged(getPhone(value), value);
+        }
 
         opt.phone = phone;
 
@@ -536,7 +543,7 @@ Mask.prototype = {
         opt.element.value       = value;
     },
 
-    maskReplace: function (e,e2) {
+    maskReplace: function (e) {
         var self        = this,
             opt         = self.opt,
             pc          = phoneCodes,

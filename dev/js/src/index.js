@@ -7,6 +7,7 @@ var plugin = function (params) {
     var self        = this;
 
     self.paths = [];
+    self.ready = false;
 
     self.init(params);
 
@@ -131,6 +132,7 @@ plugin.prototype = {
                     self.paths.push(object.opt.xpath);
 
                     Global.instances.push(object);
+                    self.ready = true;
                 }
             }
         }
@@ -153,11 +155,16 @@ plugin.prototype = {
         if (value) {
             context = new Mask(null, MConf());
             mask = context.findMask(value);
-            phone = getNewMaskValue(
-                value,
-                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
-            );
+            if (mask) {
+                phone = getNewMaskValue(
+                    value,
+                    mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
+                );
+            }
         } else {
+            if (!self.ready) {
+                return false;
+            }
             var path      = self.paths[0];
 
             context = getInstanceByXpath(path);
@@ -175,7 +182,10 @@ plugin.prototype = {
     },
 
     setPhone: function (value) {
-        getInstanceByXpath(this.paths[0]).findMask(value ? value : false);
+        var self = this;
+        if (self.ready) {
+            getInstanceByXpath(this.paths[0]).findMask(value ? value : false);
+        }
     },
 
     isValid: function (value) {
@@ -193,6 +203,11 @@ plugin.prototype = {
                 mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
             );
         } else {
+
+            if (!this.ready) {
+                return false;
+            }
+
             var path      = this.paths[0];
 
             if (path) {

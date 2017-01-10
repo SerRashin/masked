@@ -73,8 +73,11 @@
                 selector: '#phone-editable',
                 phone:'7',
 //                one_country:'ru',
-//                popup_direction:    'auto'
-                //select_range: true, // разрешено выделение длязамены
+                popup_direction:    'auto',
+                select_range: true, // разрешено выделение длязамены
+                onValueChanged: function() {
+                    console.log('onValueChanged');
+                },
 //                onSend: function () {
 //                    console.log('action send');
 //                },
@@ -91,9 +94,11 @@
                     $('#phone-editable-title').text(title);
                 }
             });
+            console.log(msks.ready);
 
             $('#ckeck').click(function(){
                 console.log(msks.isValid());
+                console.log(msks.ready);
             });
 //            msks = new Masked({
 //                selector: '#phone-editable',
