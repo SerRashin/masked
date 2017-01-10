@@ -22,9 +22,9 @@ var Event = (function() {
             event.target = event.srcElement;
         }
         if (!event.relatedTarget && event.fromElement) {
-            event.relatedTarget = event.fromElement == event.target ? event.toElement : event.fromElement;
+            event.relatedTarget = event.fromElement === event.target ? event.toElement : event.fromElement;
         }
-        if ( event.pageX == null && event.clientX != null ) {
+        if ( event.pageX === null && event.clientX !== null ) {
             var html = doc.documentElement,
                 body = doc.body;
             event.pageX = event.clientX + (html && html.scrollLeft || body && body.scrollLeft || 0) - (html.clientLeft || 0);
@@ -53,7 +53,7 @@ var Event = (function() {
     }
     return {
         add: function(elem, type, handler) {
-            if (elem.setInterval && ( elem != win && !elem.frameElement ) ) {
+            if (elem.setInterval && ( elem !== win && !elem.frameElement ) ) {
                 elem = win;
             }
             if (!handler.guid) {
@@ -164,7 +164,7 @@ var sAJAX = function (obj) {
         return;
     }
 
-    if (typeof xmlhttpobj == und){
+    if (typeof xmlhttpobj === und){
         xmlhttpobj = function () {
             try {
                 var activex_obj = ActiveXObject;
@@ -363,7 +363,7 @@ function childOf(c,p){ //returns boolean
  * @returns {string}
  */
 function getPhone(value) {
-    return value.replace(/\D+/g,"");
+    return (value+'').replace(/\D+/g,"");
 }
 
 /**
@@ -382,7 +382,7 @@ function getNewMaskValue(_value, _mask) {
     for (i in mask) {
         if (mask.hasOwnProperty(i)) {
             digit = mask[i];
-            if (digit == '_') {
+            if (digit === '_') {
                 if (len < value.length) {
                     mask[i] = value[len];
                     len++;
@@ -393,54 +393,61 @@ function getNewMaskValue(_value, _mask) {
     return mask.join('');
 }
 
-/**
- * Функция может устанавливать курсор на позицию start||end или выделять символ для замены
- *   если start и end равны, то курсор устанавливается на позицию start||end
- *   если не равны, выделяет символы от start до end
- */
-function setCaretFocus(input, start, end) {
-    var character = 'character';
-    input.focus();
-    if (input.setSelectionRange) {
-        input.setSelectionRange(start, end);
-    } else if (input.createTextRange) {
-        var range = input.createTextRange();
-        range.collapse(true);
-        range.moveEnd(character, start);
-        range.moveStart(character, end);
-        range.select();
-    }
-}
 
-/**
- * Получить номер(массива) последнего int символа, используется для BACKSPACE методов actions.[keypress||keyup]
- * @param e
- * @returns {Number}
- */
-function getLastNum(e) {
-    var i,
-        v  = e.value;
-    for (i = v.length; i >= 0; i--) {
-        if (_regex.test(v[i])) {
-            break;
+
+
+
+function getElementPath(element) {
+    var el = element,
+        parents = [];
+
+    while (el.parentNode !== null) {
+        var sibCount = 0;
+        var sibIndex = 0;
+        var ch = el.parentNode.childNodes;
+        for ( var i = 0; i < ch.length; i++ ) {
+            var sib = ch[i];
+            if ( sib.nodeName === el.nodeName ) {
+                if ( sib === el ) {
+                    sibIndex = sibCount;
+                }
+                sibCount++;
+            }
+        }
+
+        var nodeName = el.nodeName.toUpperCase();
+
+        if (el.className === 'CBH-masks') {
+            el = el.parentNode;
+            continue;
+        }
+
+        parents.unshift((sibCount > 1 ? nodeName + '[' + (sibIndex) + ']' : nodeName));
+
+        el = el.parentNode;
+        if (el.nodeType === 11) {
+            el = el.host;
         }
     }
-    return i;
+
+    return '//' + parents.join("/");
 }
 
+function getInstanceByXpath(path) {
+    var instance,
+        instances = Global.instances;
+    for (var i in instances) {
+        if (instances.hasOwnProperty(i)) {
+            instance = instances[i];
 
-/**
- * Удалить последний элемент
- * @param e
- * @param i
- */
-function removeLastChar(e, i) {
-    var temp = e.value.split('');
-    if (_regex.test(temp[i])) {
-        temp[i]='_';
+            if (path === instance.opt.xpath) {
+                return instance;
+            }
+        }
     }
-    e.value = temp.join('');
 }
+
+
 
 function languageIsset(_array, _object) {
     var a = false;
@@ -460,3 +467,58 @@ function isFunction(a) {
     return typeof a === 'function';
 }
 
+function getElements(selector) {
+    var i,
+        element,
+        elements = [],
+        first_digit;
+    if ( typeof selector === 'string' ) {
+        first_digit = selector[0];
+
+        if ( (first_digit === '.') || (first_digit === '#') ) {
+            selector = selector.substr(1);
+        }
+
+        if (first_digit === '.') {
+            element = document.getElementsByClassName( selector );
+            for(i in element) {
+                if (element.hasOwnProperty(i) && element[i] !== 'null') {
+                    elements[element[i].id||i] = element[i];
+                }
+            }
+        } else if (first_digit === '#') {
+            element = document.getElementById( selector );
+            if (element !== 'null') {
+                elements.push(element);
+            }
+        } else {
+            console.warn('selector finder empty');
+        }
+    } else if (selector.nodeType) {
+        if (selector !== 'null') {
+            elements.push(selector);
+        }
+    }
+
+    return elements;
+}
+
+Array.prototype.getUnique = function(){
+    var u = {}, a = [];
+    for(var i = 0, l = this.length; i < l; ++i){
+        if(u.hasOwnProperty(this[i])) {
+            continue;
+        }
+        a.push(this[i]);
+        u[this[i]] = 1;
+    }
+    return a;
+};
+
+Math.sign = Math.sign || function(x) {
+    x = +x; // convert to a number
+    if (x === 0 || isNaN(x)) {
+        return x;
+    }
+    return x > 0 ? 1 : -1;
+};
