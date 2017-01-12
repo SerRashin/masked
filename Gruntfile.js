@@ -148,7 +148,7 @@ module.exports = function(grunt) {
         'code_wrap:masked',
         'uglify:masked',
 
-        'sass:masked',
+        //'sass:masked',
         //'cssmin:masked',
        // 'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
        // 'browserSync',
