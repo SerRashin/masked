@@ -193,7 +193,7 @@ plugin.prototype = {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
                 if (el && !el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
-                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
+                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), getDataSet(el));
 
                     object = new Mask(el, opt);
                     Global.instances[object.opt.instId] = object;

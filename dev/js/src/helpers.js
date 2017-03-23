@@ -460,3 +460,6 @@ function isFunction(a) {
     return typeof a === 'function';
 }
 
+function getDataSet(el) {
+    return [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+}

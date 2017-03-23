@@ -603,7 +603,9 @@ function isFunction(a) {
     return typeof a === 'function';
 }
 
-
+function getDataSet(el) {
+    return [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+}
 var phoneCodes = {
     all:    [],     // список масок для всех стран
     ae:     [],     //
@@ -1206,8 +1208,8 @@ Mask.prototype = {
             if (!one_country) {
                 li                      = document_create('li');
                 li.className            = 'country';
-                li.dataset['isoCode']   = iso;
-                li.dataset['mask']      = mask;
+                li.setAttribute('data-isoCode', iso);
+                li.setAttribute('data-mask', mask);
 
                 Event.add(li, 'click', self.maskReplace);
 
@@ -1456,7 +1458,7 @@ Mask.prototype = {
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             instance    = Masked.getInst(input),
-            dataset     = self.dataset;
+            dataset     = getDataSet(self);
 
         var finded_old          = pc.findMaskByCode(instance.opt.country);
         var finded_new          = pc.findMaskByCode(dataset['isoCode']);
@@ -1833,7 +1835,7 @@ plugin.prototype = {
             if (elements.hasOwnProperty(i)) {
                 el   = elements[i];
                 if (el && !el.className.match(new RegExp(MConf('prefix') + '[0-9a-zA-Z]+'))) {
-                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), el.dataset);
+                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, self.options), getDataSet(el));
 
                     object = new Mask(el, opt);
                     Global.instances[object.opt.instId] = object;

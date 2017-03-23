@@ -20,11 +20,33 @@
         }
       },
       "/home/lester/Dropbox/cbh/cbh_trunk/widgets"
+    ],
+    [
+      {
+        "raw": "Masked@git://github.com/serhanters/masked.git",
+        "scope": null,
+        "escapedName": "Masked",
+        "name": "Masked",
+        "rawSpec": "git://github.com/serhanters/masked.git",
+        "spec": "git://github.com/serhanters/masked.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:serhanters/masked.git",
+          "sshUrl": "git+ssh://git@github.com/serhanters/masked.git",
+          "httpsUrl": "git+https://github.com/serhanters/masked.git",
+          "gitUrl": "git://github.com/serhanters/masked.git",
+          "shortcut": "github:serhanters/masked",
+          "directUrl": "https://raw.githubusercontent.com/serhanters/masked/master/package.json"
+        }
+      },
+      "/home/lester/Dropbox/cbh/callbackhunter-widget"
     ]
   ],
   "_from": "git://github.com/serhanters/masked.git",
   "_id": "Masked@1.0.2",
   "_inCache": true,
+  "_installable": true,
   "_location": "/Masked",
   "_phantomChildren": {},
   "_requested": {
@@ -48,11 +70,11 @@
   "_requiredBy": [
     "#DEV:/"
   ],
-  "_resolved": "git://github.com/serhanters/masked.git#d61fc79f6a0cc1d85493787c895eb69f9b1b2b49",
-  "_shasum": "116beb76d11efdd44e1b44570d838b21cbdb9aea",
+  "_resolved": "git://github.com/serhanters/masked.git#bfbad34966fcba50ee6bf0a4e77388dd961f4480",
+  "_shasum": "9f395b55e08fa622be5ddb60e5ab284ddc11ed68",
   "_shrinkwrap": null,
   "_spec": "Masked@git://github.com/serhanters/masked.git",
-  "_where": "/home/lester/Dropbox/cbh/cbh_trunk/widgets",
+  "_where": "/home/lester/Dropbox/cbh/callbackhunter-widget",
   "author": {
     "name": "Rashin Sergey",
     "email": "serhanters@yandex.ru",

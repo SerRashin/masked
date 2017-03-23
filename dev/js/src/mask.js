@@ -300,8 +300,8 @@ Mask.prototype = {
             if (!one_country) {
                 li                      = document_create('li');
                 li.className            = 'country';
-                li.dataset['isoCode']   = iso;
-                li.dataset['mask']      = mask;
+                li.setAttribute('data-isoCode', iso);
+                li.setAttribute('data-mask', mask);
 
                 Event.add(li, 'click', self.maskReplace);
 
@@ -550,7 +550,7 @@ Mask.prototype = {
             parent      = self.parentNode.parentNode,
             input       = parent.parentNode.childNodes[1],
             instance    = Masked.getInst(input),
-            dataset     = self.dataset;
+            dataset     = getDataSet(self);
 
         var finded_old          = pc.findMaskByCode(instance.opt.country);
         var finded_new          = pc.findMaskByCode(dataset['isoCode']);
