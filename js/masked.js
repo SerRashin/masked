@@ -604,7 +604,14 @@ function isFunction(a) {
 }
 
 function getDataSet(el) {
-    return [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+    var data = [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+
+    var res = {};
+    for(var i=0; i < data.length; i++) {
+        res[data[i].name.replace(/^data-/, '')] = data[i].value;
+    }
+
+    return res;
 }
 var phoneCodes = {
     all:    [],     // список масок для всех стран
@@ -1208,7 +1215,7 @@ Mask.prototype = {
             if (!one_country) {
                 li                      = document_create('li');
                 li.className            = 'country';
-                li.setAttribute('data-isoCode', iso);
+                li.setAttribute('data-isocode', iso);
                 li.setAttribute('data-mask', mask);
 
                 Event.add(li, 'click', self.maskReplace);
@@ -1461,7 +1468,7 @@ Mask.prototype = {
             dataset     = getDataSet(self);
 
         var finded_old          = pc.findMaskByCode(instance.opt.country);
-        var finded_new          = pc.findMaskByCode(dataset['isoCode']);
+        var finded_new          = pc.findMaskByCode(dataset['isocode']);
 
         instance.setInp(
             instance.opt.element,

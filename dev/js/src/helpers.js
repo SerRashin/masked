@@ -461,5 +461,12 @@ function isFunction(a) {
 }
 
 function getDataSet(el) {
-    return [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+    var data = [].filter.call(el.attributes, function(at) { return /^data-/.test(at.name); });
+
+    var res = {};
+    for(var i=0; i < data.length; i++) {
+        res[data[i].name.replace(/^data-/, '')] = data[i].value;
+    }
+
+    return res;
 }
