@@ -107,6 +107,12 @@ module.exports = function(grunt) {
                         'config_source': function () {
                             return grunt.file.read('dev/js/src/config.js')
                         },
+                        'eventBroker': function () {
+                            return grunt.file.read('dev/js/src/eventBroker.js')
+                        },
+                        'events': function () {
+                          return grunt.file.read('dev/js/src/events.js')
+                        },
                         'source': function () {
                             return grunt.file.read('js/masked.js')
                         }
@@ -148,7 +154,7 @@ module.exports = function(grunt) {
         'code_wrap:masked',
         'uglify:masked',
 
-        'sass:masked',
+       // 'sass:masked',
         //'cssmin:masked',
        // 'jsonmin:masked_codes',     // длительная операция, рекомендую использовать только при необходимости
        // 'browserSync',

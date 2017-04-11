@@ -12,9 +12,10 @@ var MaskedConfig = MConf = (function() {
     var options = {
         pathToList:         '/js/masks/',
         prefix:             'instId_',
-        lang:               'ru',
+        language:           'ru',
         country:            'ru',
         one_country:        false, // false or string 'iso_code'
+        country_call_binding: false,
         first_countries:    ['ru'],
         exceptions:         exception_example,
         initial_focus:      false,
@@ -38,6 +39,7 @@ var MaskedConfig = MConf = (function() {
                     console.warn('masked argument not exists');
                 }
             }
+
             return options = generalMaskedFn.extend(options, args);
         }
     };

@@ -1,228 +1,115 @@
 /**
+ * Событие инициализации объектов.
+ */
+MaskEventBroker.create('initialization');
+MaskEventBroker.create('load.all.masks.lists');
+MaskEventBroker.create('create.mask.objects');
+
+
+//
+
+/**
  * @var mixed doc
  * @var null type_null
  */
-
 var plugin = function (params) {
-    var self        = this;
+  MaskEvents.events.initialized = false;
+  MaskEvents.events.maskListLoaded = false;
+  MaskEvents.events.createdMaskObjects = false;
 
-    self.paths = [];
-    self.ready = false;
+  var self        = this;
 
-    self.init(params);
+  // self.paths = [];
+  // self.ready = false;
 
-    if(typeof MaskedReady.use === 'undefined') {
-       return alternativeReady.init(self);
-    }
+  self.init(params);
 
-    return self;
-};
-
-/**
- * Открываем доступ из вне для обращения к Masked.phoneCodes
- */
-plugin.phoneCodes = phoneCodes;
-
-
-plugin.toggle = function(e) {
-    var self = this.getInst(e),
-        opt  = self.opt;
-
-    if (self) {
-        if (!empty(e.parentNode) && e.parentNode.className === 'CBH-masks') {
-            e.parentNode.outerHTML = opt.oldState.outerHTML;
-        } else {
-            opt.element = e;
-            self.setTemplate();
-            self.addActions(opt.element);
-        }
-    }
-};
-
-plugin.getPhone = function (value) {
-    return value ? plugin.prototype.getPhone(value) : false;
-};
-
-plugin.isValid = function (value) {
-    return value ? plugin.prototype.isValid(value) : false;
-};
-
-
-
-/**
- * Получить инстанс
- * @param e
- * @returns {*}
- */
-plugin.getInst = function (e) {
-    var i,
-        instance,
-        toggled_element,
-        instances = Global.instances;
-
-
-    for (i in instances) {
-        if (instances.hasOwnProperty(i)) {
-            instance = instances[i];
-
-            if (getElementPath(e) === instance.opt.xpath) {
-                toggled_element = instance;
-                break;
-            }
-        }
-    }
-    return  toggled_element;
+  if (typeof MaskedReady.use === 'undefined') {
+    alternativeReady.init();
+  }
 };
 
 
 plugin.prototype = {
-    /**
-     * Первичная инициализация
-     *
-     * Этап выборки елементов по селектору и передача всех элементов в сервер приема сообщений [MaskedObserver]
-     * @param params
-     * @returns {plugin}
-     */
-    init:  function(params) {
-        var self  = this,
-            elements,
-            options;
 
-        if (params) {
-            if (typeof params === 'string') {
-                params = {
-                    selector: params
-                };
-            }
-            options = generalMaskedFn.extend(MConf(), params);
-        }
+  /**
+   * Первичная инициализация
+   *
+   * Этап выборки елементов по селектору и передача всех элементов в сервер приема сообщений [MaskedObserver]
+   * @param params
+   * @returns {plugin}
+   */
+  init: function (params) {
+    var self  = this,
+      elements,
+      options;
 
-        if (typeof params.selector !== 'undefined') {
-            elements = getElements(params.selector);
+    if (params) {
+      if (typeof params === 'string') {
+        params = {
+          selector: params
+        };
+      }
+      options = generalMaskedFn.extend(MConf(), params);
+    }
 
-        }
+    if (typeof params.selector !== 'undefined') {
+      elements = getElements(params.selector);
+    }
 
-        if (Object.keys(elements).length) {
-            MaskedObserver.add({
-                self:     self,
-                elements: elements,
-                options:  options
-            });
-        }
 
-        return self;
-    },
-    /**
-     * Начинаем загружать масочки
-     */
-    start: function (elements, options) {
+    // Masked.phoneCodes.loadMask('all', languages, function() {
+    //   callback();
+    // });
 
+    if (Object.keys(elements).length) {
+      MaskEventBroker.subscribe('initialization', function() {
         var i,
-            el,
-            opt,
-            self = this;
+          element;
 
         for(i in elements) {
-            if (elements.hasOwnProperty(i)) {
-                el   = elements[i];
+          if (elements.hasOwnProperty(i)) {
+            element   = elements[i];
 
-                if (el) {
-                    opt = generalMaskedFn.extend(generalMaskedFn.extend({}, options), el.dataset);
-                    var object = new Mask(el, opt);
-                    self.paths.push(object.opt.xpath);
+            if (element) {
+              var maskOptions = generalMaskedFn.extend(
+                generalMaskedFn.extend(
+                  generalMaskedFn.extend({}, options),
+                  element.dataset
+                ),
+                element.value ? { phone: element.value } : {}
+              );
 
-                    Global.instances.push(object);
-                    self.ready = true;
-                }
+              element.value = maskOptions.phone;
+
+              generalMaskedFn.addLanguage(maskOptions.language);
+
+              MaskEvents.onInitialized(function() {
+                MaskEventBroker.publish('load.all.masks.lists');
+              });
+
+              MaskEventBroker.subscribe('load.all.masks.lists', function() {
+                phoneCodes.loadMask('all', Global.languages, function() {
+                  MaskEvents.events.maskListLoaded = true;
+                });
+              });
+
+              MaskEvents.onMaskListLoaded(function() {
+                MaskEventBroker.publish('create.mask.objects');
+                MaskEvents.events.createdMaskObjects = true;
+              });
+
+              MaskEventBroker.subscribe('create.mask.objects', function() {
+                var object = new Mask(element, maskOptions);
+
+
+              });
             }
+          }
         }
-    },
+      });
+    }
 
-    /**
-     * Получить форматированную маску по номеру телефона, или объекту/объектам макси
-     * вернет строку или массив, можно вернуть номер без маски
-     * @param value
-     * @param _with_mask
-     * @returns {string}|{object}
-     */
-    getPhone: function (value, _with_mask) {
-        var self = this,
-            phone,
-            context,
-            mask,
-            with_mask  = _with_mask || true;
-
-        if (value) {
-            context = new Mask(null, MConf());
-            mask = context.findMask(value);
-            if (mask) {
-                phone = getNewMaskValue(
-                    value,
-                    mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
-                );
-            }
-        } else {
-            if (!self.ready) {
-                return false;
-            }
-            var path      = self.paths[0];
-
-            context = getInstanceByXpath(path);
-
-            if (context) {
-                phone = context.opt.element.value;
-            }
-        }
-
-        if (!with_mask) {
-            phone = getPhone(phone);
-        }
-
-        return phone;
-    },
-
-    setPhone: function (value) {
-        var self = this;
-        if (self.ready) {
-            getInstanceByXpath(this.paths[0]).findMask(value ? value : false);
-        }
-    },
-
-    isValid: function (value) {
-        var phone,
-            mask,
-            context,
-            valid      = false;
-
-        if (value) {
-            context = new Mask(null, MConf());
-            mask = context.findMask(value);
-
-            phone = getNewMaskValue(
-                value,
-                mask.mask.replace(new RegExp([_regex.source].concat('_').join('|'), 'g'), '_')
-            );
-        } else {
-
-            if (!this.ready) {
-                return false;
-            }
-
-            var path      = this.paths[0];
-
-            if (path) {
-                context = getInstanceByXpath(path);
-
-                if (context) {
-                    phone = context.opt.element.value;
-                }
-            }
-        }
-
-        if (phone) {
-            valid = phone.indexOf('_') === -1;
-        }
-
-        return valid;
-    },
+    return self;
+  }
 };
