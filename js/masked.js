@@ -1,4 +1,9 @@
-/* Это автогенерируемый файл, не редактируйте его, изменения будут утеряны! */
+/**! 
+* Masked - v1.0.2 - 
+* 
+* @author Rashin Sergey 
+* @version 1.0.2 2017-04-11
+*/
 
 
 /**
@@ -118,6 +123,7 @@ var MaskedConfig = MConf = (function() {
         lang:               'ru',
         country:            'ru',
         one_country:        false, // false or string 'iso_code'
+        country_binding:    false,
         first_countries:    ['ru'],
         exceptions:         exception_example,
         initial_focus:      false,
@@ -882,6 +888,9 @@ var actions = {
             }
         }  else if(code === 13) {
             if (opt.onSend) {
+                if(opt.country_binding) {
+                  instance.checkCountryBinding();
+                }
                 opt.onSend(opt);
             }
         } else {
@@ -964,18 +973,19 @@ var Mask = function (el, args) {
         listOpened:       false,                        // список открыт
         instId:           MConf('prefix') + makeId(),   //  Селектор выбранного елемента
         element:          el,
-        lang:             args.lang                 || MConf('lang'),
-        country:          args.country              || MConf('country'),
-        phone:            args.phone                || false,
-        mask:             args.mask                 || '',
-        onSend:           args.onSend               || MConf('onSend'),
-        onToggleList:     args.onToggleList         || MConf('onToggleList'),
-        onShowList:       args.onShowList           || MConf('onShowList'),
-        onHideList:       args.onHideList           || MConf('onHideList'),
-        onValueChanged:   args.onValueChanged       || MConf('onValueChanged'),
-        one_country:      args.one_country          || MConf('one_country'),    // режим одной страны
-        first_countries:  args.first_countries      || MConf('first_countries'),
-        exceptions:       args.exceptions           || MConf('exceptions'),
+        lang:                 args.lang                 || MConf('lang'),
+        country:              args.country              || MConf('country'),
+        phone:                args.phone                || false,
+        mask:                 args.mask                 || '',
+        onSend:               args.onSend               || MConf('onSend'),
+        onToggleList:         args.onToggleList         || MConf('onToggleList'),
+        onShowList:           args.onShowList           || MConf('onShowList'),
+        onHideList:           args.onHideList           || MConf('onHideList'),
+        onValueChanged:       args.onValueChanged       || MConf('onValueChanged'),
+        one_country:          args.one_country          || MConf('one_country'),    // режим одной страны
+        first_countries:      args.first_countries      || MConf('first_countries'),
+        exceptions:           args.exceptions           || MConf('exceptions'),
+        country_binding: args.country_binding || MConf('country_binding'),
         value:            '',
         name:             '',
         old:              {},
@@ -986,7 +996,8 @@ var Mask = function (el, args) {
             changed: false,
             start:   0,
             end:     0
-        }
+        },
+        phoneBindingValid: false
     };
 
     init(el, self.opt);
@@ -1543,6 +1554,58 @@ Mask.prototype = {
         Event.add(e,'keyup',       actions.keyup);
         Event.add(e,'paste',       actions.paste);
     },
+
+    checkCountryBinding: function() {
+        var i,
+            it,
+            im,
+            mask,
+            pass,
+            self = this,
+            pc  = phoneCodes,
+            masklist,
+            opt = self.opt,
+            value = getPhone(opt.element.value);
+
+        self.opt.phoneBindingValid = false;
+
+        if (empty(pc[opt.country]) || opt.country_binding === false) {
+            return false;
+        }
+        if (!empty(pc[opt.country])) {
+            masklist = pc[opt.country];
+        }
+
+        for (i in masklist) {
+            if (masklist.hasOwnProperty(i)) {
+              mask = masklist[i]['mask'];
+
+              pass = true;
+              for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
+                var chm = mask.charAt(im);
+                var cht = value.charAt(it);
+
+                if (!_regex.test(chm) && chm !== '_') {
+                  im++;
+                  continue;
+                }
+
+                if ((chm === '_' && _regex.test(cht)) || (cht == chm)) {
+                  it++;
+                  im++;
+                } else {
+                  pass = false;
+                  break;
+                }
+              }
+              if (pass === true) {
+                  break;
+              }
+            }
+        }
+
+        self.opt.phoneBindingValid = pass;
+    }
 };
 
 /**

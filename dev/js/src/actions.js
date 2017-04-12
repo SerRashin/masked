@@ -142,6 +142,9 @@ var actions = {
             }
         }  else if(code === 13) {
             if (opt.onSend) {
+                if(opt.country_binding) {
+                  instance.checkCountryBinding();
+                }
                 opt.onSend(opt);
             }
         } else {
