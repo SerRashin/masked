@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-04-11
+* @version 1.0.2 2017-04-12
 */
 
 
@@ -1555,56 +1555,10 @@ Mask.prototype = {
         Event.add(e,'paste',       actions.paste);
     },
 
-    checkCountryBinding: function() {
-        var i,
-            it,
-            im,
-            mask,
-            pass,
-            self = this,
-            pc  = phoneCodes,
-            masklist,
-            opt = self.opt,
-            value = getPhone(opt.element.value);
-
-        self.opt.phoneBindingValid = false;
-
-        if (empty(pc[opt.country]) || opt.country_binding === false) {
-            return false;
-        }
-        if (!empty(pc[opt.country])) {
-            masklist = pc[opt.country];
-        }
-
-        for (i in masklist) {
-            if (masklist.hasOwnProperty(i)) {
-              mask = masklist[i]['mask'];
-
-              pass = true;
-              for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
-                var chm = mask.charAt(im);
-                var cht = value.charAt(it);
-
-                if (!_regex.test(chm) && chm !== '_') {
-                  im++;
-                  continue;
-                }
-
-                if ((chm === '_' && _regex.test(cht)) || (cht == chm)) {
-                  it++;
-                  im++;
-                } else {
-                  pass = false;
-                  break;
-                }
-              }
-              if (pass === true) {
-                  break;
-              }
-            }
-        }
-
-        self.opt.phoneBindingValid = pass;
+    checkCountryBinding: function(value, country) {
+        var self = this,
+            opt = self.opt;
+      opt.phoneBindingValid = checkCountryBinding(self.opt.element.value, self.opt.country);
     }
 };
 
@@ -1710,6 +1664,54 @@ function hardSearch(value, mask_code) {
         return find || maths[0] || _false;
     }
 }
+
+
+function checkCountryBinding(_value, _country) {
+  var i,
+    it,
+    im,
+    mask,
+    pass,
+    pc  = phoneCodes,
+    masklist,
+    value = getPhone(_value);
+
+  if (empty(pc[_country])) {
+    return false;
+  }
+
+  masklist = pc[_country];
+
+  for (i in masklist) {
+    if (masklist.hasOwnProperty(i)) {
+      mask = masklist[i]['mask'];
+
+      pass = true;
+      for ( it = 0, im = 0; (it < value.length && im < mask.length);) {
+        var chm = mask.charAt(im);
+        var cht = value.charAt(it);
+
+        if (!_regex.test(chm) && chm !== '_') {
+          im++;
+          continue;
+        }
+
+        if ((chm === '_' && _regex.test(cht)) || (cht == chm)) {
+          it++;
+          im++;
+        } else {
+          pass = false;
+          break;
+        }
+      }
+      if (pass === true) {
+        break;
+      }
+    }
+  }
+
+  return pass;
+}
 /**
  * @var mixed doc
  * @var null type_null
@@ -1805,6 +1807,10 @@ plugin.getPhone = function (value) {
 
 plugin.isValid = function (value) {
     return value ? plugin.prototype.isValid(value) : false;
+};
+
+plugin.checkCountryBinding = function (value, country) {
+  return value && country ? plugin.prototype.checkCountryBinding(value, country) : false;
 };
 
 /**
@@ -1997,7 +2003,9 @@ plugin.prototype = {
         }
         return valid;
     },
-
+    checkCountryBinding: function(value, country) {
+      return checkCountryBinding(value, country)
+    }
 };
 
     return plugin;

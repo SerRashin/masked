@@ -95,6 +95,10 @@ plugin.isValid = function (value) {
     return value ? plugin.prototype.isValid(value) : false;
 };
 
+plugin.checkCountryBinding = function (value, country) {
+  return value && country ? plugin.prototype.checkCountryBinding(value, country) : false;
+};
+
 /**
  * Переключение статуса
  * @param e Элемент или класс
@@ -285,5 +289,7 @@ plugin.prototype = {
         }
         return valid;
     },
-
+    checkCountryBinding: function(value, country) {
+      return checkCountryBinding(value, country)
+    }
 };
