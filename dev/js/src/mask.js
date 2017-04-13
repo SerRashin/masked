@@ -58,10 +58,14 @@ var Mask = function (el, args) {
         onShowList:           args.onShowList           || MConf('onShowList'),
         onHideList:           args.onHideList           || MConf('onHideList'),
         onValueChanged:       args.onValueChanged       || MConf('onValueChanged'),
+        onValidationError:    args.onValidationError    || MConf('onValidationError'),
         one_country:          args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:      args.first_countries      || MConf('first_countries'),
         exceptions:           args.exceptions           || MConf('exceptions'),
-        country_binding: args.country_binding || MConf('country_binding'),
+        country_binding:        args.country_binding        || MConf('country_binding'),
+        show_validation_errors: args.show_validation_errors || MConf('show_validation_errors'),
+        // show_phone_information: args.show_phone_information || MConf('show_phone_information'),
+        i18n:                 args.i18n || MConf('i18n'),
         value:            '',
         name:             '',
         old:              {},
@@ -634,9 +638,88 @@ Mask.prototype = {
     checkCountryBinding: function(value, country) {
         var self = this,
             opt = self.opt;
-      opt.phoneBindingValid = checkCountryBinding(self.opt.element.value, self.opt.country);
+      return checkCountryBinding(self.opt.element.value, self.opt.country);
+    },
+
+    /**
+    * Проверяет переданный телефонный номер на корректность
+    * @param {string} _phone
+    * @returns {Boolean} true если всё ок, иначе false
+    */
+    isValidPhone: function(_phone) {
+        var phone = getPhone(_phone);
+
+        if (
+          typeof phone !== 'string'   ||
+          phone === ''                ||
+          (phone.indexOf('_') !== -1) ||                 // проверяем ввел ли пользователь все символы
+          /(.)\1{6,}/i.test(phone.replace(/\D+/g,""))    //проверка на число одинаковых цифр подряд (>=7)
+        ) {
+          return false;
+        }
+
+        return true;
+    },
+    validationErrors: function() {
+        var self = this,
+            opt = self.opt,
+            value = opt.element.value,
+            phone = getPhone(value);
+
+        var errors = [];
+
+        if (opt.show_validation_errors) {
+
+            if (
+                self.checkCountryBinding() === false && opt.country_binding ||
+                /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
+            ) {
+                errors.push({type:'phone_not_exists', message: opt.i18n[opt.lang].errors.phone_not_exists});
+            }
+
+            if (
+                phone === '' || (value.indexOf('_') !== -1)
+            ) {
+                errors.push({type:'phone_is_empty', message: opt.i18n[opt.lang].errors.phone_is_empty});
+            }
+
+            if (opt.onValidationError) {
+                return opt.onValidationError(errors)
+            } else {
+                return self.onValidationError(errors);
+            }
+
+            return true;
+        }
+
+        // ошибки валидации отключены
+        return false;
+    },
+    onValidationError: function(errors) {
+        var i,
+            messages = [],
+            self = this;
+
+        for (i in errors) {
+            if (errors.hasOwnProperty(i)) {
+                var o = errors[i];
+                messages.push('<p>' + o.message + '</p>');
+            }
+        }
+
+        if (messages.length > 0) {
+            Popover.show(
+                self.opt.element,
+                messages.join('')
+            );
+
+            return true;
+        }
+
+        return false;
     }
 };
+
 
 /**
  *
@@ -752,8 +835,11 @@ function checkCountryBinding(_value, _country) {
     masklist,
     value = getPhone(_value);
 
+    /**
+     * Если кодов для данной страны нет вообще, то разрешаем все
+     */
   if (empty(pc[_country])) {
-    return false;
+    return true;
   }
 
   masklist = pc[_country];

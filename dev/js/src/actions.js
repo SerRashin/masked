@@ -39,6 +39,8 @@ var actions = {
             inst.unsetRange();
         }
 
+        Popover.hide();
+
         return true;
     },
 
@@ -59,6 +61,8 @@ var actions = {
             select_range= instance.opt.select_range,
             _false      = false,
             _true       = true;
+
+        Popover.hide();
 
         if (code === 8) {  // BACKSPACE
             index = getLastNum(self);
@@ -141,10 +145,7 @@ var actions = {
                 return _false;
             }
         }  else if(code === 13) {
-            if (opt.onSend) {
-                if(opt.country_binding) {
-                  instance.checkCountryBinding();
-                }
+            if (opt.onSend && instance.validationErrors() === false) {
                 opt.onSend(opt);
             }
         } else {

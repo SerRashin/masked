@@ -17,6 +17,7 @@ module.exports = function(grunt) {
                     'dev/js/src/helpers.js',
                     'dev/js/src/phone_codes.js',
                     'dev/js/src/actions.js',
+                    'dev/js/src/popover.js',
                     'dev/js/src/mask.js',
                     'dev/js/src/index.js'
                 ],

@@ -24,7 +24,23 @@ var MaskedConfig = MConf = (function() {
         onShowList:         null,
         onHideList:         null,
         onSend:             null,
-        onValueChanged:     null
+        onValueChanged:     null,
+        onValidationError:  null,
+        onShowInformation:  null,
+        show_validation_errors: true,
+        show_phone_information: true,
+        i18n: {
+            'ru': {
+                'errors': {
+                    'phone_is_empty': 'Телефон не заполнен, заполните все символы.',
+                    'phone_not_exists': 'Телефон введен не верно или не существует.'
+                }
+            }
+        },
+        popover: {
+            prefix_id: 'masked_popover',
+            prefix_class: 'Masked_popover'
+        }
     };
 
     

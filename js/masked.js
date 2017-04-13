@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-04-12
+* @version 1.0.2 2017-04-13
 */
 
 
@@ -132,7 +132,23 @@ var MaskedConfig = MConf = (function() {
         onShowList:         null,
         onHideList:         null,
         onSend:             null,
-        onValueChanged:     null
+        onValueChanged:     null,
+        onValidationError:  null,
+        onShowInformation:  null,
+        show_validation_errors: true,
+        show_phone_information: true,
+        i18n: {
+            'ru': {
+                'errors': {
+                    'phone_is_empty': 'Телефон не заполнен, заполните все символы.',
+                    'phone_not_exists': 'Телефон введен не верно или не существует.'
+                }
+            }
+        },
+        popover: {
+            prefix_id: 'masked_popover',
+            prefix_class: 'Masked_popover'
+        }
     };
 
     
@@ -785,6 +801,8 @@ var actions = {
             inst.unsetRange();
         }
 
+        Popover.hide();
+
         return true;
     },
 
@@ -805,6 +823,8 @@ var actions = {
             select_range= instance.opt.select_range,
             _false      = false,
             _true       = true;
+
+        Popover.hide();
 
         if (code === 8) {  // BACKSPACE
             index = getLastNum(self);
@@ -887,10 +907,7 @@ var actions = {
                 return _false;
             }
         }  else if(code === 13) {
-            if (opt.onSend) {
-                if(opt.country_binding) {
-                  instance.checkCountryBinding();
-                }
+            if (opt.onSend && instance.validationErrors() === false) {
                 opt.onSend(opt);
             }
         } else {
@@ -922,6 +939,103 @@ var actions = {
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
+/**
+ *
+ * @param element Элементу которому будет показан popover
+ * @param text
+ * @param direction
+ * @constructor
+ */
+var Popover = (function() {
+    var Popover = function () {
+        var self = this;
+
+        var settings = MConf('popover');
+
+        self.prefix_id = settings.prefix_id;
+        self.prefix_class = settings.prefix_class;
+
+        self.template = '<div class="{class} {direction}" id="{id}" style="{styles}">'
+            + '<div class="arrow" style="left: 50%;"></div>'
+            + '<h3 class="popover-title" style="display:none"></h3>'
+            + '<div class="popover-content">{text}</div>'
+            + '</div>';
+
+        function fragmentFromString(strHTML) {
+            return document.createRange().createContextualFragment(strHTML);
+        }
+
+        function setPx(el, type, px) {
+            el.style[type] = px + 'px';
+        }
+
+        self.show = function (e, text, direction) {
+            var pos = e.getBoundingClientRect(),
+                top = pos.top,
+                left = pos.left,
+                width = pos.width,
+                height = pos.height,
+                direction = direction || 'top';
+
+            var template = self.template.replace('{direction}', direction)
+                       .replace('{class}', self.prefix_class)
+                       .replace('{id}', self.prefix_id)
+                       .replace('{styles}', "display: block")
+                       .replace('{text}', text);
+
+            var element = fragmentFromString(template).getElementById(self.prefix_id);
+
+            element.style.visibility = 'hidden';
+            element.style.display    = 'block';
+            document.body.appendChild(element);
+            element.style.visibility = '';
+
+            var p_width = element.offsetWidth,
+                p_height = element.offsetHeight;
+
+
+
+            if (p_height + 10 > top || direction === 'bottom') {
+                removeClass(element, direction);
+                top = Math.ceil(height + top);
+                addClass(element, 'bottom')
+                direction = 'bottom'
+            }
+
+            if (p_width > width) {
+                left -= (p_width - width) / 2;
+            }
+
+            if (direction === 'top') {
+                top -= Math.ceil(p_height) + 2;
+            }
+
+            console.log(
+                e.offsetHeight ,
+                e.clientHeight ,
+                e.scrollHeight ,
+                top
+            )
+
+            if (window.pageYOffset > 0) {
+                top += (window.pageYOffset || window.scrollY || document.documentElement.scrollTop);
+            }
+
+            setPx(element, 'left', left);
+            setPx(element, 'top', top);
+        };
+
+        self.hide = function() {
+            if (document.getElementById(self.prefix_id) !== null) {
+                document.getElementById(self.prefix_id).remove();
+            }
+        };
+
+        return self;
+    };
+
+    return new Popover();
+})();
 /**
  * Объект маски
  */
@@ -982,10 +1096,14 @@ var Mask = function (el, args) {
         onShowList:           args.onShowList           || MConf('onShowList'),
         onHideList:           args.onHideList           || MConf('onHideList'),
         onValueChanged:       args.onValueChanged       || MConf('onValueChanged'),
+        onValidationError:    args.onValidationError    || MConf('onValidationError'),
         one_country:          args.one_country          || MConf('one_country'),    // режим одной страны
         first_countries:      args.first_countries      || MConf('first_countries'),
         exceptions:           args.exceptions           || MConf('exceptions'),
-        country_binding: args.country_binding || MConf('country_binding'),
+        country_binding:        args.country_binding        || MConf('country_binding'),
+        show_validation_errors: args.show_validation_errors || MConf('show_validation_errors'),
+        // show_phone_information: args.show_phone_information || MConf('show_phone_information'),
+        i18n:                 args.i18n || MConf('i18n'),
         value:            '',
         name:             '',
         old:              {},
@@ -1558,9 +1676,88 @@ Mask.prototype = {
     checkCountryBinding: function(value, country) {
         var self = this,
             opt = self.opt;
-      opt.phoneBindingValid = checkCountryBinding(self.opt.element.value, self.opt.country);
+      return checkCountryBinding(self.opt.element.value, self.opt.country);
+    },
+
+    /**
+    * Проверяет переданный телефонный номер на корректность
+    * @param {string} _phone
+    * @returns {Boolean} true если всё ок, иначе false
+    */
+    isValidPhone: function(_phone) {
+        var phone = getPhone(_phone);
+
+        if (
+          typeof phone !== 'string'   ||
+          phone === ''                ||
+          (phone.indexOf('_') !== -1) ||                 // проверяем ввел ли пользователь все символы
+          /(.)\1{6,}/i.test(phone.replace(/\D+/g,""))    //проверка на число одинаковых цифр подряд (>=7)
+        ) {
+          return false;
+        }
+
+        return true;
+    },
+    validationErrors: function() {
+        var self = this,
+            opt = self.opt,
+            value = opt.element.value,
+            phone = getPhone(value);
+
+        var errors = [];
+
+        if (opt.show_validation_errors) {
+
+            if (
+                self.checkCountryBinding() === false && opt.country_binding ||
+                /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
+            ) {
+                errors.push({type:'phone_not_exists', message: opt.i18n[opt.lang].errors.phone_not_exists});
+            }
+
+            if (
+                phone === '' || (value.indexOf('_') !== -1)
+            ) {
+                errors.push({type:'phone_is_empty', message: opt.i18n[opt.lang].errors.phone_is_empty});
+            }
+
+            if (opt.onValidationError) {
+                return opt.onValidationError(errors)
+            } else {
+                return self.onValidationError(errors);
+            }
+
+            return true;
+        }
+
+        // ошибки валидации отключены
+        return false;
+    },
+    onValidationError: function(errors) {
+        var i,
+            messages = [],
+            self = this;
+
+        for (i in errors) {
+            if (errors.hasOwnProperty(i)) {
+                var o = errors[i];
+                messages.push('<p>' + o.message + '</p>');
+            }
+        }
+
+        if (messages.length > 0) {
+            Popover.show(
+                self.opt.element,
+                messages.join('')
+            );
+
+            return true;
+        }
+
+        return false;
     }
 };
+
 
 /**
  *
@@ -1676,8 +1873,11 @@ function checkCountryBinding(_value, _country) {
     masklist,
     value = getPhone(_value);
 
+    /**
+     * Если кодов для данной страны нет вообще, то разрешаем все
+     */
   if (empty(pc[_country])) {
-    return false;
+    return true;
   }
 
   masklist = pc[_country];
