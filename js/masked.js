@@ -1010,13 +1010,6 @@ var Popover = (function() {
                 top -= Math.ceil(p_height) + 2;
             }
 
-            console.log(
-                e.offsetHeight ,
-                e.clientHeight ,
-                e.scrollHeight ,
-                top
-            )
-
             if (window.pageYOffset > 0) {
                 top += (window.pageYOffset || window.scrollY || document.documentElement.scrollTop);
             }
