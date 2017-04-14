@@ -81,7 +81,7 @@ plugin.phoneCodes = phoneCodes;
 
 plugin.getById = function (id) {
     var el = document.getElementById(id);
-    if(el !== null){
+    if (el !== null) {
         return this.getInst(el);
     }
     return false;
@@ -98,6 +98,11 @@ plugin.isValid = function (value) {
 plugin.checkCountryBinding = function (value, country) {
   return value && country ? plugin.prototype.checkCountryBinding(value, country) : false;
 };
+
+plugin.validationErrors = function (element) {
+    return element ? plugin.prototype.validationErrors(element) : false;
+};
+
 
 /**
  * Переключение статуса
@@ -291,5 +296,30 @@ plugin.prototype = {
     },
     checkCountryBinding: function(value, country) {
       return checkCountryBinding(value, country)
+    },
+    validationErrors: function(element) {
+        var value = element.value,
+            phone = getPhone(value);
+
+        var errors = [];
+
+        var i18n = MaskedConfig('i18n');
+        var lang = MaskedConfig('lang');
+        var country = MaskedConfig('country');
+
+        if (
+            this.checkCountryBinding(value, country) === false ||
+            /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
+        ) {
+            errors.push({type:'phone_not_exists', message: i18n[lang].errors.phone_not_exists});
+        }
+
+        if (
+            phone === '' || (value.indexOf('_') !== -1)
+        ) {
+            errors.push({type:'phone_is_empty', message: i18n[lang].errors.phone_is_empty});
+        }
+
+        return onValidationError(errors, element);
     }
 };

@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-04-13
+* @version 1.0.2 2017-04-14
 */
 
 
@@ -135,7 +135,7 @@ var MaskedConfig = MConf = (function() {
         onValueChanged:     null,
         onValidationError:  null,
         onShowInformation:  null,
-        show_validation_errors: true,
+        show_validation_errors: false,
         show_phone_information: true,
         i18n: {
             'ru': {
@@ -1717,7 +1717,7 @@ Mask.prototype = {
             if (opt.onValidationError) {
                 return opt.onValidationError(errors)
             } else {
-                return self.onValidationError(errors);
+                return onValidationError(errors, self.opt.element);
             }
 
             return true;
@@ -1726,29 +1726,7 @@ Mask.prototype = {
         // ошибки валидации отключены
         return false;
     },
-    onValidationError: function(errors) {
-        var i,
-            messages = [],
-            self = this;
 
-        for (i in errors) {
-            if (errors.hasOwnProperty(i)) {
-                var o = errors[i];
-                messages.push('<p>' + o.message + '</p>');
-            }
-        }
-
-        if (messages.length > 0) {
-            Popover.show(
-                self.opt.element,
-                messages.join('')
-            );
-
-            return true;
-        }
-
-        return false;
-    }
 };
 
 
@@ -1905,6 +1883,31 @@ function checkCountryBinding(_value, _country) {
 
   return pass;
 }
+
+
+function onValidationError(errors, element) {
+    var i,
+        messages = [],
+        self = this;
+
+    for (i in errors) {
+        if (errors.hasOwnProperty(i)) {
+            var o = errors[i];
+            messages.push('<p>' + o.message + '</p>');
+        }
+    }
+
+    if (messages.length > 0) {
+        Popover.show(
+            element,
+            messages.join('')
+        );
+
+        return true;
+    }
+
+    return false;
+}
 /**
  * @var mixed doc
  * @var null type_null
@@ -1988,7 +1991,7 @@ plugin.phoneCodes = phoneCodes;
 
 plugin.getById = function (id) {
     var el = document.getElementById(id);
-    if(el !== null){
+    if (el !== null) {
         return this.getInst(el);
     }
     return false;
@@ -2005,6 +2008,11 @@ plugin.isValid = function (value) {
 plugin.checkCountryBinding = function (value, country) {
   return value && country ? plugin.prototype.checkCountryBinding(value, country) : false;
 };
+
+plugin.validationErrors = function (element) {
+    return element ? plugin.prototype.validationErrors(element) : false;
+};
+
 
 /**
  * Переключение статуса
@@ -2198,6 +2206,31 @@ plugin.prototype = {
     },
     checkCountryBinding: function(value, country) {
       return checkCountryBinding(value, country)
+    },
+    validationErrors: function(element) {
+        var value = element.value,
+            phone = getPhone(value);
+
+        var errors = [];
+
+        var i18n = MaskedConfig('i18n');
+        var lang = MaskedConfig('lang');
+        var country = MaskedConfig('country');
+
+        if (
+            this.checkCountryBinding(value, country) === false ||
+            /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
+        ) {
+            errors.push({type:'phone_not_exists', message: i18n[lang].errors.phone_not_exists});
+        }
+
+        if (
+            phone === '' || (value.indexOf('_') !== -1)
+        ) {
+            errors.push({type:'phone_is_empty', message: i18n[lang].errors.phone_is_empty});
+        }
+
+        return onValidationError(errors, element);
     }
 };
 

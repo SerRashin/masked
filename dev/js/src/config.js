@@ -27,7 +27,7 @@ var MaskedConfig = MConf = (function() {
         onValueChanged:     null,
         onValidationError:  null,
         onShowInformation:  null,
-        show_validation_errors: true,
+        show_validation_errors: false,
         show_phone_information: true,
         i18n: {
             'ru': {

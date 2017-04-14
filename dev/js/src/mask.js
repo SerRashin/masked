@@ -686,7 +686,7 @@ Mask.prototype = {
             if (opt.onValidationError) {
                 return opt.onValidationError(errors)
             } else {
-                return self.onValidationError(errors);
+                return onValidationError(errors, self.opt.element);
             }
 
             return true;
@@ -695,29 +695,7 @@ Mask.prototype = {
         // ошибки валидации отключены
         return false;
     },
-    onValidationError: function(errors) {
-        var i,
-            messages = [],
-            self = this;
 
-        for (i in errors) {
-            if (errors.hasOwnProperty(i)) {
-                var o = errors[i];
-                messages.push('<p>' + o.message + '</p>');
-            }
-        }
-
-        if (messages.length > 0) {
-            Popover.show(
-                self.opt.element,
-                messages.join('')
-            );
-
-            return true;
-        }
-
-        return false;
-    }
 };
 
 
@@ -873,4 +851,29 @@ function checkCountryBinding(_value, _country) {
   }
 
   return pass;
+}
+
+
+function onValidationError(errors, element) {
+    var i,
+        messages = [],
+        self = this;
+
+    for (i in errors) {
+        if (errors.hasOwnProperty(i)) {
+            var o = errors[i];
+            messages.push('<p>' + o.message + '</p>');
+        }
+    }
+
+    if (messages.length > 0) {
+        Popover.show(
+            element,
+            messages.join('')
+        );
+
+        return true;
+    }
+
+    return false;
 }
