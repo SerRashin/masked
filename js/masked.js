@@ -2011,6 +2011,7 @@ plugin.checkCountryBinding = function (value, country) {
 plugin.validationErrors = function (element, callback) {
     return element ? plugin.prototype.validationErrors(element, callback) : false;
 };
+plugin.Popover = Popover;
 
 
 /**
