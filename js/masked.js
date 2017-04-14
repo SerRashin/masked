@@ -961,12 +961,18 @@ var Popover = (function() {
             + '<div class="popover-content">{text}</div>'
             + '</div>';
 
+
+
         function fragmentFromString(strHTML) {
             return document.createRange().createContextualFragment(strHTML);
         }
 
         function setPx(el, type, px) {
             el.style[type] = px + 'px';
+        }
+
+        function hidePopover() {
+            self.hide();
         }
 
         self.show = function (e, text, direction) {
@@ -1016,13 +1022,18 @@ var Popover = (function() {
 
             setPx(element, 'left', left);
             setPx(element, 'top', top);
+
+            Event.add(document, 'click', hidePopover);
         };
 
         self.hide = function() {
             if (document.getElementById(self.prefix_id) !== null) {
                 document.getElementById(self.prefix_id).remove();
+                Event.remove(document, 'click', hidePopover);
             }
         };
+
+
 
         return self;
     };
