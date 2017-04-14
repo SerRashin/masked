@@ -1887,8 +1887,7 @@ function checkCountryBinding(_value, _country) {
 
 function onValidationError(errors, element) {
     var i,
-        messages = [],
-        self = this;
+        messages = [];
 
     for (i in errors) {
         if (errors.hasOwnProperty(i)) {
@@ -2009,8 +2008,8 @@ plugin.checkCountryBinding = function (value, country) {
   return value && country ? plugin.prototype.checkCountryBinding(value, country) : false;
 };
 
-plugin.validationErrors = function (element) {
-    return element ? plugin.prototype.validationErrors(element) : false;
+plugin.validationErrors = function (element, callback) {
+    return element ? plugin.prototype.validationErrors(element, callback) : false;
 };
 
 
@@ -2207,7 +2206,7 @@ plugin.prototype = {
     checkCountryBinding: function(value, country) {
       return checkCountryBinding(value, country)
     },
-    validationErrors: function(element) {
+    validationErrors: function(element, callback) {
         var value = element.value,
             phone = getPhone(value);
 
@@ -2230,7 +2229,11 @@ plugin.prototype = {
             errors.push({type:'phone_is_empty', message: i18n[lang].errors.phone_is_empty});
         }
 
-        return onValidationError(errors, element);
+        Popover.hide();
+
+        if(!onValidationError(errors, element)) {
+            callback();
+        }
     }
 };
 

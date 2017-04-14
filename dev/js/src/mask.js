@@ -856,8 +856,7 @@ function checkCountryBinding(_value, _country) {
 
 function onValidationError(errors, element) {
     var i,
-        messages = [],
-        self = this;
+        messages = [];
 
     for (i in errors) {
         if (errors.hasOwnProperty(i)) {
