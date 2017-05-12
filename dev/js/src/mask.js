@@ -148,8 +148,8 @@ Mask.prototype = {
 
                 for (var expr in exc) {
                     if(exc.hasOwnProperty(expr)) {
-                        if (value === phone_code + ''+expr) {
-                            value = value.replace(phone_code + ''+expr, phone_code +''+exc[expr]);
+                        if (value === expr) {
+                            value = value.replace(value, exc[expr]);
                             break;
                         }
                     }
