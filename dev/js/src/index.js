@@ -324,7 +324,9 @@ plugin.prototype = {
         Popover.hide();
 
         if(!onValidationError(errors, element)) {
-            callback();
+            return callback();
         }
+
+        return false;
     }
 };

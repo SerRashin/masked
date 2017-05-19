@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-04-14
+* @version 1.0.2 2017-05-19
 */
 
 
@@ -640,6 +640,7 @@ var phoneCodes = {
     ae:     [],     //
     an:     [],     //
     ba:     [],     //
+    by:     [],     // Белорусь
     bt:     [],     //
     ca:     [],     // список кодов для канады
     cn:     [],     //
@@ -650,6 +651,7 @@ var phoneCodes = {
     il:     [],     //
     jp:     [],     //
     kp:     [],     //
+    kz:     [],     // Казахстан
     la:     [],     //
     lb:     [],     //
     ly:     [],     //
@@ -1190,8 +1192,8 @@ Mask.prototype = {
 
                 for (var expr in exc) {
                     if(exc.hasOwnProperty(expr)) {
-                        if (value === phone_code + ''+expr) {
-                            value = value.replace(phone_code + ''+expr, phone_code +''+exc[expr]);
+                        if (value === expr) {
+                            value = value.replace(value, exc[expr]);
                             break;
                         }
                     }
@@ -1918,6 +1920,7 @@ function onValidationError(errors, element) {
 
     return false;
 }
+
 /**
  * @var mixed doc
  * @var null type_null
@@ -2244,8 +2247,10 @@ plugin.prototype = {
         Popover.hide();
 
         if(!onValidationError(errors, element)) {
-            callback();
+            return callback();
         }
+
+        return false;
     }
 };
 

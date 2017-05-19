@@ -1,0 +1,73 @@
+[{
+    "iso_code": "by",
+    "mask": "+375(29)1__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Velcom"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)3__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Velcom"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)6__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Velcom"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)9__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Velcom"
+},{
+    "iso_code": "by",
+    "mask": "+375(44)___-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Velcom"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)2__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "MTS"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)5__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "MTS"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)7__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "MTS"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)8__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "MTS"
+},{
+    "iso_code": "by",
+    "mask": "+375(33)___-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "MTS"
+},{
+    "iso_code": "by",
+    "mask": "+375(25)___-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "ชีวิต)"
+},{
+    "iso_code": "by",
+    "mask": "+375(29)4__-__-__",
+    "region": "เบลารุส name",
+    "city": "ทั้งเมือง",
+    "operator": "Diallog"
+}]
