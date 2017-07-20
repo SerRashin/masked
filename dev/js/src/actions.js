@@ -177,3 +177,18 @@ var actions = {
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
+
+(function () {
+    var ev;
+    try {
+        ev = new KeyboardEvent('keydown');
+        if (!('key' in ev)) {
+            if (!('keyCode' in ev))
+            Object.defineProperty(
+                KeyboardEvent.prototype,
+                'key',
+                {get: function () {return this.keyCode;}}
+            );
+        }
+    } catch (e) {}
+}());

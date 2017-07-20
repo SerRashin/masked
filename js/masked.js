@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-05-19
+* @version 1.0.2 2017-07-20
 */
 
 
@@ -941,6 +941,21 @@ var actions = {
         instance.setMask(self); // ищем новую маску, и принудительно перезагружаем вторым аргументом
     }
 };
+
+(function () {
+    var ev;
+    try {
+        ev = new KeyboardEvent('keydown');
+        if (!('key' in ev)) {
+            if (!('keyCode' in ev))
+            Object.defineProperty(
+                KeyboardEvent.prototype,
+                'key',
+                {get: function () {return this.keyCode;}}
+            );
+        }
+    } catch (e) {}
+}());
 /**
  *
  * @param element Элементу которому будет показан popover
