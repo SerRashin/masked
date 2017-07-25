@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-07-20
+* @version 1.0.2 2017-07-25
 */
 
 
@@ -1697,7 +1697,8 @@ Mask.prototype = {
     checkCountryBinding: function(value, country) {
         var self = this,
             opt = self.opt;
-      return checkCountryBinding(self.opt.element.value, self.opt.country);
+
+      return checkCountryBinding(opt.element.value, opt.country);
     },
 
     /**
@@ -1925,6 +1926,7 @@ function onValidationError(errors, element) {
     }
 
     if (messages.length > 0) {
+
         Popover.show(
             element,
             messages.join('')
@@ -2242,12 +2244,20 @@ plugin.prototype = {
 
         var errors = [];
 
+        var inst = plugin.getInst(element),
+        opt = null;
+
+        if (inst) {
+            opt = inst.opt;
+        }
+
         var i18n = MaskedConfig('i18n');
-        var lang = MaskedConfig('lang');
-        var country = MaskedConfig('country');
+        var lang = opt ? opt.lang : MaskedConfig('lang');
+        var country = opt ? opt.country : MaskedConfig('country');
+        var country_binding = opt ? opt.country_binding : MaskedConfig('country_binding');
 
         if (
-            this.checkCountryBinding(value, country) === false ||
+            this.checkCountryBinding(value, country) === false && country_binding ||
             /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
         ) {
             errors.push({type:'phone_not_exists', message: i18n[lang].errors.phone_not_exists});

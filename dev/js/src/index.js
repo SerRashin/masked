@@ -304,12 +304,20 @@ plugin.prototype = {
 
         var errors = [];
 
+        var inst = plugin.getInst(element),
+        opt = null;
+
+        if (inst) {
+            opt = inst.opt;
+        }
+
         var i18n = MaskedConfig('i18n');
-        var lang = MaskedConfig('lang');
-        var country = MaskedConfig('country');
+        var lang = opt ? opt.lang : MaskedConfig('lang');
+        var country = opt ? opt.country : MaskedConfig('country');
+        var country_binding = opt ? opt.country_binding : MaskedConfig('country_binding');
 
         if (
-            this.checkCountryBinding(value, country) === false ||
+            this.checkCountryBinding(value, country) === false && country_binding ||
             /(.)\1{6,}/i.test(phone.replace(/\D+/g, ""))
         ) {
             errors.push({type:'phone_not_exists', message: i18n[lang].errors.phone_not_exists});

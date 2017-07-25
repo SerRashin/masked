@@ -638,7 +638,8 @@ Mask.prototype = {
     checkCountryBinding: function(value, country) {
         var self = this,
             opt = self.opt;
-      return checkCountryBinding(self.opt.element.value, self.opt.country);
+
+      return checkCountryBinding(opt.element.value, opt.country);
     },
 
     /**
@@ -866,6 +867,7 @@ function onValidationError(errors, element) {
     }
 
     if (messages.length > 0) {
+
         Popover.show(
             element,
             messages.join('')
