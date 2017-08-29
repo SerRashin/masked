@@ -311,7 +311,7 @@ plugin.prototype = {
             opt = inst.opt;
         }
 
-        var i18n = MaskedConfig('i18n');
+        var i18n = opt ? opt.i18n : MaskedConfig('i18n');
         var lang = opt ? opt.lang : MaskedConfig('lang');
         var country = opt ? opt.country : MaskedConfig('country');
         var country_binding = opt ? opt.country_binding : MaskedConfig('country_binding');

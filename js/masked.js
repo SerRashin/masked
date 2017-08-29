@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-07-25
+* @version 1.0.2 2017-08-29
 */
 
 
@@ -2251,7 +2251,7 @@ plugin.prototype = {
             opt = inst.opt;
         }
 
-        var i18n = MaskedConfig('i18n');
+        var i18n = opt ? opt.i18n : MaskedConfig('i18n');
         var lang = opt ? opt.lang : MaskedConfig('lang');
         var country = opt ? opt.country : MaskedConfig('country');
         var country_binding = opt ? opt.country_binding : MaskedConfig('country_binding');
