@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-08-29
+* @version 1.0.2 2017-11-15
 */
 
 
@@ -563,16 +563,15 @@ function getNewMaskValue(_value, _mask) {
  *   если start и end равны, то курсор устанавливается на позицию start||end
  *   если не равны, выделяет символы от start до end
  */
-function setCaretFocus(input, start, end) {
+function setCaretFocus(input, start) {
     var character = 'character';
-    input.focus();
     if (input.setSelectionRange) {
-        input.setSelectionRange(start, end);
+        input.setSelectionRange(start, start);
     } else if (input.createTextRange) {
         var range = input.createTextRange();
         range.collapse(true);
+        range.moveStart(character, start);
         range.moveEnd(character, start);
-        range.moveStart(character, end);
         range.select();
     }
 }
@@ -590,6 +589,7 @@ function getLastNum(e) {
             break;
         }
     }
+
     return i;
 }
 

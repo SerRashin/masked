@@ -398,16 +398,15 @@ function getNewMaskValue(_value, _mask) {
  *   если start и end равны, то курсор устанавливается на позицию start||end
  *   если не равны, выделяет символы от start до end
  */
-function setCaretFocus(input, start, end) {
+function setCaretFocus(input, start) {
     var character = 'character';
-    input.focus();
     if (input.setSelectionRange) {
-        input.setSelectionRange(start, end);
+        input.setSelectionRange(start, start);
     } else if (input.createTextRange) {
         var range = input.createTextRange();
         range.collapse(true);
+        range.moveStart(character, start);
         range.moveEnd(character, start);
-        range.moveStart(character, end);
         range.select();
     }
 }
@@ -425,6 +424,7 @@ function getLastNum(e) {
             break;
         }
     }
+
     return i;
 }
 
