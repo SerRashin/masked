@@ -170,8 +170,6 @@ Mask.prototype = {
                 return false;
             }
 
-
-
             if (isset(pc[iso]) && empty(pc[iso])) {
                 var t = {'iso_code':iso, 'lang': self.opt.lang };
                 if (!languageIsset(gc, t)) {
@@ -181,9 +179,8 @@ Mask.prototype = {
                         pc.loadMasks(iso, self.opt.lang, function() {
                             find = hardSearch(value, iso);
                             self.setInp(self.opt.element, find.obj['iso_code'], find.obj['name'], getNewMaskValue(value, find['mask']));
-                            if (self.opt.initial_focus === true) {
-                                self.focused();
-                            }
+
+                          self.focused();
                         });
                     }
                 }
@@ -199,6 +196,7 @@ Mask.prototype = {
                 self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
             }
         }
+        console.log(self.opt.initial_focus);
         if (self.opt.initial_focus === true) {
             self.focused();
         }

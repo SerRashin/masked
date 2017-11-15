@@ -409,6 +409,7 @@ function setCaretFocus(input, start) {
         range.moveEnd(character, start);
         range.select();
     }
+    input.focus();
 }
 
 /**
