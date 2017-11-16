@@ -196,7 +196,7 @@ Mask.prototype = {
                 self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
             }
         }
-        console.log(self.opt.initial_focus);
+
         if (self.opt.initial_focus === true) {
             self.focused();
         }

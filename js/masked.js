@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-11-15
+* @version 1.0.2 2017-11-16
 */
 
 
@@ -1256,7 +1256,7 @@ Mask.prototype = {
                 self.setInp(self.opt.element, obj['iso_code'], obj['name'], value);
             }
         }
-        console.log(self.opt.initial_focus);
+
         if (self.opt.initial_focus === true) {
             self.focused();
         }
