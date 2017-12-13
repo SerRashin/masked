@@ -628,8 +628,15 @@ Mask.prototype = {
         Event.add(e,'blur',        actions.blur);
         Event.add(e,'click',       actions.click)
         Event.add(e,'dblclick',    actions.dblclick);
-        Event.add(e,'keydown',     actions.keydown);
-        Event.add(e,'keyup',       actions.keyup);
+
+        if (isAndroid()) {
+            Event.add(e,'textInput',   actions.textInput);
+            Event.add(e,'input',       actions.input);
+        } else {
+            Event.add(e,'keydown',     actions.keydown);
+            Event.add(e,'keyup',       actions.keyup);
+        }
+
         Event.add(e,'paste',       actions.paste);
     },
 

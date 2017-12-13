@@ -471,3 +471,7 @@ function getDataSet(el) {
 
     return res;
 }
+
+function isAndroid() {
+  return navigator.userAgent.toLowerCase().indexOf("android") > -1;
+}

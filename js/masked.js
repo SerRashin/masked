@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2017-11-16
+* @version 1.0.2 2017-12-13
 */
 
 
@@ -636,6 +636,10 @@ function getDataSet(el) {
 
     return res;
 }
+
+function isAndroid() {
+  return navigator.userAgent.toLowerCase().indexOf("android") > -1;
+}
 var phoneCodes = {
     all:    [],     // список масок для всех стран
     ae:     [],     //
@@ -809,6 +813,74 @@ var actions = {
         return true;
     },
 
+  /**
+   * События новых символов
+   *
+   * только для android
+   *
+   * @param e
+   * @returns {boolean}
+   */
+  textInput: function (e) {
+    var index,
+      num,
+      self        = this,
+      p           = plugin,
+      instance    = p.getInst(self),
+      data        = e.data,
+      value       = self.value;
+
+    num = value.indexOf('_');
+
+    if (num !== -1) { // если есть еще пустые символы
+      if (_regex.test(data) === true && value[num] === '_' ) {
+
+        self.value = getPhone(value + '' + data);
+
+        instance.setMask(self);
+
+        setTimeout(function () {
+          instance.focused();
+        });
+      }
+    } else {
+      if (instance.ifIssetNextMask() && _regex.test(data) === true) {
+        return true;
+      }
+    }
+
+    return false;
+  },
+
+  /**
+   * Удаление символов
+   *
+   * только для android
+   *
+   * @param e
+   * @returns {boolean}
+   */
+  input: function (e) {
+    e.preventDefault();
+      if (e.data === null) {
+        var self      = this,
+          p           = plugin,
+          instance    = p.getInst(self);
+
+        self.value = instance.opt.value;
+
+        var index = getLastNum(self);
+        removeLastChar(self, index);
+
+        setCaretFocus(self, index);
+        instance.setMask(self); // ищем новую маску
+
+        setTimeout(function () {
+          instance.focused();
+        });
+      }
+  },
+
     /**
      * При нажатии клавиши
      * @return void|boolean
@@ -832,7 +904,6 @@ var actions = {
         if (code === 8) {  // BACKSPACE
             index = getLastNum(self);
             if (_regex.test(value[index]) === _true) {
-
                 if (select_range !== false) {
                     if (select_range.focus === true) {
                         instance.replaceRange();
@@ -1688,8 +1759,15 @@ Mask.prototype = {
         Event.add(e,'blur',        actions.blur);
         Event.add(e,'click',       actions.click)
         Event.add(e,'dblclick',    actions.dblclick);
-        Event.add(e,'keydown',     actions.keydown);
-        Event.add(e,'keyup',       actions.keyup);
+
+        if (isAndroid()) {
+            Event.add(e,'textInput',   actions.textInput);
+            Event.add(e,'input',       actions.input);
+        } else {
+            Event.add(e,'keydown',     actions.keydown);
+            Event.add(e,'keyup',       actions.keyup);
+        }
+
         Event.add(e,'paste',       actions.paste);
     },
 
