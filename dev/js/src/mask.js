@@ -524,8 +524,8 @@ Mask.prototype = {
     replaceRange: function() {
         var self     = this,
             o        = self.opt,
-            e        = self.opt.element;
-        value    = self.opt.element.value.split('');
+            e        = self.opt.element,
+        value    = self.opt.element.value.split(''),
         selected = self.opt.select_range;
 
         var a = false;
@@ -633,9 +633,9 @@ Mask.prototype = {
             Event.add(e,'textInput',   actions.textInput);
             Event.add(e,'input',       actions.input);
         } else {
-            Event.add(e,'keydown',     actions.keydown);
-            Event.add(e,'keyup',       actions.keyup);
+            Event.add(e,'keydown',     actions.inputText);
         }
+
 
         Event.add(e,'paste',       actions.paste);
     },
@@ -702,6 +702,24 @@ Mask.prototype = {
         return false;
     },
 
+    addDigitToMask: function (_digit) {
+    var mask = this.opt.element.value;
+
+    var maskArray = mask.split('');
+
+    for (var i in maskArray) {
+      if (maskArray.hasOwnProperty(i)) {
+        var digit = maskArray[i];
+
+        if (digit === '_' && _digit !== null) {
+          maskArray[i] = _digit;
+          _digit = null;
+        }
+      }
+    }
+
+    this.opt.element.value = maskArray.join('');
+  }
 };
 
 
