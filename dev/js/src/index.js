@@ -281,7 +281,11 @@ plugin.prototype = {
             elements   = [];
 
         if (value) {
-            valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+            var mask = hs(getPhone(value));
+
+            if (mask) {
+              valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+            }
         } else {
              elements = this.elements;
 

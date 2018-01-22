@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2018-01-18
+* @version 1.0.2 2018-01-22
 */
 
 
@@ -165,7 +165,7 @@ var MaskedConfig = MConf = (function() {
 var Masked = (function(doc, win) {
     var type_undefined      = 'undefined',
     type_null           = 'null',
-    _regex              =  new RegExp("[0-9]");
+    _regex          =  new RegExp('[0-9]');
 /**
  * Обработчик событий
  *
@@ -2279,7 +2279,11 @@ plugin.prototype = {
             elements   = [];
 
         if (value) {
-            valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+            var mask = hs(getPhone(value));
+
+            if (mask) {
+              valid = getNewMaskValue(getPhone(value), hs(getPhone(value)).mask).indexOf('_') === -1;
+            }
         } else {
              elements = this.elements;
 
