@@ -2,7 +2,7 @@
 * Masked - v1.0.2 - 
 * 
 * @author Rashin Sergey 
-* @version 1.0.2 2018-01-22
+* @version 1.0.2 2018-01-31
 */
 
 
@@ -1343,7 +1343,9 @@ Mask.prototype = {
 
         wrapper = document_create('div');
         inner_HTML(wrapper, el);
-        className(wrapper,cbm);
+        setTimeout(function() {
+            className(wrapper, cbm);
+        });
 
         el.parentNode.replaceChild(wrapper, el);
 
