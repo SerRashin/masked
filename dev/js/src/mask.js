@@ -249,7 +249,9 @@ Mask.prototype = {
 
         wrapper = document_create('div');
         inner_HTML(wrapper, el);
-        className(wrapper,cbm);
+        setTimeout(function() {
+            className(wrapper, cbm);
+        });
 
         el.parentNode.replaceChild(wrapper, el);
 
